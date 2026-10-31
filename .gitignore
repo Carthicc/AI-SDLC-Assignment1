@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+*.key
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.coverage
+htmlcov/
+.claude/settings.local.json
