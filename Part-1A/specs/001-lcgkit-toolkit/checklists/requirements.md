@@ -12,11 +12,11 @@
 
 ## Requirement Completeness
 
-- [x] No [NEEDS CLARIFICATION] markers remain — the 3 raised in the first draft were resolved: maximum values per request = 1,000,000 (FR-004); quality report includes a verdict with fixed thresholds (FR-035 to FR-037); predictor covers known modulus, unknown modulus and truncated outputs with known parameters (FR-048 to FR-053).
-- [x] Requirements are testable and unambiguous (56 requirements, each covered by at least one AC — checked by script)
+- [x] No [NEEDS CLARIFICATION] markers remain — the 3 raised in the first draft were resolved: maximum values per request = 1,000,000 (FR-004); quality report includes a verdict with fixed thresholds (FR-028 to FR-030); predictor covers known modulus, unknown modulus and truncated outputs with known parameters (FR-038 to FR-043).
+- [x] Requirements are testable and unambiguous (45 requirements, each covered by at least one AC — checked by script)
 - [x] Success criteria are measurable (SC-001 to SC-009 use counts, percentages or exact values)
 - [x] Success criteria are technology-agnostic
-- [x] All acceptance scenarios are defined (AC-001 to AC-089, 11 user stories; every AC cites the requirements it covers)
+- [x] All acceptance scenarios are defined (AC-001 to AC-077, 11 user stories; every AC cites the requirements it covers)
 - [x] Edge cases are identified
 - [x] Scope is clearly bounded (Out of scope listed under Assumptions)
 - [x] Dependencies and assumptions identified

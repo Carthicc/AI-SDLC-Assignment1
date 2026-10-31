@@ -2,7 +2,7 @@
 
 Sources read for this specification. NIST SP 800-22 page numbers are PDF page indices. Knuth page numbers are the printed page numbers of *The Art of Computer Programming*, Vol. 2, Seminumerical Algorithms, 3rd edition (Addison–Wesley), read from a copy I had.
 
-## 1. Quality-verdict thresholds (FR-035 to FR-037)
+## 1. Quality-verdict thresholds (FR-028 to FR-030)
 
 | Decision | Value | Source | Status |
 |---|---|---|---|
@@ -40,6 +40,8 @@ URLs: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1
 | 10,000th outputs 1043618065 / 399268537 from seed 1 | Not stated on cppreference; believed to be required by the C++ standard ([rand.predef]) but not confirmed against the standard's text | Unverified in a source; reproduced by an independent calculation |
 | `glibc-type0` is the simple LCG used only when the state is 8 bytes (a = 1103515245, c = 12345, m = 2^31) | Wikipedia footnote citing glibc `stdlib/random_r.c` | Secondary |
 | `numrec` parameters (1664525, 1013904223, m = 2^32) | Wikipedia, citing Numerical Recipes `ranqd1`, section 7.1, "from Knuth and H. W. Lewis" | Secondary |
+
+Preset names: the 64-bit presets are named after the code bases that publish them (`musl`, `pcg-lcg64`), not after Knuth or MMIX, because Knuth's Vol. 2 gives the multiplier (credited to C. E. Haynes) but no increment. An earlier draft of the specification called one of them `mmix`; that name was dropped for this reason.
 
 ## 4. Not consulted
 

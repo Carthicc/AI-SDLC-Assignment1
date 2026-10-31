@@ -1,404 +1,334 @@
-# Feature Specification: lcgkit — Linear Congruential Generator Toolkit
+# Feature Specification: lcgkit — a Linear Congruential Generator Toolkit
 
-**Input**: User description: "A deterministic Linear Congruential Generator (LCG) toolkit. It generates reproducible sequences from custom or well-known parameters, validates parameter quality, jumps ahead in a sequence, draws unbiased bounded integers and unit floats, refuses security-sensitive uses, reports sequence quality, and is available as a library, a command line tool and a stateless HTTP service. Stretch capabilities: predict a sequence from observed outputs (to show why an LCG is insecure) and split a sequence into independent substreams."
+**Input**: A small, properly specified toolkit. It generates repeatable number sequences from an LCG, checks whether a set of parameters is any good, jumps ahead in a sequence, draws fair integers and fractions, refuses security-sensitive uses, reports on sequence quality, and can be used as a library, from the command line, or as a stateless HTTP service. Two stretch features show why an LCG is not secure: a predictor and a stream splitter.
+
+**How to read this document**: requirements are written in the EARS style from the course (CS9, slide 7): "The system shall …" or "When <trigger>, the system shall …". Priorities follow MoSCoW (CS9, slide 5). Acceptance criteria use Given/When/Then (CS9, slide 4). Sources for every number and threshold are in `references.md`.
 
 ## Terminology
 
-- **Parameter set**: a multiplier `a`, an increment `c` and a modulus `m`.
-- **Seed**: the starting state `x0`. It is **not** emitted as an output.
-- **Step**: `x(n+1) = (a * x(n) + c) mod m`. Output number `k` is `x(k)`; the first output is `x(1)`.
-- **Next state**: the state after the last emitted output (the seed if nothing was emitted). Passing it back as a seed continues the same sequence.
+- **Parameter set**: multiplier `a`, increment `c`, modulus `m`.
+- **Seed**: the starting state `x0`. It is *not* part of the output.
+- **Step**: `x(n+1) = (a·x(n) + c) mod m`. Output `k` is `x(k)`, so the first output is `x(1)`.
+- **Next state**: the state after the last output, or the seed if nothing was produced. Using it as the next seed continues the same sequence.
 - **Full period**: the sequence visits all `m` values before repeating.
-- **Interface**: one of the three ways of using the toolkit: *library*, *command line*, *HTTP service*.
+- **Interface**: library, command line, or HTTP service.
 
 ## User Scenarios & Testing
 
-Priorities: **P1** = core, **P2** = important extensions, **P3** = stretch. Each story is independently testable. Every scenario carries an acceptance-criterion ID (`AC-nnn`) that tests and tasks must cite, and names the requirements it covers.
+Each story can be built and tested on its own. P1 = Must have, P2 = Should have, P3 = Could have. Every acceptance criterion has an ID (`AC-nnn`) that tasks and tests will cite, plus the requirements it covers.
+
+### User Story 1 — Generate a repeatable sequence (P1)
+
+As a developer, I want to give a parameter set, a seed and a count and get exactly that many numbers back, so that my results are reproducible and I can carry on from where I stopped.
+
+*Why P1*: everything else builds on this. *Independent test*: run the worked example below and the invalid-input list.
 
-### User Story 1 - Generate a reproducible sequence (Priority: P1)
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-001 | Given `a=5, c=3, m=16, seed=7`, when I ask for 5 values, then I get `[6, 1, 8, 11, 10]` and next state `10`. | FR-002, FR-003 |
+| AC-002 | Given the result of AC-001, when I ask for 3 more values starting from its next state, then I get `[5, 12, 15]`. Asking for 8 values in one go gives `[6, 1, 8, 11, 10, 5, 12, 15]`. | FR-003 |
+| AC-003 | Given any valid input, when the count is 0, then the list is empty and the next state equals the seed. | FR-004 |
+| AC-004 | Given a count of exactly 1,000,000, the request succeeds; given 1,000,001 the error is `count-exceeds-limit`; given a negative count the error is `invalid-count`. | FR-004 |
+| AC-005 | Given `m=1` or `m=2^64+1`, the error is `invalid-modulus`. Given `m=16` and `a=16`, `invalid-multiplier`; `c=-1`, `invalid-increment`; `seed=16`, `invalid-seed`. No values are returned. | FR-001 |
+| AC-006 | Given a numeric field supplied as `3.5`, `"abc"`, `true` or `null`, the error is `invalid-type` and names the field. | FR-001 |
+| AC-007 | Given `a=6364136223846793005, c=1442695040888963407, m=2^64, seed=0`, when I ask for 2 values, then I get `[1442695040888963407, 1876011003808476466]` (no overflow at the 64-bit limit). | FR-002 |
+| AC-008 | Given any valid request, when it is sent 100 times, all 100 answers are byte-for-byte identical. | FR-005 |
+| AC-009 | Given any successful request, the answer contains `cryptographically_secure: false`. | FR-006 |
+| AC-010 | Given `c=0` and `seed=0`, the outputs are all zero and the answer carries the warning `zero-fixed-point`. Given `a` equal to 0 or 1, it carries `degenerate-multiplier`. | FR-007 |
+
+### User Story 2 — Use well-known generators by name (P1)
+
+As a developer, I want to pick a published generator by name instead of typing its numbers, so that I can compare against known behaviour straight away.
+
+*Why P1*: presets give independent reference values for the tests. *Independent test*: request each preset with the seed shown and compare.
+
+| ID | Preset (a, c, m) | Seed | First outputs | Covers |
+|---|---|---|---|---|
+| AC-011 | `minstd` (16807, 0, 2^31−1) | 1 | 16807, 282475249, 1622650073, 984943658, 1144108930; the 10,000th output is 1043618065 | FR-008 |
+| AC-012 | `minstd-new` (48271, 0, 2^31−1) | 1 | 48271, 182605794, 1291394886; the 10,000th output is 399268537 | FR-008 |
+| AC-013 | `glibc-type0` (1103515245, 12345, 2^31) | 1 | 1103527590, 377401575, 662824084 | FR-008 |
+| AC-014 | `numrec` (1664525, 1013904223, 2^32) | 0 | 1013904223, 1196435762, 3519870697 | FR-008 |
+| AC-015 | `musl` (6364136223846793005, 1, 2^64) | 0 | 1, 6364136223846793006, 13885033948157127959 | FR-008 |
+| AC-016 | `pcg-lcg64` (6364136223846793005, 1442695040888963407, 2^64) | 0 | 1442695040888963407, 1876011003808476466 | FR-008 |
+| AC-017 | `randu` (65539, 0, 2^31) | 1 | 65539, 393225, 1769499, 7077969 | FR-008 |
+
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-018 | When I ask for the list of presets, I get exactly the seven above, in that order, each with its `a`, `c`, `m` and a one-line description. | FR-009 |
+| AC-019 | Given any preset, asking by name gives the same result as writing its parameters out. | FR-010 |
+| AC-020 | Given a name that does not exist, the error is `unknown-preset`. | FR-011 |
 
-A developer supplies a parameter set, a seed and a count, and receives that many generator outputs plus the next state, so the same request always gives the same numbers and a later request can continue where this one stopped.
+### User Story 3 — Find out whether parameters are any good (P1)
 
-**Why this priority**: Everything else builds on correct, reproducible generation.
+As a learner, I want to submit a parameter set and be told whether it reaches a full period and, if not, which rule it breaks, so that I can see what is wrong with a choice that looks reasonable.
 
-**Independent Test**: Run the worked example `a=5, c=3, m=16, seed=7` and compare with the listed values; run the invalid-input table and compare error codes.
+*Why P1*: it is the most testable part, because walking a whole small cycle gives an independent answer. *Independent test*: compare every verdict with a brute-force period count.
 
-**Acceptance Scenarios**:
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-021 | Given `a=1103515245, c=24680, m=2^31` (the glibc multiplier with an even increment), the verdict is `not-full-period` with exactly one reason: `increment-not-coprime`. | FR-012, FR-013 |
+| AC-022 | Given `glibc-type0`, `numrec`, `musl` or `pcg-lcg64`, the verdict is `full-period`, the expected period equals `m`, and there are no reasons. | FR-012 |
+| AC-023 | Given `minstd` (`c=0`), the verdict is `not-full-period` with the reasons `increment-not-coprime` and `multiplier-minus-one-not-divisible-by-prime-factor`, in that order. | FR-013 |
+| AC-024 | Given `m=16, a=3, c=1`, the only reason is `multiplier-minus-one-not-divisible-by-four`. Given `m=2, a=1, c=1`, the verdict is `full-period`. | FR-012, FR-013 |
+| AC-025 | Given every triple with `2 ≤ m ≤ 64` and `0 ≤ a, c < m` (89,439 of them), the verdict matches the brute-force result (full period exactly when the measured period from seed 0 is `m`), with zero disagreements. | FR-014 |
+| AC-026 | Given any valid parameter set, the answer shows pass or fail for each of the three conditions separately. | FR-013 |
 
-1. **AC-001** (FR-002, FR-003) **Given** `a=5, c=3, m=16, seed=7`, **When** 5 values are requested, **Then** the outputs are `[6, 1, 8, 11, 10]` and the next state is `10`.
-2. **AC-002** (FR-003) **Given** the result of AC-001, **When** 3 more values are requested using its next state as the seed, **Then** the outputs are `[5, 12, 15]`, and asking for 8 values in one request returns `[6, 1, 8, 11, 10, 5, 12, 15]`.
-3. **AC-003** (FR-004) **Given** any valid parameter set and seed, **When** 0 values are requested, **Then** the output list is empty and the next state equals the seed.
-4. **AC-004** (FR-005) **Given** any valid request, **When** it is sent 100 times, **Then** all 100 results are byte-for-byte identical.
-5. **AC-005** (FR-001, FR-007) **Given** `m=1`, **When** a sequence is requested, **Then** the error code is `invalid-modulus` and no values are returned. The same holds for `m=2^64+1`.
-6. **AC-006** (FR-001, FR-007) **Given** `m=16` and `a=16`, **Then** the error code is `invalid-multiplier`; given `c=-1`, **Then** `invalid-increment`; given `seed=16`, **Then** `invalid-seed`.
-7. **AC-007** (FR-007) **Given** any numeric field supplied as `3.5`, `"abc"`, `true` or `null`, **Then** the error code is `invalid-type` and the error names the offending field.
-8. **AC-008** (FR-002) **Given** `m=2^64` with the MMIX parameters and seed 0, **When** 2 values are requested, **Then** the outputs are `[1442695040888963407, 1876011003808476466]` (no wrap-around error at the 64-bit boundary).
-9. **AC-009** (FR-006) **Given** any successful request, **Then** the result contains the marker `cryptographically_secure: false`.
-10. **AC-010** (FR-008) **Given** `c=0` and `seed=0`, **When** a sequence is requested, **Then** the outputs are all zero and the result carries the warning code `zero-fixed-point`; **given** `a` equal to 0 or 1, **Then** the result carries `degenerate-multiplier`.
-11. **AC-011** (FR-004) **Given** a count of exactly 1,000,000, **Then** the request succeeds; **given** 1,000,001, **Then** the error code is `count-exceeds-limit`; a negative count gives `invalid-count`.
+### User Story 4 — Jump ahead (P1)
 
----
+As a developer, I want the state after `n` steps without computing the steps in between, so that I can start parallel workers far apart in one long sequence.
 
-### User Story 2 - Use well-known presets (Priority: P1)
+*Why P1*: it is a classic LCG feature and easy to get subtly wrong. *Independent test*: compare with stepping for small `n`, use known identities for huge `n`.
 
-A developer picks a named, published generator instead of typing parameters, and can list what is available.
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-027 | Given each preset and seed 1, for every `n` from 0 to 1000, the jumped state equals the state reached by stepping `n` times. | FR-015 |
+| AC-028 | Given `minstd`, seed 1, `n=10000`, the state is `1043618065`. | FR-015 |
+| AC-029 | Given `glibc-type0` and any seed, jumping `2^31` steps (its full period) returns the seed, and jumping `2^31 + 5` equals jumping 5. | FR-015 |
+| AC-030 | Jumping `n1` and then `n2` equals jumping `n1 + n2` in one go. | FR-015 |
+| AC-031 | `n = 2^64 − 1` works; `n = 2^64` or a negative `n` gives `invalid-jump`. | FR-016 |
+| AC-032 | For any `n < 2^64`, the jump uses at most 64 modular multiplications. | FR-017 |
 
-**Why this priority**: Presets give independently published reference values and make the toolkit useful on day one.
+### User Story 5 — Draw fair integers and fractions (P1)
 
-**Independent Test**: Request each preset with the listed seed and compare to the published or reference values below.
+As a developer, I want whole numbers in a range (a die roll, say) or fractions between 0 and 1 without any value being favoured, so that the skew towards the middle of the range is gone.
 
-**Acceptance Scenarios**:
+*Why P1*: rounding a scaled value makes the two end values half as likely as the rest, and taking a remainder leans on the weak low bits of power-of-two moduli. *Independent test*: count the values over one full period of a tiny generator.
 
-1. **AC-012** (FR-009) **Given** preset `minstd` (a=16807, c=0, m=2^31-1) and seed 1, **When** 5 values are requested, **Then** the outputs are `[16807, 282475249, 1622650073, 984943658, 1144108930]`, and the 10,000th output is `1043618065` (the published Park–Miller check value).
-2. **AC-013** (FR-009) **Given** preset `minstd-new` (a=48271, c=0, m=2^31-1) and seed 1, **Then** the first 3 outputs are `[48271, 182605794, 1291394886]` and the 10,000th output is `399268537` (the published check value).
-3. **AC-014** (FR-009) **Given** preset `glibc-type0` (a=1103515245, c=12345, m=2^31) and seed 1, **Then** the first 3 outputs are `[1103527590, 377401575, 662824084]`.
-4. **AC-015** (FR-009) **Given** preset `numrec` (a=1664525, c=1013904223, m=2^32) and seed 0, **Then** the first 3 outputs are `[1013904223, 1196435762, 3519870697]`.
-5. **AC-016** (FR-009) **Given** preset `mmix` (a=6364136223846793005, c=1442695040888963407, m=2^64) and seed 0, **Then** the first 2 outputs are `[1442695040888963407, 1876011003808476466]`.
-6. **AC-017** (FR-009) **Given** preset `randu` (a=65539, c=0, m=2^31) and seed 1, **Then** the first 4 outputs are `[65539, 393225, 1769499, 7077969]`.
-7. **AC-018** (FR-010) **When** the preset list is requested, **Then** exactly the six presets above are returned, each with its `a`, `c`, `m` and a one-line description, in the order listed here.
-8. **AC-019** (FR-011) **Given** any preset, **Then** a request by preset name returns exactly the same result as a request with that preset's parameters written out.
-9. **AC-020** (FR-012) **Given** a preset name that does not exist, **Then** the error code is `unknown-preset`.
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-033 | Given `a=5, c=3, m=16, seed=7` and the range 1 to 3, when exactly one full period (16 outputs) is used, then 1, 2 and 3 each appear exactly 5 times, one output was discarded, and the answer reports 16 outputs consumed. | FR-018, FR-020 |
+| AC-034 | Given the same generator and any range size from 1 to 16, every value in the range appears the same number of times over one full period. | FR-018 |
+| AC-035 | Given the range −3 to 3, every value is inside it. | FR-018 |
+| AC-036 | Given a range with one value (`lo = hi`), that value is returned every time, no output is consumed and the state does not change. | FR-019 |
+| AC-037 | Given `lo > hi` the error is `invalid-range`; given a range with more values than `m`, `range-exceeds-modulus`; given non-integer bounds, `invalid-type`. | FR-019 |
+| AC-038 | Given `glibc-type0`, seed 1, range 0 to 1, the first 64 values do not strictly alternate (the weak low bit must not decide the result). | FR-018 |
+| AC-039 | Drawing 10 values in one request equals drawing 4 and then 6 from the reported next state. | FR-020 |
+| AC-040 | Given `a=5, c=3, m=16, seed=7`, 5 fractions come back as `[0.375, 0.0625, 0.5, 0.6875, 0.625]`. | FR-021 |
+| AC-041 | Given the `pcg-lcg64` parameters and seed `15635871386175874928` (whose next output is `m−1`), the fraction is strictly less than 1.0. | FR-021 |
 
----
+### User Story 6 — Refuse security-sensitive uses (P2)
 
-### User Story 3 - Check whether parameters are any good (Priority: P1)
+As the owner of the toolkit, I want a request that says it is for a token, key or password to be turned down, so that nobody builds a weak secret with it.
 
-A developer submits a parameter set and learns whether it reaches a full period, and if not, exactly which rule it breaks.
+*Why P2*: an LCG is predictable, and constitution Principle V requires the refusal. *Independent test*: send a mix of purpose labels.
 
-**Why this priority**: It is the toolkit's core educational and diagnostic value and the most testable piece, because a brute-force walk of the whole cycle gives an independent answer for small moduli.
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-042 | Given a purpose of `token`, `Session Token`, `KEYS` or `api-key`, the request fails with `insecure-purpose`, no values come back, and the message points to a cryptographically secure source. | FR-022, FR-023 |
+| AC-043 | Given `dice`, `monkey business`, `simulation` or no purpose at all, the request goes through (matching is by whole word, so `monkey` is not `key`). | FR-023 |
+| AC-044 | Each of `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential`, `otp`, in singular and plural, is refused. | FR-023 |
+| AC-045 | The documentation says the guard relies on the declared purpose and cannot catch misuse that is not declared. | FR-024 |
 
-**Independent Test**: Compare verdicts with a brute-force period measurement for every small parameter triple.
+### User Story 7 — Report on sequence quality (P2)
 
-**Acceptance Scenarios**:
+As a learner, I want a few fixed measurements on a generator's output, so that I can see why one parameter set is better than another.
 
-1. **AC-021** (FR-013, FR-014) **Given** `a=1103515245, c=24680, m=2^31` (the glibc multiplier with an even increment), **When** validated, **Then** the verdict is `not-full-period` with exactly one reason: `increment-not-coprime`.
-2. **AC-022** (FR-013, FR-016) **Given** the presets `glibc-type0`, `numrec` and `mmix`, **Then** each verdict is `full-period` with expected period equal to its `m`, and no reasons.
-3. **AC-023** (FR-014) **Given** the preset `minstd` (c=0), **Then** the verdict is `not-full-period` with the reasons `increment-not-coprime` and `multiplier-minus-one-not-divisible-by-prime-factor`, in that order.
-4. **AC-024** (FR-015) **Given** every parameter triple with `2 <= m <= 64` and `0 <= a, c < m` (89,439 triples), **Then** the verdict equals the brute-force result (full period exactly when the measured period from seed 0 is `m`) with zero disagreements.
-5. **AC-025** (FR-014) **Given** `m=16, a=3, c=1`, **Then** the verdict is `not-full-period` with the reason `multiplier-minus-one-not-divisible-by-four` only.
-6. **AC-026** (FR-017) **Given** any valid parameter set, **Then** the result lists the outcome (pass or fail) of each of the three conditions separately.
-7. **AC-027** (FR-013) **Given** `m=2, a=1, c=1`, **Then** the verdict is `full-period` (smallest valid modulus).
-8. **AC-028** (FR-001, FR-007) **Given** invalid parameters, **Then** the same error codes as in AC-005 to AC-007 are returned.
+*Why P2*: it turns the validator's theory into numbers and shows weaknesses such as the short cycle of the low bits. *Independent test*: use tiny generators where every number can be worked out by hand.
 
----
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-046 | Given `a=5, c=3, m=16, seed=7`, sample 16, 16 bins: period 16, chi-square exactly 0, the uniformity and independence checks are `not-applicable`, the period check passes and the verdict is `caution`. | FR-025, FR-028 |
+| AC-047 | Given `a=1, c=0, m=16, seed=3`, sample 16, 16 bins: period 1, chi-square exactly 240, the period check fails and the verdict is `defect-detected`. | FR-025, FR-028 |
+| AC-048 | Given a constant sequence, the serial correlation is reported as `undefined`, never as a not-a-number or a crash. | FR-025 |
+| AC-049 | Given `glibc-type0`, seed 1, the lowest bit has period 2, the lowest two bits 4 and the lowest three bits 8. | FR-025 |
+| AC-050 | Given a modulus that is not a power of two (such as `minstd`), the low-bit periods are `not-applicable`. Given `m` above 2^24, the measured period is `not-computed` and the other numbers still appear. | FR-025 |
+| AC-051 | Given a sample size of exactly 1,000,000 the report succeeds; 1,000,001 gives `count-exceeds-limit`; a sample below 2 gives `invalid-count`; fewer than 1 bin or more bins than the sample gives `invalid-bins`. | FR-027 |
+| AC-052 | Repeating any quality request gives identical numbers, and they match an independent reference calculation to a relative tolerance of 1e-9. | FR-026 |
+| AC-053 | Given `minstd`, seed 1, sample 10,000, 10 bins: chi-square 6.69, p-value 0.6694, serial correlation −0.0005 (to the digits shown), every check passes, verdict `no-defect-detected`. | FR-028 |
+| AC-054 | Given `glibc-type0`, seed 1, sample 10,000, 10 bins: chi-square 8.882, p-value 0.4482, serial correlation −0.00111, no check fails, the low-bits flag `low-bits-short-period` is raised, verdict `caution`. | FR-028 |
+| AC-055 | The p-value for the published 1% critical values 6.635 (1 degree of freedom), 9.210 (2), 23.209 (10) and 135.807 (100) is 0.01 within 0.0005. | FR-029 |
+| AC-056 | Every report states that passing the checks does not show a generator is random or secure. | FR-030 |
 
-### User Story 4 - Jump ahead in a sequence (Priority: P1)
+### User Story 8 — Use it from the command line (P2)
 
-A developer asks for the state after `n` steps without generating the `n-1` values in between, even when `n` is astronomically large.
+As a user, I want to run the toolkit in a terminal with readable output, and structured output when I need it, so that I can use it in scripts without writing code.
 
-**Why this priority**: It is a classic LCG capability, easy to get subtly wrong, and it underpins independent substreams.
+*Why P2*: it is the quickest way to demonstrate the toolkit. *Independent test*: run the worked examples and look at the output, exit status and streams.
 
-**Independent Test**: For small `n`, compare jump-ahead with stepping `n` times; for large `n`, use known identities.
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-057 | Every capability in stories 1 to 7, 10 and 11 can be run from the command line. | FR-031 |
+| AC-058 | With the structured-output option the output parses as JSON and equals the library's result for the same input. | FR-032 |
+| AC-059 | Without that option the output is readable text containing the same values. | FR-032 |
+| AC-060 | Success exits with 0. Invalid input exits with a non-zero status, and a refused purpose with a different non-zero status. Errors go to the error stream and nothing goes to the result stream. | FR-033 |
 
-**Acceptance Scenarios**:
+### User Story 9 — Use it as an HTTP service (P2)
 
-1. **AC-029** (FR-018, FR-019) **Given** each preset and the seed 1, **When** jumping `n` steps for every `n` from 0 to 1000, **Then** the state equals the state reached by stepping `n` times, for every preset and every `n`.
-2. **AC-030** (FR-018) **Given** `minstd` and seed 1, **When** jumping 10000 steps, **Then** the state is `1043618065`.
-3. **AC-031** (FR-018) **Given** `n=0`, **Then** the result equals the seed.
-4. **AC-032** (FR-019) **Given** `glibc-type0` and any seed, **When** jumping `2^31` steps (its full period), **Then** the state equals the seed; jumping `2^31 + 5` steps equals jumping 5 steps.
-5. **AC-033** (FR-018) **Given** any `n1`, `n2` in range, **Then** jumping `n1` and then `n2` from the resulting state equals jumping `n1 + n2` in one go.
-6. **AC-034** (FR-018, FR-021) **Given** `n = 2^64 - 1`, **Then** the jump succeeds; **given** `n = 2^64` or a negative `n`, **Then** the error code is `invalid-jump`.
-7. **AC-035** (FR-020) **Given** any `n < 2^64`, **Then** the jump uses at most 64 modular multiplications.
+As a client application, I want to call the toolkit over HTTP where each request carries all its input, so that the service needs no storage and any instance can answer any request.
 
----
+*Why P2*: it is the service form of the toolkit and the basis of the contract-test gate in the constitution. *Independent test*: send the shared examples and run contract checks against the published description.
 
-### User Story 5 - Draw unbiased bounded integers and unit floats (Priority: P1)
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-061 | Every capability in stories 1 to 7, 10 and 11 is available as a request/response operation. A follow-up request that uses a returned next state matches one longer request. | FR-034 |
+| AC-062 | Two identical requests get byte-for-byte identical response bodies. | FR-034, FR-005 |
+| AC-063 | Invalid input gets a client-error status with the structured error body; a refused purpose gets a different client-error status. | FR-035 |
+| AC-064 | Malformed JSON, missing or unknown fields, wrong types, oversized numbers and empty bodies all get a structured client error (`malformed-request` or the specific code), never a server error. | FR-035 |
+| AC-065 | Generated contract tests find no mismatch between the published interface description and the actual behaviour. | FR-036 |
+| AC-066 | On the shared example set, the service's results equal the library's. | FR-037 |
 
-A developer asks for whole numbers inside an inclusive range (for example a die roll) or for fractions in `[0, 1)`, without favouring any value.
+### User Story 10 — Predict a sequence from what you have seen (P3)
 
-**Why this priority**: Rounding a scaled value makes the two end values half as likely as the others, and taking a remainder leans on the weak low bits of power-of-two moduli.
+As a learner, I want to give the toolkit some observed outputs and watch it work out what comes next, so that I understand why an LCG must never protect a secret.
 
-**Independent Test**: Use the small full-period example and count how often each value appears over exactly one period.
+Three cases are covered: (A) the modulus is known and the outputs are complete; (B) the modulus is unknown and the outputs are complete; (C) the parameters are known but each output is cut down to its high bits, as some C libraries do.
 
-**Acceptance Scenarios**:
+*Why P3*: it makes the security point concrete, but the toolkit is complete without it. It is the riskiest story and can be dropped without touching the rest. *Independent test*: generate outputs from a known preset, hide what the predictor is not supposed to know, and compare its predictions with the real continuation.
 
-1. **AC-036** (FR-022, FR-023) **Given** `a=5, c=3, m=16, seed=7` and the range 1 to 3, **When** exactly one full period (16 outputs) is consumed, **Then** the values 1, 2 and 3 each appear exactly 5 times, 1 output was discarded, and the result reports 16 outputs consumed.
-2. **AC-037** (FR-023) **Given** the same generator and every range size from 1 to 16, **Then** over one full period every value in the range appears exactly the same number of times.
-3. **AC-038** (FR-022) **Given** the range -3 to 3, **Then** every value is within the range and negative bounds are accepted.
-4. **AC-039** (FR-025) **Given** a range with a single value (`lo = hi`), **Then** that value is returned for every draw, no output is consumed and the state is unchanged.
-5. **AC-040** (FR-024) **Given** `lo > hi`, **Then** the error code is `invalid-range`; **given** a range with more values than `m`, **Then** `range-exceeds-modulus`.
-6. **AC-041** (FR-023) **Given** `glibc-type0`, seed 1 and the range 0 to 1, **When** 64 values are drawn, **Then** the values do not strictly alternate (the weak low bit must not dominate the result).
-7. **AC-042** (FR-027) **Given** any generator and range, **Then** drawing 10 values in one request equals drawing 4 and then 6 using the reported next state.
-8. **AC-043** (FR-026) **Given** `a=5, c=3, m=16, seed=7`, **When** 5 unit floats are requested, **Then** they are `[0.375, 0.0625, 0.5, 0.6875, 0.625]`.
-9. **AC-044** (FR-026) **Given** the MMIX parameters and a seed whose next output is `m-1` (seed `15635871386175874928`), **Then** the unit float is strictly less than 1.0.
-10. **AC-045** (FR-007) **Given** non-integer bounds, **Then** the error code is `invalid-type`.
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-067 | (A) Given `m=2^31` and the first 5 outputs of `glibc-type0` from seed 1, the recovered parameters are `a=1103515245, c=12345` and the next 10 predictions equal the real next 10 outputs. | FR-038, FR-041 |
+| AC-068 | (A) Given only 2 outputs, the error is `insufficient-data`. Given `m=16` and the outputs `[0, 0, 0]`, where many multipliers fit, the error is `ambiguous-parameters` and no guess is returned. | FR-042 |
+| AC-069 | (B) Given no modulus and the first 12 outputs of `glibc-type0` from seed 1, the recovered modulus is `2^31`, the parameters are `1103515245` and `12345`, and the next 10 predictions are correct. The same holds for `pcg-lcg64` from seed 0, with modulus `2^64`. | FR-039, FR-041 |
+| AC-070 | (B) Given no modulus and fewer than 12 outputs, the error is `insufficient-data`. | FR-039, FR-042 |
+| AC-071 | (C) Given `glibc-type0` (parameters known), 16 hidden low bits, and the first 4 outputs of seed 1 shifted right by 16 (15 visible bits each), the full internal state is recovered and the next 10 full-width outputs are predicted correctly. | FR-040, FR-041 |
+| AC-072 | (C) Given the same setting but only 2 truncated outputs, two states fit, so the error is `ambiguous-parameters`. | FR-040, FR-042 |
+| AC-073 | (C) Given truncated outputs with unknown parameters, or more than 20 hidden bits (for example `musl`, which returns 31 of 64 bits and hides 33), or a modulus that is not a power of two, the error is `unsupported-combination`. | FR-040 |
+| AC-074 | Every successful prediction says it shows the generator is insecure. Case (B) also says that recovering the modulus is probable, not certain. | FR-043 |
 
----
+### User Story 11 — Split a sequence into separate streams (P3)
 
-### User Story 6 - Refuse security-sensitive uses (Priority: P2)
+As a developer, I want to cut one sequence into non-overlapping blocks, one per worker, so that parallel workers never reuse the same numbers.
 
-A developer who declares that the numbers are for a token, key, password or similar is refused and pointed to a cryptographically secure source.
+*Why P3*: it shows off jump-ahead but nothing else needs it. *Independent test*: glue the streams together and compare with the plain sequence.
 
-**Why this priority**: An LCG is predictable. The toolkit must never help someone build a weak secret, and the constitution (Principle V) requires this refusal.
-
-**Independent Test**: Send requests with a range of purpose labels and check which are refused.
-
-**Acceptance Scenarios**:
-
-1. **AC-046** (FR-028, FR-029) **Given** a purpose label of `token`, `Session Token`, `KEYS` or `api-key`, **When** any generation is requested, **Then** the request is refused with the error code `insecure-purpose`, no values are returned, and the message recommends a cryptographically secure source.
-2. **AC-047** (FR-030) **Given** the labels `dice`, `monkey business`, `simulation`, or no label at all, **Then** the request is accepted (matching is by whole word, so `monkey` does not match `key`).
-3. **AC-048** (FR-029) **Given** each refused word in singular and plural form (`token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential`, `otp`), **Then** all are refused.
-4. **AC-049** (FR-031) **Then** the documentation states that the guard depends on the declared purpose and cannot detect undeclared misuse.
-
----
-
-### User Story 7 - Report sequence quality (Priority: P2)
-
-A developer asks for a small, fixed set of measurements on a generator's output to see why one parameter set is better than another.
-
-**Why this priority**: It turns the validator's theory into numbers, and shows weaknesses such as the short cycle of low bits.
-
-**Independent Test**: Use tiny generators where every number can be computed by hand.
-
-**Acceptance Scenarios**:
-
-1. **AC-050** (FR-032) **Given** `a=5, c=3, m=16, seed=7`, sample size 16 and 16 bins, **Then** the measured period is 16 and the chi-square statistic is exactly 0.
-2. **AC-051** (FR-032) **Given** `a=1, c=0, m=16, seed=3`, sample size 16 and 16 bins, **Then** the measured period is 1 and the chi-square statistic is exactly 240.
-3. **AC-052** (FR-032) **Given** a constant sequence, **Then** the serial correlation is reported as `undefined` (never a not-a-number value or a crash).
-4. **AC-053** (FR-032) **Given** `glibc-type0` and seed 1, **Then** the period of the lowest bit is 2, of the lowest 2 bits is 4 and of the lowest 3 bits is 8.
-5. **AC-054** (FR-032) **Given** a modulus that is not a power of two (for example `minstd`), **Then** the low-bit periods are reported as `not-applicable`.
-6. **AC-055** (FR-032) **Given** `m` above 2^24, **Then** the measured period is reported as `not-computed` and the remaining metrics are still returned.
-7. **AC-056** (FR-034) **Given** a sample size below 2 or a bin count below 1 or above the sample size, **Then** the error codes are `invalid-count` and `invalid-bins`.
-8. **AC-057** (FR-033) **Given** any quality request repeated, **Then** every reported number is identical across repeats and matches an independent reference calculation to a relative tolerance of 1e-9.
-9. **AC-058** (FR-035) **Given** `minstd`, seed 1, sample size 10,000 and 10 bins, **Then** the chi-square statistic is 6.69, the p-value is 0.6694 (to the digits shown), the serial correlation is -0.0005 (to the digits shown), every check passes and the verdict is `no-defect-detected`.
-10. **AC-059** (FR-035) **Given** `glibc-type0`, seed 1, sample size 10,000 and 10 bins, **Then** the chi-square statistic is 8.882, the p-value is 0.4482, the serial correlation is -0.00111, no check fails, the low-bits flag `low-bits-short-period` is raised and the verdict is `caution`.
-11. **AC-060** (FR-035) **Given** `a=1, c=0, m=16, seed=3` and sample size 16, **Then** the check period-covers-sample fails (period 1 is below 16) and the verdict is `defect-detected`.
-12. **AC-061** (FR-035) **Given** `a=5, c=3, m=16, seed=7`, sample size 16 and 16 bins, **Then** uniformity and independence are `not-applicable`, period-covers-sample passes and the verdict is `caution`.
-13. **AC-062** (FR-036) **Given** the published 1% critical values 6.635 (1 degree of freedom), 9.210 (2), 23.209 (10) and 135.807 (100), **Then** the p-value computed for each is 0.01 within 0.0005.
-14. **AC-063** (FR-037) **Given** any quality report, **Then** it contains the statement that passing the checks does not establish randomness or security.
-15. **AC-064** (FR-034) **Given** a sample size of exactly 1,000,000, **Then** the report succeeds; **given** 1,000,001, **Then** the error code is `count-exceeds-limit`.
-
----
-
-### User Story 8 - Use it from the command line (Priority: P2)
-
-A user runs the toolkit from a terminal, gets readable output by default and structured output on request, and can rely on exit statuses in scripts.
-
-**Why this priority**: It makes the toolkit usable without writing code and is the easiest way to demonstrate it.
-
-**Independent Test**: Run the command line with the worked examples and check output, exit status and stream.
-
-**Acceptance Scenarios**:
-
-1. **AC-065** (FR-038) **Given** each capability above, **Then** it can be invoked from the command line.
-2. **AC-066** (FR-039, FR-042) **Given** the structured-output option, **Then** the output parses as JSON and equals the library result for the same input.
-3. **AC-067** (FR-039) **Given** no option, **Then** the output is human-readable text containing the same values.
-4. **AC-068** (FR-040) **Given** success, **Then** the exit status is 0; **given** invalid input, **Then** it is non-zero; **given** a refused purpose, **Then** it is non-zero and different from the invalid-input status.
-5. **AC-069** (FR-041) **Given** an error, **Then** the message is written to the error stream and nothing is written to the result stream.
-
----
-
-### User Story 9 - Use it as an HTTP service (Priority: P2)
-
-A client calls the toolkit over HTTP. Every request carries all its input, nothing is stored between requests, and a published interface description matches the real behaviour.
-
-**Why this priority**: It is the service form of the toolkit and the basis of the constitution's contract-test gate.
-
-**Independent Test**: Send the shared example set to the service and run contract checks derived from the interface description.
-
-**Acceptance Scenarios**:
-
-1. **AC-070** (FR-043) **Given** each capability above, **Then** it is available as a request/response operation.
-2. **AC-071** (FR-044) **Given** two identical requests, **Then** the response bodies are byte-for-byte identical, and a continuation request using a returned next state matches a single longer request.
-3. **AC-072** (FR-045) **Given** invalid input, **Then** the response is a client-error status with the structured error body; **given** a refused purpose, **Then** the client-error status differs from the invalid-input status.
-4. **AC-073** (FR-047) **Given** malformed JSON, missing fields, unknown fields, wrong types, oversized numbers or empty bodies, **Then** the response is a structured client error with code `malformed-request` or the specific code, and **never** a server error.
-5. **AC-074** (FR-046) **Given** the published interface description, **Then** automatically generated contract tests find no mismatch between it and the behaviour.
-6. **AC-075** (FR-042) **Given** the shared example set, **Then** the service results equal the library results.
-
----
-
-### User Story 10 - Predict a sequence from its outputs (Priority: P3, stretch)
-
-A learner supplies observed outputs of an LCG and the toolkit recovers what is hidden and predicts what comes next, demonstrating why an LCG must never protect a secret. Three situations are supported: (A) the modulus is known and the outputs are complete; (B) the modulus is unknown and the outputs are complete; (C) the parameters are known but the outputs are truncated to their high-order bits (as in some C library `rand()` implementations).
-
-**Why this priority**: It makes the security message concrete, but the toolkit is complete without it. It is the riskiest story and may be reduced or dropped without affecting the rest.
-
-**Independent Test**: Generate outputs from a known preset, hide what the predictor is not told, and check that it reproduces the future outputs.
-
-**Acceptance Scenarios**:
-
-1. **AC-076** (FR-048, FR-051) **Given** `m=2^31` and the first 5 outputs of `glibc-type0` from seed 1, **Then** the recovered parameters are `a=1103515245, c=12345` and the next 10 predicted values equal the generator's next 10 outputs.
-2. **AC-077** (FR-052) **Given** only 2 outputs and a known modulus, **Then** the error code is `insufficient-data`.
-3. **AC-078** (FR-052) **Given** `m=16` and the outputs `[0, 0, 0]`, where several multipliers fit, **Then** the error code is `ambiguous-parameters` and no guess is returned.
-4. **AC-079** (FR-049, FR-051) **Given** no modulus and the first 12 outputs of `glibc-type0` from seed 1, **Then** the recovered modulus is `2^31`, the recovered parameters are `a=1103515245, c=12345` and the next 10 predicted values equal the generator's next 10 outputs.
-5. **AC-080** (FR-049, FR-051) **Given** no modulus and the first 12 outputs of `mmix` from seed 0, **Then** the recovered modulus is `2^64` and the next 10 predicted values equal the generator's next 10 outputs.
-6. **AC-081** (FR-049, FR-052) **Given** no modulus and fewer than 12 outputs, **Then** the error code is `insufficient-data`.
-7. **AC-082** (FR-050, FR-051) **Given** `glibc-type0` (parameters known), 16 hidden low-order bits and the first 4 outputs of seed 1 shifted right by 16 (15 visible bits each), **Then** the full internal state is recovered and the next 10 full-width outputs are predicted correctly.
-8. **AC-083** (FR-050, FR-052) **Given** the same setting but only the first 2 truncated outputs, **Then** two states fit, the error code is `ambiguous-parameters` and no guess is returned.
-9. **AC-084** (FR-050) **Given** truncated outputs together with unknown parameters, or more than 20 hidden bits, or a modulus that is not a power of two, **Then** the error code is `unsupported-combination`.
-10. **AC-085** (FR-053) **Given** any successful prediction, **Then** the result states that it demonstrates the generator is insecure and that recovery of an unknown modulus is probable but not certain.
-
----
-
-### User Story 11 - Split a sequence into independent substreams (Priority: P3, stretch)
-
-A developer divides one sequence into several non-overlapping blocks (for example, one per worker) so parallel workers never reuse the same numbers.
-
-**Why this priority**: It showcases jump-ahead, but nothing else depends on it.
-
-**Independent Test**: Concatenate the substreams and compare with the plain sequence.
-
-**Acceptance Scenarios**:
-
-1. **AC-086** (FR-054, FR-055) **Given** `glibc-type0`, seed 1, 4 substreams of length 5, **Then** concatenating the substreams in order equals the first 20 outputs of the plain sequence.
-2. **AC-087** (FR-054) **Given** the same request, **Then** each substream's starting state equals the jump-ahead state at `i * 5` for substream `i` (counting from 0).
-3. **AC-088** (FR-056) **Given** a request where substreams times length exceeds `m`, **Then** the error code is `stream-exceeds-modulus`.
-4. **AC-089** (FR-056) **Given** zero or negative substream counts or lengths, **Then** the error code is `invalid-count`.
-
----
+| ID | Given / When / Then | Covers |
+|---|---|---|
+| AC-075 | Given `glibc-type0`, seed 1, 4 streams of length 5, joining the streams in order gives the first 20 outputs of the plain sequence. | FR-044 |
+| AC-076 | In the same request, the start of stream `i` (from 0) equals the jump-ahead state at `i × 5`. | FR-044 |
+| AC-077 | When streams times length exceeds `m`, the error is `stream-exceeds-modulus`; a zero or negative stream count or length gives `invalid-count`. | FR-045 |
 
 ### Edge Cases
 
-- `m = 2` (smallest) and `m = 2^64` (largest) are accepted; `m = 1`, `m = 2^64 + 1` and negatives are not.
-- `c = 0` with `seed = 0` is stuck at zero: accepted with a warning, never an error.
-- `a = 0` or `a = 1` are accepted with a warning.
-- A count of 0 returns an empty list and leaves the state unchanged.
-- Very large integers, decimals, strings, booleans and `null` in any numeric field give a structured error, not a crash.
-- A 64-bit modulus must not let a unit float round up to exactly 1.0 (AC-044).
-- Power-of-two moduli have weak low bits; ranges must not simply take the remainder (AC-041).
-- A range with one value consumes nothing (AC-039).
-- Two requests with identical input must give identical output, regardless of order, timing or concurrency.
-- A purpose label with extra spaces, mixed case or punctuation is normalised before matching.
-- Quality reports on constant sequences must not divide by zero (AC-052).
-- A legitimate result can be large: up to 1,000,000 values, roughly 20 MB of text for 64-bit values.
+- The smallest (`m = 2`) and largest (`m = 2^64`) moduli are accepted; `m = 1`, `m = 2^64 + 1` and negatives are not.
+- A generator stuck at zero (`c = 0`, `seed = 0`) is accepted with a warning, not rejected.
+- A count of 0 returns an empty list.
+- Very large integers, decimals, strings, booleans and `null` in a numeric field give a structured error, never a crash.
+- For a 64-bit modulus, dividing the largest output by `m` rounds to exactly 1.0 in ordinary floating point (AC-041).
+- Power-of-two moduli have weak low bits, so ranges must not simply take a remainder (AC-038).
+- A purpose label with extra spaces, capitals or punctuation is cleaned up before matching.
+- A legitimate answer can be large: 1,000,000 values of 64-bit size is roughly 20 MB of text.
 
 ## Requirements
 
 ### Functional Requirements
 
-**Generation (User Story 1)**
+**Generation**
 
-- **FR-001**: The system MUST accept a parameter set and seed only when `2 <= m <= 2^64`, `0 <= a < m`, `0 <= c < m` and `0 <= seed < m`, all integers.
-- **FR-002**: The system MUST generate outputs by `x(n+1) = (a * x(n) + c) mod m`, exactly and without overflow for any accepted `m`, and MUST NOT emit the seed as an output.
-- **FR-003**: Every generation result MUST include the next state so that a later request can continue the same sequence.
-- **FR-004**: The system MUST accept a count `n` with `0 <= n <= 1,000,000`. A count of 0 MUST return an empty list and an unchanged state. The same limit of 1,000,000 applies to every operation that produces or consumes a list of values: sample size, substreams times length, outputs supplied to the predictor, and predicted values.
-- **FR-005**: Identical input MUST produce byte-identical output on every run and every interface.
-- **FR-006**: Every successful result MUST carry the marker `cryptographically_secure: false`.
-- **FR-007**: Invalid input MUST produce a structured error with a stable `code`, a human-readable `message` and the offending `field`, and MUST NOT return partial results.
-- **FR-008**: Degenerate configurations MUST be accepted and flagged with warning codes: `zero-fixed-point` (c = 0 and seed = 0) and `degenerate-multiplier` (a is 0 or 1).
+- **FR-001**: The system shall accept only integer inputs with `2 ≤ m ≤ 2^64`, `0 ≤ a < m`, `0 ≤ c < m` and `0 ≤ seed < m`. Otherwise it shall return no values and an error with a stable code, a message and the name of the offending field.
+- **FR-002**: The system shall produce outputs by `x(n+1) = (a·x(n) + c) mod m`, exactly, for every accepted `m`, and shall not include the seed in the output.
+- **FR-003**: The system shall report the next state with every generation result.
+- **FR-004**: The system shall accept a count `n` with `0 ≤ n ≤ 1,000,000`. The same limit applies to every operation that produces or consumes a list: sample size, streams times length, outputs given to the predictor, and predicted values. A count of 0 gives an empty list and an unchanged state.
+- **FR-005**: Identical input shall give byte-identical output on every run and every interface.
+- **FR-006**: Every successful result shall carry `cryptographically_secure: false`.
+- **FR-007**: The system shall accept degenerate settings and flag them with a warning: `zero-fixed-point` (`c = 0` and `seed = 0`) and `degenerate-multiplier` (`a` is 0 or 1).
 
-**Presets (User Story 2)**
+**Presets**
 
-- **FR-009**: The system MUST provide the presets `minstd`, `minstd-new`, `glibc-type0`, `numrec`, `mmix` and `randu` with the parameters listed in AC-012 to AC-017.
-- **FR-010**: The system MUST list all presets with their parameters and a one-line description.
-- **FR-011**: A request using a preset name MUST be equivalent to one using that preset's written-out parameters.
-- **FR-012**: An unknown preset name MUST be rejected with `unknown-preset`.
+- **FR-008**: The system shall provide these presets, with the parameters in AC-011 to AC-017: `minstd` (Park–Miller minimal standard), `minstd-new` (revised multiplier), `glibc-type0` (the simple mode of the GNU C library), `numrec` (Numerical Recipes' quick generator), `musl` (the musl C library's `rand`), `pcg-lcg64` (the 64-bit LCG used by the PCG family) and `randu` (IBM's RANDU, included as a known-bad example).
+- **FR-009**: The system shall list the presets with their parameters and a one-line description.
+- **FR-010**: A request using a preset name shall give the same result as one using that preset's written-out parameters.
+- **FR-011**: When the preset name is unknown, the system shall reject the request with `unknown-preset`.
 
-**Parameter validation (User Story 3)**
+**Parameter validation**
 
-- **FR-013**: For any valid parameter set the system MUST return a verdict of `full-period` or `not-full-period`.
-- **FR-014**: A `not-full-period` verdict MUST list every violated condition from `increment-not-coprime`, `multiplier-minus-one-not-divisible-by-prime-factor` and `multiplier-minus-one-not-divisible-by-four`, in that fixed order. These are the Hull–Dobell conditions: the increment is coprime with `m`; `a - 1` is divisible by every prime factor of `m`; `a - 1` is divisible by 4 when `m` is.
-- **FR-015**: The verdict MUST agree with the true period for every parameter set (SC-002).
-- **FR-016**: A `full-period` verdict MUST report the expected period (equal to `m`).
-- **FR-017**: The result MUST report the pass or fail outcome of each condition separately.
+- **FR-012**: For any valid parameter set the system shall give a verdict of `full-period` or `not-full-period`, and for `full-period` also the expected period (equal to `m`).
+- **FR-013**: The system shall report the outcome of each of the three Hull–Dobell conditions, and for `not-full-period` list every broken one, always in this order: `increment-not-coprime`, `multiplier-minus-one-not-divisible-by-prime-factor`, `multiplier-minus-one-not-divisible-by-four`. The conditions are: `c` is coprime with `m`; `a − 1` is divisible by every prime factor of `m`; `a − 1` is divisible by 4 when `m` is.
+- **FR-014**: The verdict shall agree with the true period of the sequence for every parameter set (SC-002).
 
-**Jump-ahead (User Story 4)**
+**Jump-ahead**
 
-- **FR-018**: The system MUST return the state after `n` steps from a given state for `0 <= n < 2^64`.
-- **FR-019**: The result MUST equal the state reached by stepping `n` times.
-- **FR-020**: Per constitution Principle IV, jump-ahead MUST use at most 64 modular multiplications for any `n < 2^64`.
-- **FR-021**: A jump distance outside the allowed range MUST be rejected with `invalid-jump`.
+- **FR-015**: The system shall return the state after `n` steps from a given state, for `0 ≤ n < 2^64`, equal to the state reached by stepping `n` times.
+- **FR-016**: When `n` is outside that range, the system shall reject it with `invalid-jump`.
+- **FR-017**: As constitution Principle IV requires, a jump shall use at most 64 modular multiplications for any `n < 2^64`.
 
-**Bounded integers and floats (User Story 5)**
+**Bounded integers and fractions**
 
-- **FR-022**: The system MUST draw integers from an inclusive range `[lo, hi]`; negative bounds are allowed.
-- **FR-023**: Drawing MUST be unbiased: over one full period of a full-period generator every value in the range occurs equally often. Rounding and plain remainder (which favour some values or the weak low bits) MUST NOT be used. Outputs that would cause bias MUST be discarded.
-- **FR-024**: A range with `lo > hi` MUST be rejected with `invalid-range`; a range larger than `m` with `range-exceeds-modulus`.
-- **FR-025**: A single-value range MUST return that value, consume no output and leave the state unchanged.
-- **FR-026**: The system MUST produce unit floats in `[0, 1)` by dividing the output by `m`, and the result MUST never equal 1.0, even for a 64-bit modulus.
-- **FR-027**: Results MUST report the number of outputs consumed and the next state, so splitting a request into parts gives the same values as one request.
+- **FR-018**: The system shall draw integers from an inclusive range `[lo, hi]`, negative bounds allowed. Over one full period of a full-period generator, every value in the range shall occur equally often. The system shall discard outputs that would cause bias, shall base the result on the high-order part of the output, and shall not use rounding or a plain remainder.
+- **FR-019**: When `lo > hi` the system shall reject the request with `invalid-range`; when the range has more values than `m`, with `range-exceeds-modulus`. A range with one value returns that value, uses no output and leaves the state unchanged.
+- **FR-020**: Results shall report how many outputs were consumed and the next state, so that splitting a request gives the same values as one request.
+- **FR-021**: The system shall produce fractions in `[0, 1)` as output divided by `m`, and a result shall never equal 1.0, even for a 64-bit modulus.
 
-**Misuse guard (User Story 6)**
+**Misuse guard**
 
-- **FR-028**: Every generation operation MUST accept an optional `purpose` label.
-- **FR-029**: A label MUST be normalised (trimmed, lower-cased, split on non-alphanumeric characters) and refused with `insecure-purpose` if any word is one of `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential`, `otp` or its plural. A refusal MUST return no values and MUST recommend a cryptographically secure source.
-- **FR-030**: A missing label or one without such a word MUST be accepted.
-- **FR-031**: The documentation MUST state that the guard relies on the declared purpose and cannot detect undeclared misuse.
+- **FR-022**: Every generation operation shall accept an optional `purpose` label.
+- **FR-023**: The system shall clean the label (trim, lower-case, split on anything that is not a letter or digit). If any word is `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential` or `otp`, or a plural of these, the request shall fail with `insecure-purpose`, return no values and recommend a cryptographically secure source. Any other label, or none, is accepted.
+- **FR-024**: The documentation shall state that the guard depends on the declared purpose and cannot detect undeclared misuse.
 
-**Quality report (User Story 7)**
+**Quality report**
 
-- **FR-032**: Given a parameter set, seed, sample size `N` and bin count, the system MUST report: the measured period (when `m <= 2^24`, otherwise `not-computed`); the chi-square statistic over equal-width bins; the lag-1 serial correlation (`undefined` for a constant sequence); the periods of the lowest 1, 2 and 3 bits (when `m` is a power of two, otherwise `not-applicable`); the chi-square p-value; and the overall verdict defined in FR-035.
-- **FR-033**: Quality results MUST be deterministic and match an independent reference calculation to a relative tolerance of 1e-9.
-- **FR-034**: Sample size MUST be between 2 and 1,000,000 and bins between 1 and the sample size; otherwise `invalid-count`, `count-exceeds-limit` or `invalid-bins`.
-- **FR-035**: The quality report MUST report each of the following checks with its measured value and an outcome of `pass`, `fail` or `not-applicable`, using fixed thresholds:
-  - **period-covers-sample**: the measured period is at least the sample size (not-applicable when the period is `not-computed`);
-  - **uniformity**: the chi-square p-value is at least 0.01 (not-applicable when the sample size divided by the bin count is below 10);
-  - **independence**: the absolute lag-1 serial correlation is at most `2.576 / sqrt(N)` (not-applicable when `N` is below 100);
-  - **low-bits**: flagged `low-bits-short-period` when `m` is a power of two (informational, never a failure).
+- **FR-025**: Given a parameter set, seed, sample size `N` and bin count, the system shall report: the measured period (when `m ≤ 2^24`, otherwise `not-computed`); the chi-square statistic over equal-width bins and its p-value; the lag-1 serial correlation (`undefined` for a constant sequence); the periods of the lowest 1, 2 and 3 bits (when `m` is a power of two, otherwise `not-applicable`); and the overall verdict (FR-028).
+- **FR-026**: Quality numbers shall be repeatable and shall match an independent reference calculation to a relative tolerance of 1e-9.
+- **FR-027**: The system shall accept a sample size from 2 to 1,000,000 and a bin count from 1 to the sample size, and otherwise reject with `invalid-count`, `count-exceeds-limit` or `invalid-bins`.
+- **FR-028**: The system shall report each check below with its value and an outcome of `pass`, `fail` or `not-applicable`:
+  - *period-covers-sample*: the measured period is at least the sample size (not applicable when the period is `not-computed`);
+  - *uniformity*: the chi-square p-value is at least 0.01 (not applicable when sample size divided by bin count is below 10);
+  - *independence*: the absolute lag-1 serial correlation is at most `2.576 / √N` (not applicable when `N` is below 100);
+  - *low-bits*: flagged `low-bits-short-period` when `m` is a power of two; informational, never a failure.
 
-  The overall verdict MUST be `defect-detected` if any applicable check fails; otherwise `caution` if the low-bits flag is raised; otherwise `no-defect-detected`. Thresholds are constants of this specification and MUST NOT be changed except by a documented amendment of this specification.
-- **FR-036**: The chi-square p-value MUST be the upper-tail probability of the chi-square distribution with `bins - 1` degrees of freedom and MUST match the published 1% critical values (AC-062).
-- **FR-037**: Every quality report MUST state that passing the checks does not establish randomness or security. The documentation MUST record the justification of the thresholds: significance level 0.01 (within the 0.001 to 0.01 range suggested by NIST SP 800-22); normal approximation for the serial correlation (99% two-sided, 2.576); a minimum expected count of 10 per bin; and the expected false-alarm rate of about 1% per statistical check on a sound generator. Each justification MUST cite its source in `references.md`; any threshold or rule without a source (the minimum sample size of 100 for the independence check, the period-covers-sample check and the three verdict levels) MUST be recorded there as a decision.
+  The verdict is `defect-detected` if any applicable check fails, otherwise `caution` if the low-bits flag is raised, otherwise `no-defect-detected`. These thresholds are fixed by this specification and change only through a documented amendment.
+- **FR-029**: The p-value shall be the upper-tail probability of the chi-square distribution with `bins − 1` degrees of freedom, and shall match the published 1% critical values (AC-055).
+- **FR-030**: Every report shall say that passing does not show randomness or security. The documentation shall give the source of each threshold in `references.md`, and record as decisions anything with no source: the minimum sample of 100 for the independence check, the period check, the three verdict levels and the single-sample judgement.
 
-**Command line (User Story 8)**
+**Command line**
 
-- **FR-038**: Every capability MUST be usable from the command line.
-- **FR-039**: Output MUST be human-readable by default and JSON on request.
-- **FR-040**: Exit status MUST be 0 on success and non-zero on failure, with different statuses for invalid input and for a refused purpose.
-- **FR-041**: Results MUST go to the standard output and error messages to the standard error.
-- **FR-042**: Results MUST be semantically identical across the library, the command line (JSON) and the HTTP service.
+- **FR-031**: Every capability shall be usable from the command line.
+- **FR-032**: Output shall be readable text by default and JSON on request, and the JSON shall equal the library's result.
+- **FR-033**: The exit status shall be 0 on success and non-zero on failure, with different statuses for invalid input and a refused purpose. Results go to standard output and errors to standard error.
 
-**HTTP service (User Story 9)**
+**HTTP service**
 
-- **FR-043**: Every capability MUST be available as a stateless request/response operation.
-- **FR-044**: The service MUST NOT persist anything or depend on earlier requests; continuation uses the returned next state.
-- **FR-045**: Invalid input MUST give a client-error status with the structured error body; a refused purpose MUST give a different client-error status.
-- **FR-046**: A machine-readable interface description MUST be published and MUST match the behaviour (contract-tested).
-- **FR-047**: No input, however malformed, may cause a server error; unparseable requests MUST return `malformed-request`.
+- **FR-034**: Every capability shall be available as a stateless request/response operation. The service shall store nothing, and continuing a sequence uses the returned next state.
+- **FR-035**: Invalid input shall get a client-error status with the structured error body, and a refused purpose a different client-error status. No input, however malformed, shall cause a server error; unreadable requests get `malformed-request`.
+- **FR-036**: A machine-readable description of the interface shall be published and shall match the behaviour.
+- **FR-037**: Results shall equal the library's results for the same input.
 
-**Predictor (User Story 10)**
+**Predictor**
 
-- **FR-048** (mode A): Given a known modulus and at least 3 consecutive complete outputs, the system MUST recover the multiplier and increment when uniquely determined and predict the next `k` values.
-- **FR-049** (mode B): Given no modulus and at least 12 consecutive complete outputs, the system MUST recover the modulus (a value larger than every supplied output), then the multiplier and increment, and predict the next `k` values.
-- **FR-050** (mode C): Given known parameters whose modulus is a power of two, no more than 20 hidden low-order bits and truncated outputs, the system MUST recover the full internal state and predict the next `k` full-width values. Truncated outputs with unknown parameters are out of scope and MUST be rejected with `unsupported-combination`.
-- **FR-051**: Recovered parameters or state MUST reproduce every supplied output.
-- **FR-052**: Too few outputs MUST give `insufficient-data`; several equally valid solutions MUST give `ambiguous-parameters`, and no guess may be returned.
-- **FR-053**: Every prediction MUST state that it demonstrates the generator is not secure, and mode B results MUST state that recovery of the modulus is probable but not certain.
+- **FR-038** (case A): Given a known modulus and at least 3 consecutive complete outputs, the system shall recover the multiplier and increment when they are uniquely determined, and predict the next `k` values.
+- **FR-039** (case B): Given no modulus and at least 12 consecutive complete outputs, the system shall recover the modulus (a value larger than every output), then the multiplier and increment, and predict the next `k` values.
+- **FR-040** (case C): Given known parameters, a power-of-two modulus, at most 20 hidden low-order bits and truncated outputs, the system shall recover the full internal state and predict the next `k` full-width values. Truncated outputs with unknown parameters are out of scope and are rejected with `unsupported-combination`, as are more than 20 hidden bits and a modulus that is not a power of two.
+- **FR-041**: The recovered parameters or state shall reproduce every output that was supplied.
+- **FR-042**: With too few outputs the system shall answer `insufficient-data`; when several solutions fit equally well, `ambiguous-parameters` with no guess.
+- **FR-043**: Every prediction shall say it shows the generator is insecure; case B shall add that recovering the modulus is probable, not certain.
 
-**Substreams (User Story 11)**
+**Streams**
 
-- **FR-054**: The system MUST split a sequence into `k` substreams of length `L`, substream `i` starting at the state reached by jumping `i * L` steps from the seed.
-- **FR-055**: Concatenating the substreams in order MUST equal the first `k * L` outputs of the plain sequence.
-- **FR-056**: `k * L > m` MUST be rejected with `stream-exceeds-modulus`; non-positive `k` or `L` with `invalid-count`.
+- **FR-044**: The system shall split a sequence into `k` streams of length `L`, stream `i` starting at the state reached by jumping `i × L` steps from the seed. Joined in order, they shall equal the first `k × L` outputs of the plain sequence.
+- **FR-045**: When `k × L > m` the system shall reject the request with `stream-exceeds-modulus`; a non-positive `k` or `L` gets `invalid-count`.
 
-### Error Catalogue
+### Error codes
 
-The stable error codes are: `invalid-modulus`, `invalid-multiplier`, `invalid-increment`, `invalid-seed`, `invalid-type`, `invalid-count`, `count-exceeds-limit`, `invalid-jump`, `invalid-range`, `range-exceeds-modulus`, `invalid-bins`, `unknown-preset`, `insecure-purpose`, `insufficient-data`, `ambiguous-parameters`, `stream-exceeds-modulus`, `unsupported-combination` and `malformed-request`.
+`invalid-modulus`, `invalid-multiplier`, `invalid-increment`, `invalid-seed`, `invalid-type`, `invalid-count`, `count-exceeds-limit`, `invalid-jump`, `invalid-range`, `range-exceeds-modulus`, `invalid-bins`, `unknown-preset`, `insecure-purpose`, `insufficient-data`, `ambiguous-parameters`, `stream-exceeds-modulus`, `unsupported-combination`, `malformed-request`.
 
 ### Key Entities
 
-- **Parameter set**: multiplier, increment and modulus; the unit every operation works on.
-- **Seed / State**: the position in a sequence; always between 0 and `m - 1`.
-- **Preset**: a named, published parameter set with a description.
-- **Verdict**: the validator's result: full-period or not, expected period, violated conditions, per-condition outcomes.
+- **Parameter set** and **seed/state**: what every operation works on; the state is always between 0 and `m − 1`.
+- **Preset**: a named parameter set with a one-line description.
+- **Verdict**: the validator's result (full period or not, reasons, per-condition outcomes).
 - **Sequence result**: outputs, outputs consumed, next state, warnings and the security marker.
-- **Quality report**: the fixed set of metrics for one generator, seed and sample.
-- **Prediction**: recovered parameters, predicted values and the insecurity notice.
-- **Substream**: a block of outputs with its starting state and index.
-- **Error**: code, message and offending field.
+- **Quality report**, **Prediction**, **Stream**, **Error**: the results of stories 7, 10, 11 and of any failure.
 
 ## Success Criteria
 
 ### Measurable Outcomes
 
-- **SC-001**: 100% of the acceptance criteria of the stories of priority P1 and P2 pass in the harness; the criteria of P3 stories pass if those stories are built.
-- **SC-002**: The validator's verdict agrees with the brute-force true period for 100% (0 disagreements) of the 89,439 parameter triples with `2 <= m <= 64`.
-- **SC-003**: Jump-ahead equals stepping for 100% of `n` from 0 to 1000 on every preset, and uses at most 64 modular multiplications for any `n < 2^64`.
-- **SC-004**: On the shared example set, the library, the command line (JSON) and the HTTP service give identical results in 100% of cases.
-- **SC-005**: Repeating any request 100 times gives 100 byte-identical results.
-- **SC-006**: 100% of successful results carry the not-secure marker, and 100% of requests with a refused purpose return no values.
-- **SC-007**: In the invalid-input test set, 0 inputs cause a crash, a server error or an unstructured error.
-- **SC-008**: For every range size from 1 to 16 on the 16-value full-period example, each value in the range occurs exactly the same number of times over one period.
+- **SC-001**: All acceptance criteria of the P1 and P2 stories pass in the harness; the P3 criteria pass if those stories are built.
+- **SC-002**: The validator agrees with the brute-force period on all 89,439 triples with `2 ≤ m ≤ 64` (zero disagreements).
+- **SC-003**: Jump-ahead equals stepping for every `n` from 0 to 1000 on every preset, and never uses more than 64 modular multiplications for `n < 2^64`.
+- **SC-004**: On the shared example set, the library, the command line (JSON) and the HTTP service give identical results in every case.
+- **SC-005**: Repeating any request 100 times gives 100 byte-identical answers.
+- **SC-006**: Every successful answer carries the not-secure marker, and every request with a refused purpose returns no values.
+- **SC-007**: In the invalid-input test set, no input causes a crash, a server error or an unstructured error.
+- **SC-008**: For every range size from 1 to 16 on the 16-value full-period example, each value in the range occurs exactly equally often over one period.
 - **SC-009**: Every quality gate in the constitution (Principle II) passes.
 
 ## Assumptions
 
-- Users are developers and students who call the library, run the command line or call the HTTP service; there are no accounts, authentication or rate limits. The HTTP service is intended for local and demonstration use, not for exposure to untrusted networks.
-- Integers have unlimited precision at the specification level; the 64-bit upper bound on `m` is a deliberate limit, not an accident of implementation.
-- The seed is always supplied by the caller; the toolkit has no default seed and never reads the clock or any ambient source.
-- Presets are named for their published origin: `glibc-type0` is the simple LCG mode of the GNU C library's random-number routines, not the default `rand()` generator of modern systems.
-- Sources and decisions for the quality thresholds are recorded in `references.md`. The verdict judges a single sample, which simplifies NIST SP 800-22's practice of testing many sequences and checking both the proportion that pass and the uniformity of the p-values.
-- The `mmix` preset uses the multiplier credited to Knuth (TAOCP Vol. 2, section 3.3.4) with the increment `1442695040888963407` that is widely published with it (for example in the PCG reference code). The increment has not been verified against Knuth's text; the MMIX Supplement's own sample program uses a different arbitrary start value.
-- Quality thresholds are conventional, not proofs: a sound generator is flagged by chance in about 1% of samples per statistical check, and the same input always gives the same verdict. The checks cannot see every flaw: at 10,000 samples both RANDU and the glibc multiplier with an even increment pass the uniformity and serial-correlation checks, which is why the verdict is worded `no-defect-detected`, not `good`.
-- Out of scope: predicting from truncated outputs when the parameters are unknown (needs lattice-reduction methods), cryptographically secure generation, non-LCG generators, statistical test batteries beyond the four listed metrics, persistence, authentication, and distributions other than uniform.
-- A preset's published reference values were checked against an independent reference calculation before being written into this specification.
+- Users are developers and students. There are no accounts, authentication or rate limits, so the HTTP service is for local and demonstration use, not for untrusted networks.
+- The modulus limit of 2^64 is a deliberate choice. The seed is always supplied by the caller; the toolkit never reads the clock or any other ambient source.
+- Presets are named after where their parameters are published; the sources and what could and could not be verified are in `references.md`. In particular, Knuth's *TAOCP* Vol. 2 credits the multiplier `6364136223846793005` to C. E. Haynes and gives no increment, so `musl` (increment 1, from the musl source) and `pcg-lcg64` (increment `1442695040888963407`, from the PCG reference code) are named after those code bases and not after Knuth.
+- `glibc-type0` is the simple LCG mode of the GNU C library's random routines, not the default `rand()` of modern systems.
+- The quality checks are conventional, not proofs. A sound generator is flagged by chance in about 1% of samples per statistical check, and the same input always gives the same verdict. They cannot see every flaw: at 10,000 samples both RANDU and the glibc multiplier with an even increment pass the uniformity and serial-correlation checks, which is why the verdict is worded `no-defect-detected` and never "good". The verdict also judges one sample, where NIST SP 800-22 tests many.
+- Reference values in this specification were calculated with independent throwaway scripts before being written down; the 10,000th `minstd` outputs also match the published Park–Miller check values.
+- Out of scope: predicting from truncated outputs when the parameters are unknown (this needs lattice-reduction methods), cryptographically secure generation, non-LCG generators, more statistical tests than the ones listed, persistence, authentication, and distributions other than uniform.
