@@ -1,8 +1,6 @@
 # Feature Specification: lcgkit — a Linear Congruential Generator Toolkit
 
-**Input**: A small, properly specified toolkit. It generates repeatable number sequences from an LCG, checks whether a set of parameters is any good, jumps ahead in a sequence, draws fair integers and fractions, refuses security-sensitive uses, reports on sequence quality, and can be used as a library, from the command line, or as a stateless HTTP service. Two stretch features show why an LCG is not secure: a predictor and a stream splitter.
-
-**How to read this document**: requirements are written in the EARS style from the course (CS9, slide 7): "The system shall …" or "When <trigger>, the system shall …". Priorities follow MoSCoW (CS9, slide 5). Acceptance criteria use Given/When/Then (CS9, slide 4). Sources for every number and threshold are in `references.md`.
+**Input**: A small, properly specified toolkit around the linear congruential generator, a simple and very old way of producing repeatable number sequences. It generates sequences from custom or well-known parameters, checks whether a set of parameters is any good, jumps ahead in a sequence, draws fair integers and fractions, refuses security-sensitive uses, reports on sequence quality, and can be used as a library, from the command line, or as a stateless HTTP service. Two stretch features show why an LCG is not secure: a predictor and a stream splitter.
 
 ## Terminology
 
@@ -15,15 +13,13 @@
 
 ## User Scenarios & Testing
 
-Each story can be built and tested on its own. P1 = Must have, P2 = Should have, P3 = Could have. Every acceptance criterion has an ID (`AC-nnn`) that tasks and tests will cite, plus the requirements it covers.
+Stories are listed in priority order: P1 is the core, P2 builds on it, P3 is stretch. Each can be built and tested on its own. Every acceptance criterion has an ID (`AC-nnn`) that the tasks and tests will cite, together with the requirements it covers.
 
-### User Story 1 — Generate a repeatable sequence (P1)
+### User Story 1 — Generate a repeatable sequence (Priority: P1)
 
-As a developer, I want to give a parameter set, a seed and a count and get exactly that many numbers back, so that my results are reproducible and I can carry on from where I stopped.
+A developer hands over a parameter set, a seed and a count and gets back exactly that many numbers. Ask again and the numbers are the same; ask for more, starting where the last answer ended, and the sequence carries on without a gap. Everything else in the toolkit is built on this, so it comes first. It can be checked on its own with the worked example and the list of invalid inputs below.
 
-*Why P1*: everything else builds on this. *Independent test*: run the worked example below and the invalid-input list.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-001 | Given `a=5, c=3, m=16, seed=7`, when I ask for 5 values, then I get `[6, 1, 8, 11, 10]` and next state `10`. | FR-002, FR-003 |
 | AC-002 | Given the result of AC-001, when I ask for 3 more values starting from its next state, then I get `[5, 12, 15]`. Asking for 8 values in one go gives `[6, 1, 8, 11, 10, 5, 12, 15]`. | FR-003 |
@@ -36,11 +32,9 @@ As a developer, I want to give a parameter set, a seed and a count and get exact
 | AC-009 | Given any successful request, the answer contains `cryptographically_secure: false`. | FR-006 |
 | AC-010 | Given `c=0` and `seed=0`, the outputs are all zero and the answer carries the warning `zero-fixed-point`. Given `a` equal to 0 or 1, it carries `degenerate-multiplier`. | FR-007 |
 
-### User Story 2 — Use well-known generators by name (P1)
+### User Story 2 — Use well-known generators by name (Priority: P1)
 
-As a developer, I want to pick a published generator by name instead of typing its numbers, so that I can compare against known behaviour straight away.
-
-*Why P1*: presets give independent reference values for the tests. *Independent test*: request each preset with the seed shown and compare.
+Instead of typing multipliers and moduli, a developer picks a well-known generator by name (the classic minimal standard, the C library ones and so on) and can ask which ones exist. Published generators give the tests outside reference values to compare against, which is why they are in the first group. Check it by requesting each preset with the seed shown below.
 
 | ID | Preset (a, c, m) | Seed | First outputs | Covers |
 |---|---|---|---|---|
@@ -52,19 +46,17 @@ As a developer, I want to pick a published generator by name instead of typing i
 | AC-016 | `pcg-lcg64` (6364136223846793005, 1442695040888963407, 2^64) | 0 | 1442695040888963407, 1876011003808476466 | FR-008 |
 | AC-017 | `randu` (65539, 0, 2^31) | 1 | 65539, 393225, 1769499, 7077969 | FR-008 |
 
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-018 | When I ask for the list of presets, I get exactly the seven above, in that order, each with its `a`, `c`, `m` and a one-line description. | FR-009 |
 | AC-019 | Given any preset, asking by name gives the same result as writing its parameters out. | FR-010 |
 | AC-020 | Given a name that does not exist, the error is `unknown-preset`. | FR-011 |
 
-### User Story 3 — Find out whether parameters are any good (P1)
+### User Story 3 — Find out whether parameters are any good (Priority: P1)
 
-As a learner, I want to submit a parameter set and be told whether it reaches a full period and, if not, which rule it breaks, so that I can see what is wrong with a choice that looks reasonable.
+Someone learning about generators submits a parameter set and learns whether it reaches a full period and, if not, which rule it breaks. A good example is the glibc multiplier paired with an even increment: it looks reasonable, but it can never give a full period. This is the easiest part to test honestly, because for small moduli the whole cycle can simply be walked and counted, and that count has to match the verdict.
 
-*Why P1*: it is the most testable part, because walking a whole small cycle gives an independent answer. *Independent test*: compare every verdict with a brute-force period count.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-021 | Given `a=1103515245, c=24680, m=2^31` (the glibc multiplier with an even increment), the verdict is `not-full-period` with exactly one reason: `increment-not-coprime`. | FR-012, FR-013 |
 | AC-022 | Given `glibc-type0`, `numrec`, `musl` or `pcg-lcg64`, the verdict is `full-period`, the expected period equals `m`, and there are no reasons. | FR-012 |
@@ -73,13 +65,11 @@ As a learner, I want to submit a parameter set and be told whether it reaches a 
 | AC-025 | Given every triple with `2 ≤ m ≤ 64` and `0 ≤ a, c < m` (89,439 of them), the verdict matches the brute-force result (full period exactly when the measured period from seed 0 is `m`), with zero disagreements. | FR-014 |
 | AC-026 | Given any valid parameter set, the answer shows pass or fail for each of the three conditions separately. | FR-013 |
 
-### User Story 4 — Jump ahead (P1)
+### User Story 4 — Jump ahead (Priority: P1)
 
-As a developer, I want the state after `n` steps without computing the steps in between, so that I can start parallel workers far apart in one long sequence.
+A developer wants the state after a huge number of steps (a billion, say) without computing every step in between, for example to start parallel workers far apart in one long sequence. It is a classic LCG feature and easy to get subtly wrong, so it belongs in the first group. Check it against plain stepping for small distances and against known identities for enormous ones.
 
-*Why P1*: it is a classic LCG feature and easy to get subtly wrong. *Independent test*: compare with stepping for small `n`, use known identities for huge `n`.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-027 | Given each preset and seed 1, for every `n` from 0 to 1000, the jumped state equals the state reached by stepping `n` times. | FR-015 |
 | AC-028 | Given `minstd`, seed 1, `n=10000`, the state is `1043618065`. | FR-015 |
@@ -88,13 +78,11 @@ As a developer, I want the state after `n` steps without computing the steps in 
 | AC-031 | `n = 2^64 − 1` works; `n = 2^64` or a negative `n` gives `invalid-jump`. | FR-016 |
 | AC-032 | For any `n < 2^64`, the jump uses at most 64 modular multiplications. | FR-017 |
 
-### User Story 5 — Draw fair integers and fractions (P1)
+### User Story 5 — Draw fair integers and fractions (Priority: P1)
 
-As a developer, I want whole numbers in a range (a die roll, say) or fractions between 0 and 1 without any value being favoured, so that the skew towards the middle of the range is gone.
+A developer wants whole numbers inside a range (a die roll, for instance) or fractions between 0 and 1, and does not want any value favoured. Two traps are well known: rounding a scaled value makes the two end values half as likely as the rest, and taking a remainder leans on the weakest, lowest bits of a power-of-two modulus. The checks use a tiny generator where every value can be counted over one full cycle.
 
-*Why P1*: rounding a scaled value makes the two end values half as likely as the rest, and taking a remainder leans on the weak low bits of power-of-two moduli. *Independent test*: count the values over one full period of a tiny generator.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-033 | Given `a=5, c=3, m=16, seed=7` and the range 1 to 3, when exactly one full period (16 outputs) is used, then 1, 2 and 3 each appear exactly 5 times, one output was discarded, and the answer reports 16 outputs consumed. | FR-018, FR-020 |
 | AC-034 | Given the same generator and any range size from 1 to 16, every value in the range appears the same number of times over one full period. | FR-018 |
@@ -106,26 +94,22 @@ As a developer, I want whole numbers in a range (a die roll, say) or fractions b
 | AC-040 | Given `a=5, c=3, m=16, seed=7`, 5 fractions come back as `[0.375, 0.0625, 0.5, 0.6875, 0.625]`. | FR-021 |
 | AC-041 | Given the `pcg-lcg64` parameters and seed `15635871386175874928` (whose next output is `m−1`), the fraction is strictly less than 1.0. | FR-021 |
 
-### User Story 6 — Refuse security-sensitive uses (P2)
+### User Story 6 — Refuse security-sensitive uses (Priority: P2)
 
-As the owner of the toolkit, I want a request that says it is for a token, key or password to be turned down, so that nobody builds a weak secret with it.
+Anyone who says the numbers are for a token, key or password is turned down and pointed to a cryptographically secure source, because an LCG is predictable. The constitution requires this refusal (Principle V). Check it by sending a mix of purpose labels.
 
-*Why P2*: an LCG is predictable, and constitution Principle V requires the refusal. *Independent test*: send a mix of purpose labels.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-042 | Given a purpose of `token`, `Session Token`, `KEYS` or `api-key`, the request fails with `insecure-purpose`, no values come back, and the message points to a cryptographically secure source. | FR-022, FR-023 |
 | AC-043 | Given `dice`, `monkey business`, `simulation` or no purpose at all, the request goes through (matching is by whole word, so `monkey` is not `key`). | FR-023 |
 | AC-044 | Each of `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential`, `otp`, in singular and plural, is refused. | FR-023 |
 | AC-045 | The documentation says the guard relies on the declared purpose and cannot catch misuse that is not declared. | FR-024 |
 
-### User Story 7 — Report on sequence quality (P2)
+### User Story 7 — Report on sequence quality (Priority: P2)
 
-As a learner, I want a few fixed measurements on a generator's output, so that I can see why one parameter set is better than another.
+A learner asks for a short, fixed set of measurements on a generator's output to see why one parameter set is better than another: how long before it repeats, how evenly it spreads values, whether neighbouring values are related, and how the low bits behave. It turns the theory behind the validator into numbers. It is checked with tiny generators where every number can be worked out by hand.
 
-*Why P2*: it turns the validator's theory into numbers and shows weaknesses such as the short cycle of the low bits. *Independent test*: use tiny generators where every number can be worked out by hand.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-046 | Given `a=5, c=3, m=16, seed=7`, sample 16, 16 bins: period 16, chi-square exactly 0, the uniformity and independence checks are `not-applicable`, the period check passes and the verdict is `caution`. | FR-025, FR-028 |
 | AC-047 | Given `a=1, c=0, m=16, seed=3`, sample 16, 16 bins: period 1, chi-square exactly 240, the period check fails and the verdict is `defect-detected`. | FR-025, FR-028 |
@@ -139,26 +123,22 @@ As a learner, I want a few fixed measurements on a generator's output, so that I
 | AC-055 | The p-value for the published 1% critical values 6.635 (1 degree of freedom), 9.210 (2), 23.209 (10) and 135.807 (100) is 0.01 within 0.0005. | FR-029 |
 | AC-056 | Every report states that passing the checks does not show a generator is random or secure. | FR-030 |
 
-### User Story 8 — Use it from the command line (P2)
+### User Story 8 — Use it from the command line (Priority: P2)
 
-As a user, I want to run the toolkit in a terminal with readable output, and structured output when I need it, so that I can use it in scripts without writing code.
+A user runs the toolkit in a terminal and gets readable output by default, JSON when they want to feed it to a script, and exit statuses a script can rely on. It is the quickest way to show the toolkit working. Check it by running the worked examples and looking at the output, the exit status and which stream the text goes to.
 
-*Why P2*: it is the quickest way to demonstrate the toolkit. *Independent test*: run the worked examples and look at the output, exit status and streams.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-057 | Every capability in stories 1 to 7, 10 and 11 can be run from the command line. | FR-031 |
 | AC-058 | With the structured-output option the output parses as JSON and equals the library's result for the same input. | FR-032 |
 | AC-059 | Without that option the output is readable text containing the same values. | FR-032 |
 | AC-060 | Success exits with 0. Invalid input exits with a non-zero status, and a refused purpose with a different non-zero status. Errors go to the error stream and nothing goes to the result stream. | FR-033 |
 
-### User Story 9 — Use it as an HTTP service (P2)
+### User Story 9 — Use it as an HTTP service (Priority: P2)
 
-As a client application, I want to call the toolkit over HTTP where each request carries all its input, so that the service needs no storage and any instance can answer any request.
+A client application calls the toolkit over HTTP. Each request carries everything it needs, so the service stores nothing and any instance can answer any request, and a published description of the interface matches what the service really does. This is the basis of the contract-test gate in the constitution. Check it by sending the shared examples and running contract checks against that description.
 
-*Why P2*: it is the service form of the toolkit and the basis of the contract-test gate in the constitution. *Independent test*: send the shared examples and run contract checks against the published description.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-061 | Every capability in stories 1 to 7, 10 and 11 is available as a request/response operation. A follow-up request that uses a returned next state matches one longer request. | FR-034 |
 | AC-062 | Two identical requests get byte-for-byte identical response bodies. | FR-034, FR-005 |
@@ -167,15 +147,11 @@ As a client application, I want to call the toolkit over HTTP where each request
 | AC-065 | Generated contract tests find no mismatch between the published interface description and the actual behaviour. | FR-036 |
 | AC-066 | On the shared example set, the service's results equal the library's. | FR-037 |
 
-### User Story 10 — Predict a sequence from what you have seen (P3)
+### User Story 10 — Predict a sequence from what you have seen (Priority: P3)
 
-As a learner, I want to give the toolkit some observed outputs and watch it work out what comes next, so that I understand why an LCG must never protect a secret.
+A learner gives the toolkit some outputs they have seen and watches it work out what comes next, which shows concretely why an LCG must never protect a secret. Three situations are covered: (A) the modulus is known and the outputs are complete; (B) the modulus is unknown and the outputs are complete; (C) the parameters are known but each output is cut down to its high bits, as some C libraries do. It is the riskiest story, and the toolkit is complete without it, so it can be dropped without touching the rest. Check it by generating outputs from a known preset, hiding what the predictor should not know, and comparing its predictions with the real continuation.
 
-Three cases are covered: (A) the modulus is known and the outputs are complete; (B) the modulus is unknown and the outputs are complete; (C) the parameters are known but each output is cut down to its high bits, as some C libraries do.
-
-*Why P3*: it makes the security point concrete, but the toolkit is complete without it. It is the riskiest story and can be dropped without touching the rest. *Independent test*: generate outputs from a known preset, hide what the predictor is not supposed to know, and compare its predictions with the real continuation.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-067 | (A) Given `m=2^31` and the first 5 outputs of `glibc-type0` from seed 1, the recovered parameters are `a=1103515245, c=12345` and the next 10 predictions equal the real next 10 outputs. | FR-038, FR-041 |
 | AC-068 | (A) Given only 2 outputs, the error is `insufficient-data`. Given `m=16` and the outputs `[0, 0, 0]`, where many multipliers fit, the error is `ambiguous-parameters` and no guess is returned. | FR-042 |
@@ -186,13 +162,11 @@ Three cases are covered: (A) the modulus is known and the outputs are complete; 
 | AC-073 | (C) Given truncated outputs with unknown parameters, or more than 20 hidden bits (for example `musl`, which returns 31 of 64 bits and hides 33), or a modulus that is not a power of two, the error is `unsupported-combination`. | FR-040 |
 | AC-074 | Every successful prediction says it shows the generator is insecure. Case (B) also says that recovering the modulus is probable, not certain. | FR-043 |
 
-### User Story 11 — Split a sequence into separate streams (P3)
+### User Story 11 — Split a sequence into separate streams (Priority: P3)
 
-As a developer, I want to cut one sequence into non-overlapping blocks, one per worker, so that parallel workers never reuse the same numbers.
+A developer cuts one sequence into separate blocks, one per worker, so that parallel workers never reuse the same numbers. It shows off jump-ahead, but nothing else needs it. Check it by joining the streams and comparing the result with the plain sequence.
 
-*Why P3*: it shows off jump-ahead but nothing else needs it. *Independent test*: glue the streams together and compare with the plain sequence.
-
-| ID | Given / When / Then | Covers |
+| ID | Acceptance criterion | Covers |
 |---|---|---|
 | AC-075 | Given `glibc-type0`, seed 1, 4 streams of length 5, joining the streams in order gives the first 20 outputs of the plain sequence. | FR-044 |
 | AC-076 | In the same request, the start of stream `i` (from 0) equals the jump-ahead state at `i × 5`. | FR-044 |
