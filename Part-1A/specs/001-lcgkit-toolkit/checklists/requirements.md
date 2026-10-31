@@ -32,6 +32,6 @@
 
 - Reference values used in the acceptance criteria (presets, small worked examples, jump-ahead identities, bounded-integer counts, quality statistics and verdicts, predictor recoveries) were computed with independent throwaway scripts kept outside the repository, before being written into the specification. MINSTD's and MINSTD-new's 10,000th outputs match the published Park–Miller check values; the chi-square p-value method matches the NIST/SEMATECH 1% critical values at 1, 2, 3, 10 and 100 degrees of freedom.
 - The validator rule was cross-checked against brute force on all 89,439 triples with 2 <= m <= 64 (0 disagreements); this is the basis of SC-002.
-- Threshold justification sources: NIST SP 800-22 (significance level in [0.001, 0.01]); NIST/SEMATECH e-Handbook chi-square critical values (https://itl.nist.gov/div898/handbook/eda/section3/eda3674.htm). Search results were secondary copies for SP 800-22, so the original document should be consulted before the final report cites it.
+- Threshold justification: sources, verbatim quotes and the list of decisions without a source are in `references.md`. NIST SP 800-22 Rev. 1a was read from the original PDF; the NIST/SEMATECH e-Handbook pages were fetched directly. Knuth's TAOCP Vol. 2 was not consulted.
 - Known limitation recorded in the spec: RANDU and the glibc multiplier with an even increment pass the uniformity and serial-correlation checks at 10,000 samples.
 - The remaining unchecked items are by design (audience) or can only be confirmed after implementation.

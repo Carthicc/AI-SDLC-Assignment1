@@ -322,13 +322,13 @@ A developer divides one sequence into several non-overlapping blocks (for exampl
 - **FR-034**: Sample size MUST be between 2 and 1,000,000 and bins between 1 and the sample size; otherwise `invalid-count`, `count-exceeds-limit` or `invalid-bins`.
 - **FR-035**: The quality report MUST report each of the following checks with its measured value and an outcome of `pass`, `fail` or `not-applicable`, using fixed thresholds:
   - **period-covers-sample**: the measured period is at least the sample size (not-applicable when the period is `not-computed`);
-  - **uniformity**: the chi-square p-value is at least 0.01 (not-applicable when the sample size divided by the bin count is below 5);
+  - **uniformity**: the chi-square p-value is at least 0.01 (not-applicable when the sample size divided by the bin count is below 10);
   - **independence**: the absolute lag-1 serial correlation is at most `2.576 / sqrt(N)` (not-applicable when `N` is below 100);
   - **low-bits**: flagged `low-bits-short-period` when `m` is a power of two (informational, never a failure).
 
   The overall verdict MUST be `defect-detected` if any applicable check fails; otherwise `caution` if the low-bits flag is raised; otherwise `no-defect-detected`. Thresholds are constants of this specification and MUST NOT be changed except by a documented amendment of this specification.
 - **FR-036**: The chi-square p-value MUST be the upper-tail probability of the chi-square distribution with `bins - 1` degrees of freedom and MUST match the published 1% critical values (AC-062).
-- **FR-037**: Every quality report MUST state that passing the checks does not establish randomness or security. The documentation MUST record the justification of the thresholds: significance level 0.01 (within the 0.001 to 0.01 range suggested by NIST SP 800-22); normal approximation for the serial correlation (99% two-sided, 2.576); a minimum expected count of 5 per bin; and the expected false-alarm rate of about 1% per statistical check on a sound generator.
+- **FR-037**: Every quality report MUST state that passing the checks does not establish randomness or security. The documentation MUST record the justification of the thresholds: significance level 0.01 (within the 0.001 to 0.01 range suggested by NIST SP 800-22); normal approximation for the serial correlation (99% two-sided, 2.576); a minimum expected count of 10 per bin; and the expected false-alarm rate of about 1% per statistical check on a sound generator. Each justification MUST cite its source in `references.md`; any threshold or rule without a source (the minimum sample size of 100 for the independence check, the period-covers-sample check and the three verdict levels) MUST be recorded there as a decision.
 
 **Command line (User Story 8)**
 
@@ -397,6 +397,8 @@ The stable error codes are: `invalid-modulus`, `invalid-multiplier`, `invalid-in
 - Integers have unlimited precision at the specification level; the 64-bit upper bound on `m` is a deliberate limit, not an accident of implementation.
 - The seed is always supplied by the caller; the toolkit has no default seed and never reads the clock or any ambient source.
 - Presets are named for their published origin: `glibc-type0` is the simple LCG mode of the GNU C library's random-number routines, not the default `rand()` generator of modern systems.
+- Sources and decisions for the quality thresholds are recorded in `references.md`. The verdict judges a single sample, which simplifies NIST SP 800-22's practice of testing many sequences and checking both the proportion that pass and the uniformity of the p-values.
+- The `mmix` preset uses the multiplier credited to Knuth (TAOCP Vol. 2, section 3.3.4) with the increment `1442695040888963407` that is widely published with it (for example in the PCG reference code). The increment has not been verified against Knuth's text; the MMIX Supplement's own sample program uses a different arbitrary start value.
 - Quality thresholds are conventional, not proofs: a sound generator is flagged by chance in about 1% of samples per statistical check, and the same input always gives the same verdict. The checks cannot see every flaw: at 10,000 samples both RANDU and the glibc multiplier with an even increment pass the uniformity and serial-correlation checks, which is why the verdict is worded `no-defect-detected`, not `good`.
 - Out of scope: predicting from truncated outputs when the parameters are unknown (needs lattice-reduction methods), cryptographically secure generation, non-LCG generators, statistical test batteries beyond the four listed metrics, persistence, authentication, and distributions other than uniform.
 - A preset's published reference values were checked against an independent reference calculation before being written into this specification.
