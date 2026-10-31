@@ -2,7 +2,7 @@
 
 Sources read for this specification. NIST SP 800-22 page numbers are PDF page indices. Knuth page numbers are the printed page numbers of *The Art of Computer Programming*, Vol. 2, Seminumerical Algorithms, 3rd edition (Addison–Wesley), read from a copy I had.
 
-## 1. Quality-verdict thresholds (FR-028 to FR-030)
+## 1. Quality-verdict thresholds (FR-029 to FR-031)
 
 | Decision | Value | Source | Status |
 |---|---|---|---|
