@@ -1,6 +1,6 @@
 # Implementation Plan: lcgkit
 
-Input: the specification in `spec.md` (47 requirements, 86 acceptance criteria, 10 success criteria, 5 recorded clarifications) and the constitution in `.specify/memory/constitution.md` (v1.0.0).
+Input: the specification in `spec.md` (47 requirements, 86 acceptance criteria, 10 success criteria, 5 recorded clarifications) and the constitution in `.specify/memory/constitution.md` (v1.0.1).
 
 ## Summary
 
@@ -32,7 +32,7 @@ The measurements behind these choices are in `research.md`.
 
 ## Constitution Check
 
-Initial check before research, repeated after design. Every row passes.
+Checked before research and again after design, against constitution v1.0.1. Every row passes.
 
 | Principle | How the plan satisfies it | Status |
 |---|---|---|
@@ -46,12 +46,12 @@ Initial check before research, repeated after design. Every row passes.
 | Layout | `src/`, `tests/`, `.harness/`, `evidence/` as the constitution lists | Pass |
 | Workflow | Plan, then tasks, analyze, harness, implement, repair, human decision | Pass |
 
-Notes to confirm (none is a violation; each is a reading or an addition to the constitution):
+Decisions made at this stage (none was a violation; each was a reading of, or an addition to, the constitution):
 
-1. **Docstring rule.** Principle II requires public functions to be "documented". Ruff has no rule list entry for that, so the plan adds the `D1` rules (missing docstring) to the Ruff set. That makes the bar stricter, but it changes the constitution's list, so it should be recorded as a patch amendment (v1.0.1).
-2. **Logging and Principle IV.** The service logs method, path and status, never bodies. A log line carries a timestamp from the logging system. The plan reads Principle IV as covering computation and results, not operational logging. If you read it more strictly, log lines would have to carry no time.
-3. **gitleaks** is not installed. `brew install gitleaks` is available; the plan assumes you will approve it when the harness is built. A gate that cannot run counts as FAIL.
-4. **Mutation testing** was smoke-tested only. If the real run proves too slow, the governance rule applies (a recorded amendment, not a silent change).
+1. **Docstring rule.** Principle II requires public functions to be "documented". The Ruff `D1` rules (missing docstring) were added to the Ruff set so the harness can check it. Recorded as the patch amendment v1.0.1; it makes the bar stricter.
+2. **Logging and Principle IV.** The service logs method, path and status, never bodies, and a log line carries a timestamp from the logging system. The time limits in FR-008 also need timing tests. Principle IV was therefore clarified in v1.0.1: it covers computation and results, and allows measuring time in tests and operational logging.
+3. **gitleaks** is installed with Homebrew. It also scans commit history. A gate that cannot run counts as FAIL, and the README will say how to install it.
+4. **Mutation testing** keeps the 85% threshold. It was smoke-tested only; if the real run proves unreachable or too slow, the governance rule applies: a recorded amendment backed by evidence, never a silent change.
 
 ## Project Structure
 
@@ -155,4 +155,4 @@ Feedback capture (spec requirement from the assignment, section 3.5): for each f
 
 ## Complexity Tracking
 
-No constitution violations. The four notes above are readings or additions to confirm; they are recorded here so the analyze stage can check them.
+No constitution violations. The four decisions above are recorded so the analyze stage can check them. The one amendment, v1.0.1, only adds or clarifies; no gate was lowered.

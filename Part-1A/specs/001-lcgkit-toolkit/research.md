@@ -83,11 +83,11 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 ## R15. Function length and docstrings
 
 - **Decision**: Ruff has a statement-count rule (`PLR0915`) but no "lines per function" rule, so the harness includes a small AST check that fails any function longer than 40 lines. For "documented" in Principle II, the Ruff rule set gains the `D1` rules (missing docstring) for public items.
-- **Reason**: the constitution says "functions at most 40 lines" and "all public functions fully typed and documented". Adding `D1` makes the second sentence enforceable; it makes the bar stricter, not lower, and it changes the constitution's rule list (see the plan).
+- **Reason**: the constitution says "functions at most 40 lines" and "all public functions fully typed and documented". Adding `D1` makes the second sentence enforceable; it makes the bar stricter, not lower. Recorded as amendment v1.0.1.
 
 ## R16. Secret scanning and dependency audit
 
-- **Decision**: gitleaks and pip-audit both run in the harness. gitleaks is a separate binary that has to be installed, for example with `brew install gitleaks`. pip-audit queries an online vulnerability database, so it needs network access.
+- **Decision**: gitleaks and pip-audit both run in the harness. gitleaks was installed with `brew install gitleaks`. pip-audit queries an online vulnerability database, so it needs network access.
 - **Reason**: Principle II. A gate that cannot run reports FAIL, never a silent skip.
 
 ## R17. Anti-tampering
@@ -98,7 +98,7 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 ## R18. Logging
 
 - **Decision**: the HTTP service logs one line per request with the method, path and status, and never the body (seeds and outputs stay out of logs). Results never depend on the clock; any timestamp comes from the logging formatter, outside the computation.
-- **Reason**: closes the observability gap left open after the clarification stage. Principle IV forbids wall-clock use in computation; logging is operational. This reading of Principle IV is stated in the plan.
+- **Reason**: closes the observability gap left open after the clarification stage. Principle IV forbids wall-clock use in computation; logging is operational. Principle IV was clarified to say so (amendment v1.0.1).
 
 ## R19. HTTP status codes and routes
 
