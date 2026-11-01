@@ -1,0 +1,303 @@
+# Tasks: lcgkit
+
+Input: `specs/001-lcgkit-toolkit/` (`plan.md`, `spec.md`, `data-model.md`, `research.md`, `quickstart.md`, `contracts/`) and the constitution v1.0.2.
+
+Tests are required (constitution Principles III and VI), so they come before the implementation. Everything up to the checkpoint (harness, oracle and tests) is written first and then fixed by the baseline tag; implementation follows.
+
+## Format
+
+`- [ ] T### [P] [US#] Description with file path`
+
+- `[P]`: the task can run in parallel with others in the same phase (different files, no dependency on an unfinished task).
+- `[US#]`: the user story the task belongs to. Setup, harness, oracle, foundational and final tasks have no story label.
+- `(by me)`: a task I do myself and the coding agent does not.
+- Paths are relative to the repository root `Assignment-1/`.
+
+## Rules for every source file
+
+These apply to every task that creates or edits a file under `src/lcgkit/`, and are checked by the harness.
+
+- Full type hints (`mypy --strict`) and a docstring on every public module, class and function (Ruff `D1`). Each public function's docstring names its task ID and the requirement IDs it covers, for example `Task: T040. Covers: FR-016, FR-018.`
+- Functions of at most 40 lines and complexity of at most 8; split a function rather than suppress a rule.
+- No `noqa`, `nosec` or `type: ignore` comments, no `random` module, no clock, no global mutable state in computation.
+- Python integers only for the numbers; no floating point except for fractions and the statistics.
+- Never edit anything protected by the baseline tag: `tests/`, `specs/` (apart from ticking checkboxes in this file), `.harness/`, `pyproject.toml` and the constitution.
+
+---
+
+## Phase 1: Setup
+
+**Purpose**: Project skeleton and configuration. Written before the baseline tag, so the tool configuration is protected afterwards.
+
+- [ ] T001 Create `Part-1A/pyproject.toml`: project `lcgkit` 1.0.0, `requires-python = ">=3.12,<3.13"`; runtime dependencies `fastapi` and `uvicorn`; a dev dependency group with `pytest`, `pytest-cov`, `hypothesis`, `httpx`, `schemathesis`, `mutmut`, `ruff`, `mypy`, `bandit`, `pip-audit` (tested versions are in `research.md`); console scripts `lcgkit = "lcgkit.cli:main"` and `lcgkit-serve = "lcgkit.service:serve"`. Tool configuration: Ruff `select = ["E","F","I","B","UP","S","C90","PL","RUF","D1"]` with `max-complexity = 8`, and `per-file-ignores` for `tests/**` limited to `S101`, `D1` and `PLR2004`; mypy `strict = true`; pytest `pythonpath = ["src"]`, `testpaths = ["tests"]` and markers `ac`, `fr` and `perf`; coverage `branch = true`, `source = ["src/lcgkit"]`, `fail_under = 95`; mutmut `source_paths = ["src/lcgkit/core/"]` and `pytest_add_cli_args_test_selection = ["tests/"]` (the non-deprecated key names, research R14). Constitution Principles II and VII.
+- [ ] T002 [P] Create the empty package and test skeleton: `Part-1A/src/lcgkit/__init__.py` (module docstring only), `Part-1A/src/lcgkit/core/__init__.py` (module docstring only), and `__init__.py` files in `Part-1A/tests/`, `tests/oracle/`, `tests/unit/`, `tests/property/`, `tests/integration/`, `tests/contract/` and `tests/perf/`.
+- [ ] T003 Run `uv lock` and `uv sync` in `Part-1A/` to create `Part-1A/uv.lock` and the virtual environment; add `.venv/`, `mutants/`, `.mutmut-cache/`, `.hypothesis/`, `.pytest_cache/`, `.ruff_cache/`, `.mypy_cache/` and `.coverage` to `Part-1A/.gitignore`.
+- [ ] T004 [P] Create the evidence folders with a `.gitkeep` in each: `Part-1A/evidence/initial-generation/`, `Part-1A/evidence/final-generation/` and `Part-1A/evidence/harness-results/`.
+
+
+---
+
+## Phase 2: Harness
+
+**Purpose**: The harness is written and checked before any implementation, imports nothing from `src/lcgkit`, and is protected once the baseline tag exists (research R17). Each gate runs as its own subprocess so one failure cannot hide another.
+
+Gates are independent files, so they can be written in parallel. The runner and the shared helpers come first.
+
+- [ ] T005 Create `Part-1A/.harness/common.py`: a `GateResult` dataclass (`name`, `status` of `PASS` or `FAIL`, `command`, `exit_status`, `duration_seconds`, `stdout_path`, `stderr_path`, and `failures`, a list of `{rule_or_test, expected, observed, ids}`); a `run_command(name, command)` helper that runs a subprocess and captures standard output and error to files in the run folder; `repo_root()`; and `new_run_folder(run_id)` creating `evidence/harness-results/<run-id>/`. Docstrings and full type hints on everything.
+- [ ] T006 Create `Part-1A/.harness/feedback.py`: `write_feedback(results, folder)` builds `feedback.json` from every failed `GateResult`: the gate, the command, the exit status, the last 200 lines of its output, the failing rule or test, the expected and the observed behaviour where the tool reports them, and the FR and AC IDs involved (from test markers, test names or the Ruff rule code). Plain text so it can be handed to the coding agent unchanged.
+- [ ] T007 Create `Part-1A/.harness/run_harness.py`, the single entry point (`uv run python .harness/run_harness.py [--gates a,b] [--run-id ID]`). Run the gates in this order: lint, length, types, security, secrets, audit, tests, mutation, contract, integrity, traceability. Write `results.json` (one entry per gate), one full-output text file per gate, `feedback.json` when any gate fails, and `summary.txt` in `evidence/harness-results/<run-id>/`. Print one line per gate and a final single line `PASS` or `FAIL`; exit 0 only when every gate passed. A gate that cannot run (missing tool, no network) counts as `FAIL`, never as skipped. Imports nothing from `src/lcgkit`. Plan, Harness design.
+- [ ] T008 [P] Create `Part-1A/.harness/gates/lint.py`: run `ruff check src tests` with the configuration in `pyproject.toml` (rule sets E, F, I, B, UP, S, C90, PL, RUF, D1; complexity at most 8) using `--output-format json`; `FAIL` on any finding and record each as `{rule_or_test: rule code, observed: message, file and line}`.
+- [ ] T009 [P] Create `Part-1A/.harness/gates/length.py`: parse every file under `src/` with `ast` and `FAIL` for any function or method longer than 40 lines (`end_lineno - lineno + 1`, docstring included); list each offender with its file, name and length. Ruff has no per-function line limit (research R15).
+- [ ] T010 [P] Create `Part-1A/.harness/gates/types.py`: run `mypy --strict src`; `FAIL` on any error, recording the file, line and message of each.
+- [ ] T011 [P] Create `Part-1A/.harness/gates/security.py`: run `bandit -r src -f json` and `FAIL` on any finding of medium severity or above; record the test id, file, line and message of each.
+- [ ] T012 [P] Create `Part-1A/.harness/gates/secrets.py` and `Part-1A/.harness/config/gitleaks.toml` (`[extend] useDefault = true`, no allowlist): run `gitleaks git` over the repository history and `gitleaks dir` over the working tree with that configuration; `FAIL` on any finding. If `gitleaks` is not installed, `FAIL` with the message `install gitleaks: brew install gitleaks`.
+- [ ] T013 [P] Create `Part-1A/.harness/gates/audit.py`: run `pip-audit` against the locked environment and `FAIL` on any known vulnerability, and also when the audit cannot run (for example, no network).
+- [ ] T014 [P] Create `Part-1A/.harness/gates/tests.py`: run `pytest tests --ignore=tests/contract --cov=src/lcgkit --cov-branch --cov-fail-under=95 --junitxml=<run-folder>/junit.xml`; `FAIL` on any failed test or coverage below 95%; record each failed test with its markers (AC and FR IDs), the assertion's expected and actual values and the coverage figure.
+- [ ] T015 [P] Create `Part-1A/.harness/gates/mutation.py`: run `mutmut run` with the configuration in `pyproject.toml`, then read `mutmut results`. The score is killed mutants divided by all generated mutants that were tested; `FAIL` below 0.85, listing each surviving mutant with file, line and the change made. A failure to run counts as `FAIL`.
+- [ ] T016 [P] Create `Part-1A/.harness/gates/contract.py`: run `pytest tests/contract -q` (Schemathesis against the generated OpenAPI); `FAIL` on any failure, recording the operation, the generated input and the violated rule.
+- [ ] T017 [P] Create `Part-1A/.harness/gates/integrity.py`: compare against the Git tag `baseline-before-implement`. `FAIL` if any file differs under `tests/`, `specs/`, `.harness/`, `.specify/memory/constitution.md` or `pyproject.toml`, except that `specs/001-lcgkit-toolkit/tasks.md` may differ from the tag only in its checkboxes (compare the two files after replacing every `[X]` or `[x]` with `[ ]`), since the implementation ticks tasks off; `FAIL` if the added lines under `src/` or `tests/` introduce `skip`, `xfail`, `noqa`, `nosec` or `type: ignore`; `FAIL` if any file under `src/` imports `random`; `FAIL` if `pytest --collect-only -q` finds fewer tests than the count recorded in the tag annotation (`tests=<N>`). Constitution Principle III.
+- [ ] T018 [P] Create `Part-1A/.harness/gates/traceability.py`: parse the acceptance-criterion IDs from `specs/001-lcgkit-toolkit/spec.md` (table rows starting `| AC-nnn |`) and the requirement IDs (`- **FR-nnn**`), and read the `ac(...)` and `fr(...)` markers on the tests under `tests/` with `ast`. `FAIL` if any AC or FR has no test, or a marker names an ID that is not in the specification. Constitution Principle VI.
+- [ ] T019 Create `Part-1A/.harness/selfcheck.py`: build a temporary project containing one deliberately bad input per gate (a Ruff violation, a 41-line function, a mypy error, a medium-severity Bandit finding, a failing test, a removed test against a temporary tag, an uncovered AC, and a secret-like string written at run time into a temporary Git repository, never committed here) and assert that each gate returns `FAIL` on its bad input and `PASS` on a clean sample. This shows every gate can fail. Prints a table and exits 0 only if every gate behaved as expected.
+
+
+---
+
+## Phase 3: Independent oracle and test support
+
+**Purpose**: Expected values must never come from the code under test (Principle III). This phase builds the reference calculations and the shared test setup.
+
+- [ ] T020 Create `Part-1A/tests/conftest.py`: register the markers `ac(id)`, `fr(id)` and `perf`; make test collection fail if an `ac` marker is not of the form `AC-nnn` or an `fr` marker is not of the form `FR-nnn`; provide a `PRESET_TABLE` constant (the seven presets with their `a`, `c`, `m` as written in AC-013 to AC-019, kept independent of `src/`), and a `canonical(obj)` helper that returns `json.dumps(obj, sort_keys=True, ensure_ascii=False).encode()` for byte-for-byte comparisons.
+- [ ] T021 [P] Create `Part-1A/tests/oracle/reference.py` with independent reference functions that import nothing from `src/`: `step_sequence(a, c, m, x, n)` (naive stepping, seed not included), `brute_period(a, c, m, seed)` (length of the cycle reached from the seed, found with a dictionary of visited states), `full_period_by_brute_force(a, c, m)` (true exactly when `brute_period(a, c, m, 0) == m`), `trial_factor(n)` (for `n` up to 10^12), `chi_square(values, m, bins)`, `lag1_autocorrelation(values, m)` with `r = sum((u[t]-mean)*(u[t+1]-mean)) / sum((u[t]-mean)**2)` and `u = value / m`, `low_bit_period(values, bits)`, and the published constants: the NIST 1% critical values `{1: 6.635, 2: 9.210, 10: 23.209, 100: 135.807}` and the `minstd` 10,000th outputs 1043618065 and 399268537.
+- [ ] T022 [P] Create `Part-1A/tests/oracle/test_reference.py`: tests of the oracle itself (no markers, no `src/` imports): the `a=5, c=3, m=16, seed=7` example gives `[6, 1, 8, 11, 10]`; `minstd` and `minstd-new` 10,000th outputs equal the published values; `trial_factor` agrees with known factorisations; `brute_period` is 16 for `a=5, c=3, m=16` and 1 for `a=1, c=0, m=16`.
+
+
+---
+
+## Phase 4: Tests for every story (written first, they fail until the story is implemented)
+
+**Purpose**: Tests are derived from the acceptance criteria before any implementation (Principle III). Expected values come from the specification and from `tests/oracle/`, never from `src/`. Every test carries `ac` and `fr` markers so the traceability gate can check coverage. Each file is separate, so they can be written in parallel.
+
+- [ ] T023 [P] [US1] Write `Part-1A/tests/unit/test_lcg.py` for `lcgkit.core.lcg` (`ParameterSet`, `step`, `sequence`): `a=5, c=3, m=16, seed=7`, 5 values give `[6, 1, 8, 11, 10]` and next state 10; 3 more from state 10 give `[5, 12, 15]` and 8 in one call give `[6, 1, 8, 11, 10, 5, 12, 15]`; count 0 gives an empty list and next state equal to the seed; `a=6364136223846793005, c=1442695040888963407, m=2**64, seed=0` gives `[1442695040888963407, 1876011003808476466]`; `c=0, seed=0` gives all zeros with warning `zero-fixed-point` and `a` equal to 0 or 1 gives `degenerate-multiplier`. Markers: `ac("AC-001")`, `ac("AC-002")`, `ac("AC-003")`, `ac("AC-008")`, `ac("AC-012")`. `fr("FR-002")`, `fr("FR-003")`, `fr("FR-004")`, `fr("FR-007")`.
+- [ ] T024 [P] [US1] Write `Part-1A/tests/integration/test_ops_sequence.py` against `lcgkit.ops.run("sequence", ...)`: count 1,000,000 succeeds, 1,000,001 gives `count-exceeds-limit`, a negative count gives `invalid-count`; `m=1` and `m=2**64+1` give `invalid-modulus`, `m=16` with `a=16` gives `invalid-multiplier`, `c=-1` gives `invalid-increment`, `seed=16` gives `invalid-seed`, and no values are returned; `3.5`, `"abc"`, `True` and `None` in a numeric field give `invalid-type` naming the field; `m=1` with `seed=16` gives only `invalid-modulus`, `m=16, a=16, seed=16` gives only `invalid-multiplier`, and a wrong-typed `m` with a negative count gives `invalid-type` naming `m`; the same request 100 times gives 100 byte-identical results (`canonical`); every success contains `cryptographically_secure` equal to `False`. Markers: `ac("AC-004")`, `ac("AC-005")`, `ac("AC-006")`, `ac("AC-007")`, `ac("AC-009")`, `ac("AC-010")`. `fr("FR-001")`, `fr("FR-004")`, `fr("FR-005")`, `fr("FR-006")`.
+- [ ] T025 [P] [US1] Write `Part-1A/tests/property/test_sequence_properties.py` with Hypothesis: for random valid `a, c, m, seed` and counts `n1, n2`, a request for `n1` values then `n2` more from the reported next state equals one request for `n1 + n2`; the same request twice gives identical results; every output lies in `[0, m)`. Markers: `ac("AC-002")`. `fr("FR-003")`, `fr("FR-005")`.
+- [ ] T026 [P] [US1] Write `Part-1A/tests/perf/test_perf_sequence.py` (marker `perf`): `lcgkit.ops.run("sequence", ...)` for 1,000,000 values with the `glibc-type0` parameters finishes within 5 seconds, measured with `time.perf_counter`. Markers: `ac("AC-011")`. `fr("FR-008")`.
+- [ ] T027 [P] [US2] Write `Part-1A/tests/unit/test_presets.py` for `lcgkit.core.presets` and `lcgkit.core.lcg.sequence`: for each of the seven presets, the parameters match `PRESET_TABLE` and the first outputs from the stated seed match AC-013 to AC-019 exactly (`minstd` seed 1: 16807, 282475249, 1622650073, 984943658, 1144108930; `minstd-new` seed 1: 48271, 182605794, 1291394886; `glibc-type0` seed 1: 1103527590, 377401575, 662824084; `numrec` seed 0: 1013904223, 1196435762, 3519870697; `musl` seed 0: 1, 6364136223846793006, 13885033948157127959; `pcg-lcg64` seed 0: 1442695040888963407, 1876011003808476466; `randu` seed 1: 65539, 393225, 1769499, 7077969); the 10,000th `minstd` output from seed 1 is 1043618065 and the 10,000th `minstd-new` output is 399268537 (compare with the oracle constants). Markers: `ac("AC-013")`, `ac("AC-014")`, `ac("AC-015")`, `ac("AC-016")`, `ac("AC-017")`, `ac("AC-018")`, `ac("AC-019")`. `fr("FR-009")`.
+- [ ] T028 [P] [US2] Write `Part-1A/tests/integration/test_ops_presets.py` against `lcgkit.ops.run`: `presets` returns exactly the seven presets in the order `minstd`, `minstd-new`, `glibc-type0`, `numrec`, `musl`, `pcg-lcg64`, `randu`, each with `a`, `c`, `m` and a one-line description; a `sequence` request with `preset` equals the same request with that preset's parameters written out, for every preset; an unknown preset name gives `unknown-preset` naming `preset`. Markers: `ac("AC-020")`, `ac("AC-021")`, `ac("AC-022")`. `fr("FR-010")`, `fr("FR-011")`, `fr("FR-012")`.
+- [ ] T029 [P] [US3] Write `Part-1A/tests/unit/test_validator.py` for `lcgkit.core.validator.validate`: `a=1103515245, c=24680, m=2**31` gives `not-full-period` with exactly the reason `increment-not-coprime`; `glibc-type0`, `numrec`, `musl` and `pcg-lcg64` give `full-period`, expected period equal to `m` and no reasons; `minstd` gives `not-full-period` with `increment-not-coprime` then `multiplier-minus-one-not-divisible-by-prime-factor`, in that order; `m=16, a=3, c=1` gives only `multiplier-minus-one-not-divisible-by-four`; `m=2, a=1, c=1` gives `full-period`; the result always lists the pass or fail of each of the three conditions. Markers: `ac("AC-023")`, `ac("AC-024")`, `ac("AC-025")`, `ac("AC-026")`, `ac("AC-028")`. `fr("FR-013")`, `fr("FR-014")`.
+- [ ] T030 [P] [US3] Write `Part-1A/tests/property/test_validator_bruteforce.py`: for every `m` from 2 to 64 and every `0 <= a, c < m` (89,439 triples in all; parametrise by `m`), the verdict equals `full_period_by_brute_force` from the oracle, with zero disagreements. Markers: `ac("AC-027")`. `fr("FR-015")`.
+- [ ] T031 [P] [US3] Write `Part-1A/tests/unit/test_numtheory.py` for `lcgkit.core.numtheory` (no AC; cites FR-014): `is_prime` agrees with trial division for every `n < 100000`; it rejects the strong pseudoprimes 2047, 3215031751 and 3825123056546413051 and the Carmichael numbers 561 and 1105; it accepts `2**31 - 1` and `2**61 - 1`; `factor` agrees with `trial_factor` for 200 values up to 10^12, returns `{2: 64}` for `2**64`, and factors the product of two 32-bit primes within 1 second. `fr("FR-014")`.
+- [ ] T032 [P] [US4] Write `Part-1A/tests/unit/test_jump.py` for `lcgkit.core.jump.jump`: for each of the seven presets from seed 1 and every `n` from 0 to 1000, the jumped state equals the state reached by stepping `n` times (oracle); `minstd`, seed 1, 10000 steps gives 1043618065; for `glibc-type0` and any seed, jumping `2**31` steps returns the seed and `2**31 + 5` equals 5; jumping `n1` then `n2` equals jumping `n1 + n2`; and, with `lcgkit.core.jump.mulmod` replaced by a counting wrapper (`monkeypatch`), any `n < 2**64` (including `2**64 - 1`, `2**63`, 12345 and 1) uses at most 192 calls and still returns the right state. Markers: `ac("AC-029")`, `ac("AC-030")`, `ac("AC-031")`, `ac("AC-032")`, `ac("AC-034")`. `fr("FR-016")`, `fr("FR-018")`.
+- [ ] T033 [P] [US4] Write `Part-1A/tests/integration/test_ops_jump.py` against `lcgkit.ops.run("jump", ...)`: `steps` equal to `2**64 - 1` succeeds; `2**64` and `-1` give `invalid-jump` naming `steps`. Markers: `ac("AC-033")`. `fr("FR-017")`.
+- [ ] T034 [P] [US5] Write `Part-1A/tests/unit/test_bounded.py` for `lcgkit.core.bounded` (`integers`, `fractions`): `a=5, c=3, m=16, seed=7`, range 1 to 3, 15 values: 1, 2 and 3 appear exactly 5 times each, 16 outputs were consumed, one discarded; for every range size 1 to 16 on that generator, every value appears equally often over one full period; the range -3 to 3 stays inside it; a range with one value returns it every time, consumes nothing and leaves the state unchanged; `glibc-type0`, seed 1, range 0 to 1, 64 values do not strictly alternate; drawing 10 equals drawing 4 then 6 from the reported next state; `a=5, c=3, m=16, seed=7` gives the fractions `[0.375, 0.0625, 0.5, 0.6875, 0.625]`; with the `pcg-lcg64` parameters and seed 15635871386175874928 the fraction is strictly below 1.0. Markers: `ac("AC-035")`, `ac("AC-036")`, `ac("AC-037")`, `ac("AC-038")`, `ac("AC-040")`, `ac("AC-041")`, `ac("AC-042")`, `ac("AC-043")`. `fr("FR-019")`, `fr("FR-020")`, `fr("FR-021")`, `fr("FR-022")`.
+- [ ] T035 [P] [US5] Write `Part-1A/tests/integration/test_ops_integers.py` against `lcgkit.ops.run("integers", ...)`: `lo > hi` gives `invalid-range`; a range with more values than `m` gives `range-exceeds-modulus`; non-integer bounds give `invalid-type`; `a=1, c=0, m=16, seed=15`, range 1 to 3 gives `unsupported-combination` naming `seed`, and the call returns within 5 seconds. Markers: `ac("AC-039")`, `ac("AC-087")`. `fr("FR-020")`, `fr("FR-048")`.
+- [ ] T036 [P] [US6] Write `Part-1A/tests/unit/test_guard.py` for `lcgkit.core.guard.check_purpose`: `dice`, `monkey business`, `simulation`, an empty label and `None` are accepted (matching is by whole word, so `monkey` is not `key`); each of `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential`, `otp`, singular and plural, in any capitalisation and inside longer labels such as `Session Token`, `KEYS` and `api-key`, raises `LcgError` with code `insecure-purpose`. Markers: `ac("AC-045")`, `ac("AC-046")`. `fr("FR-024")`.
+- [ ] T037 [P] [US6] Write `Part-1A/tests/integration/test_ops_guard.py` against `lcgkit.ops.run`: a `purpose` of `token`, `Session Token`, `KEYS` or `api-key` on `sequence` fails with `insecure-purpose` and returns no values; `password` on `jump` and on `streams` fails the same way and returns no state or values; `validate`, `quality` and `predict` accept no `purpose` field (a request containing one is a `malformed-request` naming `purpose`); with an otherwise invalid request, the input error is reported before the purpose refusal. Markers: `ac("AC-044")`, `ac("AC-047")`. `fr("FR-023")`, `fr("FR-024")`.
+- [ ] T038 [P] [US6] Write `Part-1A/tests/integration/test_docs.py`: `Part-1A/README.md` (read relative to the test file) contains the exact sentence `The purpose guard relies on the declared purpose and cannot catch misuse that is not declared.` Markers: `ac("AC-048")`. `fr("FR-025")`.
+- [ ] T039 [P] [US7] Write `Part-1A/tests/unit/test_stats.py` for `lcgkit.core.stats`: `chi_square_p` returns 0.01 within 0.0005 for the published critical values 6.635 (1 degree of freedom), 9.210 (2), 23.209 (10) and 135.807 (100); returns 1.0 for a statistic of 0; `serial_correlation` of a constant sequence is `None`. Markers: `ac("AC-059")`. `fr("FR-030")`.
+- [ ] T040 [P] [US7] Write `Part-1A/tests/unit/test_quality.py` for `lcgkit.core.quality.report`: `a=5, c=3, m=16, seed=7`, sample 16, 16 bins gives period 16, chi-square exactly 0, uniformity and independence `not-applicable`, the period check `pass` and verdict `caution`; `a=1, c=0, m=16, seed=3`, sample 16, 16 bins gives period 1, chi-square exactly 240, the period check `fail` and verdict `defect-detected`; a constant sequence gives serial correlation `undefined`; `glibc-type0` seed 1 gives low-bit periods 2, 4 and 8; `minstd` gives low-bit periods `not-applicable`; `m` above 2**24 gives measured period `not-computed` with the other numbers still present; `minstd`, seed 1, sample 10000, 10 bins gives chi-square 6.69, p-value 0.6694, serial correlation -0.0005 (to the digits shown), every check `pass` and verdict `no-defect-detected`; `glibc-type0`, seed 1, sample 10000, 10 bins gives chi-square 8.882, p-value 0.4482, serial correlation -0.00111, the `low-bits-short-period` flag and verdict `caution`; every report carries the notice `Passing these checks does not show that a generator is random or secure.` Markers: `ac("AC-049")`, `ac("AC-050")`, `ac("AC-051")`, `ac("AC-052")`, `ac("AC-053")`, `ac("AC-057")`, `ac("AC-058")`, `ac("AC-060")`. `fr("FR-026")`, `fr("FR-029")`, `fr("FR-031")`.
+- [ ] T041 [P] [US7] Write `Part-1A/tests/property/test_quality_oracle.py` with Hypothesis: for random valid generators (small `m`, so the oracle is fast), sample sizes and bin counts, `report` is identical on repeat calls and every number (chi-square, serial correlation, low-bit periods, measured period) equals the oracle's within a relative tolerance of 1e-9. Markers: `ac("AC-055")`. `fr("FR-027")`.
+- [ ] T042 [P] [US7] Write `Part-1A/tests/integration/test_ops_quality.py` against `lcgkit.ops.run("quality", ...)`: sample size 1,000,000 succeeds; 1,000,001 gives `count-exceeds-limit`; a sample below 2 gives `invalid-count`; 0 bins, or more bins than the sample, gives `invalid-bins`. Markers: `ac("AC-054")`. `fr("FR-028")`.
+- [ ] T043 [P] [US7] Write `Part-1A/tests/perf/test_perf_quality.py` (marker `perf`): a quality report with sample size 1,000,000, `m = 2**24` and 1,000 bins finishes within 15 seconds. Markers: `ac("AC-056")`. `fr("FR-008")`.
+- [ ] T044 [P] [US8] Write `Part-1A/tests/integration/test_cli.py`, running `python -m lcgkit.cli` in a subprocess: every operation (`presets`, `sequence`, `integers`, `fractions`, `jump`, `streams`, `validate`, `quality`, `predict`) runs; with `--json` the output parses as JSON and equals `wire.encode_result` of the `ops.run` result for the same input, with every field that can exceed 2**53 written as a decimal string and counts and bins as numbers; without it the output is readable text containing the same values; success exits 0, invalid input exits 2, a refused purpose exits 3, and on any failure nothing is written to standard output and the message (`error <code>: <message>`) goes to standard error. Markers: `ac("AC-061")`, `ac("AC-062")`, `ac("AC-063")`, `ac("AC-064")`, `ac("AC-065")`. `fr("FR-032")`, `fr("FR-033")`, `fr("FR-034")`.
+- [ ] T045 [P] [US9] Write `Part-1A/tests/integration/test_service.py` with `fastapi.testclient.TestClient` on `lcgkit.service.app`: every operation is available (`POST /v1/sequence`, `/v1/integers`, `/v1/fractions`, `/v1/jump`, `/v1/streams`, `/v1/validate`, `/v1/quality`, `/v1/predict`, `GET /v1/presets`) and a follow-up request from a returned `next_state` matches one longer request; two identical requests give byte-identical bodies; the `pcg-lcg64` parameters and seed 0 sent as decimal strings with count 2 return `["1442695040888963407", "1876011003808476466"]`; a large field sent as a JSON number, or as a string such as `"0x10"`, `"1e3"`, `"007"` or `" 5"`, gives `invalid-type` naming the field and is never rounded; invalid input gives status 400 with the error body, a refused purpose gives status 403; malformed JSON, missing or unknown fields, wrong types, oversized numbers and an empty body give 400 with `malformed-request` or the specific code, never a status of 500 or more. Markers: `ac("AC-066")`, `ac("AC-067")`, `ac("AC-068")`, `ac("AC-069")`, `ac("AC-070")`, `ac("AC-071")`. `fr("FR-005")`, `fr("FR-035")`, `fr("FR-036")`.
+- [ ] T046 [P] [US9] Write `Part-1A/tests/integration/test_parity.py`: for a shared example set covering every operation, the library result (`ops.run` then `wire.encode_result`), the command-line `--json` output and the HTTP service body are equal. Markers: `ac("AC-073")`. `fr("FR-038")`.
+- [ ] T047 [P] [US9] Write `Part-1A/tests/contract/test_openapi_contract.py` with Schemathesis (`schemathesis.openapi.from_asgi("/openapi.json", lcgkit.service.app)`): run generated cases for every operation; every response status is 200, 400 or 403, every response conforms to its declared schema, and none is a 5xx; also assert that the generated document has the same paths, methods and request property names as `specs/001-lcgkit-toolkit/contracts/openapi.yaml`. Markers: `ac("AC-072")`. `fr("FR-037")`.
+- [ ] T048 [P] [US10] Write `Part-1A/tests/unit/test_predictor.py` for `lcgkit.core.predictor`: case A, `m=2**31` and the first 5 outputs of `glibc-type0` from seed 1 recover `a=1103515245, c=12345` and the next 10 predictions equal the generator's next 10; only 2 outputs give `insufficient-data`; `m=16` with outputs `[0, 0, 0]` gives `ambiguous-parameters` and no guess; case B, no modulus and the first 12 outputs of `glibc-type0` from seed 1 recover modulus `2**31`, the parameters and 10 correct predictions, and the same holds for `pcg-lcg64` from seed 0 with modulus `2**64`; fewer than 12 outputs give `insufficient-data`; case C, `glibc-type0` with 16 hidden bits and the first 4 outputs of seed 1 shifted right by 16 recover the internal state and predict the next 10 full-width outputs correctly, while only 2 truncated outputs give `ambiguous-parameters` (two states fit). Markers: `ac("AC-074")`, `ac("AC-076")`, `ac("AC-077")`, `ac("AC-078")`, `ac("AC-079")`, `ac("AC-080")`. `fr("FR-039")`, `fr("FR-040")`, `fr("FR-041")`, `fr("FR-042")`, `fr("FR-043")`.
+- [ ] T049 [P] [US10] Write `Part-1A/tests/integration/test_ops_predict.py` against `lcgkit.ops.run("predict", ...)`: a request with no `k` returns 10 predictions, `k=3` returns 3, `k=1000001` gives `count-exceeds-limit` and `k=0` gives `invalid-count`; truncated outputs with unknown parameters, more than 20 hidden bits (for example `musl`, which returns 31 of 64 bits and hides 33), or a modulus that is not a power of two give `unsupported-combination`; `a` or `c` without `hidden_bits` gives `malformed-request` naming the field; every success carries the notice `This prediction shows that the generator is not secure.` and case B appends ` Recovering the modulus is probable, not certain.` Markers: `ac("AC-075")`, `ac("AC-081")`, `ac("AC-083")`. `fr("FR-041")`, `fr("FR-044")`, `fr("FR-045")`.
+- [ ] T050 [P] [US10] Write `Part-1A/tests/perf/test_perf_predict.py` (marker `perf`): a truncated-output prediction with `glibc`-style parameters and exactly 20 hidden bits finishes within 5 seconds. Markers: `ac("AC-082")`. `fr("FR-008")`.
+- [ ] T051 [P] [US11] Write `Part-1A/tests/integration/test_ops_streams.py` against `lcgkit.ops.run("streams", ...)`: `glibc-type0`, seed 1, 4 streams of length 5 joined in order equal the first 20 outputs of the plain sequence; stream `i` starts at the jump-ahead state at `i * 5` (oracle stepping); `streams * length > m` gives `stream-exceeds-modulus`; a zero or negative stream count or length gives `invalid-count`. Markers: `ac("AC-084")`, `ac("AC-085")`, `ac("AC-086")`. `fr("FR-046")`, `fr("FR-047")`.
+- [ ] T052 [P] Write `Part-1A/tests/property/test_no_unstructured_failure.py` with Hypothesis (success criterion SC-007): feed arbitrary JSON-like values (numbers, strings, booleans, `None`, lists, dictionaries, huge integers) as the request to every operation through `ops.run` and through the service; the only outcomes are a successful result or an `LcgError` whose code is one of the 18 codes, and the service never returns status 500 or above. Markers: `fr("FR-036")`.
+
+
+---
+
+## Checkpoint: review and baseline tag (me)
+
+**Purpose**: Nothing in `src/` exists yet. This checkpoint fixes the harness and the tests so the implementation cannot change them. `/speckit-implement` stops here until I finish these tasks.
+
+- [ ] T053 (by me) Review `Part-1A/.harness/` and every file under `Part-1A/tests/` against `specs/001-lcgkit-toolkit/spec.md`: each acceptance criterion is checked by an exact assertion, every expected value comes from the specification or `tests/oracle/`, and nothing imports `src/` to compute an expected value.
+- [ ] T054 (by me) Run `uv run pytest tests/oracle -q` (must pass), `uv run python .harness/selfcheck.py` (every gate must be shown able to fail), and `uv run python .harness/run_harness.py --gates lint,length,traceability` (must pass for the harness files and the test files that exist). Run `uv run pytest tests -q`: it must fail everywhere, because `src/lcgkit` has no implementation. That is the expected starting state.
+- [ ] T055 (by me) Commit the harness and the tests, then create the tag with the collected test count in its annotation: `git tag -a baseline-before-implement -m "tests=<N>"` in `Part-1A/`. From this point `tests/`, `specs/`, `.harness/`, `pyproject.toml` and the constitution are protected; the integrity gate compares against this tag.
+
+
+---
+
+## Phase 5: Foundational implementation
+
+**Purpose**: Shared code every story needs. Every source file follows the rules at the top of this document.
+
+- [ ] T056 Create `Part-1A/src/lcgkit/errors.py`: `ERROR_CODES`, a tuple of exactly these 18 codes: `invalid-modulus`, `invalid-multiplier`, `invalid-increment`, `invalid-seed`, `invalid-type`, `invalid-count`, `count-exceeds-limit`, `invalid-jump`, `invalid-range`, `range-exceeds-modulus`, `invalid-bins`, `unknown-preset`, `insecure-purpose`, `insufficient-data`, `ambiguous-parameters`, `stream-exceeds-modulus`, `unsupported-combination`, `malformed-request`; and `class LcgError(Exception)` with `code`, `message` and optional `field` (a code outside the tuple raises `ValueError`) and `to_body()` returning `{"error": {"code": ..., "message": ..., "field": ...}}` with `field` omitted when absent. Covers FR-001, FR-036.
+- [ ] T057 Create `Part-1A/src/lcgkit/fields.py`, the field table that drives validation order, wire types and the OpenAPI schema. Fields and rules, quoted from `data-model.md`: `preset` (string; one of the seven names; replaces `a`, `c`, `m`; sending it together with any of them is a `malformed-request`; error `unknown-preset`); `m` (large; integer, 2 ≤ m ≤ 2^64; `invalid-modulus`); `a` (large; integer, 0 ≤ a < m; `invalid-multiplier`); `c` (large; integer, 0 ≤ c < m; `invalid-increment`); `seed` (large; integer, 0 ≤ seed < m; `invalid-seed`); `state`, jump only (large; integer, 0 ≤ state < m; `invalid-seed`); `count` (count; integer, 0 ≤ count ≤ 1,000,000; `invalid-count`, `count-exceeds-limit`); `lo`, `hi` (large, signed; integers, lo ≤ hi, hi − lo + 1 ≤ m; `invalid-range`, `range-exceeds-modulus`); `steps`, jump only (large; integer, 0 ≤ steps < 2^64; `invalid-jump`); `sample_size` (count; integer, 2 ≤ sample_size ≤ 1,000,000; `invalid-count`, `count-exceeds-limit`); `bins` (count; integer, 1 ≤ bins ≤ sample_size; `invalid-bins`); `outputs`, predict (list of large; 1 to 1,000,000 values; `insufficient-data`, `count-exceeds-limit`); `hidden_bits`, predict (count; integer ≥ 0; `unsupported-combination`); `k`, predict (count; integer, default 10, 1 ≤ k ≤ 1,000,000; `invalid-count`, `count-exceeds-limit`); `streams`, `length` (count; each ≥ 1; `streams × length` ≤ m; `invalid-count`, `stream-exceeds-modulus`); `purpose` (string, optional, checked last; `insecure-purpose`). Checking order per operation: first `preset` (or `m`, `a`, `c`), then `seed` (or `state`), then the operation's own fields: sequence `count`; integers `lo`, `hi`, `count`; fractions `count`; jump `state`, `steps`; streams `streams`, `length`; validate none (no `seed`); quality `sample_size`, `bins`; predict `outputs`, `m`, `a`, `c`, `hidden_bits`, `k`; presets none. `purpose` is accepted only by sequence, integers, fractions, jump and streams. For each field the type is checked before the value. Covers FR-001, FR-004, FR-023, FR-028, FR-045.
+- [ ] T058 Create `Part-1A/src/lcgkit/wire.py`: `decode_large(value, field, signed=False)` accepts only a string matching `^(0|[1-9][0-9]*)$` (`^(0|-?[1-9][0-9]*)$` when signed) and returns an `int`, otherwise raises `LcgError("invalid-type", field=field)` (this includes a JSON number, a boolean, `None` and strings like `"0x10"`, `"1e3"`, `"007"`, `" 5"`); `encode_large(n)` returns the decimal string; `decode_request(operation, body)` requires a JSON object (else `malformed-request`), rejects unknown fields with `malformed-request` naming the field, converts the large fields to integers and checks that counts and bins are integers that are not booleans (else `invalid-type`); `encode_result(operation, result)` converts every large integer in a result (including lists and nested stream records) to a decimal string and leaves counts, booleans, floats and text alone. Covers FR-033, FR-035.
+- [ ] T059 Create `Part-1A/src/lcgkit/ops.py` with the shared engine: `run(operation, request)` takes a mapping with native Python values, validates in the order and with the rules from `fields.py` (type before value for each field, first error only, `purpose` last and only for the operations that accept it), applies the default `k = 10`, dispatches to the operation's handler in a registry, adds `"cryptographically_secure": False` to every success and returns a plain `dict`; unknown operation or unknown field gives `malformed-request`. Handlers are added by the story tasks below. Covers FR-001, FR-005, FR-006.
+
+
+---
+
+## Phase 6: US1 — Generate a repeatable sequence (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T060 [US1] Create `Part-1A/src/lcgkit/core/lcg.py`: frozen dataclasses `ParameterSet(a, c, m)` and `SequenceResult(outputs, outputs_consumed, next_state, warnings)`; `step(p, x)` returns `(a * x + c) % m`; `sequence(p, seed, count)` returns the next `count` outputs without the seed, `outputs_consumed` equal to `count` and `next_state` equal to the last output (the seed when `count` is 0); warnings `zero-fixed-point` when `c == 0 and seed == 0` and `degenerate-multiplier` when `a` is 0 or 1. Covers FR-002, FR-003, FR-004, FR-007.
+- [ ] T061 [US1] In `Part-1A/src/lcgkit/ops.py` add the `sequence` handler: build the `ParameterSet`, call `core.lcg.sequence`, return `outputs`, `outputs_consumed`, `next_state` and `warnings`. Covers FR-001 to FR-007, and FR-008 (1,000,000 values within 5 seconds, so keep the loop plain and allocation-light); makes `tests/unit/test_lcg.py`, `tests/integration/test_ops_sequence.py`, `tests/property/test_sequence_properties.py` and `tests/perf/test_perf_sequence.py` pass.
+
+
+---
+
+## Phase 7: US2 — Use well-known generators by name (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T062 [US2] Create `Part-1A/src/lcgkit/core/presets.py`: an ordered `PRESETS` of the seven presets with these parameters `(a, c, m)` and descriptions: `minstd` (16807, 0, 2**31 - 1) "Park–Miller minimal standard"; `minstd-new` (48271, 0, 2**31 - 1) "revised multiplier for the minimal standard"; `glibc-type0` (1103515245, 12345, 2**31) "the simple mode of the GNU C library"; `numrec` (1664525, 1013904223, 2**32) "Numerical Recipes' quick generator"; `musl` (6364136223846793005, 1, 2**64) "the musl C library's rand"; `pcg-lcg64` (6364136223846793005, 1442695040888963407, 2**64) "the 64-bit LCG used by the PCG family"; `randu` (65539, 0, 2**31) "IBM's RANDU, included as a known-bad example"; and `get(name)` raising `LcgError("unknown-preset", field="preset")`. Covers FR-009, FR-012.
+- [ ] T063 [US2] In `Part-1A/src/lcgkit/ops.py` add the `presets` handler (no fields; returns `presets` as a list of `name`, `a`, `c`, `m`, `description`) and preset resolution in `run`: when `preset` is given, take `a`, `c`, `m` from `core.presets.get`; `preset` together with `m`, `a` or `c` is a `malformed-request` naming `preset`. Covers FR-010, FR-011, FR-012; makes `tests/unit/test_presets.py` and `tests/integration/test_ops_presets.py` pass.
+
+
+---
+
+## Phase 8: US3 — Find out whether parameters are any good (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T064 [US3] Create `Part-1A/src/lcgkit/core/numtheory.py`: `is_prime(n)` (trial division by small primes, then deterministic Miller–Rabin with the first twelve primes as bases, sufficient for `n < 3.3 × 10^24`); `factor(n)` returning `{prime: exponent}` using trial division then Pollard–Brent rho with a fixed sequence of constants (1, 2, 3, ...) so it needs no `random` module (Principle IV) and always terminates; works for every `n` up to `2**64`. Covers FR-014.
+- [ ] T065 [US3] Create `Part-1A/src/lcgkit/core/validator.py`: frozen dataclasses `Condition(name, passed)` and `Verdict(verdict, expected_period, conditions, reasons)`; `validate(p)` evaluates the three Hull–Dobell conditions: `increment-not-coprime` passes when `gcd(c, m) == 1`; `multiplier-minus-one-not-divisible-by-prime-factor` passes when every prime factor of `m` divides `a - 1`; `multiplier-minus-one-not-divisible-by-four` passes when `m % 4 != 0` or `(a - 1) % 4 == 0`. The verdict is `full-period` only if all pass, with `expected_period` equal to `m`; `reasons` lists the failed conditions in the order `increment-not-coprime`, `multiplier-minus-one-not-divisible-by-prime-factor`, `multiplier-minus-one-not-divisible-by-four`. Covers FR-013, FR-014, FR-015.
+- [ ] T066 [US3] In `Part-1A/src/lcgkit/ops.py` add the `validate` handler (fields: `preset` or `m`, `a`, `c`; no `seed`, no `purpose`): return `verdict`, `expected_period` (only when full period), `conditions` as a list of `{name, passed}` and `reasons`. Makes `tests/unit/test_validator.py`, `tests/property/test_validator_bruteforce.py` and `tests/unit/test_numtheory.py` pass.
+
+
+---
+
+## Phase 9: US4 — Jump ahead (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T067 [US4] Create `Part-1A/src/lcgkit/core/jump.py`: `mulmod(x, y, m)` returning `x * y % m`, the only place a modular multiplication is done; `jump(p, state, steps)` doubles the affine map once per bit of `steps`: starting from `(A, C) = (a, c)`, for each bit from the lowest, apply `state = mulmod(A, state, m) + C` reduced modulo `m` when the bit is set, then replace `(A, C)` with `(mulmod(A, A, m), mulmod(C, A + 1, m))`, stopping after the highest set bit. At most three `mulmod` calls per bit, so at most 192 for `steps < 2**64` (FR-018); `steps == 0` returns `state`; no loop may run in proportion to `steps`. Covers FR-016, FR-018.
+- [ ] T068 [US4] In `Part-1A/src/lcgkit/ops.py` add the `jump` handler (fields: parameters, `state`, `steps`, `purpose`): `steps` outside `0 ≤ steps < 2**64` raises `LcgError("invalid-jump", field="steps")`; return `state`. Covers FR-016, FR-017; makes `tests/unit/test_jump.py` and `tests/integration/test_ops_jump.py` pass.
+
+
+---
+
+## Phase 10: US5 — Draw fair integers and fractions (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T069 [US5] Create `Part-1A/src/lcgkit/core/bounded.py`: `integers(p, seed, lo, hi, count)` with `size = hi - lo + 1`; if `size == 1` return `lo` repeated `count` times with `outputs_consumed` 0 and the state unchanged; otherwise let `q = m // size`, draw outputs one at a time, accept an output `v` only if `v < size * q` and return `lo + v // q`, otherwise discard it and draw again; `outputs_consumed` counts every output used including the discarded ones and `next_state` is the state after the last one; if more than 1,000,000 consecutive outputs are discarded, raise `LcgError("unsupported-combination", field="seed")` (FR-048). `fractions(p, seed, count)` returns `output / m` and, if that is 1.0 or more, `math.nextafter(1.0, 0.0)` (FR-022). Neither function uses rounding or a plain remainder. Covers FR-019, FR-020, FR-021, FR-022, FR-048.
+- [ ] T070 [US5] In `Part-1A/src/lcgkit/ops.py` add the `integers` handler (fields: parameters, `seed`, `lo`, `hi`, `count`, `purpose`; `lo > hi` gives `invalid-range`, more values than `m` gives `range-exceeds-modulus`) and the `fractions` handler (parameters, `seed`, `count`, `purpose`); both return `values`, `outputs_consumed`, `next_state`, `warnings`. Makes `tests/unit/test_bounded.py` and `tests/integration/test_ops_integers.py` pass.
+
+
+---
+
+## Phase 11: US6 — Refuse security-sensitive uses (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T071 [US6] Create `Part-1A/src/lcgkit/core/guard.py`: `check_purpose(label)` returns for `None` or an empty label; otherwise trims, lower-cases and splits the label on anything that is not a letter or digit, and raises `LcgError("insecure-purpose", message=<says an LCG is not suitable and recommends a cryptographically secure source>, field="purpose")` if any word is `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential` or `otp`, or one of their plurals. Covers FR-023, FR-024.
+- [ ] T072 [US6] In `Part-1A/src/lcgkit/ops.py` call `core.guard.check_purpose` as the last validation step for the operations that accept `purpose`; in `Part-1A/README.md` add a `Security` section containing the exact sentence `The purpose guard relies on the declared purpose and cannot catch misuse that is not declared.` Covers FR-023, FR-024, FR-025; makes `tests/unit/test_guard.py`, `tests/integration/test_ops_guard.py` and `tests/integration/test_docs.py` pass.
+
+
+---
+
+## Phase 12: US7 — Report on sequence quality (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T073 [US7] Create `Part-1A/src/lcgkit/core/stats.py`: `chi_square_p(statistic, dof)` as the regularised upper incomplete gamma `Q(dof / 2, statistic / 2)` (power series when `x < s + 1`, otherwise a continued fraction, using `math.lgamma`, tolerance 1e-15, at most 10,000 iterations; returns 1.0 for a statistic of 0); `serial_correlation(values)` returning `sum((u[t]-mean)*(u[t+1]-mean)) / sum((u[t]-mean)**2)` over the values, or `None` when the denominator is 0. Covers FR-030.
+- [ ] T074 [US7] Create `Part-1A/src/lcgkit/core/quality.py`: frozen dataclasses `Check(name, value, outcome)` and `QualityReport`; `report(p, seed, sample_size, bins)` takes the first `sample_size` outputs and returns: `measured_period` (length of the cycle the seed ends up in, found with Brent's cycle detection, only when `m <= 2**24`, otherwise `"not-computed"`); `chi_square` over `bins` equal-width bins (bin index `value * bins // m`); `p_value` from `stats.chi_square_p` with `bins - 1` degrees of freedom; `serial_correlation` (`"undefined"` when `None`) using `value / m`; `low_bit_periods` for the lowest 1, 2 and 3 bits (the cycle length of the generator reduced modulo `2**bits`) when `m` is a power of two, otherwise `"not-applicable"`; the four checks `period-covers-sample` (period ≥ sample size; `not-applicable` when not computed), `uniformity` (p-value ≥ 0.01; `not-applicable` when sample size / bins < 10), `independence` (|r| ≤ 2.576 / sqrt(N); `not-applicable` when N < 100) and `low-bits` (flag `low-bits-short-period` when `m` is a power of two); the verdict `defect-detected` if any applicable check fails, otherwise `caution` if the low-bits flag is raised, otherwise `no-defect-detected`; and the `notice` `Passing these checks does not show that a generator is random or secure.` Covers FR-026, FR-029, FR-031.
+- [ ] T075 [US7] In `Part-1A/src/lcgkit/ops.py` add the `quality` handler (fields: parameters, `seed`, `sample_size`, `bins`; no `purpose`) returning the report fields from `data-model.md`. Covers FR-026 to FR-031 (FR-027: the numbers are repeatable and match the independent reference to 1e-9); makes `tests/unit/test_stats.py`, `tests/unit/test_quality.py`, `tests/property/test_quality_oracle.py`, `tests/integration/test_ops_quality.py` and `tests/perf/test_perf_quality.py` pass.
+
+
+---
+
+## Phase 13: US8 — Use it from the command line (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T076 [US8] Create `Part-1A/src/lcgkit/cli.py` with `main(argv=None) -> int` using `argparse`: one subcommand for each registered operation (`presets`, `sequence`, `integers`, `fractions`, `jump`, `streams`, `validate`, `quality`, `predict`, built from the registry in `ops.py` so later operations appear automatically); options are the field names with underscores written as hyphens (`--preset` or `--a --c --m`, `--seed`, `--count`, `--lo`, `--hi`, `--state`, `--steps`, `--streams`, `--length`, `--sample-size`, `--bins`, `--outputs` as comma-separated integers or `-` for one per line on standard input, `--hidden-bits`, `--k`, `--purpose`); integers are plain decimal text; `--json` prints `wire.encode_result` as JSON with sorted keys, otherwise readable text with the same values; exit 0 on success, 2 on invalid input (any error except `insecure-purpose`, and bad usage), 3 on `insecure-purpose`, 1 on an unexpected failure; on failure nothing goes to standard output and `error <code>: <message>` (with the field when there is one) goes to standard error; `python -m lcgkit.cli` works. Covers FR-032, FR-033, FR-034 and FR-038 (the JSON equals the library's result); makes `tests/integration/test_cli.py` pass (fully once stories 10 and 11 exist).
+
+
+---
+
+## Phase 14: US9 — Use it as an HTTP service (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T077 [US9] Create `Part-1A/src/lcgkit/service.py`: a FastAPI `app` with `POST /v1/sequence`, `/v1/integers`, `/v1/fractions`, `/v1/jump`, `/v1/streams`, `/v1/validate`, `/v1/quality`, `/v1/predict` and `GET /v1/presets`, built from the registry in `ops.py`. Each POST route reads the raw body with `await request.body()`, parses JSON (failure gives `malformed-request`), calls `wire.decode_request`, `ops.run` and `wire.encode_result`, and returns the result with status 200; an `LcgError` becomes the body `to_body()` with status 403 for `insecure-purpose` and 400 for every other code; unknown routes and methods return the same error body with status 400 and code `malformed-request`; any unexpected exception returns status 500 with a generic body and is logged (reaching it is a defect). Covers FR-035, FR-036 and FR-038 (results equal the library's).
+- [ ] T078 [US9] In `Part-1A/src/lcgkit/service.py` generate the OpenAPI document (`app.openapi` replaced by a function) from `fields.py`: request bodies list each field with `additionalProperties: false`, large fields use the pattern `^(0|[1-9][0-9]*)$` (`^(0|-?[1-9][0-9]*)$` for `lo` and `hi`), counts are integers from 0 to 1,000,000, responses document 200, 400 and 403 with the `ErrorBody` shape, and every success schema includes `cryptographically_secure`. It must have the same paths, methods and request properties as `specs/001-lcgkit-toolkit/contracts/openapi.yaml`. Covers FR-037; makes `tests/contract/test_openapi_contract.py` pass.
+- [ ] T079 [US9] In `Part-1A/src/lcgkit/service.py` add `serve()` (starts uvicorn on `127.0.0.1:8000`, optional `--port`) and request logging: one line per request with method, path and status through `logging.getLogger("lcgkit.service")`, never the body (research R18). Covers FR-035; makes `tests/integration/test_service.py` and `tests/integration/test_parity.py` pass (fully once stories 10 and 11 exist).
+
+
+---
+
+## Phase 15: US10 — Predict a sequence from what you have seen (P3), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T080 [US10] In `Part-1A/src/lcgkit/core/numtheory.py` add `modinv(a, m)` (extended Euclid; `None` when `gcd(a, m) != 1`) and `solve_linear(a, b, m)` returning every `x` in `[0, m)` with `a * x ≡ b (mod m)` (none when `gcd(a, m)` does not divide `b`; otherwise `gcd` solutions). Covers FR-039, FR-043.
+- [ ] T081 [US10] Create `Part-1A/src/lcgkit/core/predictor.py` with frozen dataclass `Prediction(case, modulus, a, c, state, predictions, notice)` and three functions, each ending with a check that the recovered parameters or state reproduce every supplied output (FR-042): `predict_known_modulus(m, outputs, k)` (case A; needs at least 3 outputs, else `insufficient-data`; solve `a * (x2 - x1) ≡ x3 - x2` with `solve_linear`, set `c = x2 - a * x1`, keep the pairs that reproduce all outputs; none left gives `insufficient-data`, more than one pair gives `ambiguous-parameters`); `predict_unknown_modulus(outputs, k)` (case B; needs at least 12 outputs, else `insufficient-data`; with differences `t[i] = x[i+1] - x[i]` take `g = gcd` of `|t[i+2]*t[i] - t[i+1]**2|` over all `i`; `g` must exceed the largest output, else `insufficient-data`; then run case A with `m = g`); `predict_truncated(p, hidden_bits, outputs, k)` (case C; `m` must be a power of two and `hidden_bits` at most 20, else `unsupported-combination`; for each of the `2**hidden_bits` values of the first output's hidden bits keep those whose following steps reproduce the supplied truncated outputs (`state >> hidden_bits`); none gives `insufficient-data`, more than one gives `ambiguous-parameters`; predict the next `k` full-width states from the recovered state after the last supplied output). Predictions are the next `k` outputs. The `notice` is `This prediction shows that the generator is not secure.` and, for case B, with ` Recovering the modulus is probable, not certain.` appended. No `random` module. Covers FR-039 to FR-044.
+- [ ] T082 [US10] In `Part-1A/src/lcgkit/ops.py` add the `predict` handler (fields in the order `outputs`, `m`, `a`, `c`, `hidden_bits`, `k`; no `purpose`): `hidden_bits > 0` selects case C and requires `m`, `a` and `c` (or `preset`), otherwise `unsupported-combination`; `a` or `c` without a positive `hidden_bits` is a `malformed-request` naming the field; with `m` and no `hidden_bits` run case A; with neither run case B; return `case`, `modulus` (case B), `a` and `c` (cases A and B), `state` (case C), `predictions` and `notice`. Covers FR-039 to FR-045; makes `tests/unit/test_predictor.py`, `tests/integration/test_ops_predict.py` and `tests/perf/test_perf_predict.py` pass.
+
+
+---
+
+## Phase 16: US11 — Split a sequence into separate streams (P3), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T083 [US11] Create `Part-1A/src/lcgkit/core/streams.py`: frozen dataclass `Stream(index, start_state, outputs)` and `split(p, seed, streams, length)` returning `streams` records where stream `i` starts at `jump(p, seed, i * length)` and holds the next `length` outputs from there; joined in order they equal the first `streams * length` outputs of the plain sequence. Covers FR-046.
+- [ ] T084 [US11] In `Part-1A/src/lcgkit/ops.py` add the `streams` handler (fields: parameters, `seed`, `streams`, `length`, `purpose`): a zero or negative `streams` or `length` gives `invalid-count`, `streams * length > m` gives `stream-exceeds-modulus`; return `streams` as a list of `{index, start_state, outputs}` and `warnings`. Covers FR-046, FR-047; makes `tests/integration/test_ops_streams.py` pass.
+
+
+---
+
+## Final phase: Polish, evidence and acceptance
+
+**Purpose**: Run the whole harness, preserve the evidence and record the decision.
+
+- [ ] T085 Complete `Part-1A/README.md` and add a short Part 1A section to the repository `README.md` pointing to it: how to install (`uv sync`; `brew install gitleaks` or the equivalent for the platform), how to run the command line (`uv run lcgkit ...`, with the worked example from `quickstart.md`), how to start the service (`uv run lcgkit-serve`) and call it, how to run the harness (`uv run python .harness/run_harness.py`) and where its results are (`evidence/harness-results/`), and a one-paragraph description of the folder layout. No progress notes.
+- [ ] T086 Run every scenario in `specs/001-lcgkit-toolkit/quickstart.md` and fix any difference in `src/` (never in the tests or the specification).
+- [ ] T087 (by me) When all implementation tasks are done and before the first formal harness run, copy `Part-1A/src/` to `Part-1A/evidence/initial-generation/` and commit it unchanged. This is the first generation (Principle VI).
+- [ ] T088 Run `uv run python .harness/run_harness.py` in `Part-1A/`; results are written to `Part-1A/evidence/harness-results/<run-id>/`. If a gate fails, hand `feedback.json` to the coding agent, repair `src/` only, and run the same harness again. Repair never changes the tests, the specification, the thresholds or the harness; a legitimate specification change goes through the Spec Kit artifacts with a recorded amendment.
+- [ ] T089 (by me) After the final `PASS`, copy `Part-1A/src/` to `Part-1A/evidence/final-generation/` and commit it with the final `evidence/harness-results/<run-id>/`.
+- [ ] T090 (by me) Write `Part-1A/evidence/harness-log.md` myself from the real runs: the first generation and the task and specification context, each harness run and its outcome, any genuine failure with the evidence given back to the agent, what changed and whether the same checks then passed, and my final ACCEPT or REJECT decision with known limitations and the reason. Nothing in this file is generated.
+
+
+---
+
+## Dependencies and execution order
+
+### Phase dependencies
+
+- Setup, Harness, Oracle and Tests come first, in that order; the Harness, Oracle and Tests phases can run in parallel with each other once Setup is done.
+- The Checkpoint blocks everything after it. `/speckit-implement` must not continue past it until I have tagged the baseline.
+- Foundational implementation blocks every story.
+- The final phase needs all stories done.
+
+### Story dependencies
+
+- **US1** needs only the foundational code.
+- **US2, US3, US4, US5, US6, US7, US11** need US1 (`ParameterSet`, the `sequence` machinery and `ops.py`). US11 also needs US4 (`jump`). US10 needs US3 (`numtheory.py`) and US1.
+- **US8 and US9** are built from the operation registry, so they work for whatever is registered; their tests only pass completely once US10 and US11 exist, because AC-061 and AC-066 cover every capability.
+- Within a story: models and core functions first, then the operation handler.
+
+### Suggested order
+
+US1, US2, US3, US4, US5, US6, US7, US10, US11, then US8 and US9 (so the command line and the service expose every operation at once), then the final phase. This differs from the priority order only for the two adapters, which depend on the P3 operations to be complete.
+
+## Parallel opportunities
+
+- All `[P]` harness gate files (`.harness/gates/*.py`) in Phase 2, once the shared helpers exist.
+- All `[P]` test files in Phase 4: each is a separate file.
+- Within an implementation phase, different core modules (`core/jump.py`, `core/bounded.py`, `core/guard.py`, `core/stats.py` and so on) are independent of one another once US1 is done. Edits to `ops.py` are sequential.
+
+```text
+# Example: the tests of stories 3 and 4 together
+Task: "tests/unit/test_validator.py"            (US3)
+Task: "tests/property/test_validator_bruteforce.py" (US3)
+Task: "tests/unit/test_jump.py"                  (US4)
+Task: "tests/integration/test_ops_jump.py"       (US4)
+```
+
+## Implementation strategy
+
+1. Setup, harness, oracle, tests, then the checkpoint and the baseline tag. The harness is shown to fail on bad input (`selfcheck.py`) before it is trusted.
+2. Foundational code, then **US1 alone** as the first working slice: `lcgkit sequence` through `ops.run`. Run its tests and the harness gates that apply.
+3. Add the stories in the order above, running that story's tests after each; commit after each phase, with the task and requirement IDs in the message (for example `T041, FR-016 : Add jump-ahead`).
+4. Before the first formal harness run, preserve the first generation. Then run the harness; repair only real failures.
