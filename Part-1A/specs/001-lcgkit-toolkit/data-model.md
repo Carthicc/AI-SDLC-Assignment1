@@ -41,6 +41,8 @@ Checking order for each operation: `preset` (or `m`, `a`, `c`), then `seed` (or 
 | predict | `outputs`, `m`, `a`, `c`, `hidden_bits`, `k` | no |
 | presets | none | no |
 
+For `predict`, `a` and `c` are accepted only together with `m` and a positive `hidden_bits` (case C); otherwise the request is a `malformed-request` naming that field.
+
 A wrong type for any field gives `invalid-type` naming that field. A body that is not a JSON object, has an unknown field, or cannot be read gives `malformed-request`.
 
 ## Entities
@@ -78,4 +80,4 @@ There is none. A generator's state is a single integer between 0 and `m − 1`; 
 
 ## Size limits
 
-Any list of values, in a request or an answer, has at most 1,000,000 entries (FR-004). Truncated-output prediction supports at most 20 hidden bits (FR-041).
+Any list of values, in a request or an answer, has at most 1,000,000 entries (FR-004). Truncated-output prediction supports at most 20 hidden bits (FR-041). A fair-integer draw that discards more than 1,000,000 outputs in a row ends with `unsupported-combination` naming `seed` (FR-048).

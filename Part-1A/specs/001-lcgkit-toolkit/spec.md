@@ -104,6 +104,7 @@ A developer wants whole numbers inside a range (a die roll, for instance) or fra
 | AC-041 | Drawing 10 values in one request equals drawing 4 and then 6 from the reported next state. | FR-021 |
 | AC-042 | Given `a=5, c=3, m=16, seed=7`, 5 fractions come back as `[0.375, 0.0625, 0.5, 0.6875, 0.625]`. | FR-022 |
 | AC-043 | Given the `pcg-lcg64` parameters and seed `15635871386175874928` (whose next output is `m−1`), the fraction is strictly less than 1.0. | FR-022 |
+| AC-087 | Given `a=1, c=0, m=16, seed=15` and the range 1 to 3 (the generator stays on a discarded value), the request fails with `unsupported-combination` naming `seed` within 5 seconds instead of running forever. | FR-048 |
 
 ### User Story 6 — Refuse security-sensitive uses (Priority: P2)
 
@@ -243,6 +244,7 @@ A developer cuts one sequence into separate blocks, one per worker, so that para
 - **FR-020**: When `lo > hi` the system shall reject the request with `invalid-range`; when the range has more values than `m`, with `range-exceeds-modulus`. A range with one value returns that value, uses no output and leaves the state unchanged.
 - **FR-021**: Results shall report how many outputs were consumed and the next state, so that splitting a request gives the same values as one request.
 - **FR-022**: The system shall produce fractions in `[0, 1)` as output divided by `m`, and a result shall never equal 1.0, even for a 64-bit modulus.
+- **FR-048**: When more than 1,000,000 consecutive outputs are discarded while drawing a bounded integer, the system shall stop and reject the request with `unsupported-combination`, naming `seed`, because the generator cannot produce a fair value from that seed.
 
 **Misuse guard**
 

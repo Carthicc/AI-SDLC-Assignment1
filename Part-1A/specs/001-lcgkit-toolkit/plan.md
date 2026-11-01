@@ -1,6 +1,6 @@
 # Implementation Plan: lcgkit
 
-Input: the specification in `spec.md` (47 requirements, 86 acceptance criteria, 10 success criteria, 5 recorded clarifications) and the constitution in `.specify/memory/constitution.md` (v1.0.1).
+Input: the specification in `spec.md` (48 requirements, 87 acceptance criteria, 10 success criteria, 5 recorded clarifications) and the constitution in `.specify/memory/constitution.md` (v1.0.1).
 
 ## Summary
 

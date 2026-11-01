@@ -13,10 +13,10 @@
 ## Requirement Completeness
 
 - [x] No [NEEDS CLARIFICATION] markers remain — the 3 raised in the first draft were resolved (maximum values per request = 1,000,000, FR-004; quality verdict with fixed thresholds, FR-029 to FR-031; predictor cases, FR-039 to FR-045). A clarification session added 5 more recorded decisions (see the Clarifications section of the specification).
-- [x] Requirements are testable and unambiguous (47 requirements, each covered by at least one AC — checked by script)
+- [x] Requirements are testable and unambiguous (48 requirements, each covered by at least one AC — checked by script)
 - [x] Success criteria are measurable (SC-001 to SC-010 use counts, percentages or exact values)
 - [x] Success criteria are technology-agnostic
-- [x] All acceptance scenarios are defined (AC-001 to AC-086, 11 user stories; every AC cites the requirement it checks)
+- [x] All acceptance scenarios are defined (AC-001 to AC-087, 11 user stories; every AC cites the requirement it checks)
 - [x] Edge cases are identified
 - [x] Scope is clearly bounded (Out of scope listed under Assumptions)
 - [x] Dependencies and assumptions identified
