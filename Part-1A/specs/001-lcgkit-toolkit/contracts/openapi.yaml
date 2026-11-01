@@ -1,0 +1,429 @@
+openapi: 3.1.0
+info:
+  title: lcgkit
+  version: 1.0.0
+  description: >
+    Stateless linear congruential generator service. Nothing is stored between
+    requests. Integers that can exceed 2^53 travel as decimal strings. A request
+    with several mistakes gets one error, chosen in a fixed field order. Output
+    of this service is not cryptographically secure.
+servers:
+  - url: http://127.0.0.1:8000
+paths:
+  /v1/presets:
+    get:
+      operationId: listPresets
+      summary: List the named generators
+      responses:
+        "200":
+          description: The seven presets, in a fixed order
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PresetList" }
+  /v1/sequence:
+    post:
+      operationId: sequence
+      summary: Generate a sequence
+      requestBody: { $ref: "#/components/requestBodies/Sequence" }
+      responses:
+        "200":
+          description: The outputs and the next state
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SequenceResult" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+        "403": { $ref: "#/components/responses/Refused" }
+  /v1/integers:
+    post:
+      operationId: integers
+      summary: Draw fair integers from an inclusive range
+      requestBody: { $ref: "#/components/requestBodies/Integers" }
+      responses:
+        "200":
+          description: The values, the outputs consumed and the next state
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IntegersResult" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+        "403": { $ref: "#/components/responses/Refused" }
+  /v1/fractions:
+    post:
+      operationId: fractions
+      summary: Draw fractions in [0, 1)
+      requestBody: { $ref: "#/components/requestBodies/Sequence" }
+      responses:
+        "200":
+          description: The fractions and the next state
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/FractionsResult" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+        "403": { $ref: "#/components/responses/Refused" }
+  /v1/jump:
+    post:
+      operationId: jump
+      summary: State after a number of steps
+      requestBody: { $ref: "#/components/requestBodies/Jump" }
+      responses:
+        "200":
+          description: The state after the jump
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/JumpResult" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+        "403": { $ref: "#/components/responses/Refused" }
+  /v1/streams:
+    post:
+      operationId: streams
+      summary: Split a sequence into separate streams
+      requestBody: { $ref: "#/components/requestBodies/Streams" }
+      responses:
+        "200":
+          description: The streams, each with its start state
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/StreamsResult" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+        "403": { $ref: "#/components/responses/Refused" }
+  /v1/validate:
+    post:
+      operationId: validate
+      summary: Check whether parameters reach a full period
+      requestBody: { $ref: "#/components/requestBodies/Parameters" }
+      responses:
+        "200":
+          description: The verdict and the three conditions
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Verdict" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+  /v1/quality:
+    post:
+      operationId: quality
+      summary: Quality report for a generator's output
+      requestBody: { $ref: "#/components/requestBodies/Quality" }
+      responses:
+        "200":
+          description: The measurements, the four checks and the verdict
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/QualityReport" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+  /v1/predict:
+    post:
+      operationId: predict
+      summary: Predict what comes next from observed outputs
+      requestBody: { $ref: "#/components/requestBodies/Predict" }
+      responses:
+        "200":
+          description: The recovered parameters or state and the predictions
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Prediction" }
+        "400": { $ref: "#/components/responses/InvalidInput" }
+components:
+  requestBodies:
+    Parameters:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            properties:
+              preset: { type: string }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+    Sequence:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [seed, count]
+            properties:
+              preset: { type: string }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              seed: { $ref: "#/components/schemas/DecimalString" }
+              count: { $ref: "#/components/schemas/Count" }
+              purpose: { type: string }
+    Integers:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [seed, lo, hi, count]
+            properties:
+              preset: { type: string }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              seed: { $ref: "#/components/schemas/DecimalString" }
+              lo: { $ref: "#/components/schemas/SignedDecimalString" }
+              hi: { $ref: "#/components/schemas/SignedDecimalString" }
+              count: { $ref: "#/components/schemas/Count" }
+              purpose: { type: string }
+    Jump:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [state, steps]
+            properties:
+              preset: { type: string }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              state: { $ref: "#/components/schemas/DecimalString" }
+              steps: { $ref: "#/components/schemas/DecimalString" }
+              purpose: { type: string }
+    Streams:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [seed, streams, length]
+            properties:
+              preset: { type: string }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              seed: { $ref: "#/components/schemas/DecimalString" }
+              streams: { $ref: "#/components/schemas/Count" }
+              length: { $ref: "#/components/schemas/Count" }
+              purpose: { type: string }
+    Quality:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [seed, sample_size, bins]
+            properties:
+              preset: { type: string }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              seed: { $ref: "#/components/schemas/DecimalString" }
+              sample_size: { $ref: "#/components/schemas/Count" }
+              bins: { $ref: "#/components/schemas/Count" }
+    Predict:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [outputs]
+            properties:
+              outputs:
+                type: array
+                maxItems: 1000000
+                items: { $ref: "#/components/schemas/DecimalString" }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              hidden_bits: { type: integer, minimum: 0 }
+              k: { $ref: "#/components/schemas/Count" }
+  responses:
+    InvalidInput:
+      description: One error, the first in the fixed checking order
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ErrorBody" }
+    Refused:
+      description: The declared purpose is not suitable for an LCG (insecure-purpose)
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/ErrorBody" }
+  schemas:
+    DecimalString:
+      type: string
+      pattern: "^(0|[1-9][0-9]*)$"
+      description: A non-negative integer written as digits; used for every value that can exceed 2^53
+    SignedDecimalString:
+      type: string
+      pattern: "^(0|-?[1-9][0-9]*)$"
+    Count:
+      type: integer
+      minimum: 0
+      maximum: 1000000
+    Warnings:
+      type: array
+      items: { enum: [zero-fixed-point, degenerate-multiplier] }
+    Secure:
+      type: boolean
+      const: false
+      description: Always false; an LCG is not cryptographically secure
+    ErrorBody:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              enum:
+                - invalid-modulus
+                - invalid-multiplier
+                - invalid-increment
+                - invalid-seed
+                - invalid-type
+                - invalid-count
+                - count-exceeds-limit
+                - invalid-jump
+                - invalid-range
+                - range-exceeds-modulus
+                - invalid-bins
+                - unknown-preset
+                - insecure-purpose
+                - insufficient-data
+                - ambiguous-parameters
+                - stream-exceeds-modulus
+                - unsupported-combination
+                - malformed-request
+            message: { type: string }
+            field: { type: string }
+    PresetList:
+      type: object
+      required: [presets, cryptographically_secure]
+      properties:
+        presets:
+          type: array
+          items:
+            type: object
+            required: [name, a, c, m, description]
+            properties:
+              name: { type: string }
+              a: { $ref: "#/components/schemas/DecimalString" }
+              c: { $ref: "#/components/schemas/DecimalString" }
+              m: { $ref: "#/components/schemas/DecimalString" }
+              description: { type: string }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    SequenceResult:
+      type: object
+      required: [outputs, outputs_consumed, next_state, warnings, cryptographically_secure]
+      properties:
+        outputs: { type: array, items: { $ref: "#/components/schemas/DecimalString" } }
+        outputs_consumed: { type: integer }
+        next_state: { $ref: "#/components/schemas/DecimalString" }
+        warnings: { $ref: "#/components/schemas/Warnings" }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    IntegersResult:
+      type: object
+      required: [values, outputs_consumed, next_state, warnings, cryptographically_secure]
+      properties:
+        values: { type: array, items: { $ref: "#/components/schemas/SignedDecimalString" } }
+        outputs_consumed: { type: integer }
+        next_state: { $ref: "#/components/schemas/DecimalString" }
+        warnings: { $ref: "#/components/schemas/Warnings" }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    FractionsResult:
+      type: object
+      required: [values, outputs_consumed, next_state, warnings, cryptographically_secure]
+      properties:
+        values: { type: array, items: { type: number, minimum: 0, exclusiveMaximum: 1 } }
+        outputs_consumed: { type: integer }
+        next_state: { $ref: "#/components/schemas/DecimalString" }
+        warnings: { $ref: "#/components/schemas/Warnings" }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    JumpResult:
+      type: object
+      required: [state, warnings, cryptographically_secure]
+      properties:
+        state: { $ref: "#/components/schemas/DecimalString" }
+        warnings: { $ref: "#/components/schemas/Warnings" }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    StreamsResult:
+      type: object
+      required: [streams, warnings, cryptographically_secure]
+      properties:
+        streams:
+          type: array
+          items:
+            type: object
+            required: [index, start_state, outputs]
+            properties:
+              index: { type: integer }
+              start_state: { $ref: "#/components/schemas/DecimalString" }
+              outputs: { type: array, items: { $ref: "#/components/schemas/DecimalString" } }
+        warnings: { $ref: "#/components/schemas/Warnings" }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    Condition:
+      type: object
+      required: [name, passed]
+      properties:
+        name:
+          enum:
+            - increment-not-coprime
+            - multiplier-minus-one-not-divisible-by-prime-factor
+            - multiplier-minus-one-not-divisible-by-four
+        passed: { type: boolean }
+    Verdict:
+      type: object
+      required: [verdict, conditions, reasons, cryptographically_secure]
+      properties:
+        verdict: { enum: [full-period, not-full-period] }
+        expected_period: { $ref: "#/components/schemas/DecimalString" }
+        conditions: { type: array, items: { $ref: "#/components/schemas/Condition" } }
+        reasons: { type: array, items: { type: string } }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    QualityReport:
+      type: object
+      required: [measured_period, chi_square, p_value, serial_correlation, low_bit_periods, checks, verdict, notice, cryptographically_secure]
+      properties:
+        measured_period:
+          oneOf:
+            - { $ref: "#/components/schemas/DecimalString" }
+            - { const: not-computed }
+        chi_square: { type: number }
+        p_value: { type: number }
+        serial_correlation:
+          oneOf:
+            - { type: number }
+            - { const: undefined }
+        low_bit_periods:
+          oneOf:
+            - type: object
+              required: ["1", "2", "3"]
+              properties:
+                "1": { type: integer }
+                "2": { type: integer }
+                "3": { type: integer }
+            - { const: not-applicable }
+        checks:
+          type: array
+          items:
+            type: object
+            required: [name, outcome]
+            properties:
+              name: { enum: [period-covers-sample, uniformity, independence, low-bits] }
+              value: {}
+              outcome: { enum: [pass, fail, not-applicable] }
+        verdict: { enum: [defect-detected, caution, no-defect-detected] }
+        notice: { type: string }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
+    Prediction:
+      type: object
+      required: [case, predictions, notice, cryptographically_secure]
+      properties:
+        case: { enum: [A, B, C] }
+        modulus: { $ref: "#/components/schemas/DecimalString" }
+        a: { $ref: "#/components/schemas/DecimalString" }
+        c: { $ref: "#/components/schemas/DecimalString" }
+        state: { $ref: "#/components/schemas/DecimalString" }
+        predictions: { type: array, items: { $ref: "#/components/schemas/DecimalString" } }
+        notice: { type: string }
+        cryptographically_secure: { $ref: "#/components/schemas/Secure" }
