@@ -44,7 +44,7 @@ committed.
 
 ### VI. Traceability
 Every task MUST cite specification IDs. Every test and every public function MUST cite its AC
-or task ID. There MUST be one commit per Spec-Driven-Development stage. The first AI
+or task ID. There MUST be at least one commit per Spec-Driven-Development stage, and no commit may span two stages. The first AI
 generation MUST be preserved unchanged before any repair.
 
 ### VII. Simplicity
@@ -56,7 +56,8 @@ the plan, and none MAY be added without a plan amendment.
 - Layout: application code in `src/`, specification-derived tests in `tests/`, harness gates
   and runner in `.harness/`, evidence in `evidence/`.
 - Protected paths (agent MUST NOT modify to obtain a pass): `tests/`, the specification
-  artifacts, `.harness/` configuration and this constitution.
+  artifacts (apart from ticking checkboxes in `tasks.md`), `.harness/` configuration and this
+  constitution.
 - The API is stateless: all inputs arrive in the request and nothing is persisted.
 
 ## Development Workflow
@@ -89,5 +90,10 @@ Amendments:
   with 64 set bits needs more than 64 multiplications. Doubling the affine map costs two
   multiplications per bit and applying it one per set bit, so at most 190 are needed. The
   requirement is still logarithmic in n, and a step-by-step loop still fails it.
+- 1.0.3 (2026-11-01), made after the analyze stage and before any implementation. Principle VI
+  now says at least one commit per stage and none spanning two stages, which matches how the
+  work is committed (several commits per stage, each citing its IDs). The protected-paths rule
+  now allows ticking checkboxes in `tasks.md`, which the implementation does as it works; the
+  task descriptions stay protected. No gate was lowered.
 
-**Version**: 1.0.2 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
+**Version**: 1.0.3 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
