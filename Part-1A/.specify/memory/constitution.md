@@ -34,8 +34,8 @@ under test.
 Identical input MUST give byte-identical output. Code MUST NOT use wall-clock time, ambient
 randomness or global state. This applies to computation and results: measuring elapsed time
 in tests and writing operational logs are allowed, as long as no result depends on them. The
-standard-library `random` module MUST NOT be used in `src/`. Jump-ahead MUST use at most 64
-modular multiplications for any n below 2^64.
+standard-library `random` module MUST NOT be used in `src/`. Jump-ahead MUST use at most 192
+modular multiplications for any n below 2^64 (three per bit of n).
 
 ### V. Honest Security Posture
 An LCG is NOT cryptographically secure and the project MUST NOT claim otherwise. Requests
@@ -83,5 +83,11 @@ Amendments:
   need timing tests and the service needs logs; says in Principle III that the protected-file
   check compares against a Git tag, which is how the plan implements the hash check. No gate
   was lowered.
+- 1.0.2 (2026-11-01), made at the tasks stage before any implementation. Corrects the
+  jump-ahead cost bound from 64 to 192 modular multiplications. The bound of 64 cannot be met
+  by any algorithm: each multiplication at most doubles an exponent, so reaching an exponent
+  with 64 set bits needs more than 64 multiplications. Doubling the affine map costs two
+  multiplications per bit and applying it one per set bit, so at most 190 are needed. The
+  requirement is still logarithmic in n, and a step-by-step loop still fails it.
 
-**Version**: 1.0.1 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
+**Version**: 1.0.2 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
