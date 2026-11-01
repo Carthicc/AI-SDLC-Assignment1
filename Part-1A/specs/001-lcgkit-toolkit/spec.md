@@ -10,6 +10,7 @@
 - **Next state**: the state after the last output, or the seed if nothing was produced. Using it as the next seed continues the same sequence.
 - **Full period**: the sequence visits all `m` values before repeating.
 - **Interface**: library, command line, or HTTP service.
+- **Count and steps**: the requirements write `n` both for how many values are produced and for how far a jump goes. In the interfaces the first is called `count` and the second `steps`.
 - **Decimal string**: an integer written as text: digits only, no spaces, no exponent, no leading zeros (except the single digit `0`), and a minus sign only for range bounds. JSON carries large integers this way because many JSON readers round anything above 2^53.
 
 ## Clarifications
@@ -163,6 +164,8 @@ A client application calls the toolkit over HTTP. Each request carries everythin
 | AC-071 | Malformed JSON, missing or unknown fields, wrong types, oversized numbers and empty bodies all get a structured client error (`malformed-request` or the specific code), never a server error. | FR-036 |
 | AC-072 | Generated contract tests find no mismatch between the published interface description and the actual behaviour. | FR-037 |
 | AC-073 | On the shared example set, the service's results equal the library's. | FR-038 |
+| AC-090 | Given a JSON request with `m` = `"1"` and `count` = `"x"`, the error is `invalid-modulus` (the first field in the checking order, even though `count` is also wrong); given the same body plus an unknown field, the error is `malformed-request`. | FR-001, FR-036 |
+
 
 ### User Story 10 — Predict a sequence from what you have seen (Priority: P3)
 
@@ -180,6 +183,8 @@ A learner gives the toolkit some outputs they have seen and watches it work out 
 | AC-081 | (C) Given truncated outputs with unknown parameters, or more than 20 hidden bits (for example `musl`, which returns 31 of 64 bits and hides 33), or a modulus that is not a power of two, the error is `unsupported-combination`. | FR-041 |
 | AC-082 | (C) Given `glibc-type0`-style outputs with exactly 20 hidden bits, the truncated-output search finishes within 5 seconds. | FR-008 |
 | AC-083 | Every successful prediction says it shows the generator is insecure. Case (B) also says that recovering the modulus is probable, not certain. | FR-044 |
+| AC-089 | Given 1,000,001 observed outputs for a prediction, the error is `count-exceeds-limit`. | FR-004 |
+
 
 ### User Story 11 — Split a sequence into separate streams (Priority: P3)
 
@@ -190,6 +195,8 @@ A developer cuts one sequence into separate blocks, one per worker, so that para
 | AC-084 | Given `glibc-type0`, seed 1, 4 streams of length 5, joining the streams in order gives the first 20 outputs of the plain sequence. | FR-046 |
 | AC-085 | In the same request, the start of stream `i` (from 0) equals the jump-ahead state at `i × 5`. | FR-046 |
 | AC-086 | When streams times length exceeds `m`, the error is `stream-exceeds-modulus`; a zero or negative stream count or length gives `invalid-count`. | FR-047 |
+| AC-088 | Given `glibc-type0`, seed 1, 1,001 streams of length 1,000 (1,001,000 outputs in all), the error is `count-exceeds-limit`; given 1,000 streams of length 1,000, the request succeeds. | FR-004 |
+
 
 ### Edge Cases
 
@@ -217,7 +224,7 @@ A developer cuts one sequence into separate blocks, one per worker, so that para
 - **FR-005**: Identical input shall give byte-identical output on every run of the same interface. Across interfaces the content is equal, as the command-line and HTTP requirements state.
 - **FR-006**: Every successful result shall carry `cryptographically_secure: false`.
 - **FR-007**: The system shall accept degenerate settings and flag them with a warning: `zero-fixed-point` (`c = 0` and `seed = 0`) and `degenerate-multiplier` (`a` is 0 or 1).
-- **FR-008**: On a typical laptop, the largest generation request (1,000,000 values) shall finish within 5 seconds, the largest quality report (sample size 1,000,000, `m = 2^24`) within 15 seconds, and the truncated-output search at 20 hidden bits within 5 seconds. These are safety limits set well above the measured times, to catch a slow implementation without failing at random.
+- **FR-008**: On the machine that runs the harness, the largest generation request (1,000,000 values) shall finish within 5 seconds, the largest quality report (sample size 1,000,000, `m = 2^24`) within 15 seconds, and the truncated-output search at 20 hidden bits within 5 seconds. These are safety limits set well above the measured times, to catch a slow implementation without failing at random.
 
 **Presets**
 
