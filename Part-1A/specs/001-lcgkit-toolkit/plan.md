@@ -148,7 +148,7 @@ The harness is written and approved before `/speckit-implement` and does not imp
 | tests | pytest, pytest-cov | any failure; branch coverage below 95%; test count below the baseline |
 | mutation | mutmut on `src/lcgkit/core/` | mutation score below 85% |
 | contract | Schemathesis on the generated OpenAPI | any mismatch or server error |
-| integrity | comparison with the Git tag `baseline-before-implement`; marker scan; `random` scan | a protected path changed, a new skip, xfail, noqa, nosec or type-ignore, or `random` imported in `src/` |
+| integrity | comparison with the Git tag `baseline-before-implement`; marker scan; `random` scan | a protected path changed (`tasks.md` may change only its checkboxes), a new skip, xfail, noqa, nosec or type-ignore, or `random` imported in `src/` |
 | traceability | scan of `ac` markers against the spec | an acceptance criterion with no test |
 
 Feedback capture (spec requirement from the assignment, section 3.5): for each failed gate the runner stores the command, exit status, full standard output and error, the failing rule or test, the expected and observed behaviour where the tool reports them, and the requirement and criterion IDs involved, in `feedback.json` next to `results.json`. The coding agent receives that file during repair.

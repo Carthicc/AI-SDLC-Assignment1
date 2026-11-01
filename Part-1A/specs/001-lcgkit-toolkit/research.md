@@ -92,7 +92,7 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 
 ## R17. Anti-tampering
 
-- **Decision**: before implementation starts, I tag the repository (`baseline-before-implement`). The harness fails if any protected path differs from that tag: `tests/`, `specs/`, `.specify/memory/constitution.md`, `.harness/` and the tool configuration in `pyproject.toml`. It also fails on a lower test count than the tag, on new `skip`, `xfail`, `noqa`, `nosec` or `type: ignore` markers, and on any use of the standard-library `random` module under `src/`.
+- **Decision**: before implementation starts, I tag the repository (`baseline-before-implement`). The harness fails if any protected path differs from that tag: `tests/`, `specs/`, `.specify/memory/constitution.md`, `.harness/` and the tool configuration in `pyproject.toml`; the one exception is `specs/001-lcgkit-toolkit/tasks.md`, which may differ from the tag only in its checkboxes because the implementation ticks tasks off. It also fails on a lower test count than the tag, on new `skip`, `xfail`, `noqa`, `nosec` or `type: ignore` markers, and on any use of the standard-library `random` module under `src/`.
 - **Reason**: Principle III. Comparing against a Git tag is harder for an agent to quietly change than a hash file stored in the working tree. A legitimate change to a protected file goes through the Spec Kit artifacts, a new commit and a new tag made by me.
 
 ## R18. Logging
