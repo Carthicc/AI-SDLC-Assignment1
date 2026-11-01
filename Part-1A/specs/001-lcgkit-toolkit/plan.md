@@ -26,7 +26,7 @@ The measurements behind these choices are in `research.md`.
 
 **Performance Goals**: FR-008 safety limits on a typical laptop: 1,000,000 values in 5 s, the largest quality report in 15 s, the 20-bit hidden search in 5 s. Measured in plain Python so far: 0.11 s for 1,000,000 values, 0.96 s for the period part of the largest quality report (the rest of that report is not yet measured), 0.2 s for the 20-bit search.
 
-**Constraints**: the quality gates of constitution Principle II; no `random`, clock or global state in computation (Principle IV); at most 64 modular multiplications for any jump (FR-018); ordinary JSON numbers never carry values above 2^53 (FR-033, FR-035)
+**Constraints**: the quality gates of constitution Principle II; no `random`, clock or global state in computation (Principle IV); at most 192 modular multiplications for any jump (FR-018); ordinary JSON numbers never carry values above 2^53 (FR-033, FR-035)
 
 **Scale/Scope**: nine operations, about eleven modules in the core, an estimated 1,500 lines of source
 

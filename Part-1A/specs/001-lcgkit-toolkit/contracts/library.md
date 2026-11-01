@@ -34,4 +34,4 @@ No input checking beyond what the types express, no clock, no randomness, no glo
 
 `lcgkit.errors` defines `LcgError(code, message, field)` and the list of the 18 codes.
 
-The core's cost promises: `jump` uses at most 64 modular multiplications for any `steps < 2^64` (FR-018); everything else follows the limits in the data model.
+The core's cost promises: `jump` uses at most 192 modular multiplications for any `steps < 2^64` (FR-018), all counted through one `mulmod` function in `core/jump.py`; everything else follows the limits in the data model.

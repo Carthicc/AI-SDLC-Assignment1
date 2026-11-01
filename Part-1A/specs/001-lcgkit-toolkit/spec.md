@@ -87,7 +87,7 @@ A developer wants the state after a huge number of steps (a billion, say) withou
 | AC-031 | Given `glibc-type0` and any seed, jumping `2^31` steps (its full period) returns the seed, and jumping `2^31 + 5` equals jumping 5. | FR-016 |
 | AC-032 | Jumping `n1` and then `n2` equals jumping `n1 + n2` in one go. | FR-016 |
 | AC-033 | `n = 2^64 − 1` works; `n = 2^64` or a negative `n` gives `invalid-jump`. | FR-017 |
-| AC-034 | For any `n < 2^64`, the jump uses at most 64 modular multiplications. | FR-018 |
+| AC-034 | For any `n < 2^64`, the jump uses at most 192 modular multiplications. | FR-018 |
 
 ### User Story 5 — Draw fair integers and fractions (Priority: P1)
 
@@ -235,7 +235,7 @@ A developer cuts one sequence into separate blocks, one per worker, so that para
 
 - **FR-016**: The system shall return the state after `n` steps from a given state, for `0 ≤ n < 2^64`, equal to the state reached by stepping `n` times.
 - **FR-017**: When `n` is outside that range, the system shall reject it with `invalid-jump`.
-- **FR-018**: As constitution Principle IV requires, a jump shall use at most 64 modular multiplications for any `n < 2^64`.
+- **FR-018**: As constitution Principle IV requires, a jump shall use at most 192 modular multiplications for any `n < 2^64` (three per bit of `n`).
 
 **Bounded integers and fractions**
 
@@ -311,7 +311,7 @@ A developer cuts one sequence into separate blocks, one per worker, so that para
 
 - **SC-001**: All acceptance criteria of the P1 and P2 stories pass in the harness; the P3 criteria pass if those stories are built.
 - **SC-002**: The validator agrees with the brute-force period on all 89,439 triples with `2 ≤ m ≤ 64` (zero disagreements).
-- **SC-003**: Jump-ahead equals stepping for every `n` from 0 to 1000 on every preset, and never uses more than 64 modular multiplications for `n < 2^64`.
+- **SC-003**: Jump-ahead equals stepping for every `n` from 0 to 1000 on every preset, and never uses more than 192 modular multiplications for `n < 2^64`.
 - **SC-004**: On the shared example set, the library, the command line (JSON) and the HTTP service give identical results in every case.
 - **SC-005**: Repeating any request 100 times on the same interface gives 100 byte-identical answers.
 - **SC-006**: Every successful answer carries the not-secure marker, and every request with a refused purpose returns no values.

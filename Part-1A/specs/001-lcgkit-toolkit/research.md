@@ -110,6 +110,11 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 - **Decision**: in requests, the jump distance is called `steps`; `count` always means "how many values". The specification used `n` for both.
 - **Reason**: removes the ambiguity noted at the end of the clarification stage without touching the spec's IDs.
 
+## R21. Cost of a jump
+
+- **Decision**: double the affine map once per bit of `steps`: from `(A, C)` form `(A·A, C·(A + 1))`, two multiplications, and apply `x → A·x + C` for every set bit, one multiplication. At most three per bit, so at most 190 for 64 bits; the bound in the specification is 192. All multiplications go through one function, `mulmod(x, y, m)` in `core/jump.py`, so a test can count them.
+- **Reason**: the bound of 64 in the first version of the specification cannot be met by any algorithm. Each multiplication at most doubles an exponent, so reaching `a^n` for `n = 2^64 − 1` takes at least 64 multiplications for `a^n` alone, and more because `n` has 64 set bits; the increment part adds to that. The constitution was amended to 192 (v1.0.2). The requirement is still logarithmic in `n`, so a step-by-step loop still fails it. This is an argument, not a measurement.
+
 ## Dependencies (Principle VII)
 
 | Package | Version tested | Used for | Why not the standard library |
