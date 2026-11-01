@@ -69,6 +69,8 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 - **Reason**: Principle III (independent oracles, tests derived from AC IDs) and Principle VI (traceability). The harness checks that every acceptance criterion in the spec has at least one marked test.
 - **Alternatives**: unittest (no parametrisation, no plugins), tests that call the implementation to produce expected values (circular).
 
+Hypothesis runs with a registered profile that sets `derandomize=True` and a fixed number of examples, so the same checks give the same result on every run.
+
 ## R13. Contract tests
 
 - **Decision**: Schemathesis (4.32.7) reads the OpenAPI document that the service generates and calls the service in process.
@@ -78,6 +80,7 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 
 - **Decision**: mutmut 3.8.1, run against `src/lcgkit/core/` only, with the threshold from the constitution (85%).
 - **Reason**: smoke-tested here on a small project: 13 of 13 mutants killed in 9 s (93 mutations per second), so the tool works on this machine. In mutmut 3.x the config keys `paths_to_mutate` and `tests_dir` are deprecated; the plan uses `source_paths` and `pytest_add_cli_args_test_selection`.
+- **Scope**: the timing tests are excluded from mutation runs (`-m "not perf"`), since they say nothing about correctness and are slow.
 - **Risk kept open**: the real project will have thousands of mutants and slower tests. If the run time becomes unmanageable, the constitution's governance applies (a recorded amendment, not a silent drop).
 
 ## R15. Function length and docstrings
@@ -92,7 +95,7 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 
 ## R17. Anti-tampering
 
-- **Decision**: before implementation starts, I tag the repository (`baseline-before-implement`). The harness fails if any protected path differs from that tag: `tests/`, `specs/`, `.specify/memory/constitution.md`, `.harness/` and the tool configuration in `pyproject.toml`; the one exception is `specs/001-lcgkit-toolkit/tasks.md`, which may differ from the tag only in its checkboxes because the implementation ticks tasks off. It also fails on a lower test count than the tag, on new `skip`, `xfail`, `noqa`, `nosec` or `type: ignore` markers, and on any use of the standard-library `random` module under `src/`.
+- **Decision**: before implementation starts, I tag the repository (`baseline-before-implement`). The harness fails if any protected path differs from that tag: `tests/`, `specs/`, `.specify/memory/constitution.md`, `.harness/` and the tool configuration in `pyproject.toml`; the one exception is `specs/001-lcgkit-toolkit/tasks.md`, which may differ from the tag only in its checkboxes because the implementation ticks tasks off. It also fails on fewer test functions than the tag records (`test_functions=<N>`, counted statically with `ast`, because the tests cannot be collected while `src/` is still empty), on new `skip`, `xfail`, `noqa`, `nosec` or `type: ignore` markers, and on any use of the standard-library `random` module under `src/`.
 - **Reason**: Principle III. Comparing against a Git tag is harder for an agent to quietly change than a hash file stored in the working tree. A legitimate change to a protected file goes through the Spec Kit artifacts, a new commit and a new tag made by me.
 
 ## R18. Logging
@@ -102,7 +105,7 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 
 ## R19. HTTP status codes and routes
 
-- **Decision**: `200` success, `400` any invalid or malformed input, `403` for a refused purpose (`insecure-purpose`), `404` and `405` from the framework with the same error body. Routes are `POST /v1/sequence`, `/v1/integers`, `/v1/fractions`, `/v1/jump`, `/v1/streams`, `/v1/validate`, `/v1/quality`, `/v1/predict`, and `GET /v1/presets`. An unexpected exception returns `500` with `internal-error`; reaching it counts as a defect.
+- **Decision**: `200` success, `400` any invalid or malformed input, `403` for a refused purpose (`insecure-purpose`), unknown routes and methods also `400` with the same error body and code `malformed-request`. Routes are `POST /v1/sequence`, `/v1/integers`, `/v1/fractions`, `/v1/jump`, `/v1/streams`, `/v1/validate`, `/v1/quality`, `/v1/predict`, and `GET /v1/presets`. An unexpected exception returns `500` with `internal-error`; reaching it counts as a defect.
 - **Reason**: FR-036 needs two different client-error statuses for invalid input and for a refusal; the `/v1` prefix leaves room to change the contract later.
 
 ## R20. Naming the jump distance
@@ -125,6 +128,7 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 | hypothesis | 6.170.14 | property tests | no equivalent |
 | httpx | 0.28.1 | in-process HTTP client for tests | required by the FastAPI test client |
 | schemathesis | 4.32.7 | OpenAPI contract tests | Principle II gate |
+| pyyaml | 6.x (arrives with schemathesis) | the contract test reads `contracts/openapi.yaml` | no YAML parser in the standard library |
 | mutmut | 3.8.1 | mutation score | Principle II gate |
 | ruff, mypy, bandit, pip-audit | 0.17.3, 2.4.1, 1.9.4, 2.10.1 | lint, types, security, dependency audit | Principle II gates |
 

@@ -24,7 +24,7 @@ Fields are checked in the order shown. For each field the type is checked first,
 | `outputs` (predict) | list of large | 1 to 1,000,000 values | `insufficient-data`, `count-exceeds-limit` | FR-039, FR-040, FR-043 |
 | `hidden_bits` (predict) | count | integer ≥ 0 | `unsupported-combination` | FR-041 |
 | `k` (predict) | count | integer, default 10, 1 ≤ k ≤ 1,000,000 | `invalid-count`, `count-exceeds-limit` | FR-045 |
-| `streams`, `length` | count | each ≥ 1; `streams × length` ≤ m | `invalid-count`, `stream-exceeds-modulus` | FR-046, FR-047 |
+| `streams`, `length` | count | each ≥ 1; `streams × length` ≤ 1,000,000 (checked first) and ≤ m | `invalid-count`, `count-exceeds-limit`, `stream-exceeds-modulus` | FR-004, FR-046, FR-047 |
 | `purpose` | string | optional label; checked last, after every other field is valid | `insecure-purpose` | FR-023, FR-024 |
 
 Checking order for each operation: `preset` (or `m`, `a`, `c`), then `seed` (or `state`), then the operation's own fields in this order.
@@ -41,9 +41,9 @@ Checking order for each operation: `preset` (or `m`, `a`, `c`), then `seed` (or 
 | predict | `outputs`, `m`, `a`, `c`, `hidden_bits`, `k` | no |
 | presets | none | no |
 
-For `predict`, `a` and `c` are accepted only together with `m` and a positive `hidden_bits` (case C); otherwise the request is a `malformed-request` naming that field.
+For `predict`, the operation's own order applies from the start: `outputs`, `m`, `a`, `c`, `hidden_bits`, `k`; there is no separate parameter or seed step before it. `a` and `c` are accepted only together with `m` and a positive `hidden_bits` (case C); otherwise the request is a `malformed-request` naming that field.
 
-A wrong type for any field gives `invalid-type` naming that field. A body that is not a JSON object, has an unknown field, or cannot be read gives `malformed-request`.
+A wrong type for any field gives `invalid-type` naming that field. A body that is not a JSON object, has an unknown field, or cannot be read gives `malformed-request`, and these structural errors are reported before any field error. On the JSON interfaces a bad decimal string or number does not raise at once: it is marked, and the error is raised when that field's turn comes in the order above, so an earlier field's value error still wins (FR-001).
 
 ## Entities
 
