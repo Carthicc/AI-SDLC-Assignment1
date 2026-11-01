@@ -12,8 +12,8 @@ the upstream Spec Kit artifact with a recorded change; it MUST NOT be patched ar
 ### II. Quality Gates (NON-NEGOTIABLE)
 One harness runner MUST execute every gate below, print an unambiguous PASS or FAIL, and
 write machine-readable results. Every gate MUST pass:
-- Ruff with rule sets E, F, I, B, UP, S, C90, PL, RUF: zero errors; cyclomatic complexity
-  at most 8; functions at most 40 lines.
+- Ruff with rule sets E, F, I, B, UP, S, C90, PL, RUF and D1 (missing docstrings): zero
+  errors; cyclomatic complexity at most 8; functions at most 40 lines.
 - mypy --strict: zero errors; all public functions fully typed and documented.
 - Bandit: zero findings of medium severity or above.
 - pip-audit: zero known vulnerabilities. gitleaks: zero findings.
@@ -25,14 +25,17 @@ write machine-readable results. Every gate MUST pass:
 Tests MUST derive from acceptance-criterion IDs (AC-xxx) in the specification. The following
 are forbidden: deleting, skipping or xfail-ing tests; lowering assertions or thresholds;
 adding noqa, nosec or type-ignore suppressions; editing tests, the specification or harness
-configuration in order to obtain a pass. The harness MUST hash-check protected files and
-enforce a minimum test count. Tests MUST use independent oracles and never the implementation
+configuration in order to obtain a pass. The harness MUST compare protected files with the
+baseline Git tag taken before implementation, which fixes their content by hash, and enforce
+a minimum test count. Tests MUST use independent oracles and never the implementation
 under test.
 
 ### IV. Determinism
 Identical input MUST give byte-identical output. Code MUST NOT use wall-clock time, ambient
-randomness or global state. The standard-library `random` module MUST NOT be used in `src/`.
-Jump-ahead MUST use at most 64 modular multiplications for any n below 2^64.
+randomness or global state. This applies to computation and results: measuring elapsed time
+in tests and writing operational logs are allowed, as long as no result depends on them. The
+standard-library `random` module MUST NOT be used in `src/`. Jump-ahead MUST use at most 64
+modular multiplications for any n below 2^64.
 
 ### V. Honest Security Posture
 An LCG is NOT cryptographically secure and the project MUST NOT claim otherwise. Requests
@@ -73,4 +76,12 @@ backward-incompatible principle removals or redefinitions, MINOR for a new princ
 materially expanded guidance, PATCH for clarifications. Compliance MUST be checked at the
 plan, analyze and harness stages.
 
-**Version**: 1.0.0 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
+Amendments:
+- 1.0.1 (2026-11-01), made at the plan stage before any implementation. Adds the Ruff D1
+  rules so that "documented" in Principle II can be checked; states in Principle IV that the
+  clock rule covers computation and results, because the time limits in the specification
+  need timing tests and the service needs logs; says in Principle III that the protected-file
+  check compares against a Git tag, which is how the plan implements the hash check. No gate
+  was lowered.
+
+**Version**: 1.0.1 | **Ratified**: 2026-11-01 | **Last Amended**: 2026-11-01
