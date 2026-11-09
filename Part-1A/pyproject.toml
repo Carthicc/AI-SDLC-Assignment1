@@ -70,3 +70,4 @@ fail_under = 95
 source_paths = ["src/lcgkit/core/"]
 pytest_add_cli_args_test_selection = ["tests/"]
 pytest_add_cli_args = ["-m", "not perf"]
+also_copy = ["src/lcgkit/__init__.py", "src/lcgkit/errors.py"]

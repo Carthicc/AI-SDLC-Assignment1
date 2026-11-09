@@ -80,6 +80,7 @@ Hypothesis runs with a registered profile that sets `derandomize=True` and a fix
 
 - **Decision**: mutmut 3.8.1, run against `src/lcgkit/core/` only, with the threshold from the constitution (85%).
 - **Reason**: smoke-tested here on a small project: 13 of 13 mutants killed in 9 s (93 mutations per second), so the tool works on this machine. In mutmut 3.x the config keys `paths_to_mutate` and `tests_dir` are deprecated; the plan uses `source_paths` and `pytest_add_cli_args_test_selection`.
+- **Source layout**: mutmut copies only `src/lcgkit/core/` and `tests/` into `mutants/`, so the package files the core imports must be copied as well; `pyproject.toml` lists them under `also_copy` (`src/lcgkit/__init__.py` and `src/lcgkit/errors.py`). Without them the tests import the unmutated installed package or fail to import. Found while checking the mutation gate on a sample project.
 - **Scope**: the timing tests are excluded from mutation runs (`-m "not perf"`), since they say nothing about correctness and are slow.
 - **Risk kept open**: the real project will have thousands of mutants and slower tests. If the run time becomes unmanageable, the constitution's governance applies (a recorded amendment, not a silent drop).
 
