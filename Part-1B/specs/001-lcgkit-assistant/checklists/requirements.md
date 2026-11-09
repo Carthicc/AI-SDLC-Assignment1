@@ -12,7 +12,7 @@
 
 ## Requirement Completeness
 
-- [x] No [NEEDS CLARIFICATION] markers remain — the five open questions were answered and are recorded under Clarifications
+- [x] No [NEEDS CLARIFICATION] markers remain — the open questions were answered and are recorded under Clarifications
 - [x] Requirements are testable and unambiguous (26 requirements, each covered by at least one AC — checked by script)
 - [x] Success criteria are measurable (SC-001 to SC-009 use counts, rates or exact values)
 - [ ] Success criteria are technology-agnostic — **not met by design** for SC-006 and SC-009, which name the API key and the code checks because those are what is measured
