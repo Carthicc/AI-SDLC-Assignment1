@@ -1,0 +1,3 @@
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mypy --strict src
+Success: no issues found in 20 source files
+

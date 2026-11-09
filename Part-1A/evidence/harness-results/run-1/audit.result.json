@@ -1,0 +1,10 @@
+{
+  "name": "audit",
+  "status": "PASS",
+  "command": "uv export --frozen --all-groups --no-hashes --no-emit-project --output-file /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-1/audit-requirements.txt && /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pip-audit -r /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-1/audit-requirements.txt --no-deps --disable-pip --format json",
+  "exit_status": 0,
+  "duration_seconds": 14.45,
+  "stdout_path": "audit.stdout.txt",
+  "stderr_path": "audit.stderr.txt",
+  "failures": []
+}

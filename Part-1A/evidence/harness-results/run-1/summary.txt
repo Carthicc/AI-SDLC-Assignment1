@@ -1,0 +1,12 @@
+PASS lint
+PASS length
+PASS types
+PASS security
+PASS secrets
+PASS audit
+FAIL tests
+FAIL mutation
+PASS contract
+PASS integrity
+PASS traceability
+FAIL

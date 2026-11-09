@@ -1,0 +1,10 @@
+{
+  "name": "security",
+  "status": "PASS",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/bandit -r src -f json -q",
+  "exit_status": 0,
+  "duration_seconds": 0.24,
+  "stdout_path": "security.stdout.txt",
+  "stderr_path": "security.stderr.txt",
+  "failures": []
+}

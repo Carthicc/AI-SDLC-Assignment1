@@ -1,0 +1,17 @@
+{
+  "name": "tests",
+  "status": "FAIL",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests --ignore=tests/contract --cov=src/lcgkit --cov-branch --cov-report=term-missing --cov-fail-under=95 --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-1/junit.xml -q",
+  "exit_status": 1,
+  "duration_seconds": 33.68,
+  "stdout_path": "tests.stdout.txt",
+  "stderr_path": "tests.stderr.txt",
+  "failures": [
+    {
+      "rule_or_test": "branch-coverage",
+      "expected": "at least 95%",
+      "observed": "93.69% total coverage",
+      "ids": []
+    }
+  ]
+}

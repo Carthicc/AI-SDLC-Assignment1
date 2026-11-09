@@ -1,0 +1,10 @@
+{
+  "name": "traceability",
+  "status": "PASS",
+  "command": "built-in check",
+  "exit_status": 0,
+  "duration_seconds": 0.02,
+  "stdout_path": "traceability.stdout.txt",
+  "stderr_path": "traceability.stderr.txt",
+  "failures": []
+}

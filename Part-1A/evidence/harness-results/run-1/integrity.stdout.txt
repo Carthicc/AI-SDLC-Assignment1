@@ -1,0 +1,2680 @@
+$ git rev-parse -q --verify refs/tags/baseline-before-implement
+194121993b8a366eee024ccb683ff7134822aab4
+
+$ git tag -l --format=%(contents) baseline-before-implement
+test_functions=148
+
+
+$ git diff --name-only --relative baseline-before-implement -- tests specs .harness .specify/memory/constitution.md pyproject.toml
+specs/001-lcgkit-toolkit/tasks.md
+
+$ git ls-files --others --exclude-standard -- tests specs .harness .specify/memory/constitution.md pyproject.toml
+
+$ git show baseline-before-implement:./specs/001-lcgkit-toolkit/tasks.md
+# Tasks: lcgkit
+
+Input: `specs/001-lcgkit-toolkit/` (`plan.md`, `spec.md`, `data-model.md`, `research.md`, `quickstart.md`, `contracts/`) and the constitution v1.0.3.
+
+Tests are required (constitution Principles III and VI), so they come before the implementation. Everything up to the checkpoint (harness, oracle and tests) is written first and then fixed by the baseline tag; implementation follows.
+
+## Format
+
+`- [ ] T### [P] [US#] Description with file path`
+
+- `[P]`: the task can run in parallel with others in the same phase (different files, no dependency on an unfinished task).
+- `[US#]`: the user story the task belongs to. Setup, harness, oracle, foundational and final tasks have no story label.
+- `(by me)`: a task I do myself and the coding agent does not.
+- Paths are relative to the repository root `Assignment-1/`.
+
+## Rules for every source file
+
+These apply to every task that creates or edits a file under `src/lcgkit/`, and are checked by the harness.
+
+- Full type hints (`mypy --strict`) and a docstring on every public module, class and function (Ruff `D1`). Each public function's docstring names its task ID and the requirement IDs it covers, for example `Task: T040. Covers: FR-016, FR-018.`
+- Functions of at most 40 lines and complexity of at most 8; split a function rather than suppress a rule.
+- No `noqa`, `nosec` or `type: ignore` comments, no `random` module, no clock, no global mutable state in computation.
+- Name every limit and threshold as a constant (for example `MAX_COUNT = 1_000_000`) instead of comparing with literals, so Ruff `PLR2004` stays quiet.
+- Python integers only for the numbers; no floating point except for fractions and the statistics.
+- Never edit anything protected by the baseline tag: `tests/`, `specs/` (apart from ticking checkboxes in this file), `.harness/`, `pyproject.toml` and the constitution.
+
+---
+
+## Phase 1: Setup
+
+**Purpose**: Project skeleton and configuration. Written before the baseline tag, so the tool configuration is protected afterwards.
+
+- [X] T001 Create `Part-1A/pyproject.toml`: project `lcgkit` 1.0.0, `requires-python = ">=3.12,<3.13"`; runtime dependencies `fastapi` and `uvicorn`; a dev dependency group with `pytest`, `pytest-cov`, `hypothesis`, `httpx`, `schemathesis`, `pyyaml`, `mutmut`, `ruff`, `mypy`, `bandit`, `pip-audit` (tested versions are in `research.md`); a `[build-system]` using `hatchling` (`requires = ["hatchling"]`, `build-backend = "hatchling.build"`) with `[tool.hatch.build.targets.wheel] packages = ["src/lcgkit"]`, so `uv sync` installs the package and its console scripts; console scripts `lcgkit = "lcgkit.cli:main"` and `lcgkit-serve = "lcgkit.service:serve"`. Tool configuration: Ruff `select = ["E","F","I","B","UP","S","C90","PL","RUF","D1"]` with `max-complexity = 8`, and `per-file-ignores` for `tests/**` limited to `S101`, `S603`, `D1` and `PLR2004`; mypy `strict = true`; pytest `pythonpath = ["src"]`, `testpaths = ["tests"]` and markers `ac`, `fr` and `perf`; coverage `branch = true`, `source = ["src/lcgkit"]`, `fail_under = 95`; mutmut `source_paths = ["src/lcgkit/core/"]` and `pytest_add_cli_args_test_selection = ["tests/"]` (the non-deprecated key names, research R14) and `pytest_add_cli_args = ["-m", "not perf"]` so the timing tests are left out of mutation runs, and `also_copy = ["src/lcgkit/__init__.py", "src/lcgkit/errors.py"]` so the mutated copy of the core can import its package (research R14). Constitution Principles II and VII. Cites: SC-009.
+- [X] T002 [P] Create the empty package and test skeleton: `Part-1A/src/lcgkit/__init__.py` (module docstring only), `Part-1A/src/lcgkit/core/__init__.py` (module docstring only), and `__init__.py` files in `Part-1A/tests/`, `tests/oracle/`, `tests/unit/`, `tests/property/`, `tests/integration/`, `tests/contract/` and `tests/perf/`. Cites: SC-009.
+- [X] T003 Run `uv lock` and `uv sync` in `Part-1A/` to create `Part-1A/uv.lock` and the virtual environment; add `.venv/`, `mutants/`, `.mutmut-cache/`, `.hypothesis/`, `.pytest_cache/`, `.ruff_cache/`, `.mypy_cache/` and `.coverage` to `Part-1A/.gitignore`. Cites: SC-009.
+- [X] T004 [P] Create the evidence folders with a `.gitkeep` in each: `Part-1A/evidence/initial-generation/`, `Part-1A/evidence/final-generation/` and `Part-1A/evidence/harness-results/`. Cites: SC-009.
+
+
+---
+
+## Phase 2: Harness
+
+**Purpose**: The harness is written and checked before any implementation, imports nothing from `src/lcgkit`, and is protected once the baseline tag exists (research R17). Each gate runs as its own subprocess so one failure cannot hide another.
+
+Gates are independent files, so they can be written in parallel. The runner and the shared helpers come first.
+
+- [X] T005 Create `Part-1A/.harness/common.py`: a `GateResult` dataclass (`name`, `status` of `PASS` or `FAIL`, `command`, `exit_status`, `duration_seconds`, `stdout_path`, `stderr_path`, and `failures`, a list of `{rule_or_test, expected, observed, ids}`); a `run_command(name, command)` helper that runs a subprocess and captures standard output and error to files in the run folder; `repo_root()`; and `new_run_folder(run_id)` creating `evidence/harness-results/<run-id>/`. Docstrings and full type hints on everything. Cites: SC-009.
+- [X] T006 Create `Part-1A/.harness/feedback.py`: `write_feedback(results, folder)` builds `feedback.json` from every failed `GateResult`: the gate, the command, the exit status, the last 200 lines of its output, the failing rule or test, the expected and the observed behaviour where the tool reports them, and the FR and AC IDs involved (from test markers, test names or the Ruff rule code). Plain text so it can be handed to the coding agent unchanged. Cites: SC-009.
+- [X] T007 Create `Part-1A/.harness/run_harness.py`, the single entry point (`uv run python .harness/run_harness.py [--gates a,b] [--run-id ID]`). Run the gates in this order: lint, length, types, security, secrets, audit, tests, mutation, contract, integrity, traceability. Write `results.json` (one entry per gate), one full-output text file per gate, `feedback.json` when any gate fails, and `summary.txt` in `evidence/harness-results/<run-id>/`. Print one line per gate and a final single line `PASS` or `FAIL`; exit 0 only when every gate passed. A gate that cannot run (missing tool, no network) counts as `FAIL`, never as skipped. Imports nothing from `src/lcgkit`. Plan, Harness design. Cites: SC-009.
+- [X] T008 [P] Create `Part-1A/.harness/gates/lint.py`: run `ruff check src tests` with the configuration in `pyproject.toml` (rule sets E, F, I, B, UP, S, C90, PL, RUF, D1; complexity at most 8) using `--output-format json`; `FAIL` on any finding and record each as `{rule_or_test: rule code, observed: message, file and line}`. Cites: SC-009.
+- [X] T009 [P] Create `Part-1A/.harness/gates/length.py`: parse every file under `src/` with `ast` and `FAIL` for any function or method longer than 40 lines (`end_lineno - lineno + 1`, docstring included); list each offender with its file, name and length. Ruff has no per-function line limit (research R15). Cites: SC-009.
+- [X] T010 [P] Create `Part-1A/.harness/gates/types.py`: run `mypy --strict src`; `FAIL` on any error, recording the file, line and message of each. Cites: SC-009.
+- [X] T011 [P] Create `Part-1A/.harness/gates/security.py`: run `bandit -r src -f json` and `FAIL` on any finding of medium severity or above; record the test id, file, line and message of each. Cites: SC-009.
+- [X] T012 [P] Create `Part-1A/.harness/gates/secrets.py` and `Part-1A/.harness/config/gitleaks.toml` (`[extend] useDefault = true`, no allowlist): run `gitleaks git` over the repository history and `gitleaks dir` over the working tree with that configuration; `FAIL` on any finding. If `gitleaks` is not installed, `FAIL` with the message `install gitleaks: brew install gitleaks`. Cites: SC-009.
+- [X] T013 [P] Create `Part-1A/.harness/gates/audit.py`: run `pip-audit` against the locked environment and `FAIL` on any known vulnerability, and also when the audit cannot run (for example, no network). Cites: SC-009.
+- [X] T014 [P] Create `Part-1A/.harness/gates/tests.py`: run `pytest tests --ignore=tests/contract --cov=src/lcgkit --cov-branch --cov-fail-under=95 --junitxml=<run-folder>/junit.xml`; `FAIL` on any failed test or coverage below 95%; record each failed test with its markers (AC and FR IDs), the assertion's expected and actual values and the coverage figure. Cites: SC-009.
+- [X] T015 [P] Create `Part-1A/.harness/gates/mutation.py`: run `mutmut run` with the configuration in `pyproject.toml` (which leaves out the `perf` tests), then read `mutmut results`. The score is killed mutants divided by all generated mutants that were tested; `FAIL` below 0.85, listing each surviving mutant with file, line and the change made. A failure to run counts as `FAIL`. Cites: SC-009.
+- [X] T016 [P] Create `Part-1A/.harness/gates/contract.py`: run `pytest tests/contract -q` (Schemathesis against the generated OpenAPI); `FAIL` on any failure, recording the operation, the generated input and the violated rule. Cites: SC-009.
+- [X] T017 [P] Create `Part-1A/.harness/gates/integrity.py`: compare against the Git tag `baseline-before-implement`. `FAIL` if any file differs under `tests/`, `specs/`, `.harness/`, `.specify/memory/constitution.md` or `pyproject.toml`, except that `specs/001-lcgkit-toolkit/tasks.md` may differ from the tag only in its checkboxes (compare the two files after replacing every `[X]` or `[x]` with `[ ]`), since the implementation ticks tasks off; `FAIL` if the added lines under `src/` or `tests/` introduce `skip`, `xfail`, `noqa`, `nosec` or `type: ignore`; `FAIL` if any file under `src/` imports `random`; `FAIL` if the number of `def test_` functions under `tests/`, counted statically with `ast`, is lower than `test_functions=<N>` in the tag annotation (the tests cannot be collected while `src/` is still empty). Constitution Principle III. Cites: SC-009.
+- [X] T018 [P] Create `Part-1A/.harness/gates/traceability.py`: parse the acceptance-criterion IDs from `specs/001-lcgkit-toolkit/spec.md` (table rows starting `| AC-nnn |`) and the requirement IDs (`- **FR-nnn**`), and read the `ac(...)` and `fr(...)` markers on the tests under `tests/` with `ast`. `FAIL` if any AC or FR has no test, or a marker names an ID that is not in the specification. Constitution Principle VI. Cites: SC-009.
+- [X] T019 Create `Part-1A/.harness/selfcheck.py`: build a temporary project containing one deliberately bad input per gate (a Ruff violation, a 41-line function, a mypy error, a medium-severity Bandit finding, a failing test, a removed test against a temporary tag, an uncovered AC, and a secret-like string written at run time into a temporary Git repository, never committed here) and assert that each gate returns `FAIL` on its bad input and `PASS` on a clean sample. This shows every gate can fail. Prints a table and exits 0 only if every gate behaved as expected. Cites: SC-009.
+
+
+---
+
+## Phase 3: Independent oracle and test support
+
+**Purpose**: Expected values must never come from the code under test (Principle III). This phase builds the reference calculations and the shared test setup.
+
+- [X] T020 Create `Part-1A/tests/conftest.py`: register the markers `ac(id)`, `fr(id)` and `perf`; make test collection fail if an `ac` marker is not of the form `AC-nnn` or an `fr` marker is not of the form `FR-nnn`; provide a `PRESET_TABLE` constant (the seven presets with their `a`, `c`, `m` as written in AC-013 to AC-019, kept independent of `src/`), a Hypothesis profile registered and loaded with `derandomize=True`, `max_examples=100` and `deadline=None` (so property tests give the same result on every run), and a `canonical(obj)` helper that returns `json.dumps(obj, sort_keys=True, ensure_ascii=False).encode()` for byte-for-byte comparisons.
+- [X] T021 [P] Create `Part-1A/tests/oracle/reference.py` with independent reference functions that import nothing from `src/`: `step_sequence(a, c, m, x, n)` (naive stepping, seed not included), `brute_period(a, c, m, seed)` (length of the cycle reached from the seed, found with a dictionary of visited states), `full_period_by_brute_force(a, c, m)` (true exactly when `brute_period(a, c, m, 0) == m`), `trial_factor(n)` (for `n` up to 10^12), `chi_square(values, m, bins)`, `lag1_autocorrelation(values, m)` with `r = sum((u[t]-mean)*(u[t+1]-mean)) / sum((u[t]-mean)**2)` and `u = value / m`, `low_bit_period(values, bits)`, and the published constants: the NIST 1% critical values `{1: 6.635, 2: 9.210, 10: 23.209, 100: 135.807}` and the `minstd` 10,000th outputs 1043618065 and 399268537. Cites: SC-002, SC-003.
+- [X] T022 [P] Create `Part-1A/tests/oracle/test_reference.py`: tests of the oracle itself (no markers, no `src/` imports): the `a=5, c=3, m=16, seed=7` example gives `[6, 1, 8, 11, 10]`; `minstd` and `minstd-new` 10,000th outputs equal the published values; `trial_factor` agrees with known factorisations; `brute_period` is 16 for `a=5, c=3, m=16` and 1 for `a=1, c=0, m=16`. Cites: SC-002.
+
+
+---
+
+## Phase 4: Tests for every story (written first, they fail until the story is implemented)
+
+**Purpose**: Tests are derived from the acceptance criteria before any implementation (Principle III). Expected values come from the specification and from `tests/oracle/`, never from `src/`. Every test carries `ac` and `fr` markers so the traceability gate can check coverage. Each file is separate, so they can be written in parallel.
+
+- [X] T023 [P] [US1] Write `Part-1A/tests/unit/test_lcg.py` for `lcgkit.core.lcg` (`ParameterSet`, `step`, `sequence`): `a=5, c=3, m=16, seed=7`, 5 values give `[6, 1, 8, 11, 10]` and next state 10; 3 more from state 10 give `[5, 12, 15]` and 8 in one call give `[6, 1, 8, 11, 10, 5, 12, 15]`; count 0 gives an empty list and next state equal to the seed; `a=6364136223846793005, c=1442695040888963407, m=2**64, seed=0` gives `[1442695040888963407, 1876011003808476466]`; `c=0, seed=0` gives all zeros with warning `zero-fixed-point` and `a` equal to 0 or 1 gives `degenerate-multiplier`. Markers: `ac("AC-001")`, `ac("AC-002")`, `ac("AC-003")`, `ac("AC-008")`, `ac("AC-012")`. `fr("FR-002")`, `fr("FR-003")`, `fr("FR-004")`, `fr("FR-007")`.
+- [X] T024 [P] [US1] Write `Part-1A/tests/integration/test_ops_sequence.py` against `lcgkit.ops.run("sequence", ...)`: count 1,000,000 succeeds, 1,000,001 gives `count-exceeds-limit`, a negative count gives `invalid-count`; `m=1` and `m=2**64+1` give `invalid-modulus`, `m=16` with `a=16` gives `invalid-multiplier`, `c=-1` gives `invalid-increment`, `seed=16` gives `invalid-seed`, and no values are returned; `3.5`, `"abc"`, `True` and `None` in a numeric field give `invalid-type` naming the field; `m=1` with `seed=16` gives only `invalid-modulus`, `m=16, a=16, seed=16` gives only `invalid-multiplier`, and a wrong-typed `m` with a negative count gives `invalid-type` naming `m`; the same request 100 times gives 100 byte-identical results (`canonical`); every success contains `cryptographically_secure` equal to `False`. Markers: `ac("AC-004")`, `ac("AC-005")`, `ac("AC-006")`, `ac("AC-007")`, `ac("AC-009")`, `ac("AC-010")`. `fr("FR-001")`, `fr("FR-004")`, `fr("FR-005")`, `fr("FR-006")`.
+- [X] T025 [P] [US1] Write `Part-1A/tests/property/test_sequence_properties.py` with Hypothesis: for random valid `a, c, m, seed` and counts `n1, n2`, a request for `n1` values then `n2` more from the reported next state equals one request for `n1 + n2`; the same request twice gives identical results; every output lies in `[0, m)`. Markers: `ac("AC-002")`. `fr("FR-003")`, `fr("FR-005")`.
+- [X] T026 [P] [US1] Write `Part-1A/tests/perf/test_perf_sequence.py` (marker `perf`): `lcgkit.ops.run("sequence", ...)` for 1,000,000 values with the `glibc-type0` parameters finishes within 5 seconds, measured with `time.perf_counter`; add a second test doing the same through the HTTP service (`TestClient`, `POST /v1/sequence`, including the JSON encoding), also within 5 seconds. Markers: `ac("AC-011")`. `fr("FR-008")`.
+- [X] T027 [P] [US2] Write `Part-1A/tests/unit/test_presets.py` for `lcgkit.core.presets` and `lcgkit.core.lcg.sequence`: for each of the seven presets, the parameters match `PRESET_TABLE` and the first outputs from the stated seed match AC-013 to AC-019 exactly (`minstd` seed 1: 16807, 282475249, 1622650073, 984943658, 1144108930; `minstd-new` seed 1: 48271, 182605794, 1291394886; `glibc-type0` seed 1: 1103527590, 377401575, 662824084; `numrec` seed 0: 1013904223, 1196435762, 3519870697; `musl` seed 0: 1, 6364136223846793006, 13885033948157127959; `pcg-lcg64` seed 0: 1442695040888963407, 1876011003808476466; `randu` seed 1: 65539, 393225, 1769499, 7077969); the 10,000th `minstd` output from seed 1 is 1043618065 and the 10,000th `minstd-new` output is 399268537 (compare with the oracle constants). Markers: `ac("AC-013")`, `ac("AC-014")`, `ac("AC-015")`, `ac("AC-016")`, `ac("AC-017")`, `ac("AC-018")`, `ac("AC-019")`. `fr("FR-009")`.
+- [X] T028 [P] [US2] Write `Part-1A/tests/integration/test_ops_presets.py` against `lcgkit.ops.run`: `presets` returns exactly the seven presets in the order `minstd`, `minstd-new`, `glibc-type0`, `numrec`, `musl`, `pcg-lcg64`, `randu`, each with `a`, `c`, `m` and a one-line description; a `sequence` request with `preset` equals the same request with that preset's parameters written out, for every preset; an unknown preset name gives `unknown-preset` naming `preset`. Markers: `ac("AC-020")`, `ac("AC-021")`, `ac("AC-022")`. `fr("FR-010")`, `fr("FR-011")`, `fr("FR-012")`.
+- [X] T029 [P] [US3] Write `Part-1A/tests/unit/test_validator.py` for `lcgkit.core.validator.validate`: `a=1103515245, c=24680, m=2**31` gives `not-full-period` with exactly the reason `increment-not-coprime`; `glibc-type0`, `numrec`, `musl` and `pcg-lcg64` give `full-period`, expected period equal to `m` and no reasons; `minstd` gives `not-full-period` with `increment-not-coprime` then `multiplier-minus-one-not-divisible-by-prime-factor`, in that order; `m=16, a=3, c=1` gives only `multiplier-minus-one-not-divisible-by-four`; `m=2, a=1, c=1` gives `full-period`; the result always lists the pass or fail of each of the three conditions. Markers: `ac("AC-023")`, `ac("AC-024")`, `ac("AC-025")`, `ac("AC-026")`, `ac("AC-028")`. `fr("FR-013")`, `fr("FR-014")`.
+- [X] T030 [P] [US3] Write `Part-1A/tests/property/test_validator_bruteforce.py`: for every `m` from 2 to 64 and every `0 <= a, c < m` (89,439 triples in all; parametrise by `m`), the verdict equals `full_period_by_brute_force` from the oracle, with zero disagreements. Markers: `ac("AC-027")`. `fr("FR-015")`.
+- [X] T031 [P] [US3] Write `Part-1A/tests/unit/test_numtheory.py` for `lcgkit.core.numtheory` (no AC; cites FR-014): `is_prime` agrees with trial division for every `n < 100000`; it rejects the strong pseudoprimes 2047, 3215031751 and 3825123056546413051 and the Carmichael numbers 561 and 1105; it accepts `2**31 - 1` and `2**61 - 1`; `factor` agrees with `trial_factor` for 200 values up to 10^12, returns `{2: 64}` for `2**64`, and factors the product of two 32-bit primes within 1 second. `fr("FR-014")`.
+- [X] T032 [P] [US4] Write `Part-1A/tests/unit/test_jump.py` for `lcgkit.core.jump.jump`: for each of the seven presets from seed 1 and every `n` from 0 to 1000, the jumped state equals the state reached by stepping `n` times (oracle); `minstd`, seed 1, 10000 steps gives 1043618065; for `glibc-type0` and any seed, jumping `2**31` steps returns the seed and `2**31 + 5` equals 5; jumping `n1` then `n2` equals jumping `n1 + n2`; and, with `lcgkit.core.jump.mulmod` replaced by a counting wrapper (`monkeypatch`), any `n < 2**64` (including `2**64 - 1`, `2**63`, 12345 and 1) uses at most 192 calls and still returns the right state. Markers: `ac("AC-029")`, `ac("AC-030")`, `ac("AC-031")`, `ac("AC-032")`, `ac("AC-034")`. `fr("FR-016")`, `fr("FR-018")`.
+- [X] T033 [P] [US4] Write `Part-1A/tests/integration/test_ops_jump.py` against `lcgkit.ops.run("jump", ...)`: `steps` equal to `2**64 - 1` succeeds; `2**64` and `-1` give `invalid-jump` naming `steps`. Markers: `ac("AC-033")`. `fr("FR-017")`.
+- [X] T034 [P] [US5] Write `Part-1A/tests/unit/test_bounded.py` for `lcgkit.core.bounded` (`integers`, `fractions`): `a=5, c=3, m=16, seed=7`, range 1 to 3, 15 values: 1, 2 and 3 appear exactly 5 times each, 16 outputs were consumed, one discarded; for every range size 1 to 16 on that generator, every value appears equally often over one full period; the range -3 to 3 stays inside it; a range with one value returns it every time, consumes nothing and leaves the state unchanged; `glibc-type0`, seed 1, range 0 to 1, 64 values do not strictly alternate; drawing 10 equals drawing 4 then 6 from the reported next state; `a=5, c=3, m=16, seed=7` gives the fractions `[0.375, 0.0625, 0.5, 0.6875, 0.625]`; with the `pcg-lcg64` parameters and seed 15635871386175874928 the fraction is strictly below 1.0. Markers: `ac("AC-035")`, `ac("AC-036")`, `ac("AC-037")`, `ac("AC-038")`, `ac("AC-040")`, `ac("AC-041")`, `ac("AC-042")`, `ac("AC-043")`. `fr("FR-019")`, `fr("FR-020")`, `fr("FR-021")`, `fr("FR-022")`.
+- [X] T035 [P] [US5] Write `Part-1A/tests/integration/test_ops_integers.py` against `lcgkit.ops.run("integers", ...)`: `lo > hi` gives `invalid-range`; a range with more values than `m` gives `range-exceeds-modulus`; non-integer bounds give `invalid-type`; `a=1, c=0, m=16, seed=15`, range 1 to 3 gives `unsupported-combination` naming `seed`, and the call returns within 5 seconds. Markers: `ac("AC-039")`, `ac("AC-087")`. `fr("FR-020")`, `fr("FR-048")`.
+- [X] T036 [P] [US6] Write `Part-1A/tests/unit/test_guard.py` for `lcgkit.core.guard.check_purpose`: `dice`, `monkey business`, `simulation`, an empty label and `None` are accepted (matching is by whole word, so `monkey` is not `key`); each of `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential`, `otp`, singular and plural, in any capitalisation and inside longer labels such as `Session Token`, `KEYS` and `api-key`, raises `LcgError` with code `insecure-purpose`. Markers: `ac("AC-045")`, `ac("AC-046")`. `fr("FR-024")`.
+- [X] T037 [P] [US6] Write `Part-1A/tests/integration/test_ops_guard.py` against `lcgkit.ops.run`: a `purpose` of `token`, `Session Token`, `KEYS` or `api-key` on `sequence` fails with `insecure-purpose` and returns no values; `password` on `jump` and on `streams` fails the same way and returns no state or values; `validate`, `quality` and `predict` accept no `purpose` field (a request containing one is a `malformed-request` naming `purpose`); with an otherwise invalid request, the input error is reported before the purpose refusal. Markers: `ac("AC-044")`, `ac("AC-047")`. `fr("FR-023")`, `fr("FR-024")`.
+- [X] T038 [P] [US6] Write `Part-1A/tests/integration/test_docs.py`: `Part-1A/README.md` (read relative to the test file) contains the exact sentence `The purpose guard relies on the declared purpose and cannot catch misuse that is not declared.` Markers: `ac("AC-048")`. `fr("FR-025")`.
+- [X] T039 [P] [US7] Write `Part-1A/tests/unit/test_stats.py` for `lcgkit.core.stats`: `chi_square_p` returns 0.01 within 0.0005 for the published critical values 6.635 (1 degree of freedom), 9.210 (2), 23.209 (10) and 135.807 (100); returns 1.0 for a statistic of 0; `serial_correlation` of a constant sequence is `None`. Markers: `ac("AC-059")`. `fr("FR-030")`.
+- [X] T040 [P] [US7] Write `Part-1A/tests/unit/test_quality.py` for `lcgkit.core.quality.report`: `a=5, c=3, m=16, seed=7`, sample 16, 16 bins gives period 16, chi-square exactly 0, uniformity and independence `not-applicable`, the period check `pass` and verdict `caution`; `a=1, c=0, m=16, seed=3`, sample 16, 16 bins gives period 1, chi-square exactly 240, the period check `fail` and verdict `defect-detected`; a constant sequence gives serial correlation `undefined`; `glibc-type0` seed 1 gives low-bit periods 2, 4 and 8; `minstd` gives low-bit periods `not-applicable`; `m` above 2**24 gives measured period `not-computed` with the other numbers still present; `minstd`, seed 1, sample 10000, 10 bins gives chi-square 6.69, p-value 0.6694, serial correlation -0.0005 (to the digits shown), every check `pass` and verdict `no-defect-detected`; `glibc-type0`, seed 1, sample 10000, 10 bins gives chi-square 8.882, p-value 0.4482, serial correlation -0.00111, the `low-bits-short-period` flag and verdict `caution`; every report carries the notice `Passing these checks does not show that a generator is random or secure.` Markers: `ac("AC-049")`, `ac("AC-050")`, `ac("AC-051")`, `ac("AC-052")`, `ac("AC-053")`, `ac("AC-057")`, `ac("AC-058")`, `ac("AC-060")`. `fr("FR-026")`, `fr("FR-029")`, `fr("FR-031")`.
+- [X] T041 [P] [US7] Write `Part-1A/tests/property/test_quality_oracle.py` with Hypothesis: for random valid generators (small `m`, so the oracle is fast), sample sizes and bin counts, `report` is identical on repeat calls and every number (chi-square, serial correlation, low-bit periods, measured period) equals the oracle's within a relative tolerance of 1e-9. Markers: `ac("AC-055")`. `fr("FR-027")`.
+- [X] T042 [P] [US7] Write `Part-1A/tests/integration/test_ops_quality.py` against `lcgkit.ops.run("quality", ...)`: sample size 1,000,000 succeeds; 1,000,001 gives `count-exceeds-limit`; a sample below 2 gives `invalid-count`; 0 bins, or more bins than the sample, gives `invalid-bins`. Markers: `ac("AC-054")`. `fr("FR-028")`.
+- [X] T043 [P] [US7] Write `Part-1A/tests/perf/test_perf_quality.py` (marker `perf`): a quality report with sample size 1,000,000, `m = 2**24` and 1,000 bins finishes within 15 seconds. Markers: `ac("AC-056")`. `fr("FR-008")`.
+- [X] T044 [P] [US8] Write `Part-1A/tests/integration/test_cli.py`, running `python -m lcgkit.cli` in a subprocess: every operation (`presets`, `sequence`, `integers`, `fractions`, `jump`, `streams`, `validate`, `quality`, `predict`) runs; with `--json` the output parses as JSON and equals `wire.encode_result` of the `ops.run` result for the same input, with every field that can exceed 2**53 written as a decimal string and counts and bins as numbers; without it the output is readable text containing the same values; success exits 0, invalid input exits 2, a refused purpose exits 3, and on any failure nothing is written to standard output and the message (`error <code>: <message>`) goes to standard error; also call `lcgkit.cli.main` 100 times in process for one request and check the 100 outputs are identical (SC-005); the docstring says the parity comparison is a relative check, with absolute values covered by the per-operation tests. Markers: `ac("AC-061")`, `ac("AC-062")`, `ac("AC-063")`, `ac("AC-064")`, `ac("AC-065")`. `fr("FR-005")`, `fr("FR-032")`, `fr("FR-033")`, `fr("FR-034")`.
+- [X] T045 [P] [US9] Write `Part-1A/tests/integration/test_service.py` with `fastapi.testclient.TestClient` on `lcgkit.service.app`: every operation is available (`POST /v1/sequence`, `/v1/integers`, `/v1/fractions`, `/v1/jump`, `/v1/streams`, `/v1/validate`, `/v1/quality`, `/v1/predict`, `GET /v1/presets`) and a follow-up request from a returned `next_state` matches one longer request; two identical requests give byte-identical bodies; the `pcg-lcg64` parameters and seed 0 sent as decimal strings with count 2 return `["1442695040888963407", "1876011003808476466"]`; a large field sent as a JSON number, or as a string such as `"0x10"`, `"1e3"`, `"007"` or `" 5"`, gives `invalid-type` naming the field and is never rounded; invalid input gives status 400 with the error body, a refused purpose gives status 403; malformed JSON, missing or unknown fields, wrong types, oversized numbers and an empty body give 400 with `malformed-request` or the specific code, never a status of 500 or more; a request with `m` = `"1"` and `count` = `"x"` gives `invalid-modulus` (the first field in the checking order) and the same body plus an unknown field gives `malformed-request`. Markers: `ac("AC-066")`, `ac("AC-067")`, `ac("AC-068")`, `ac("AC-069")`, `ac("AC-070")`, `ac("AC-071")`, `ac("AC-090")`. `fr("FR-001")`, `fr("FR-005")`, `fr("FR-035")`, `fr("FR-036")`.
+- [X] T046 [P] [US9] Write `Part-1A/tests/integration/test_parity.py`: for a shared example set covering every operation, the library result (`ops.run` then `wire.encode_result`), the command-line `--json` output and the HTTP service body are equal. The docstring says this is a relative check; absolute values are covered by the per-operation tests. Markers: `ac("AC-073")`. `fr("FR-038")`.
+- [X] T047 [P] [US9] Write `Part-1A/tests/contract/test_openapi_contract.py` with Schemathesis (`schemathesis.openapi.from_asgi("/openapi.json", lcgkit.service.app)`): run generated cases for every operation; every response status is 200, 400 or 403, every response conforms to its declared schema, and none is a 5xx; also assert that the generated document has the same paths, methods and request property names as `specs/001-lcgkit-toolkit/contracts/openapi.yaml`. Markers: `ac("AC-072")`. `fr("FR-037")`.
+- [X] T048 [P] [US10] Write `Part-1A/tests/unit/test_predictor.py` for `lcgkit.core.predictor`: case A, `m=2**31` and the first 5 outputs of `glibc-type0` from seed 1 recover `a=1103515245, c=12345` and the next 10 predictions equal the generator's next 10; only 2 outputs give `insufficient-data`; `m=16` with outputs `[0, 0, 0]` gives `ambiguous-parameters` and no guess; case B, no modulus and the first 12 outputs of `glibc-type0` from seed 1 recover modulus `2**31`, the parameters and 10 correct predictions, and the same holds for `pcg-lcg64` from seed 0 with modulus `2**64`; fewer than 12 outputs give `insufficient-data`; case C, `glibc-type0` with 16 hidden bits and the first 4 outputs of seed 1 shifted right by 16 recover the internal state and predict the next 10 full-width outputs correctly, while only 2 truncated outputs give `ambiguous-parameters` (two states fit). Markers: `ac("AC-074")`, `ac("AC-076")`, `ac("AC-077")`, `ac("AC-078")`, `ac("AC-079")`, `ac("AC-080")`. `fr("FR-039")`, `fr("FR-040")`, `fr("FR-041")`, `fr("FR-042")`, `fr("FR-043")`.
+- [X] T049 [P] [US10] Write `Part-1A/tests/integration/test_ops_predict.py` against `lcgkit.ops.run("predict", ...)`: a request with no `k` returns 10 predictions, `k=3` returns 3, `k=1000001` gives `count-exceeds-limit`, `k=0` gives `invalid-count`, and 1,000,001 observed `outputs` give `count-exceeds-limit`; truncated outputs with unknown parameters, more than 20 hidden bits (for example `musl`, which returns 31 of 64 bits and hides 33), or a modulus that is not a power of two give `unsupported-combination`; `a` or `c` without `hidden_bits` gives `malformed-request` naming the field; every success carries the notice `This prediction shows that the generator is not secure.` and case B appends ` Recovering the modulus is probable, not certain.` Markers: `ac("AC-075")`, `ac("AC-081")`, `ac("AC-083")`, `ac("AC-089")`. `fr("FR-004")`, `fr("FR-041")`, `fr("FR-044")`, `fr("FR-045")`.
+- [X] T050 [P] [US10] Write `Part-1A/tests/perf/test_perf_predict.py` (marker `perf`): a truncated-output prediction with `glibc`-style parameters and exactly 20 hidden bits finishes within 5 seconds. Markers: `ac("AC-082")`. `fr("FR-008")`.
+- [X] T051 [P] [US11] Write `Part-1A/tests/integration/test_ops_streams.py` against `lcgkit.ops.run("streams", ...)`: `glibc-type0`, seed 1, 4 streams of length 5 joined in order equal the first 20 outputs of the plain sequence; stream `i` starts at the jump-ahead state at `i * 5` (oracle stepping); `streams * length > m` gives `stream-exceeds-modulus`; a zero or negative stream count or length gives `invalid-count`; 1,001 streams of length 1,000 (1,001,000 outputs) give `count-exceeds-limit`, while 1,000 streams of length 1,000 succeed. Markers: `ac("AC-084")`, `ac("AC-085")`, `ac("AC-086")`, `ac("AC-088")`. `fr("FR-004")`, `fr("FR-046")`, `fr("FR-047")`.
+- [X] T052 [P] Write `Part-1A/tests/property/test_no_unstructured_failure.py` with Hypothesis (success criterion SC-007): feed arbitrary JSON-like values (numbers, strings, booleans, `None`, lists, dictionaries, huge integers) as the request to every operation through `ops.run` and through the service; the only outcomes are a successful result or an `LcgError` whose code is one of the 18 codes, and the service never returns status 500 or above. Markers: `fr("FR-036")`.
+
+
+---
+
+## Checkpoint: review and baseline tag (me)
+
+**Purpose**: Nothing in `src/` exists yet. This checkpoint fixes the harness and the tests so the implementation cannot change them. `/speckit-implement` stops here until I finish these tasks.
+
+- [ ] T053 (by me) Review `Part-1A/.harness/` and every file under `Part-1A/tests/` against `specs/001-lcgkit-toolkit/spec.md`: each acceptance criterion is checked by an exact assertion, every expected value comes from the specification or `tests/oracle/`, and nothing imports `src/` to compute an expected value. Cites: SC-001, SC-009.
+- [ ] T054 (by me) Run `uv run pytest tests/oracle -q` (must pass), `uv run python .harness/selfcheck.py` (every gate must be shown able to fail), and `uv run python .harness/run_harness.py --gates lint,length,traceability` (must pass for the harness files and the test files that exist). Run `uv run pytest tests -q`: it must fail everywhere, because `src/lcgkit` has no implementation. That is the expected starting state. Cites: SC-001, SC-009.
+- [ ] T055 (by me) Commit the harness and the tests, then create the tag with the number of test functions (counted with `ast`) in its annotation: `git tag -a baseline-before-implement -m "test_functions=<N>"` in `Part-1A/`. From this point `tests/`, `specs/`, `.harness/`, `pyproject.toml` and the constitution are protected; the integrity gate compares against this tag. Cites: SC-001, SC-009.
+
+
+---
+
+## Phase 5: Foundational implementation
+
+**Purpose**: Shared code every story needs. Every source file follows the rules at the top of this document.
+
+- [ ] T056 Create `Part-1A/src/lcgkit/errors.py`: `ERROR_CODES`, a tuple of exactly these 18 codes: `invalid-modulus`, `invalid-multiplier`, `invalid-increment`, `invalid-seed`, `invalid-type`, `invalid-count`, `count-exceeds-limit`, `invalid-jump`, `invalid-range`, `range-exceeds-modulus`, `invalid-bins`, `unknown-preset`, `insecure-purpose`, `insufficient-data`, `ambiguous-parameters`, `stream-exceeds-modulus`, `unsupported-combination`, `malformed-request`; and `class LcgError(Exception)` with `code`, `message` and optional `field` (a code outside the tuple raises `ValueError`) and `to_body()` returning `{"error": {"code": ..., "message": ..., "field": ...}}` with `field` omitted when absent. Covers FR-001, FR-036.
+- [ ] T057 Create `Part-1A/src/lcgkit/fields.py`, the field table that drives validation order, wire types and the OpenAPI schema. Fields and rules, quoted from `data-model.md`: `preset` (string; one of the seven names; replaces `a`, `c`, `m`; sending it together with any of them is a `malformed-request`; error `unknown-preset`); `m` (large; integer, 2 ≤ m ≤ 2^64; `invalid-modulus`); `a` (large; integer, 0 ≤ a < m; `invalid-multiplier`); `c` (large; integer, 0 ≤ c < m; `invalid-increment`); `seed` (large; integer, 0 ≤ seed < m; `invalid-seed`); `state`, jump only (large; integer, 0 ≤ state < m; `invalid-seed`); `count` (count; integer, 0 ≤ count ≤ 1,000,000; `invalid-count`, `count-exceeds-limit`); `lo`, `hi` (large, signed; integers, lo ≤ hi, hi − lo + 1 ≤ m; `invalid-range`, `range-exceeds-modulus`); `steps`, jump only (large; integer, 0 ≤ steps < 2^64; `invalid-jump`); `sample_size` (count; integer, 2 ≤ sample_size ≤ 1,000,000; `invalid-count`, `count-exceeds-limit`); `bins` (count; integer, 1 ≤ bins ≤ sample_size; `invalid-bins`); `outputs`, predict (list of large; 1 to 1,000,000 values; `insufficient-data`, `count-exceeds-limit`); `hidden_bits`, predict (count; integer ≥ 0; `unsupported-combination`); `k`, predict (count; integer, default 10, 1 ≤ k ≤ 1,000,000; `invalid-count`, `count-exceeds-limit`); `streams`, `length` (count; each ≥ 1; `streams × length` ≤ 1,000,000 checked first, then ≤ m; `invalid-count`, `count-exceeds-limit`, `stream-exceeds-modulus`); `purpose` (string, optional, checked last; `insecure-purpose`). Checking order per operation: first `preset` (or `m`, `a`, `c`), then `seed` (or `state`), then the operation's own fields: sequence `count`; integers `lo`, `hi`, `count`; fractions `count`; jump `state`, `steps`; streams `streams`, `length`; validate none (no `seed`); quality `sample_size`, `bins`; predict `outputs`, `m`, `a`, `c`, `hidden_bits`, `k` (its own order from the start, with no separate parameter or seed step); presets none. `purpose` is accepted only by sequence, integers, fractions, jump and streams. For each field the type is checked before the value. Covers FR-001, FR-004, FR-023, FR-028, FR-045, FR-046, FR-047.
+- [ ] T058 Create `Part-1A/src/lcgkit/wire.py`: a small `InvalidField(field, code)` marker class; `decode_large(value, field, signed=False)` accepts only a string matching `^(0|[1-9][0-9]*)$` (`^(0|-?[1-9][0-9]*)$` when signed) and returns an `int`; for anything else (a JSON number, a boolean, `None`, strings such as `"0x10"`, `"1e3"`, `"007"`, `" 5"`) it returns `InvalidField(field, "invalid-type")` instead of raising, so the error is raised later at that field's turn in the checking order (FR-001); `encode_large(n)` returns the decimal string; `decode_request(operation, body)` requires a JSON object and rejects unknown fields with `malformed-request` raised at once (structural errors come before field errors), converts large fields with `decode_large` and marks counts and bins that are not integers, or are booleans, with `InvalidField(field, "invalid-type")`; `encode_result(operation, result)` converts every large integer in a result (including lists and nested stream records) to a decimal string and leaves counts, booleans, floats and text alone. Covers FR-001, FR-033, FR-035, FR-036.
+- [ ] T059 Create `Part-1A/src/lcgkit/ops.py` with the shared engine: `run(operation, request)` takes a mapping whose values are native Python values or `wire.InvalidField` markers (markers come only from the JSON interfaces). It reports structural problems first (an unknown operation or field gives `malformed-request`), then validates each field in the order and with the rules from `fields.py`, type before value, raising a marker's stored error when that field's turn comes, first error only; `purpose` is last and only for the operations that accept it. It applies the default `k = 10`, dispatches to the operation's handler through an immutable registry (`types.MappingProxyType`), adds `"cryptographically_secure": False` to every success and returns a plain `dict`. Handlers are added by the story tasks below. Covers FR-001, FR-005, FR-006, FR-036.
+
+
+---
+
+## Phase 6: US1 — Generate a repeatable sequence (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T060 [US1] Create `Part-1A/src/lcgkit/core/lcg.py`: frozen dataclasses `ParameterSet(a, c, m)` and `SequenceResult(outputs, outputs_consumed, next_state, warnings)`; `step(p, x)` returns `(a * x + c) % m`; `sequence(p, seed, count)` returns the next `count` outputs without the seed, `outputs_consumed` equal to `count` and `next_state` equal to the last output (the seed when `count` is 0); warnings `zero-fixed-point` when `c == 0 and seed == 0` and `degenerate-multiplier` when `a` is 0 or 1. Covers FR-002, FR-003, FR-004, FR-007.
+- [ ] T061 [US1] In `Part-1A/src/lcgkit/ops.py` add the `sequence` handler: build the `ParameterSet`, call `core.lcg.sequence`, return `outputs`, `outputs_consumed`, `next_state` and `warnings`. Covers FR-001 to FR-007, and FR-008 (1,000,000 values within 5 seconds, so keep the loop plain and allocation-light); makes `tests/unit/test_lcg.py`, `tests/integration/test_ops_sequence.py`, `tests/property/test_sequence_properties.py` and `tests/perf/test_perf_sequence.py` pass.
+
+
+---
+
+## Phase 7: US2 — Use well-known generators by name (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T062 [US2] Create `Part-1A/src/lcgkit/core/presets.py`: an ordered `PRESETS` of the seven presets with these parameters `(a, c, m)` and descriptions: `minstd` (16807, 0, 2**31 - 1) "Park–Miller minimal standard"; `minstd-new` (48271, 0, 2**31 - 1) "revised multiplier for the minimal standard"; `glibc-type0` (1103515245, 12345, 2**31) "the simple mode of the GNU C library"; `numrec` (1664525, 1013904223, 2**32) "Numerical Recipes' quick generator"; `musl` (6364136223846793005, 1, 2**64) "the musl C library's rand"; `pcg-lcg64` (6364136223846793005, 1442695040888963407, 2**64) "the 64-bit LCG used by the PCG family"; `randu` (65539, 0, 2**31) "IBM's RANDU, included as a known-bad example"; and `get(name)` raising `LcgError("unknown-preset", field="preset")`. Covers FR-009, FR-012.
+- [ ] T063 [US2] In `Part-1A/src/lcgkit/ops.py` add the `presets` handler (no fields; returns `presets` as a list of `name`, `a`, `c`, `m`, `description`) and preset resolution in `run`: when `preset` is given, take `a`, `c`, `m` from `core.presets.get`; `preset` together with `m`, `a` or `c` is a `malformed-request` naming `preset`. Covers FR-010, FR-011, FR-012; makes `tests/unit/test_presets.py` and `tests/integration/test_ops_presets.py` pass.
+
+
+---
+
+## Phase 8: US3 — Find out whether parameters are any good (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T064 [US3] Create `Part-1A/src/lcgkit/core/numtheory.py`: `is_prime(n)` (trial division by small primes, then deterministic Miller–Rabin with the first twelve primes as bases, sufficient for `n < 3.3 × 10^24`); `factor(n)` returning `{prime: exponent}` using trial division then Pollard–Brent rho with a fixed sequence of constants (1, 2, 3, ...) so it needs no `random` module (Principle IV) and always terminates; works for every `n` up to `2**64`. Covers FR-014.
+- [ ] T065 [US3] Create `Part-1A/src/lcgkit/core/validator.py`: frozen dataclasses `Condition(name, passed)` and `Verdict(verdict, expected_period, conditions, reasons)`; `validate(p)` evaluates the three Hull–Dobell conditions: `increment-not-coprime` passes when `gcd(c, m) == 1`; `multiplier-minus-one-not-divisible-by-prime-factor` passes when every prime factor of `m` divides `a - 1`; `multiplier-minus-one-not-divisible-by-four` passes when `m % 4 != 0` or `(a - 1) % 4 == 0`. The verdict is `full-period` only if all pass, with `expected_period` equal to `m`; `reasons` lists the failed conditions in the order `increment-not-coprime`, `multiplier-minus-one-not-divisible-by-prime-factor`, `multiplier-minus-one-not-divisible-by-four`. Covers FR-013, FR-014, FR-015.
+- [ ] T066 [US3] In `Part-1A/src/lcgkit/ops.py` add the `validate` handler (fields: `preset` or `m`, `a`, `c`; no `seed`, no `purpose`): return `verdict`, `expected_period` (only when full period), `conditions` as a list of `{name, passed}` and `reasons`. Covers FR-013, FR-014, FR-015; makes `tests/unit/test_validator.py`, `tests/property/test_validator_bruteforce.py` and `tests/unit/test_numtheory.py` pass.
+
+
+---
+
+## Phase 9: US4 — Jump ahead (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T067 [US4] Create `Part-1A/src/lcgkit/core/jump.py`: `mulmod(x, y, m)` returning `x * y % m`, the only place a modular multiplication is done; `jump(p, state, steps)` doubles the affine map once per bit of `steps`: starting from `(A, C) = (a, c)`, for each bit from the lowest, apply `state = mulmod(A, state, m) + C` reduced modulo `m` when the bit is set, then replace `(A, C)` with `(mulmod(A, A, m), mulmod(C, A + 1, m))`, stopping after the highest set bit. At most three `mulmod` calls per bit, so at most 192 for `steps < 2**64` (FR-018); `steps == 0` returns `state`; no loop may run in proportion to `steps`. Covers FR-016, FR-018.
+- [ ] T068 [US4] In `Part-1A/src/lcgkit/ops.py` add the `jump` handler (fields: parameters, `state`, `steps`, `purpose`): `steps` outside `0 ≤ steps < 2**64` raises `LcgError("invalid-jump", field="steps")`; return `state`. Covers FR-016, FR-017; makes `tests/unit/test_jump.py` and `tests/integration/test_ops_jump.py` pass.
+
+
+---
+
+## Phase 10: US5 — Draw fair integers and fractions (P1), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T069 [US5] Create `Part-1A/src/lcgkit/core/bounded.py`: `integers(p, seed, lo, hi, count)` with `size = hi - lo + 1`; if `size == 1` return `lo` repeated `count` times with `outputs_consumed` 0 and the state unchanged; otherwise let `q = m // size`, draw outputs one at a time, accept an output `v` only if `v < size * q` and return `lo + v // q`, otherwise discard it and draw again; `outputs_consumed` counts every output used including the discarded ones and `next_state` is the state after the last one; if more than 1,000,000 consecutive outputs are discarded, raise `LcgError("unsupported-combination", field="seed")` (FR-048). `fractions(p, seed, count)` returns `output / m` and, if that is 1.0 or more, `math.nextafter(1.0, 0.0)` (FR-022). Neither function uses rounding or a plain remainder. Covers FR-019, FR-020, FR-021, FR-022, FR-048.
+- [ ] T070 [US5] In `Part-1A/src/lcgkit/ops.py` add the `integers` handler (fields: parameters, `seed`, `lo`, `hi`, `count`, `purpose`; `lo > hi` gives `invalid-range`, more values than `m` gives `range-exceeds-modulus`) and the `fractions` handler (parameters, `seed`, `count`, `purpose`); both return `values`, `outputs_consumed`, `next_state`, `warnings`. Covers FR-019 to FR-022 and FR-048; makes `tests/unit/test_bounded.py` and `tests/integration/test_ops_integers.py` pass.
+
+
+---
+
+## Phase 11: US6 — Refuse security-sensitive uses (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T071 [US6] Create `Part-1A/src/lcgkit/core/guard.py`: `check_purpose(label)` returns for `None` or an empty label; otherwise trims, lower-cases and splits the label on anything that is not a letter or digit, and raises `LcgError("insecure-purpose", message=<says an LCG is not suitable and recommends a cryptographically secure source>, field="purpose")` if any word is `token`, `key`, `password`, `secret`, `session`, `nonce`, `salt`, `credential` or `otp`, or one of their plurals. Covers FR-023, FR-024.
+- [ ] T072 [US6] In `Part-1A/src/lcgkit/ops.py` call `core.guard.check_purpose` as the last validation step for the operations that accept `purpose`; in `Part-1A/README.md` add a `Security` section containing the exact sentence `The purpose guard relies on the declared purpose and cannot catch misuse that is not declared.` Covers FR-023, FR-024, FR-025; makes `tests/unit/test_guard.py`, `tests/integration/test_ops_guard.py` and `tests/integration/test_docs.py` pass.
+
+
+---
+
+## Phase 12: US7 — Report on sequence quality (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T073 [US7] Create `Part-1A/src/lcgkit/core/stats.py`: `chi_square_p(statistic, dof)` as the regularised upper incomplete gamma `Q(dof / 2, statistic / 2)` (power series when `x < s + 1`, otherwise a continued fraction, using `math.lgamma`, tolerance 1e-15, at most 10,000 iterations; returns 1.0 for a statistic of 0); `serial_correlation(values)` returning `sum((u[t]-mean)*(u[t+1]-mean)) / sum((u[t]-mean)**2)` over the values, or `None` when the denominator is 0. Covers FR-030.
+- [ ] T074 [US7] Create `Part-1A/src/lcgkit/core/quality.py`: frozen dataclasses `Check(name, value, outcome)` and `QualityReport`; `report(p, seed, sample_size, bins)` takes the first `sample_size` outputs and returns: `measured_period` (length of the cycle the seed ends up in, found with Brent's cycle detection, only when `m <= 2**24`, otherwise `"not-computed"`); `chi_square` over `bins` equal-width bins (bin index `value * bins // m`); `p_value` from `stats.chi_square_p` with `bins - 1` degrees of freedom; `serial_correlation` (`"undefined"` when `None`) using `value / m`; `low_bit_periods` for the lowest 1, 2 and 3 bits (the cycle length of the generator reduced modulo `2**bits`) when `m` is a power of two, otherwise `"not-applicable"`; the four checks `period-covers-sample` (period ≥ sample size; `not-applicable` when not computed), `uniformity` (p-value ≥ 0.01; `not-applicable` when sample size / bins < 10), `independence` (|r| ≤ 2.576 / sqrt(N); `not-applicable` when N < 100) and `low-bits` (flag `low-bits-short-period` when `m` is a power of two); the verdict `defect-detected` if any applicable check fails, otherwise `caution` if the low-bits flag is raised, otherwise `no-defect-detected`; and the `notice` `Passing these checks does not show that a generator is random or secure.` Covers FR-026, FR-029, FR-031.
+- [ ] T075 [US7] In `Part-1A/src/lcgkit/ops.py` add the `quality` handler (fields: parameters, `seed`, `sample_size`, `bins`; no `purpose`) returning the report fields from `data-model.md`. Covers FR-026 to FR-031 (FR-027: the numbers are repeatable and match the independent reference to 1e-9); makes `tests/unit/test_stats.py`, `tests/unit/test_quality.py`, `tests/property/test_quality_oracle.py`, `tests/integration/test_ops_quality.py` and `tests/perf/test_perf_quality.py` pass.
+
+
+---
+
+## Phase 13: US8 — Use it from the command line (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T076 [US8] Create `Part-1A/src/lcgkit/cli.py` with `main(argv=None) -> int` using `argparse`: one subcommand for each registered operation (`presets`, `sequence`, `integers`, `fractions`, `jump`, `streams`, `validate`, `quality`, `predict`, built from the registry in `ops.py` so later operations appear automatically); options are the field names with underscores written as hyphens (`--preset` or `--a --c --m`, `--seed`, `--count`, `--lo`, `--hi`, `--state`, `--steps`, `--streams`, `--length`, `--sample-size`, `--bins`, `--outputs` as comma-separated integers or `-` for one per line on standard input, `--hidden-bits`, `--k`, `--purpose`); integers are plain decimal text, parsed with `wire.decode_large` so an invalid value gives `invalid-type` in the usual `error <code>` form and not an argparse message; `--json` prints `wire.encode_result` as JSON with sorted keys, otherwise readable text with the same values; exit 0 on success, 2 on invalid input (any error except `insecure-purpose`, and bad usage), 3 on `insecure-purpose`, 1 on an unexpected failure; on failure nothing goes to standard output and `error <code>: <message>` (with the field when there is one) goes to standard error; `python -m lcgkit.cli` works. Covers FR-032, FR-033, FR-034 and FR-038 (the JSON equals the library's result); makes `tests/integration/test_cli.py` pass (fully once stories 10 and 11 exist).
+
+
+---
+
+## Phase 14: US9 — Use it as an HTTP service (P2), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T077 [US9] Create `Part-1A/src/lcgkit/service.py`: a FastAPI `app` with `POST /v1/sequence`, `/v1/integers`, `/v1/fractions`, `/v1/jump`, `/v1/streams`, `/v1/validate`, `/v1/quality`, `/v1/predict` and `GET /v1/presets`, built from the registry in `ops.py`. Each POST route reads the raw body with `await request.body()`, parses JSON (failure gives `malformed-request`), calls `wire.decode_request`, `ops.run` and `wire.encode_result`, and returns the result with status 200; an `LcgError` becomes the body `to_body()` with status 403 for `insecure-purpose` and 400 for every other code; unknown routes and methods return the same error body with status 400 and code `malformed-request`; any unexpected exception returns status 500 with a generic body and is logged (reaching it is a defect). Covers FR-035, FR-036 and FR-038 (results equal the library's).
+- [ ] T078 [US9] In `Part-1A/src/lcgkit/service.py` generate the OpenAPI document (`app.openapi` replaced by a function) from `fields.py`: request bodies list each field with `additionalProperties: false`, large fields use the pattern `^(0|[1-9][0-9]*)$` (`^(0|-?[1-9][0-9]*)$` for `lo` and `hi`), counts are integers from 0 to 1,000,000, responses document 200, 400 and 403 with the `ErrorBody` shape, and every success schema includes `cryptographically_secure`. It must have the same paths, methods and request properties as `specs/001-lcgkit-toolkit/contracts/openapi.yaml`. Covers FR-037; makes `tests/contract/test_openapi_contract.py` pass.
+- [ ] T079 [US9] In `Part-1A/src/lcgkit/service.py` add `serve()` (starts uvicorn on `127.0.0.1:8000`, optional `--port`) and request logging: one line per request with method, path and status through `logging.getLogger("lcgkit.service")`, never the body (research R18). Covers FR-035; makes `tests/integration/test_service.py` and `tests/integration/test_parity.py` pass (fully once stories 10 and 11 exist).
+
+
+---
+
+## Phase 15: US10 — Predict a sequence from what you have seen (P3), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T080 [US10] In `Part-1A/src/lcgkit/core/numtheory.py` add `modinv(a, m)` (extended Euclid; `None` when `gcd(a, m) != 1`) and `solve_linear(a, b, m)` returning every `x` in `[0, m)` with `a * x ≡ b (mod m)` (none when `gcd(a, m)` does not divide `b`; otherwise `gcd` solutions). Covers FR-039, FR-043.
+- [ ] T081 [US10] Create `Part-1A/src/lcgkit/core/predictor.py` with frozen dataclass `Prediction(case, modulus, a, c, state, predictions, notice)` and three functions, each ending with a check that the recovered parameters or state reproduce every supplied output (FR-042): `predict_known_modulus(m, outputs, k)` (case A; needs at least 3 outputs, else `insufficient-data`; solve `a * (x2 - x1) ≡ x3 - x2` with `solve_linear`, set `c = x2 - a * x1`, keep the pairs that reproduce all outputs; none left gives `insufficient-data`, more than one pair gives `ambiguous-parameters`); `predict_unknown_modulus(outputs, k)` (case B; needs at least 12 outputs, else `insufficient-data`; with differences `t[i] = x[i+1] - x[i]` take `g = gcd` of `|t[i+2]*t[i] - t[i+1]**2|` over all `i`; `g` must exceed the largest output, else `insufficient-data`; then run case A with `m = g`); `predict_truncated(p, hidden_bits, outputs, k)` (case C; `m` must be a power of two and `hidden_bits` at most 20, else `unsupported-combination`; for each of the `2**hidden_bits` values of the first output's hidden bits keep those whose following steps reproduce the supplied truncated outputs (`state >> hidden_bits`); none gives `insufficient-data`, more than one gives `ambiguous-parameters`; predict the next `k` full-width states from the recovered state after the last supplied output). Predictions are the next `k` outputs. The `notice` is `This prediction shows that the generator is not secure.` and, for case B, with ` Recovering the modulus is probable, not certain.` appended. No `random` module. Covers FR-039 to FR-044.
+- [ ] T082 [US10] In `Part-1A/src/lcgkit/ops.py` add the `predict` handler (fields in the order `outputs`, `m`, `a`, `c`, `hidden_bits`, `k`; no `purpose`): `hidden_bits > 0` selects case C and requires `m`, `a` and `c`, otherwise `unsupported-combination` (`predict` takes no `preset`, as in `contracts/openapi.yaml`, so a `preset` field is a `malformed-request` naming `preset`); `a` or `c` without a positive `hidden_bits` is a `malformed-request` naming the field; with `m` and no `hidden_bits` run case A; with neither run case B; return `case`, `modulus` (case B), `a` and `c` (cases A and B), `state` (case C), `predictions` and `notice`. Covers FR-039 to FR-045; makes `tests/unit/test_predictor.py`, `tests/integration/test_ops_predict.py` and `tests/perf/test_perf_predict.py` pass.
+
+
+---
+
+## Phase 16: US11 — Split a sequence into separate streams (P3), implementation
+
+**Purpose**: Implementation only; the tests already exist and fail until this phase is done.
+
+- [ ] T083 [US11] Create `Part-1A/src/lcgkit/core/streams.py`: frozen dataclass `Stream(index, start_state, outputs)` and `split(p, seed, streams, length)` returning `streams` records where stream `i` starts at `jump(p, seed, i * length)` and holds the next `length` outputs from there; joined in order they equal the first `streams * length` outputs of the plain sequence. Covers FR-046.
+- [ ] T084 [US11] In `Part-1A/src/lcgkit/ops.py` add the `streams` handler (fields: parameters, `seed`, `streams`, `length`, `purpose`): a zero or negative `streams` or `length` gives `invalid-count`, `streams * length > m` gives `stream-exceeds-modulus`; return `streams` as a list of `{index, start_state, outputs}` and `warnings`. Covers FR-046, FR-047; makes `tests/integration/test_ops_streams.py` pass.
+
+
+---
+
+## Final phase: Polish, evidence and acceptance
+
+**Purpose**: Run the whole harness, preserve the evidence and record the decision.
+
+- [ ] T085 Complete `Part-1A/README.md` and add a short Part 1A section to the repository `README.md` pointing to it: how to install (`uv sync`; `brew install gitleaks` or the equivalent for the platform), how to run the command line (`uv run lcgkit ...`, with the worked example from `quickstart.md`), how to start the service (`uv run lcgkit-serve`) and call it, how to run the harness (`uv run python .harness/run_harness.py`) and where its results are (`evidence/harness-results/`), and a one-paragraph description of the folder layout. No progress notes. Cites: FR-025, FR-031.
+- [ ] T086 Run every scenario in `specs/001-lcgkit-toolkit/quickstart.md` and fix any difference in `src/` (never in the tests or the specification). Cites: SC-004.
+- [ ] T087 (by me) When all implementation tasks are done and before the first formal harness run, copy `Part-1A/src/` to `Part-1A/evidence/initial-generation/` and commit it unchanged. This is the first generation (Principle VI). Cites: SC-001.
+- [ ] T088 Run `uv run python .harness/run_harness.py` in `Part-1A/`; results are written to `Part-1A/evidence/harness-results/<run-id>/`. If a gate fails, hand `feedback.json` to the coding agent, repair `src/` only, and run the same harness again. Repair never changes the tests, the specification, the thresholds or the harness; a legitimate specification change goes through the Spec Kit artifacts with a recorded amendment. Cites: SC-009.
+- [ ] T089 (by me) After the final `PASS`, copy `Part-1A/src/` to `Part-1A/evidence/final-generation/` and commit it with the final `evidence/harness-results/<run-id>/`. Cites: SC-001.
+- [ ] T090 (by me) Write `Part-1A/evidence/harness-log.md` myself from the real runs: the first generation and the task and specification context, each harness run and its outcome, any genuine failure with the evidence given back to the agent, what changed and whether the same checks then passed, and my final ACCEPT or REJECT decision with known limitations and the reason. Nothing in this file is generated. Cites: SC-001.
+
+
+---
+
+## Dependencies and execution order
+
+### Phase dependencies
+
+- Setup, Harness, Oracle and Tests come first, in that order; the Harness, Oracle and Tests phases can run in parallel with each other once Setup is done.
+- The Checkpoint blocks everything after it. `/speckit-implement` must not continue past it until I have tagged the baseline.
+- Foundational implementation blocks every story.
+- The final phase needs all stories done.
+
+### Story dependencies
+
+- **US1** needs only the foundational code.
+- **US2, US3, US4, US5, US6, US7, US11** need US1 (`ParameterSet`, the `sequence` machinery and `ops.py`). US11 also needs US4 (`jump`). US10 needs US3 (`numtheory.py`) and US1.
+- **US8 and US9** are built from the operation registry, so they work for whatever is registered; their tests only pass completely once US10 and US11 exist, because AC-061 and AC-066 cover every capability.
+- Within a story: models and core functions first, then the operation handler.
+
+### Suggested order
+
+US1, US2, US3, US4, US5, US6, US7, US10, US11, then US8 and US9 (so the command line and the service expose every operation at once), then the final phase. This differs from the priority order only for the two adapters, which depend on the P3 operations to be complete.
+
+## Parallel opportunities
+
+- All `[P]` harness gate files (`.harness/gates/*.py`) in Phase 2, once the shared helpers exist.
+- All `[P]` test files in Phase 4: each is a separate file.
+- Within an implementation phase, different core modules (`core/jump.py`, `core/bounded.py`, `core/guard.py`, `core/stats.py` and so on) are independent of one another once US1 is done. Edits to `ops.py` are sequential.
+
+```text
+# Example: the tests of stories 3 and 4 together
+Task: "tests/unit/test_validator.py"            (US3)
+Task: "tests/property/test_validator_bruteforce.py" (US3)
+Task: "tests/unit/test_jump.py"                  (US4)
+Task: "tests/integration/test_ops_jump.py"       (US4)
+```
+
+## Implementation strategy
+
+1. Setup, harness, oracle, tests, then the checkpoint and the baseline tag. The harness is shown to fail on bad input (`selfcheck.py`) before it is trusted.
+2. Foundational code, then **US1 alone** as the first working slice: `lcgkit sequence` through `ops.run`. Run its tests and the harness gates that apply.
+3. Add the stories in the order above, running that story's tests after each; commit after each phase, with the task and requirement IDs in the message (for example `T041, FR-016 : Add jump-ahead`).
+4. Before the first formal harness run, preserve the first generation. Then run the harness; repair only real failures.
+
+$ git diff -U0 --relative baseline-before-implement -- src tests
+diff --git a/src/lcgkit/cli.py b/src/lcgkit/cli.py
+new file mode 100644
+index 0000000..2525e0b
+--- /dev/null
++++ b/src/lcgkit/cli.py
+@@ -0,0 +1,112 @@
++"""The command line: a thin argparse adapter over the operations layer."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import sys
++from collections.abc import Sequence
++from typing import Any
++
++from lcgkit import ops, wire
++from lcgkit.errors import LcgError
++from lcgkit.fields import FIELDS, LARGE_LIST, OPERATIONS, SIGNED_LARGE, TEXT
++
++EXIT_OK = 0
++EXIT_UNEXPECTED = 1
++EXIT_INVALID_INPUT = 2
++EXIT_REFUSED = 3
++REFUSED_CODE = "insecure-purpose"
++STDIN_MARKER = "-"
++INDENT = "  "
++COUNTS = frozenset(name for name, f in FIELDS.items() if f.kind == "count")
++
++
++def _parser() -> argparse.ArgumentParser:
++    """One subcommand per registered operation; options are the field names with hyphens."""
++    parser = argparse.ArgumentParser(prog="lcgkit", allow_abbrev=False)
++    commands = parser.add_subparsers(dest="operation", required=True)
++    for name in ops.HANDLERS:
++        command = commands.add_parser(name, allow_abbrev=False)
++        for field in sorted(OPERATIONS[name].allowed):
++            command.add_argument(f"--{field.replace('_', '-')}", dest=field, default=None)
++        command.add_argument("--json", action="store_true", dest="as_json")
++    return parser
++
++
++def _outputs(text: str, field: str) -> list[int] | wire.InvalidField:
++    """Read --outputs: comma-separated integers, or '-' for one per line on standard input."""
++    pieces = sys.stdin.read().split() if text == STDIN_MARKER else text.split(",")
++    items = [wire.decode_large(piece.strip(), field) for piece in pieces]
++    numbers = [item for item in items if isinstance(item, int)]
++    return numbers if len(numbers) == len(items) else wire.InvalidField(field, "invalid-type")
++
++
++def _value(field: str, text: str) -> object:
++    """Read one option's text: integers are plain decimal text, never rounded."""
++    kind = FIELDS[field].kind
++    if kind == TEXT:
++        return text
++    if kind == LARGE_LIST:
++        return _outputs(text, field)
++    return wire.decode_large(text, field, signed=kind == SIGNED_LARGE or field in COUNTS)
++
++
++
++def _scalar(value: object) -> str:
++    if isinstance(value, bool):
++        return "true" if value else "false"
++    return str(value)
++
++
++def _lines(label: str, value: Any, depth: int) -> list[str]:
++    """Render one result entry as indented readable text."""
++    pad = INDENT * depth
++    if isinstance(value, dict):
++        nested = [line for k, v in value.items() for line in _lines(str(k), v, depth + 1)]
++        return [f"{pad}{label}:", *nested]
++    if isinstance(value, list) and any(isinstance(v, dict | list) for v in value):
++        nested = [line for i, v in enumerate(value) for line in _lines(f"[{i}]", v, depth + 1)]
++        return [f"{pad}{label}:", *nested]
++    if isinstance(value, list):
++        return [f"{pad}{label}: " + ", ".join(_scalar(v) for v in value)]
++    return [f"{pad}{label}: {_scalar(value)}"]
++
++
++def _render(operation: str, result: dict[str, Any], as_json: bool) -> str:
++    if as_json:
++        return json.dumps(wire.encode_result(operation, result), sort_keys=True)
++    return "\n".join(line for key, value in result.items() for line in _lines(key, value, 0))
++
++
++def _report(error: LcgError) -> int:
++    where = f" (field: {error.field})" if error.field else ""
++    print(f"error {error.code}: {error.message}{where}", file=sys.stderr)
++    return EXIT_REFUSED if error.code == REFUSED_CODE else EXIT_INVALID_INPUT
++
++
++def main(argv: Sequence[str] | None = None) -> int:
++    """Run the command line; return the exit status.
++
++    Task: T076. Covers: FR-032, FR-033, FR-034.
++    """
++    args = _parser().parse_args(argv)
++    given = {
++        name: _value(name, text)
++        for name in OPERATIONS[args.operation].allowed
++        if (text := getattr(args, name)) is not None
++    }
++    try:
++        result = ops.run(args.operation, given)
++        output = _render(args.operation, result, args.as_json)
++    except LcgError as error:
++        return _report(error)
++    except Exception as exc:
++        print(f"error: unexpected failure ({type(exc).__name__})", file=sys.stderr)
++        return EXIT_UNEXPECTED
++    print(output)
++    return EXIT_OK
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/src/lcgkit/core/bounded.py b/src/lcgkit/core/bounded.py
+new file mode 100644
+index 0000000..96629d7
+--- /dev/null
++++ b/src/lcgkit/core/bounded.py
+@@ -0,0 +1,65 @@
++"""Fair integers in a range and fractions in [0, 1)."""
++
++from __future__ import annotations
++
++import math
++from dataclasses import dataclass
++
++from lcgkit.core.lcg import ParameterSet, warnings_for
++from lcgkit.errors import LcgError
++
++MAX_CONSECUTIVE_DISCARDS = 1_000_000
++
++
++@dataclass(frozen=True)
++class BoundedResult:
++    """Values drawn, the outputs used (discarded ones included), the next state, warnings."""
++
++    values: list[int] | list[float]
++    outputs_consumed: int
++    next_state: int
++    warnings: list[str]
++
++
++def integers(p: ParameterSet, seed: int, lo: int, hi: int, count: int) -> BoundedResult:
++    """Draw `count` integers from lo..hi, each equally likely: discard-and-retry on the
++    high-order part of the output, never a remainder and never rounding.
++
++    Task: T069. Covers: FR-019, FR-020, FR-021, FR-048.
++    """
++    size = hi - lo + 1
++    if size == 1:
++        return BoundedResult([lo] * count, 0, seed, warnings_for(p, seed))
++    q = p.m // size
++    limit = size * q
++    values: list[int] = []
++    x, consumed, discards = seed, 0, 0
++    while len(values) < count:
++        x = (p.a * x + p.c) % p.m
++        consumed += 1
++        if x < limit:
++            values.append(lo + x // q)
++            discards = 0
++            continue
++        discards += 1
++        if discards > MAX_CONSECUTIVE_DISCARDS:
++            raise LcgError(
++                "unsupported-combination",
++                "this generator keeps producing values that must be discarded from this seed",
++                "seed",
++            )
++    return BoundedResult(values, consumed, x, warnings_for(p, seed))
++
++
++def fractions(p: ParameterSet, seed: int, count: int) -> BoundedResult:
++    """Draw `count` fractions output / m, kept strictly below 1.0.
++
++    Task: T069. Covers: FR-022.
++    """
++    below_one = math.nextafter(1.0, 0.0)
++    values: list[float] = []
++    x = seed
++    for _ in range(count):
++        x = (p.a * x + p.c) % p.m
++        values.append(min(x / p.m, below_one))
++    return BoundedResult(values, count, x, warnings_for(p, seed))
+diff --git a/src/lcgkit/core/guard.py b/src/lcgkit/core/guard.py
+new file mode 100644
+index 0000000..2097f7f
+--- /dev/null
++++ b/src/lcgkit/core/guard.py
+@@ -0,0 +1,36 @@
++"""The purpose guard: refuses declared purposes that need a secure random source."""
++
++from __future__ import annotations
++
++import re
++
++from lcgkit.errors import LcgError
++
++INSECURE_WORDS = frozenset(
++    {"token", "key", "password", "secret", "session", "nonce", "salt", "credential", "otp"}
++)
++WORD = re.compile(r"[^\W_]+")
++PLURAL_ENDING = "s"
++MESSAGE = (
++    "A linear congruential generator is not suitable for {label!r}: its output can be predicted. "
++    "Use a cryptographically secure source, such as the operating system's secure random "
++    "generator."
++)
++
++
++def _is_insecure(word: str) -> bool:
++    """True for a listed word or its plural."""
++    return word in INSECURE_WORDS or (
++        word.endswith(PLURAL_ENDING) and word[: -len(PLURAL_ENDING)] in INSECURE_WORDS
++    )
++
++
++def check_purpose(label: str | None) -> None:
++    """Raise `insecure-purpose` if any whole word of the label names a security use.
++
++    Task: T071. Covers: FR-023, FR-024.
++    """
++    if not label:
++        return
++    if any(_is_insecure(word) for word in WORD.findall(label.strip().lower())):
++        raise LcgError("insecure-purpose", MESSAGE.format(label=label), "purpose")
+diff --git a/src/lcgkit/core/jump.py b/src/lcgkit/core/jump.py
+new file mode 100644
+index 0000000..1aa4563
+--- /dev/null
++++ b/src/lcgkit/core/jump.py
+@@ -0,0 +1,33 @@
++"""Jump ahead n steps by doubling the affine map x -> A*x + C."""
++
++from __future__ import annotations
++
++from lcgkit.core.lcg import ParameterSet
++
++
++def mulmod(x: int, y: int, m: int) -> int:
++    """Return x * y modulo m; the only place a modular multiplication is done.
++
++    Task: T067. Covers: FR-018.
++    """
++    return x * y % m
++
++
++def jump(p: ParameterSet, state: int, steps: int) -> int:
++    """Return the state `steps` steps after `state`, using at most three mulmod per bit.
++
++    The map for 2**i steps is x -> A*x + C; it is applied when bit i of `steps` is set and
++    then doubled, so no loop runs in proportion to `steps`.
++
++    Task: T067. Covers: FR-016, FR-018.
++    """
++    m = p.m
++    mult, add = p.a, p.c
++    while steps:
++        if steps & 1:
++            state = (mulmod(mult, state, m) + add) % m
++        steps >>= 1
++        if steps:
++            add = mulmod(add, mult + 1, m)
++            mult = mulmod(mult, mult, m)
++    return state
+diff --git a/src/lcgkit/core/lcg.py b/src/lcgkit/core/lcg.py
+new file mode 100644
+index 0000000..38642e9
+--- /dev/null
++++ b/src/lcgkit/core/lcg.py
+@@ -0,0 +1,60 @@
++"""The recurrence x -> (a*x + c) mod m, and sequences of its values."""
++
++from __future__ import annotations
++
++from dataclasses import dataclass
++
++
++@dataclass(frozen=True)
++class ParameterSet:
++    """The multiplier, increment and modulus of a generator."""
++
++    a: int
++    c: int
++    m: int
++
++
++@dataclass(frozen=True)
++class SequenceResult:
++    """Outputs of a run, how many generator outputs it used, the next state and warnings."""
++
++    outputs: list[int]
++    outputs_consumed: int
++    next_state: int
++    warnings: list[str]
++
++
++def step(p: ParameterSet, x: int) -> int:
++    """Return the state after one step from `x`.
++
++    Task: T060. Covers: FR-002.
++    """
++    return (p.a * x + p.c) % p.m
++
++
++def warnings_for(p: ParameterSet, seed: int) -> list[str]:
++    """Return the warnings that apply to a generator started at `seed`.
++
++    Task: T060. Covers: FR-007.
++    """
++    found = []
++    if p.c == 0 and seed == 0:
++        found.append("zero-fixed-point")
++    if p.a in (0, 1):
++        found.append("degenerate-multiplier")
++    return found
++
++
++def sequence(p: ParameterSet, seed: int, count: int) -> SequenceResult:
++    """Return the next `count` outputs after `seed` (the seed itself is not included).
++
++    Task: T060. Covers: FR-002, FR-003, FR-004.
++    """
++    a, c, m = p.a, p.c, p.m
++    outputs: list[int] = []
++    append = outputs.append
++    x = seed
++    for _ in range(count):
++        x = (a * x + c) % m
++        append(x)
++    return SequenceResult(outputs, count, x, warnings_for(p, seed))
+diff --git a/src/lcgkit/core/numtheory.py b/src/lcgkit/core/numtheory.py
+new file mode 100644
+index 0000000..926cdc4
+--- /dev/null
++++ b/src/lcgkit/core/numtheory.py
+@@ -0,0 +1,125 @@
++"""Primality and factoring for integers up to 2**64, without randomness."""
++
++from __future__ import annotations
++
++from math import gcd, isqrt
++
++# The first twelve primes: as Miller-Rabin bases they decide primality for n < 3.3 * 10**24.
++SMALL_PRIMES = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
++TRIAL_LIMIT = 1000
++SMALLEST_PRIME = 2
++
++
++def _is_witness(base: int, odd: int, twos: int, n: int) -> bool:
++    """True if `base` proves n composite (one Miller-Rabin round)."""
++    x = pow(base, odd, n)
++    if x in (1, n - 1):
++        return False
++    for _ in range(twos - 1):
++        x = x * x % n
++        if x == n - 1:
++            return False
++    return True
++
++
++def is_prime(n: int) -> bool:
++    """Deterministic primality test.
++
++    Task: T064. Covers: FR-014.
++    """
++    if n < SMALLEST_PRIME:
++        return False
++    for p in SMALL_PRIMES:
++        if n % p == 0:
++            return n == p
++    odd, twos = n - 1, 0
++    while odd % 2 == 0:
++        odd //= 2
++        twos += 1
++    return not any(_is_witness(base, odd, twos, n) for base in SMALL_PRIMES)
++
++
++def _rho(n: int, c: int) -> int:
++    """Pollard-Brent: a divisor of n found with f(x) = x*x + c, possibly n itself."""
++    x = y = 2
++    run, g = 1, 1
++    while g == 1:
++        x = y
++        for _ in range(run):
++            y = (y * y + c) % n
++        for _ in range(run):
++            y = (y * y + c) % n
++            g = gcd(abs(x - y), n)
++            if g != 1:
++                break
++        run *= 2
++    return g
++
++
++def _find_divisor(n: int) -> int:
++    """A proper divisor of the composite n, trying c = 1, 2, 3, ... in a fixed order."""
++    root = isqrt(n)
++    if root * root == n:
++        return root
++    c = 1
++    while True:
++        g = _rho(n, c)
++        if 1 < g < n:
++            return g
++        c += 1
++
++
++def _strip_small(n: int, factors: dict[int, int]) -> int:
++    """Divide out every prime below TRIAL_LIMIT, recording it; return what is left."""
++    for d in range(2, TRIAL_LIMIT):
++        while n % d == 0:
++            factors[d] = factors.get(d, 0) + 1
++            n //= d
++    return n
++
++
++def _split(n: int, factors: dict[int, int]) -> None:
++    """Add the prime factorisation of n (all factors above TRIAL_LIMIT) to `factors`."""
++    if n == 1:
++        return
++    if is_prime(n):
++        factors[n] = factors.get(n, 0) + 1
++        return
++    d = _find_divisor(n)
++    _split(d, factors)
++    _split(n // d, factors)
++
++
++def factor(n: int) -> dict[int, int]:
++    """Prime factorisation of n as {prime: exponent}; {} for 1.
++
++    Task: T064. Covers: FR-014.
++    """
++    factors: dict[int, int] = {}
++    _split(_strip_small(n, factors), factors)
++    return dict(sorted(factors.items()))
++
++
++def modinv(a: int, m: int) -> int | None:
++    """The inverse of a modulo m, or None when gcd(a, m) is not 1.
++
++    Task: T080. Covers: FR-039.
++    """
++    try:
++        return pow(a, -1, m)
++    except ValueError:
++        return None
++
++
++def solve_linear(a: int, b: int, m: int) -> list[int]:
++    """Every x in [0, m) with a*x = b (mod m): none, or gcd(a, m) of them.
++
++    Task: T080. Covers: FR-039, FR-043.
++    """
++    g = gcd(a, m)
++    if b % g != 0:
++        return []
++    step = m // g
++    inverse = modinv(a // g, step)
++    first = 0 if inverse is None else (b // g) * inverse % step
++    return [first + k * step for k in range(g)]
+diff --git a/src/lcgkit/core/predictor.py b/src/lcgkit/core/predictor.py
+new file mode 100644
+index 0000000..ffe5d1a
+--- /dev/null
++++ b/src/lcgkit/core/predictor.py
+@@ -0,0 +1,122 @@
++"""Predict a generator's next outputs from what has been seen, to show it is not secure."""
++
++from __future__ import annotations
++
++from dataclasses import dataclass
++from math import gcd
++
++from lcgkit.core.lcg import ParameterSet, sequence
++from lcgkit.core.numtheory import solve_linear
++from lcgkit.errors import LcgError
++
++NOTICE = "This prediction shows that the generator is not secure."
++CASE_B_ADDITION = " Recovering the modulus is probable, not certain."
++MIN_OUTPUTS_KNOWN_MODULUS = 3
++MIN_OUTPUTS_UNKNOWN_MODULUS = 12
++MAX_HIDDEN_BITS = 20
++MAX_CANDIDATES = 1 << 16
++AMBIGUOUS = 2
++
++
++@dataclass(frozen=True)
++class Prediction:
++    """A recovered generator (or state) and the values predicted from it."""
++
++    case: str
++    modulus: int | None
++    a: int | None
++    c: int | None
++    state: int | None
++    predictions: list[int]
++    notice: str
++
++
++def _reproduces(outputs: list[int], a: int, c: int, m: int) -> bool:
++    """True if a and c generate every supplied output from the one before."""
++    return all(outputs[i + 1] == (a * outputs[i] + c) % m for i in range(len(outputs) - 1))
++
++
++def predict_known_modulus(m: int, outputs: list[int], k: int) -> Prediction:
++    """Case A: recover a and c from at least three outputs when the modulus is known.
++
++    Task: T081. Covers: FR-039, FR-042, FR-043.
++    """
++    if len(outputs) < MIN_OUTPUTS_KNOWN_MODULUS:
++        raise LcgError("insufficient-data", "at least 3 outputs are needed", "outputs")
++    x1, x2, x3 = outputs[:MIN_OUTPUTS_KNOWN_MODULUS]
++    first, second = (x2 - x1) % m, (x3 - x2) % m
++    if gcd(first, m) > MAX_CANDIDATES:
++        raise LcgError("ambiguous-parameters", "too many multipliers fit these outputs")
++    fits = []
++    for a in solve_linear(first, second, m):
++        c = (x2 - a * x1) % m
++        if _reproduces(outputs, a, c, m):
++            fits.append((a, c))
++    if not fits:
++        raise LcgError("insufficient-data", "no multiplier and increment fit these outputs")
++    if len(fits) > 1:
++        raise LcgError("ambiguous-parameters", "several multipliers fit these outputs equally")
++    a, c = fits[0]
++    predictions = sequence(ParameterSet(a, c, m), outputs[-1], k).outputs
++    return Prediction("A", None, a, c, None, predictions, NOTICE)
++
++
++def predict_unknown_modulus(outputs: list[int], k: int) -> Prediction:
++    """Case B: recover the modulus from at least 12 outputs, then proceed as case A.
++
++    Task: T081. Covers: FR-040, FR-042, FR-043.
++    """
++    if len(outputs) < MIN_OUTPUTS_UNKNOWN_MODULUS:
++        raise LcgError("insufficient-data", "at least 12 outputs are needed", "outputs")
++    t = [outputs[i + 1] - outputs[i] for i in range(len(outputs) - 1)]
++    g = 0
++    for i in range(len(t) - 2):
++        g = gcd(g, abs(t[i + 2] * t[i] - t[i + 1] ** 2))
++    if g <= max(outputs):
++        raise LcgError("insufficient-data", "the modulus cannot be recovered from these outputs")
++    found = predict_known_modulus(g, outputs, k)
++    return Prediction("B", g, found.a, found.c, None, found.predictions, NOTICE + CASE_B_ADDITION)
++
++
++def _matching_states(p: ParameterSet, hidden: int, outputs: list[int]) -> list[int]:
++    """States whose high bits give the first output and whose next steps give the others.
++
++    Stops once two are found, since that already makes the answer ambiguous.
++    """
++    a, c, m = p.a, p.c, p.m
++    found: list[int] = []
++    for low in range(1 << hidden):
++        x = (outputs[0] << hidden) | low
++        if x >= m:
++            break
++        state = x
++        for seen in outputs[1:]:
++            state = (a * state + c) % m
++            if state >> hidden != seen:
++                break
++        else:
++            found.append(x)
++            if len(found) == AMBIGUOUS:
++                break
++    return found
++
++
++def predict_truncated(p: ParameterSet, hidden_bits: int, outputs: list[int], k: int) -> Prediction:
++    """Case C: recover the internal state from outputs that lost their low `hidden_bits` bits.
++
++    Task: T081. Covers: FR-041, FR-042, FR-043.
++    """
++    if p.m & (p.m - 1) != 0 or hidden_bits > MAX_HIDDEN_BITS:
++        raise LcgError(
++            "unsupported-combination",
++            f"needs a power-of-two modulus and at most {MAX_HIDDEN_BITS} hidden bits",
++            "hidden_bits",
++        )
++    states = _matching_states(p, hidden_bits, outputs)
++    if not states:
++        raise LcgError("insufficient-data", "no state fits these outputs")
++    if len(states) > 1:
++        raise LcgError("ambiguous-parameters", "several states fit these outputs equally")
++    state = sequence(p, states[0], len(outputs) - 1).next_state
++    predictions = sequence(p, state, k).outputs
++    return Prediction("C", None, None, None, state, predictions, NOTICE)
+diff --git a/src/lcgkit/core/presets.py b/src/lcgkit/core/presets.py
+new file mode 100644
+index 0000000..2a037dc
+--- /dev/null
++++ b/src/lcgkit/core/presets.py
+@@ -0,0 +1,64 @@
++"""The seven named generators."""
++
++from __future__ import annotations
++
++from collections.abc import Mapping
++from dataclasses import dataclass
++from types import MappingProxyType
++
++from lcgkit.core.lcg import ParameterSet
++from lcgkit.errors import LcgError
++
++
++@dataclass(frozen=True)
++class Preset:
++    """A named parameter set with a one-line description."""
++
++    name: str
++    params: ParameterSet
++    description: str
++
++
++PRESETS: Mapping[str, Preset] = MappingProxyType(
++    {
++        p.name: p
++        for p in (
++            Preset("minstd", ParameterSet(16807, 0, 2**31 - 1), "Park-Miller minimal standard"),
++            Preset(
++                "minstd-new", ParameterSet(48271, 0, 2**31 - 1),
++                "revised multiplier for the minimal standard",
++            ),
++            Preset(
++                "glibc-type0", ParameterSet(1103515245, 12345, 2**31),
++                "the simple mode of the GNU C library",
++            ),
++            Preset(
++                "numrec", ParameterSet(1664525, 1013904223, 2**32),
++                "Numerical Recipes' quick generator",
++            ),
++            Preset(
++                "musl", ParameterSet(6364136223846793005, 1, 2**64),
++                "the musl C library's rand",
++            ),
++            Preset(
++                "pcg-lcg64", ParameterSet(6364136223846793005, 1442695040888963407, 2**64),
++                "the 64-bit LCG used by the PCG family",
++            ),
++            Preset(
++                "randu", ParameterSet(65539, 0, 2**31),
++                "IBM's RANDU, included as a known-bad example",
++            ),
++        )
++    }
++)
++
++
++def get(name: str) -> ParameterSet:
++    """Return the parameters of the preset called `name`.
++
++    Task: T062. Covers: FR-009, FR-012.
++    """
++    preset = PRESETS.get(name)
++    if preset is None:
++        raise LcgError("unknown-preset", f"there is no preset called {name!r}", "preset")
++    return preset.params
+diff --git a/src/lcgkit/core/quality.py b/src/lcgkit/core/quality.py
+new file mode 100644
+index 0000000..6af4c82
+--- /dev/null
++++ b/src/lcgkit/core/quality.py
+@@ -0,0 +1,139 @@
++"""A short, fixed set of measurements on a generator's output, with a cautious verdict."""
++
++from __future__ import annotations
++
++import math
++from dataclasses import dataclass
++
++from lcgkit.core.lcg import ParameterSet, sequence
++from lcgkit.core.stats import chi_square_p, serial_correlation
++
++NOTICE = "Passing these checks does not show that a generator is random or secure."
++FLAG = "low-bits-short-period"
++NOT_COMPUTED = "not-computed"
++NOT_APPLICABLE = "not-applicable"
++UNDEFINED = "undefined"
++PASS, FAIL = "pass", "fail"
++MAX_PERIOD_MODULUS = 2**24
++LOW_BITS = (1, 2, 3)
++P_THRESHOLD = 0.01
++Z_LIMIT = 2.576
++MIN_EXPECTED_PER_BIN = 10
++MIN_INDEPENDENCE_SAMPLE = 100
++
++
++@dataclass(frozen=True)
++class Check:
++    """One check: its name, the value it looked at and its outcome."""
++
++    name: str
++    value: object
++    outcome: str
++
++
++@dataclass(frozen=True)
++class QualityReport:
++    """The measurements, the checks and the verdict."""
++
++    measured_period: int | str
++    chi_square: float
++    p_value: float
++    serial_correlation: float | str
++    low_bit_periods: dict[int, int] | str
++    checks: list[Check]
++    verdict: str
++    notice: str
++
++
++def cycle_length(a: int, c: int, m: int, seed: int) -> int:
++    """Length of the cycle the seed ends up in (Brent's cycle detection)."""
++    power = length = 1
++    tortoise = seed
++    hare = (a * seed + c) % m
++    while tortoise != hare:
++        if power == length:
++            tortoise = hare
++            power *= 2
++            length = 0
++        hare = (a * hare + c) % m
++        length += 1
++    return length
++
++
++def _low_bit_periods(p: ParameterSet, seed: int) -> dict[int, int]:
++    """Cycle length of the generator reduced modulo 2**bits, for the lowest 1, 2 and 3 bits."""
++    periods = {}
++    for bits in LOW_BITS:
++        modulus = min(2**bits, p.m)
++        periods[bits] = cycle_length(p.a % modulus, p.c % modulus, modulus, seed % modulus)
++    return periods
++
++
++def _chi_square(values: list[int], m: int, bins: int) -> float:
++    counts = [0] * bins
++    for value in values:
++        counts[value * bins // m] += 1
++    expected = len(values) / bins
++    return sum((seen - expected) ** 2 / expected for seen in counts)
++
++
++def _is_power_of_two(m: int) -> bool:
++    return m & (m - 1) == 0
++
++
++def _period_check(period: int | str, size: int) -> Check:
++    if isinstance(period, str):
++        return Check("period-covers-sample", period, NOT_APPLICABLE)
++    return Check("period-covers-sample", period, PASS if period >= size else FAIL)
++
++
++def _uniformity_check(p_value: float, size: int, bins: int) -> Check:
++    if size / bins < MIN_EXPECTED_PER_BIN:
++        return Check("uniformity", p_value, NOT_APPLICABLE)
++    return Check("uniformity", p_value, PASS if p_value >= P_THRESHOLD else FAIL)
++
++
++def _independence_check(correlation: float | str, size: int) -> Check:
++    if size < MIN_INDEPENDENCE_SAMPLE or isinstance(correlation, str):
++        return Check("independence", correlation, NOT_APPLICABLE)
++    limit = Z_LIMIT / math.sqrt(size)
++    return Check("independence", correlation, PASS if abs(correlation) <= limit else FAIL)
++
++
++def _low_bits_check(m: int) -> Check:
++    """Informational: flagged whenever m is a power of two, never a failure."""
++    if _is_power_of_two(m):
++        return Check("low-bits", FLAG, PASS)
++    return Check("low-bits", None, NOT_APPLICABLE)
++
++
++def _verdict(checks: list[Check]) -> str:
++    if any(c.outcome == FAIL for c in checks):
++        return "defect-detected"
++    if any(c.name == "low-bits" and c.value == FLAG for c in checks):
++        return "caution"
++    return "no-defect-detected"
++
++
++def report(p: ParameterSet, seed: int, sample_size: int, bins: int) -> QualityReport:
++    """Measure the first `sample_size` outputs and judge them.
++
++    Task: T074. Covers: FR-026, FR-029, FR-031.
++    """
++    values = sequence(p, seed, sample_size).outputs
++    period: int | str = NOT_COMPUTED
++    if p.m <= MAX_PERIOD_MODULUS:
++        period = cycle_length(p.a, p.c, p.m, seed)
++    chi = _chi_square(values, p.m, bins)
++    p_value = chi_square_p(chi, bins - 1)
++    raw = serial_correlation(values)
++    correlation: float | str = UNDEFINED if raw is None else raw
++    checks = [
++        _period_check(period, sample_size),
++        _uniformity_check(p_value, sample_size, bins),
++        _independence_check(correlation, sample_size),
++        _low_bits_check(p.m),
++    ]
++    low_bits = _low_bit_periods(p, seed) if _is_power_of_two(p.m) else NOT_APPLICABLE
++    verdict = _verdict(checks)
++    return QualityReport(period, chi, p_value, correlation, low_bits, checks, verdict, NOTICE)
+diff --git a/src/lcgkit/core/stats.py b/src/lcgkit/core/stats.py
+new file mode 100644
+index 0000000..5658fc0
+--- /dev/null
++++ b/src/lcgkit/core/stats.py
+@@ -0,0 +1,72 @@
++"""Statistics for the quality report: the chi-square p-value and the serial correlation."""
++
++from __future__ import annotations
++
++import math
++from collections.abc import Sequence
++from itertools import pairwise
++
++TOLERANCE = 1e-15
++MAX_ITERATIONS = 10_000
++TINY = 1e-300
++
++
++def _series(s: float, x: float) -> float:
++    """Regularised lower incomplete gamma P(s, x) by its power series (for x < s + 1)."""
++    term = 1.0 / s
++    total = term
++    n = s
++    for _ in range(MAX_ITERATIONS):
++        n += 1
++        term *= x / n
++        total += term
++        if abs(term) < abs(total) * TOLERANCE:
++            break
++    return total * math.exp(-x + s * math.log(x) - math.lgamma(s))
++
++
++def _fraction(s: float, x: float) -> float:
++    """Regularised upper incomplete gamma Q(s, x) by a continued fraction (for x >= s + 1)."""
++    b = x + 1.0 - s
++    c = 1.0 / TINY
++    d = 1.0 / b
++    h = d
++    for i in range(1, MAX_ITERATIONS + 1):
++        an = -i * (i - s)
++        b += 2.0
++        d = an * d + b
++        d = TINY if abs(d) < TINY else d
++        c = b + an / c
++        c = TINY if abs(c) < TINY else c
++        d = 1.0 / d
++        delta = d * c
++        h *= delta
++        if abs(delta - 1.0) < TOLERANCE:
++            break
++    return math.exp(-x + s * math.log(x) - math.lgamma(s)) * h
++
++
++def chi_square_p(statistic: float, dof: int) -> float:
++    """Upper-tail probability of the chi-square distribution: Q(dof / 2, statistic / 2).
++
++    Task: T073. Covers: FR-030.
++    """
++    if statistic <= 0:
++        return 1.0
++    s = dof / 2.0
++    x = statistic / 2.0
++    p = 1.0 - _series(s, x) if x < s + 1.0 else _fraction(s, x)
++    return min(1.0, max(0.0, p))
++
++
++def serial_correlation(values: Sequence[int]) -> float | None:
++    """Lag-1 serial correlation of the values; None when they are all equal.
++
++    Task: T073. Covers: FR-030.
++    """
++    if min(values) == max(values):
++        return None
++    mean = sum(values) / len(values)
++    deviations = [v - mean for v in values]
++    numerator = sum(left * right for left, right in pairwise(deviations))
++    return numerator / sum(d * d for d in deviations)
+diff --git a/src/lcgkit/core/streams.py b/src/lcgkit/core/streams.py
+new file mode 100644
+index 0000000..8a858eb
+--- /dev/null
++++ b/src/lcgkit/core/streams.py
+@@ -0,0 +1,30 @@
++"""Split one sequence into separate streams that never overlap."""
++
++from __future__ import annotations
++
++from dataclasses import dataclass
++
++from lcgkit.core.jump import jump
++from lcgkit.core.lcg import ParameterSet, sequence
++
++
++@dataclass(frozen=True)
++class Stream:
++    """A stream: its number, the state it starts from and its outputs."""
++
++    index: int
++    start_state: int
++    outputs: list[int]
++
++
++def split(p: ParameterSet, seed: int, streams: int, length: int) -> list[Stream]:
++    """Return `streams` streams of `length` outputs; stream i starts at the state i * length
++    steps after the seed, so joined in order they are the plain sequence.
++
++    Task: T083. Covers: FR-046.
++    """
++    found = []
++    for index in range(streams):
++        start = jump(p, seed, index * length)
++        found.append(Stream(index, start, sequence(p, start, length).outputs))
++    return found
+diff --git a/src/lcgkit/core/validator.py b/src/lcgkit/core/validator.py
+new file mode 100644
+index 0000000..e786c5e
+--- /dev/null
++++ b/src/lcgkit/core/validator.py
+@@ -0,0 +1,50 @@
++"""Does a parameter set give a full period? The three Hull-Dobell conditions."""
++
++from __future__ import annotations
++
++from dataclasses import dataclass
++from math import gcd
++
++from lcgkit.core.lcg import ParameterSet
++from lcgkit.core.numtheory import factor
++
++INCREMENT = "increment-not-coprime"
++PRIME_FACTOR = "multiplier-minus-one-not-divisible-by-prime-factor"
++FOUR = "multiplier-minus-one-not-divisible-by-four"
++FULL = "full-period"
++NOT_FULL = "not-full-period"
++FOUR_DIVISOR = 4
++
++
++@dataclass(frozen=True)
++class Condition:
++    """One of the three conditions and whether the parameters satisfy it."""
++
++    name: str
++    passed: bool
++
++
++@dataclass(frozen=True)
++class Verdict:
++    """The verdict, the expected period (full period only), the conditions and the failures."""
++
++    verdict: str
++    expected_period: int | None
++    conditions: list[Condition]
++    reasons: list[str]
++
++
++def validate(p: ParameterSet) -> Verdict:
++    """Check the Hull-Dobell conditions for a full period.
++
++    Task: T065. Covers: FR-013, FR-014, FR-015.
++    """
++    conditions = [
++        Condition(INCREMENT, gcd(p.c, p.m) == 1),
++        Condition(PRIME_FACTOR, all((p.a - 1) % q == 0 for q in factor(p.m))),
++        Condition(FOUR, p.m % FOUR_DIVISOR != 0 or (p.a - 1) % FOUR_DIVISOR == 0),
++    ]
++    reasons = [c.name for c in conditions if not c.passed]
++    if reasons:
++        return Verdict(NOT_FULL, None, conditions, reasons)
++    return Verdict(FULL, p.m, conditions, reasons)
+diff --git a/src/lcgkit/errors.py b/src/lcgkit/errors.py
+new file mode 100644
+index 0000000..efa84b3
+--- /dev/null
++++ b/src/lcgkit/errors.py
+@@ -0,0 +1,50 @@
++"""Error codes and the one exception type that every interface reports."""
++
++from __future__ import annotations
++
++ERROR_CODES: tuple[str, ...] = (
++    "invalid-modulus",
++    "invalid-multiplier",
++    "invalid-increment",
++    "invalid-seed",
++    "invalid-type",
++    "invalid-count",
++    "count-exceeds-limit",
++    "invalid-jump",
++    "invalid-range",
++    "range-exceeds-modulus",
++    "invalid-bins",
++    "unknown-preset",
++    "insecure-purpose",
++    "insufficient-data",
++    "ambiguous-parameters",
++    "stream-exceeds-modulus",
++    "unsupported-combination",
++    "malformed-request",
++)
++
++
++class LcgError(Exception):
++    """A problem with a request, with a stable code, a message and the field it concerns."""
++
++    def __init__(self, code: str, message: str, field: str | None = None) -> None:
++        """Create an error; a code outside ERROR_CODES is a programming mistake (ValueError).
++
++        Task: T056. Covers: FR-001, FR-036.
++        """
++        if code not in ERROR_CODES:
++            raise ValueError(f"unknown error code: {code}")
++        super().__init__(message)
++        self.code = code
++        self.message = message
++        self.field = field
++
++    def to_body(self) -> dict[str, dict[str, str]]:
++        """Return the structured error body, leaving out `field` when there is none.
++
++        Task: T056. Covers: FR-036.
++        """
++        body = {"code": self.code, "message": self.message}
++        if self.field is not None:
++            body["field"] = self.field
++        return {"error": body}
+diff --git a/src/lcgkit/fields.py b/src/lcgkit/fields.py
+new file mode 100644
+index 0000000..12c5e1f
+--- /dev/null
++++ b/src/lcgkit/fields.py
+@@ -0,0 +1,223 @@
++"""The field table: names, kinds, checking order and value rules, shared by every interface."""
++
++from __future__ import annotations
++
++from collections.abc import Callable, Mapping
++from dataclasses import dataclass
++from types import MappingProxyType
++from typing import Any
++
++from lcgkit.errors import LcgError
++
++MAX_COUNT = 1_000_000
++MIN_MODULUS = 2
++MAX_MODULUS = 2**64
++MIN_SAMPLE_SIZE = 2
++MAX_STEPS = 2**64
++DEFAULT_K = 10
++
++LARGE = "large"
++SIGNED_LARGE = "signed-large"
++COUNT = "count"
++TEXT = "text"
++LARGE_LIST = "large-list"
++
++Rule = Callable[[Any, Mapping[str, Any]], None]
++
++
++@dataclass(frozen=True)
++class Field:
++    """A request field: its name and its kind (how it travels in JSON and how it is typed)."""
++
++    name: str
++    kind: str
++
++
++@dataclass(frozen=True)
++class Operation:
++    """What one operation accepts, in the order its fields are checked."""
++
++    name: str
++    uses_params: bool
++    start: str | None
++    own: tuple[str, ...]
++    purpose: bool
++    optional: frozenset[str]
++
++    @property
++    def order(self) -> tuple[str, ...]:
++        """The fields after the generator parameters, in checking order."""
++        return (() if self.start is None else (self.start,)) + self.own
++
++    @property
++    def allowed(self) -> frozenset[str]:
++        """Every field name the operation accepts."""
++        names = set(self.order)
++        if self.uses_params:
++            names |= {"preset", "m", "a", "c"}
++        if self.purpose:
++            names.add("purpose")
++        return frozenset(names)
++
++
++def error(code: str, field: str, message: str) -> LcgError:
++    """Build an LcgError naming a field."""
++    return LcgError(code, message, field)
++
++
++def _modulus(value: int, seen: Mapping[str, Any]) -> None:
++    if not MIN_MODULUS <= value <= MAX_MODULUS:
++        raise error("invalid-modulus", "m", f"m must be from {MIN_MODULUS} to 2^64")
++
++
++def _below_modulus(code: str, field: str) -> Rule:
++    def rule(value: int, seen: Mapping[str, Any]) -> None:
++        modulus = seen.get("m")
++        if modulus is not None and not 0 <= value < modulus:
++            raise error(code, field, f"{field} must be from 0 to m - 1")
++
++    return rule
++
++
++def _count(minimum: int, low_code: str, field: str) -> Rule:
++    def rule(value: int, seen: Mapping[str, Any]) -> None:
++        if value < minimum:
++            raise error(low_code, field, f"{field} must be at least {minimum}")
++        if value > MAX_COUNT:
++            raise error("count-exceeds-limit", field, f"{field} must be at most {MAX_COUNT}")
++
++    return rule
++
++
++def _hi(value: int, seen: Mapping[str, Any]) -> None:
++    low = seen["lo"]
++    if low > value:
++        raise error("invalid-range", "hi", "lo must not be greater than hi")
++    if value - low + 1 > seen["m"]:
++        raise error("range-exceeds-modulus", "hi", "the range holds more values than m")
++
++
++def _bins(value: int, seen: Mapping[str, Any]) -> None:
++    if not 1 <= value <= seen["sample_size"]:
++        raise error("invalid-bins", "bins", "bins must be from 1 to the sample size")
++
++
++def _steps(value: int, seen: Mapping[str, Any]) -> None:
++    if not 0 <= value < MAX_STEPS:
++        raise error("invalid-jump", "steps", "steps must be from 0 to 2^64 - 1")
++
++
++def _streams(value: int, seen: Mapping[str, Any]) -> None:
++    if value < 1:
++        raise error("invalid-count", "streams", "streams must be at least 1")
++
++
++def _length(value: int, seen: Mapping[str, Any]) -> None:
++    if value < 1:
++        raise error("invalid-count", "length", "length must be at least 1")
++    total = seen["streams"] * value
++    if total > MAX_COUNT:
++        message = f"streams x length must be at most {MAX_COUNT}"
++        raise error("count-exceeds-limit", "length", message)
++    if total > seen["m"]:
++        raise error("stream-exceeds-modulus", "length", "streams x length must not exceed m")
++
++
++def _outputs(value: list[int], seen: Mapping[str, Any]) -> None:
++    if not value:
++        raise error("insufficient-data", "outputs", "at least one output is needed")
++    if len(value) > MAX_COUNT:
++        raise error("count-exceeds-limit", "outputs", f"at most {MAX_COUNT} outputs")
++    if min(value) < 0:
++        raise error("invalid-type", "outputs", "outputs must be non-negative integers")
++
++
++def _hidden_bits(value: int, seen: Mapping[str, Any]) -> None:
++    if value < 0:
++        raise error("unsupported-combination", "hidden_bits", "hidden_bits must not be negative")
++
++
++FIELDS: Mapping[str, Field] = MappingProxyType(
++    {
++        f.name: f
++        for f in (
++            Field("preset", TEXT),
++            Field("m", LARGE),
++            Field("a", LARGE),
++            Field("c", LARGE),
++            Field("seed", LARGE),
++            Field("state", LARGE),
++            Field("count", COUNT),
++            Field("lo", SIGNED_LARGE),
++            Field("hi", SIGNED_LARGE),
++            Field("steps", LARGE),
++            Field("sample_size", COUNT),
++            Field("bins", COUNT),
++            Field("outputs", LARGE_LIST),
++            Field("hidden_bits", COUNT),
++            Field("k", COUNT),
++            Field("streams", COUNT),
++            Field("length", COUNT),
++            Field("purpose", TEXT),
++        )
++    }
++)
++
++RULES: Mapping[str, Rule] = MappingProxyType(
++    {
++        "m": _modulus,
++        "a": _below_modulus("invalid-multiplier", "a"),
++        "c": _below_modulus("invalid-increment", "c"),
++        "seed": _below_modulus("invalid-seed", "seed"),
++        "state": _below_modulus("invalid-seed", "state"),
++        "count": _count(0, "invalid-count", "count"),
++        "hi": _hi,
++        "steps": _steps,
++        "sample_size": _count(MIN_SAMPLE_SIZE, "invalid-count", "sample_size"),
++        "bins": _bins,
++        "outputs": _outputs,
++        "hidden_bits": _hidden_bits,
++        "k": _count(1, "invalid-count", "k"),
++        "streams": _streams,
++        "length": _length,
++    }
++)
++
++DEFAULTS: Mapping[str, int] = MappingProxyType({"k": DEFAULT_K, "hidden_bits": 0})
++
++_PREDICT_OPTIONAL = frozenset({"m", "a", "c", "hidden_bits", "k"})
++
++OPERATIONS: Mapping[str, Operation] = MappingProxyType(
++    {
++        op.name: op
++        for op in (
++            Operation("presets", False, None, (), False, frozenset()),
++            Operation("sequence", True, "seed", ("count",), True, frozenset()),
++            Operation("integers", True, "seed", ("lo", "hi", "count"), True, frozenset()),
++            Operation("fractions", True, "seed", ("count",), True, frozenset()),
++            Operation("jump", True, "state", ("steps",), True, frozenset()),
++            Operation("streams", True, "seed", ("streams", "length"), True, frozenset()),
++            Operation("validate", True, None, (), False, frozenset()),
++            Operation("quality", True, "seed", ("sample_size", "bins"), False, frozenset()),
++            Operation(
++                "predict", False, None,
++                ("outputs", "m", "a", "c", "hidden_bits", "k"), False, _PREDICT_OPTIONAL,
++            ),
++        )
++    }
++)
++
++
++def check_type(field: Field, value: object) -> None:
++    """Raise `invalid-type` unless `value` has the right Python type for the field's kind.
++
++    Task: T057. Covers: FR-001.
++    """
++    if field.kind == TEXT:
++        good = isinstance(value, str)
++    elif field.kind == LARGE_LIST:
++        good = isinstance(value, list | tuple) and all(type(v) is int for v in value)
++    else:
++        good = type(value) is int
++    if not good:
++        raise error("invalid-type", field.name, f"{field.name} has the wrong type")
+diff --git a/src/lcgkit/openapi.py b/src/lcgkit/openapi.py
+new file mode 100644
+index 0000000..32218f9
+--- /dev/null
++++ b/src/lcgkit/openapi.py
+@@ -0,0 +1,607 @@
++"""The OpenAPI document of the service, built from the field table and the result schemas."""
++
++from __future__ import annotations
++
++from typing import Any
++
++from lcgkit.fields import (
++    FIELDS,
++    LARGE,
++    LARGE_LIST,
++    MAX_COUNT,
++    OPERATIONS,
++    SIGNED_LARGE,
++    TEXT,
++    Operation,
++)
++
++# Result and shared schemas, as published in specs/001-lcgkit-toolkit/contracts/openapi.yaml.
++SCHEMAS: dict[str, Any] = {
++    "DecimalString": {
++        "type": "string",
++        "pattern": "^(0|[1-9][0-9]*)$",
++        "description": (
++            "A non-negative integer written as digits; "
++            "used for every value that can exceed 2^53"
++        )
++    },
++    "SignedDecimalString": {
++        "type": "string",
++        "pattern": "^(0|-?[1-9][0-9]*)$"
++    },
++    "Count": {
++        "type": "integer",
++        "minimum": 0,
++        "maximum": 1000000
++    },
++    "Warnings": {
++        "type": "array",
++        "items": {
++            "enum": [
++                "zero-fixed-point",
++                "degenerate-multiplier"
++            ]
++        }
++    },
++    "Secure": {
++        "type": "boolean",
++        "const": False,
++        "description": "Always False; an LCG is not cryptographically secure"
++    },
++    "ErrorBody": {
++        "type": "object",
++        "required": [
++            "error"
++        ],
++        "properties": {
++            "error": {
++                "type": "object",
++                "required": [
++                    "code",
++                    "message"
++                ],
++                "properties": {
++                    "code": {
++                        "enum": [
++                            "invalid-modulus",
++                            "invalid-multiplier",
++                            "invalid-increment",
++                            "invalid-seed",
++                            "invalid-type",
++                            "invalid-count",
++                            "count-exceeds-limit",
++                            "invalid-jump",
++                            "invalid-range",
++                            "range-exceeds-modulus",
++                            "invalid-bins",
++                            "unknown-preset",
++                            "insecure-purpose",
++                            "insufficient-data",
++                            "ambiguous-parameters",
++                            "stream-exceeds-modulus",
++                            "unsupported-combination",
++                            "malformed-request"
++                        ]
++                    },
++                    "message": {
++                        "type": "string"
++                    },
++                    "field": {
++                        "type": "string"
++                    }
++                }
++            }
++        }
++    },
++    "PresetList": {
++        "type": "object",
++        "required": [
++            "presets",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "presets": {
++                "type": "array",
++                "items": {
++                    "type": "object",
++                    "required": [
++                        "name",
++                        "a",
++                        "c",
++                        "m",
++                        "description"
++                    ],
++                    "properties": {
++                        "name": {
++                            "type": "string"
++                        },
++                        "a": {
++                            "$ref": "#/components/schemas/DecimalString"
++                        },
++                        "c": {
++                            "$ref": "#/components/schemas/DecimalString"
++                        },
++                        "m": {
++                            "$ref": "#/components/schemas/DecimalString"
++                        },
++                        "description": {
++                            "type": "string"
++                        }
++                    }
++                }
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "SequenceResult": {
++        "type": "object",
++        "required": [
++            "outputs",
++            "outputs_consumed",
++            "next_state",
++            "warnings",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "outputs": {
++                "type": "array",
++                "items": {
++                    "$ref": "#/components/schemas/DecimalString"
++                }
++            },
++            "outputs_consumed": {
++                "type": "integer"
++            },
++            "next_state": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "warnings": {
++                "$ref": "#/components/schemas/Warnings"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "IntegersResult": {
++        "type": "object",
++        "required": [
++            "values",
++            "outputs_consumed",
++            "next_state",
++            "warnings",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "values": {
++                "type": "array",
++                "items": {
++                    "$ref": "#/components/schemas/SignedDecimalString"
++                }
++            },
++            "outputs_consumed": {
++                "type": "integer"
++            },
++            "next_state": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "warnings": {
++                "$ref": "#/components/schemas/Warnings"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "FractionsResult": {
++        "type": "object",
++        "required": [
++            "values",
++            "outputs_consumed",
++            "next_state",
++            "warnings",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "values": {
++                "type": "array",
++                "items": {
++                    "type": "number",
++                    "minimum": 0,
++                    "exclusiveMaximum": 1
++                }
++            },
++            "outputs_consumed": {
++                "type": "integer"
++            },
++            "next_state": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "warnings": {
++                "$ref": "#/components/schemas/Warnings"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "JumpResult": {
++        "type": "object",
++        "required": [
++            "state",
++            "warnings",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "state": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "warnings": {
++                "$ref": "#/components/schemas/Warnings"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "StreamsResult": {
++        "type": "object",
++        "required": [
++            "streams",
++            "warnings",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "streams": {
++                "type": "array",
++                "items": {
++                    "type": "object",
++                    "required": [
++                        "index",
++                        "start_state",
++                        "outputs"
++                    ],
++                    "properties": {
++                        "index": {
++                            "type": "integer"
++                        },
++                        "start_state": {
++                            "$ref": "#/components/schemas/DecimalString"
++                        },
++                        "outputs": {
++                            "type": "array",
++                            "items": {
++                                "$ref": "#/components/schemas/DecimalString"
++                            }
++                        }
++                    }
++                }
++            },
++            "warnings": {
++                "$ref": "#/components/schemas/Warnings"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "Condition": {
++        "type": "object",
++        "required": [
++            "name",
++            "passed"
++        ],
++        "properties": {
++            "name": {
++                "enum": [
++                    "increment-not-coprime",
++                    "multiplier-minus-one-not-divisible-by-prime-factor",
++                    "multiplier-minus-one-not-divisible-by-four"
++                ]
++            },
++            "passed": {
++                "type": "boolean"
++            }
++        }
++    },
++    "Verdict": {
++        "type": "object",
++        "required": [
++            "verdict",
++            "conditions",
++            "reasons",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "verdict": {
++                "enum": [
++                    "full-period",
++                    "not-full-period"
++                ]
++            },
++            "expected_period": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "conditions": {
++                "type": "array",
++                "items": {
++                    "$ref": "#/components/schemas/Condition"
++                }
++            },
++            "reasons": {
++                "type": "array",
++                "items": {
++                    "type": "string"
++                }
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "QualityReport": {
++        "type": "object",
++        "required": [
++            "measured_period",
++            "chi_square",
++            "p_value",
++            "serial_correlation",
++            "low_bit_periods",
++            "checks",
++            "verdict",
++            "notice",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "measured_period": {
++                "oneOf": [
++                    {
++                        "$ref": "#/components/schemas/DecimalString"
++                    },
++                    {
++                        "const": "not-computed"
++                    }
++                ]
++            },
++            "chi_square": {
++                "type": "number"
++            },
++            "p_value": {
++                "type": "number"
++            },
++            "serial_correlation": {
++                "oneOf": [
++                    {
++                        "type": "number"
++                    },
++                    {
++                        "const": "undefined"
++                    }
++                ]
++            },
++            "low_bit_periods": {
++                "oneOf": [
++                    {
++                        "type": "object",
++                        "required": [
++                            "1",
++                            "2",
++                            "3"
++                        ],
++                        "properties": {
++                            "1": {
++                                "type": "integer"
++                            },
++                            "2": {
++                                "type": "integer"
++                            },
++                            "3": {
++                                "type": "integer"
++                            }
++                        }
++                    },
++                    {
++                        "const": "not-applicable"
++                    }
++                ]
++            },
++            "checks": {
++                "type": "array",
++                "items": {
++                    "type": "object",
++                    "required": [
++                        "name",
++                        "outcome"
++                    ],
++                    "properties": {
++                        "name": {
++                            "enum": [
++                                "period-covers-sample",
++                                "uniformity",
++                                "independence",
++                                "low-bits"
++                            ]
++                        },
++                        "value": {},
++                        "outcome": {
++                            "enum": [
++                                "pass",
++                                "fail",
++                                "not-applicable"
++                            ]
++                        }
++                    }
++                }
++            },
++            "verdict": {
++                "enum": [
++                    "defect-detected",
++                    "caution",
++                    "no-defect-detected"
++                ]
++            },
++            "notice": {
++                "type": "string"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    },
++    "Prediction": {
++        "type": "object",
++        "required": [
++            "case",
++            "predictions",
++            "notice",
++            "cryptographically_secure"
++        ],
++        "properties": {
++            "case": {
++                "enum": [
++                    "A",
++                    "B",
++                    "C"
++                ]
++            },
++            "modulus": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "a": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "c": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "state": {
++                "$ref": "#/components/schemas/DecimalString"
++            },
++            "predictions": {
++                "type": "array",
++                "items": {
++                    "$ref": "#/components/schemas/DecimalString"
++                }
++            },
++            "notice": {
++                "type": "string"
++            },
++            "cryptographically_secure": {
++                "$ref": "#/components/schemas/Secure"
++            }
++        }
++    }
++}
++
++RESULT_SCHEMA = {
++    "presets": "PresetList",
++    "sequence": "SequenceResult",
++    "integers": "IntegersResult",
++    "fractions": "FractionsResult",
++    "jump": "JumpResult",
++    "streams": "StreamsResult",
++    "validate": "Verdict",
++    "quality": "QualityReport",
++    "predict": "Prediction",
++}
++SUMMARY = {
++    "presets": "List the named generators",
++    "sequence": "Generate a sequence",
++    "integers": "Draw fair integers from an inclusive range",
++    "fractions": "Draw fractions in [0, 1)",
++    "jump": "State after a number of steps",
++    "streams": "Split a sequence into separate streams",
++    "validate": "Check whether parameters reach a full period",
++    "quality": "Quality report for a generator's output",
++    "predict": "Predict what comes next from observed outputs",
++}
++
++
++def _ref(name: str) -> dict[str, str]:
++    return {"$ref": f"#/components/schemas/{name}"}
++
++
++def _property(name: str) -> dict[str, Any]:
++    """The schema of one request field, from its kind in the field table."""
++    kind = FIELDS[name].kind
++    if kind == LARGE:
++        return _ref("DecimalString")
++    if kind == SIGNED_LARGE:
++        return _ref("SignedDecimalString")
++    if kind == TEXT:
++        return {"type": "string"}
++    if kind == LARGE_LIST:
++        return {"type": "array", "maxItems": MAX_COUNT, "items": _ref("DecimalString")}
++    if name == "hidden_bits":
++        return {"type": "integer", "minimum": 0}
++    return _ref("Count")
++
++
++def _request_body(spec: Operation) -> dict[str, Any]:
++    """A request body listing exactly the fields the operation accepts."""
++    names = sorted(spec.allowed, key=_field_rank)
++    schema: dict[str, Any] = {
++        "type": "object",
++        "additionalProperties": False,
++        "properties": {name: _property(name) for name in names},
++    }
++    required = [n for n in spec.order if n not in spec.optional]
++    if required:
++        schema["required"] = required
++    return {"required": True, "content": {"application/json": {"schema": schema}}}
++
++
++def _field_rank(name: str) -> int:
++    return list(FIELDS).index(name)
++
++
++def _responses(spec: Operation) -> dict[str, Any]:
++    success = {
++        "description": "The result",
++        "content": {"application/json": {"schema": _ref(RESULT_SCHEMA[spec.name])}},
++    }
++    error = {
++        "description": "One error, the first in the fixed checking order",
++        "content": {"application/json": {"schema": _ref("ErrorBody")}},
++    }
++    responses: dict[str, Any] = {"200": success}
++    if spec.name != "presets":
++        responses["400"] = error
++    if spec.purpose:
++        responses["403"] = {**error, "description": "The declared purpose is refused"}
++    return responses
++
++
++def _operation(spec: Operation) -> dict[str, Any]:
++    entry: dict[str, Any] = {"operationId": spec.name, "summary": SUMMARY[spec.name]}
++    if spec.name != "presets":
++        entry["requestBody"] = _request_body(spec)
++    entry["responses"] = _responses(spec)
++    return entry
++
++
++def build_document() -> dict[str, Any]:
++    """Build the OpenAPI 3.1 document from the field table.
++
++    Task: T078. Covers: FR-037.
++    """
++    paths = {
++        f"/v1/{name}": {("get" if name == "presets" else "post"): _operation(spec)}
++        for name, spec in OPERATIONS.items()
++    }
++    return {
++        "openapi": "3.1.0",
++        "info": {
++            "title": "lcgkit",
++            "version": "1.0.0",
++            "description": (
++                "Stateless linear congruential generator service. Nothing is stored between "
++                "requests. Integers that can exceed 2^53 travel as decimal strings. A request "
++                "with several mistakes gets one error, chosen in a fixed field order. Output "
++                "of this service is not cryptographically secure."
++            ),
++        },
++        "paths": paths,
++        "components": {"schemas": SCHEMAS},
++    }
+diff --git a/src/lcgkit/ops.py b/src/lcgkit/ops.py
+new file mode 100644
+index 0000000..3c9dd58
+--- /dev/null
++++ b/src/lcgkit/ops.py
+@@ -0,0 +1,235 @@
++"""The operations layer: one request path shared by the library, the command line and HTTP."""
++
++from __future__ import annotations
++
++from collections.abc import Callable, Mapping
++from types import MappingProxyType
++from typing import Any
++
++from lcgkit.core import bounded, guard, jump, lcg, predictor, presets, quality, streams, validator
++from lcgkit.core.lcg import ParameterSet
++from lcgkit.errors import LcgError
++from lcgkit.fields import DEFAULTS, FIELDS, OPERATIONS, RULES, Operation, check_type
++from lcgkit.wire import InvalidField
++
++Handler = Callable[[Mapping[str, Any]], dict[str, Any]]
++PARAMETER_FIELDS = ("m", "a", "c")
++EXPLICIT_PARAMETERS = frozenset(PARAMETER_FIELDS)
++
++
++def _malformed(message: str, field: str | None = None) -> LcgError:
++    return LcgError("malformed-request", message, field)
++
++
++def _positive(value: object) -> bool:
++    return type(value) is int and value > 0
++
++
++def _check_conflicts(spec: Operation, request: Mapping[str, object]) -> None:
++    """Reject a preset together with explicit parameters, and a or c without hidden bits."""
++    if "preset" in request and EXPLICIT_PARAMETERS & request.keys():
++        raise _malformed("give either a preset or a, c and m, not both", "preset")
++    if spec.name == "predict" and not _positive(request.get("hidden_bits")):
++        for name in ("a", "c"):
++            if name in request:
++                raise _malformed(f"{name} is only accepted with a positive hidden_bits", name)
++
++
++def _check_structure(spec: Operation, request: Mapping[str, object]) -> None:
++    """Report structural problems first: unknown, conflicting or missing fields."""
++    for name in request:
++        if name not in spec.allowed:
++            raise _malformed(f"unknown field: {name}", str(name))
++    _check_conflicts(spec, request)
++    needed = [n for n in spec.order if n not in spec.optional]
++    if spec.uses_params and "preset" not in request:
++        needed = [*PARAMETER_FIELDS, *needed]
++    for name in needed:
++        if name not in request:
++            raise _malformed(f"missing field: {name}", name)
++
++
++def _take(name: str, request: Mapping[str, object], seen: dict[str, Any]) -> None:
++    """Check one field's type and value (in that order) and keep it."""
++    value = request[name]
++    if isinstance(value, InvalidField):
++        raise LcgError(value.code, f"{value.field} could not be read", value.field)
++    check_type(FIELDS[name], value)
++    rule = RULES.get(name)
++    if rule is not None:
++        rule(value, seen)
++    seen[name] = value
++
++
++def _parameters(request: Mapping[str, object], seen: dict[str, Any]) -> None:
++    """Resolve a preset, or check m, a and c in that order."""
++    if "preset" in request:
++        _take("preset", request, seen)
++        params = presets.get(seen.pop("preset"))
++        seen.update(a=params.a, c=params.c, m=params.m)
++        return
++    for name in PARAMETER_FIELDS:
++        _take(name, request, seen)
++
++
++def _validate(spec: Operation, request: Mapping[str, object]) -> dict[str, Any]:
++    """Check every field in the table's order; the first problem is the only one reported."""
++    seen: dict[str, Any] = {}
++    if spec.uses_params:
++        _parameters(request, seen)
++        seen["p"] = ParameterSet(seen["a"], seen["c"], seen["m"])
++    for name in spec.order:
++        if name in request:
++            _take(name, request, seen)
++        elif name in DEFAULTS:
++            seen[name] = DEFAULTS[name]
++    return seen
++
++
++def _check_purpose(spec: Operation, request: Mapping[str, object]) -> None:
++    """Apply the purpose guard last, once every other input is known to be valid."""
++    if spec.purpose and "purpose" in request:
++        seen: dict[str, Any] = {}
++        _take("purpose", request, seen)
++        guard.check_purpose(seen["purpose"])
++
++
++def run(operation: str, request: Mapping[str, object]) -> dict[str, Any]:
++    """Validate a request with the field table, run the operation and shape the answer.
++
++    Task: T059. Covers: FR-001, FR-005, FR-006, FR-036.
++    """
++    spec = OPERATIONS.get(operation)
++    if spec is None:
++        raise _malformed(f"unknown operation: {operation}")
++    if not isinstance(request, Mapping):
++        raise _malformed("the request must be an object")
++    _check_structure(spec, request)
++    values = _validate(spec, request)
++    _check_purpose(spec, request)
++    result = HANDLERS[operation](values)
++    return {**result, "cryptographically_secure": False}
++
++
++def _sequence(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T061. Covers: FR-001 to FR-008."""
++    result = lcg.sequence(v["p"], v["seed"], v["count"])
++    return {
++        "outputs": result.outputs,
++        "outputs_consumed": result.outputs_consumed,
++        "next_state": result.next_state,
++        "warnings": result.warnings,
++    }
++
++
++def _presets(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T063. Covers: FR-010."""
++    return {
++        "presets": [
++            {
++                "name": item.name, "a": item.params.a, "c": item.params.c, "m": item.params.m,
++                "description": item.description,
++            }
++            for item in presets.PRESETS.values()
++        ]
++    }
++
++
++def _validate_handler(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T066. Covers: FR-013, FR-014, FR-015."""
++    verdict = validator.validate(v["p"])
++    result: dict[str, Any] = {
++        "verdict": verdict.verdict,
++        "conditions": [{"name": c.name, "passed": c.passed} for c in verdict.conditions],
++        "reasons": verdict.reasons,
++    }
++    if verdict.expected_period is not None:
++        result["expected_period"] = verdict.expected_period
++    return result
++
++
++def _jump(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T068. Covers: FR-016, FR-017."""
++    state = jump.jump(v["p"], v["state"], v["steps"])
++    return {"state": state, "warnings": lcg.warnings_for(v["p"], v["state"])}
++
++
++def _bounded(result: bounded.BoundedResult) -> dict[str, Any]:
++    return {
++        "values": result.values,
++        "outputs_consumed": result.outputs_consumed,
++        "next_state": result.next_state,
++        "warnings": result.warnings,
++    }
++
++
++def _integers(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T070. Covers: FR-019 to FR-021, FR-048."""
++    return _bounded(bounded.integers(v["p"], v["seed"], v["lo"], v["hi"], v["count"]))
++
++
++def _fractions(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T070. Covers: FR-022."""
++    return _bounded(bounded.fractions(v["p"], v["seed"], v["count"]))
++
++
++def _quality(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T075. Covers: FR-026 to FR-031."""
++    r = quality.report(v["p"], v["seed"], v["sample_size"], v["bins"])
++    return {
++        "measured_period": r.measured_period,
++        "chi_square": r.chi_square,
++        "p_value": r.p_value,
++        "serial_correlation": r.serial_correlation,
++        "low_bit_periods": r.low_bit_periods,
++        "checks": [{"name": c.name, "value": c.value, "outcome": c.outcome} for c in r.checks],
++        "verdict": r.verdict,
++        "notice": r.notice,
++    }
++
++
++def _streams(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T084. Covers: FR-046, FR-047."""
++    found = streams.split(v["p"], v["seed"], v["streams"], v["length"])
++    return {
++        "streams": [
++            {"index": s.index, "start_state": s.start_state, "outputs": s.outputs} for s in found
++        ],
++        "warnings": lcg.warnings_for(v["p"], v["seed"]),
++    }
++
++
++def _predict(v: Mapping[str, Any]) -> dict[str, Any]:
++    """Task: T082. Covers: FR-039 to FR-045."""
++    outputs, k, hidden = v["outputs"], v["k"], v["hidden_bits"]
++    if hidden > 0:
++        if not {"m", "a", "c"} <= v.keys():
++            raise LcgError(
++                "unsupported-combination", "truncated outputs need m, a and c", "hidden_bits"
++            )
++        p = ParameterSet(v["a"], v["c"], v["m"])
++        found = predictor.predict_truncated(p, hidden, outputs, k)
++    elif "m" in v:
++        found = predictor.predict_known_modulus(v["m"], outputs, k)
++    else:
++        found = predictor.predict_unknown_modulus(outputs, k)
++    fields = {
++        "case": found.case, "modulus": found.modulus, "a": found.a, "c": found.c,
++        "state": found.state, "predictions": found.predictions, "notice": found.notice,
++    }
++    return {name: value for name, value in fields.items() if value is not None}
++
++
++HANDLERS: Mapping[str, Handler] = MappingProxyType(
++    {
++        "sequence": _sequence,
++        "presets": _presets,
++        "validate": _validate_handler,
++        "jump": _jump,
++        "integers": _integers,
++        "fractions": _fractions,
++        "quality": _quality,
++        "streams": _streams,
++        "predict": _predict,
++    }
++)
+diff --git a/src/lcgkit/service.py b/src/lcgkit/service.py
+new file mode 100644
+index 0000000..121de72
+--- /dev/null
++++ b/src/lcgkit/service.py
+@@ -0,0 +1,121 @@
++"""The HTTP service: a thin FastAPI adapter over the operations layer."""
++
++from __future__ import annotations
++
++import argparse
++import json
++import logging
++from collections.abc import Awaitable, Callable
++from typing import Any
++
++import uvicorn
++from fastapi import FastAPI, Request, Response
++from fastapi.responses import JSONResponse
++from starlette.exceptions import HTTPException as StarletteHTTPException
++
++from lcgkit import ops, wire
++from lcgkit.errors import LcgError
++from lcgkit.openapi import build_document
++
++LOGGER = logging.getLogger("lcgkit.service")
++HOST = "127.0.0.1"
++DEFAULT_PORT = 8000
++STATUS_OK = 200
++STATUS_CLIENT_ERROR = 400
++STATUS_REFUSED = 403
++STATUS_SERVER_ERROR = 500
++REFUSED_CODE = "insecure-purpose"
++
++
++
++class Service(FastAPI):
++    """The FastAPI application, with an OpenAPI document built from the field table."""
++
++    def openapi(self) -> dict[str, Any]:
++        """Return the document built by `lcgkit.openapi` (task T078)."""
++        return DOCUMENT
++
++
++DOCUMENT = build_document()
++app = Service(title="lcgkit", docs_url=None, redoc_url=None)
++
++
++def _error_response(error: LcgError) -> JSONResponse:
++    status = STATUS_REFUSED if error.code == REFUSED_CODE else STATUS_CLIENT_ERROR
++    return JSONResponse(error.to_body(), status_code=status)
++
++
++def _parse(body: bytes) -> Any:
++    """Parse a request body as JSON; anything that is not valid JSON is malformed."""
++    try:
++        return json.loads(body)
++    except (ValueError, RecursionError) as exc:
++        raise LcgError("malformed-request", "the body is not valid JSON") from exc
++
++
++def _respond(operation: str, body: bytes) -> JSONResponse:
++    """Parse, decode, run and encode one POST request; errors become structured bodies."""
++    try:
++        request = wire.decode_request(operation, _parse(body))
++        result = ops.run(operation, request)
++    except LcgError as error:
++        return _error_response(error)
++    return JSONResponse(wire.encode_result(operation, result), status_code=STATUS_OK)
++
++
++def _post_route(operation: str) -> Callable[[Request], Awaitable[Response]]:
++    async def endpoint(request: Request) -> Response:
++        return _respond(operation, await request.body())
++
++    return endpoint
++
++
++async def _presets(request: Request) -> Response:
++    return _respond("presets", b"{}")
++
++
++def _register() -> None:
++    """Add one route per registered operation (task T077)."""
++    for name in ops.HANDLERS:
++        if name == "presets":
++            app.add_api_route("/v1/presets", _presets, methods=["GET"], include_in_schema=False)
++        else:
++            app.add_api_route(f"/v1/{name}", _post_route(name), methods=["POST"],
++                              include_in_schema=False)
++
++
++@app.exception_handler(StarletteHTTPException)
++async def _unknown_route(request: Request, exc: StarletteHTTPException) -> JSONResponse:
++    """Unknown routes and methods get the same structured client error."""
++    return _error_response(LcgError("malformed-request", "unknown route or method"))
++
++
++@app.exception_handler(Exception)
++async def _unexpected(request: Request, exc: Exception) -> JSONResponse:
++    """Reaching this is a defect: report it generically and log it."""
++    LOGGER.exception("unexpected failure on %s %s", request.method, request.url.path)
++    body = {"error": {"code": "internal-error", "message": "unexpected failure"}}
++    return JSONResponse(body, status_code=STATUS_SERVER_ERROR)
++
++
++@app.middleware("http")
++async def _log_requests(
++    request: Request, call_next: Callable[[Request], Awaitable[Response]]
++) -> Response:
++    """One log line per request: method, path and status, never the body (task T079)."""
++    response = await call_next(request)
++    LOGGER.info("%s %s %s", request.method, request.url.path, response.status_code)
++    return response
++
++
++_register()
++
++
++def serve() -> None:
++    """Start the service on 127.0.0.1 (option --port).
++
++    Task: T079. Covers: FR-035.
++    """
++    parser = argparse.ArgumentParser(description="Run the lcgkit HTTP service.")
++    parser.add_argument("--port", type=int, default=DEFAULT_PORT)
++    uvicorn.run(app, host=HOST, port=parser.parse_args().port)
+diff --git a/src/lcgkit/wire.py b/src/lcgkit/wire.py
+new file mode 100644
+index 0000000..4eb4116
+--- /dev/null
++++ b/src/lcgkit/wire.py
+@@ -0,0 +1,106 @@
++"""Conversion between JSON and native values: decimal strings for large integers."""
++
++from __future__ import annotations
++
++import re
++from dataclasses import dataclass
++from typing import Any
++
++from lcgkit.errors import LcgError
++from lcgkit.fields import COUNT, FIELDS, LARGE, LARGE_LIST, OPERATIONS, SIGNED_LARGE
++
++UNSIGNED_DECIMAL = re.compile(r"0|[1-9][0-9]*")
++SIGNED_DECIMAL = re.compile(r"0|-?[1-9][0-9]*")
++# Result keys whose integers can exceed 2**53 and are therefore written as decimal strings.
++LARGE_RESULT_KEYS = frozenset(
++    {
++        "outputs", "values", "next_state", "state", "start_state", "predictions", "modulus",
++        "a", "c", "m", "expected_period", "measured_period",
++    }
++)
++
++
++@dataclass(frozen=True)
++class InvalidField:
++    """A value that could not be read; the error is raised when the field's turn comes."""
++
++    field: str
++    code: str
++
++
++def decode_large(value: object, field: str, signed: bool = False) -> int | InvalidField:
++    """Read a decimal string as an integer; anything else is marked, not raised.
++
++    Task: T058. Covers: FR-001, FR-035.
++    """
++    pattern = SIGNED_DECIMAL if signed else UNSIGNED_DECIMAL
++    if not isinstance(value, str) or not pattern.fullmatch(value):
++        return InvalidField(field, "invalid-type")
++    try:
++        return int(value)
++    except ValueError:  # more digits than Python converts: oversized
++        return InvalidField(field, "invalid-type")
++
++
++def encode_large(number: int) -> str:
++    """Write an integer as a decimal string.
++
++    Task: T058. Covers: FR-033.
++    """
++    return str(number)
++
++
++def _decode_list(value: object, field: str) -> list[int] | InvalidField:
++    if not isinstance(value, list):
++        return InvalidField(field, "invalid-type")
++    items = [decode_large(item, field) for item in value]
++    numbers = [item for item in items if isinstance(item, int)]
++    return numbers if len(numbers) == len(items) else InvalidField(field, "invalid-type")
++
++
++def _decode_field(name: str, value: object) -> object:
++    kind = FIELDS[name].kind
++    if kind in (LARGE, SIGNED_LARGE):
++        return decode_large(value, name, signed=kind == SIGNED_LARGE)
++    if kind == COUNT:
++        return value if type(value) is int else InvalidField(name, "invalid-type")
++    if kind == LARGE_LIST:
++        return _decode_list(value, name)
++    return value
++
++
++def decode_request(operation: str, body: object) -> dict[str, object]:
++    """Turn a parsed JSON request into native values, marking unreadable ones.
++
++    Structural problems (not an object, unknown operation or field) are raised at once.
++
++    Task: T058. Covers: FR-001, FR-035, FR-036.
++    """
++    spec = OPERATIONS.get(operation)
++    if spec is None:
++        raise LcgError("malformed-request", f"unknown operation: {operation}")
++    if not isinstance(body, dict):
++        raise LcgError("malformed-request", "the request must be a JSON object")
++    for name in body:
++        if name not in spec.allowed:
++            raise LcgError("malformed-request", f"unknown field: {name}", str(name))
++    return {name: _decode_field(name, value) for name, value in body.items()}
++
++
++def _encode(value: Any, large: bool) -> Any:
++    if isinstance(value, dict):
++        return {str(k): _encode(v, str(k) in LARGE_RESULT_KEYS) for k, v in value.items()}
++    if isinstance(value, list | tuple):
++        return [_encode(item, large) for item in value]
++    if large and type(value) is int:
++        return encode_large(value)
++    return value
++
++
++def encode_result(operation: str, result: dict[str, Any]) -> dict[str, Any]:
++    """Convert every large integer in a result to a decimal string, leaving the rest alone.
++
++    Task: T058. Covers: FR-033, FR-035.
++    """
++    encoded: dict[str, Any] = _encode(result, False)
++    return encoded
+
+$ git ls-files --others --exclude-standard -- src tests
+

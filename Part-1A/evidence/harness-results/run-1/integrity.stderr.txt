@@ -1,0 +1,14 @@
+$ git rev-parse -q --verify refs/tags/baseline-before-implement
+
+$ git tag -l --format=%(contents) baseline-before-implement
+
+$ git diff --name-only --relative baseline-before-implement -- tests specs .harness .specify/memory/constitution.md pyproject.toml
+
+$ git ls-files --others --exclude-standard -- tests specs .harness .specify/memory/constitution.md pyproject.toml
+
+$ git show baseline-before-implement:./specs/001-lcgkit-toolkit/tasks.md
+
+$ git diff -U0 --relative baseline-before-implement -- src tests
+
+$ git ls-files --others --exclude-standard -- src tests
+
