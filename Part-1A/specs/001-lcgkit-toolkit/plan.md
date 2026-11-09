@@ -1,6 +1,6 @@
 # Implementation Plan: lcgkit
 
-Input: the specification in `spec.md` (48 requirements, 90 acceptance criteria, 10 success criteria, 5 recorded clarifications) and the constitution in `.specify/memory/constitution.md` (v1.0.1).
+Input: the specification in `spec.md` (48 requirements, 90 acceptance criteria, 10 success criteria, 5 recorded clarifications) and the constitution in `.specify/memory/constitution.md` (v1.0.3).
 
 ## Summary
 
@@ -32,7 +32,7 @@ The measurements behind these choices are in `research.md`.
 
 ## Constitution Check
 
-Checked before research and again after design, against constitution v1.0.1. Every row passes.
+Checked before research and again after design, against constitution v1.0.3. Every row passes.
 
 | Principle | How the plan satisfies it | Status |
 |---|---|---|
@@ -155,4 +155,4 @@ Feedback capture (spec requirement from the assignment, section 3.5): for each f
 
 ## Complexity Tracking
 
-No constitution violations. The four decisions above are recorded so the analyze stage can check them. The one amendment, v1.0.1, only adds or clarifies; no gate was lowered.
+No constitution violations. The four decisions above are recorded so the analyze stage can check them. The amendments so far (v1.0.1 to v1.0.3) only add, correct or clarify; no gate was lowered.
