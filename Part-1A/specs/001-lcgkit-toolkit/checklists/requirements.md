@@ -25,7 +25,7 @@
 
 - [x] All functional requirements have clear acceptance criteria
 - [x] User scenarios cover primary flows
-- [ ] Feature meets measurable outcomes defined in Success Criteria — verifiable only after implementation
+- [x] Feature meets measurable outcomes defined in Success Criteria — checked after implementation: SC-001 to SC-010 are covered by the harness, which passes all 11 gates (`evidence/harness-results/run-4`)
 - [x] No implementation details leak into specification
 
 ## Notes
@@ -34,4 +34,4 @@
 - The validator rule was cross-checked against brute force on all 89,439 triples with 2 <= m <= 64 (0 disagreements); this is the basis of SC-002.
 - Threshold justification: sources, verbatim quotes and the list of decisions without a source are in `references.md`. NIST SP 800-22 Rev. 1a was read from the original PDF; the NIST/SEMATECH e-Handbook pages were fetched directly. Knuth's TAOCP Vol. 2 was read from a copy I had; page numbers are in `references.md`.
 - Known limitation recorded in the spec: RANDU and the glibc multiplier with an even increment pass the uniformity and serial-correlation checks at 10,000 samples.
-- The remaining unchecked items are by design (audience) or can only be confirmed after implementation.
+- The one remaining unchecked item is by design (audience).
