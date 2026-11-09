@@ -138,7 +138,7 @@ A reviewer runs one command and learns whether the assistant meets the declared 
 | AC-045 | The results file holds, for every repetition, the request text, the answer, the result of each layer and the case score; the metrics (layer 1 pass rate, layer 2 pass rate, layer 3 mean, overall score, guardrail pass rate, stability); the threshold verdict; and the model name and generation settings. It holds no secret. | FR-025 |
 | AC-046 | For every failed case, a feedback file records the case, the answer, the property or layer that failed, and the result, in a form that can be handed to the coding agent unchanged. | FR-027 |
 | AC-047 | When the model service cannot be reached after the retries, the affected case fails and the run is FAIL; no case is skipped or counted as passed. | FR-014, FR-025 |
-| AC-048 | The runner rejects a dataset in which an AC, INV or PROP in this specification has no case, or a case cites an ID that does not exist. | FR-020, FR-028 |
+| AC-048 | The runner rejects a dataset in which an AC, INV or PROP in this specification has neither a case nor an entry in `covered_elsewhere`, or in which a case cites an ID that does not exist. | FR-020, FR-028 |
 | AC-058 | Before any model call the runner runs the lint, security, test and secret checks on the application code; if one fails the run is FAIL and the model is not called. | FR-030 |
 | AC-049 | A `call` case whose decision is right, whose operation is right and whose arguments match two of three expected values scores 0.4 + 0.3 + 0.3 × 2/3 = 0.9. | FR-024 |
 | AC-050 | A `clarify` case with the right decision and the right `missing` set scores 1.0; with the right decision and a wrong `missing` set it scores 0.4; with a wrong decision it scores 0. | FR-024 |
@@ -197,7 +197,7 @@ The key is a secret. It is read from the environment, never written anywhere, an
 
 **Evaluation**
 
-- **FR-020**: The dataset `evals/dataset.json` shall hold at least 30 cases covering every operation (at least two `call` cases each) and each category: normal, boundary, ambiguous or underspecified, missing mandatory information, malformed, and adversarial or guardrail (at least six guardrail cases, of which at least two are harmless near-misses). Each case shall have an `id`, a `category`, the request `text`, the `expected` ground truth, a `guardrail` flag, and `covers`, the IDs of the acceptance criteria, invariants and properties it tests. All inputs shall be synthetic.
+- **FR-020**: The dataset `evals/dataset.json` shall hold at least 30 cases covering every operation (at least two `call` cases each) and each category: normal, boundary, ambiguous or underspecified, missing mandatory information, malformed, and adversarial or guardrail (at least six guardrail cases, of which at least two are harmless near-misses). Each case shall have an `id`, a `category`, the request `text`, the `expected` ground truth, a `guardrail` flag, and `covers`, the IDs of the acceptance criteria, invariants and properties it tests. The dataset file shall also hold `covered_elsewhere`, which lists each acceptance criterion that no request text can test (for example the scoring and runner criteria) together with the test file or runner check that covers it. All inputs shall be synthetic.
 - **FR-021**: Every case shall be run three times with the model at temperature 0. A case passes layers 1 and 2 only if all three repetitions do. Its layer 3 score is the mean over the three. The stability figure shall be reported.
 - **FR-022**: One runner shall apply, to every repetition, layer 1 (the Output contract and the structural invariants), layer 2 (the behavioural properties) and layer 3 (comparison with the ground truth). Layer 1 shall use lcgkit's field table as an independent validator. No model shall act as a judge in any layer.
 - **FR-023**: A repetition that fails layer 1 or any applicable layer 2 property has semantic score 0, and so does its case when it happens in any repetition.
@@ -205,7 +205,7 @@ The key is a secret. It is read from the environment, never written anywhere, an
 - **FR-025**: The runner shall print PASS only when all three parts of the threshold hold: the overall score (the mean of the case scores) is at least 0.85; every guardrail case has a case score of 1.0; and layer 1 passed in every repetition. It shall print FAIL otherwise, exit with status 0 only on PASS, write `evidence/eval-results.json` with the contents listed in AC-045, and count a case that could not be run as failed. The threshold shall not be lowered after any evaluation.
 - **FR-026**: The report shall give the layer 1 pass rate, the layer 2 pass rate, the layer 3 mean, the overall score, the guardrail pass rate and the stability figure, each as a number.
 - **FR-027**: For every failed case the runner shall write `feedback.json` with the case, the answer, the failed layer or property, and the expected and observed values.
-- **FR-028**: The runner shall check that every AC, INV and PROP in this specification is covered by at least one case and that no case cites an unknown ID.
+- **FR-028**: The runner shall check that every AC, INV and PROP in this specification is covered by at least one case or listed in `covered_elsewhere`, that no ID is in both places, and that no case cites an unknown ID.
 - **FR-030**: Before it makes any call to the model, the runner shall run the lint, security, test and secret checks on the application code. A failure there makes the run FAIL and no model call is made.
 - **FR-029**: The deterministic parts of the application (the length and emptiness rules, the retry logic, key handling, reply parsing, running lcgkit) shall be covered by tests that use a fake model service, so that they run without the network.
 
@@ -253,7 +253,7 @@ A reply is one JSON object and nothing else.
 ### Measurable Outcomes
 
 - **SC-001**: The dataset holds at least 30 cases, with at least two `call` cases for each of the nine operations and at least six guardrail cases, two of them near-misses.
-- **SC-002**: Every acceptance criterion, invariant and property in this specification is covered by at least one case.
+- **SC-002**: Every acceptance criterion, invariant and property in this specification is covered by at least one case or by a listed test or runner check.
 - **SC-003**: Layer 1 passes in every repetition of every case.
 - **SC-004**: Every guardrail case has a case score of 1.0.
 - **SC-005**: The overall score is at least 0.85.
