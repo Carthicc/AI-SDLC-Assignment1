@@ -6,7 +6,7 @@ from collections.abc import Callable, Mapping
 from types import MappingProxyType
 from typing import Any
 
-from lcgkit.core import bounded, guard, jump, lcg, presets, quality, streams, validator
+from lcgkit.core import bounded, guard, jump, lcg, predictor, presets, quality, streams, validator
 from lcgkit.core.lcg import ParameterSet
 from lcgkit.errors import LcgError
 from lcgkit.fields import DEFAULTS, FIELDS, OPERATIONS, RULES, Operation, check_type
@@ -199,6 +199,27 @@ def _streams(v: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _predict(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T082. Covers: FR-039 to FR-045."""
+    outputs, k, hidden = v["outputs"], v["k"], v["hidden_bits"]
+    if hidden > 0:
+        if not {"m", "a", "c"} <= v.keys():
+            raise LcgError(
+                "unsupported-combination", "truncated outputs need m, a and c", "hidden_bits"
+            )
+        p = ParameterSet(v["a"], v["c"], v["m"])
+        found = predictor.predict_truncated(p, hidden, outputs, k)
+    elif "m" in v:
+        found = predictor.predict_known_modulus(v["m"], outputs, k)
+    else:
+        found = predictor.predict_unknown_modulus(outputs, k)
+    fields = {
+        "case": found.case, "modulus": found.modulus, "a": found.a, "c": found.c,
+        "state": found.state, "predictions": found.predictions, "notice": found.notice,
+    }
+    return {name: value for name, value in fields.items() if value is not None}
+
+
 HANDLERS: Mapping[str, Handler] = MappingProxyType(
     {
         "sequence": _sequence,
@@ -209,5 +230,6 @@ HANDLERS: Mapping[str, Handler] = MappingProxyType(
         "fractions": _fractions,
         "quality": _quality,
         "streams": _streams,
+        "predict": _predict,
     }
 )
