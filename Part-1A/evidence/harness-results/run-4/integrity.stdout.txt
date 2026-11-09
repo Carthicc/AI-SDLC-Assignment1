@@ -1,0 +1,15 @@
+$ git rev-parse -q --verify refs/tags/baseline-before-implement
+e17f954673a3889eb94504872e805957f43175f4
+
+$ git tag -l --format=%(contents) baseline-before-implement
+test_functions=148
+
+
+$ git diff --name-only --relative baseline-before-implement -- tests specs .harness .specify/memory/constitution.md pyproject.toml
+
+$ git ls-files --others --exclude-standard -- tests specs .harness .specify/memory/constitution.md pyproject.toml
+
+$ git diff -U0 --relative baseline-before-implement -- src tests
+
+$ git ls-files --others --exclude-standard -- src tests
+

@@ -1,0 +1,10 @@
+{
+  "name": "types",
+  "status": "PASS",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mypy --strict src",
+  "exit_status": 0,
+  "duration_seconds": 0.29,
+  "stdout_path": "types.stdout.txt",
+  "stderr_path": "types.stderr.txt",
+  "failures": []
+}
