@@ -69,6 +69,8 @@ Each entry gives the decision, the reason, and what else was considered. Measure
 - **Reason**: Principle III (independent oracles, tests derived from AC IDs) and Principle VI (traceability). The harness checks that every acceptance criterion in the spec has at least one marked test.
 - **Alternatives**: unittest (no parametrisation, no plugins), tests that call the implementation to produce expected values (circular).
 
+Coverage is measured with `patch = ["subprocess"]` in `pyproject.toml`, so the command-line tests, which start `python -m lcgkit.cli` as a subprocess, count towards the 95% branch-coverage gate. The first full harness run (run-1) measured 93.69% without it and 96.72% with it; the threshold did not change.
+
 Hypothesis runs with a registered profile that sets `derandomize=True` and a fixed number of examples, so the same checks give the same result on every run.
 
 ## R13. Contract tests
@@ -80,7 +82,7 @@ Hypothesis runs with a registered profile that sets `derandomize=True` and a fix
 
 - **Decision**: mutmut 3.8.1, run against `src/lcgkit/core/` only, with the threshold from the constitution (85%).
 - **Reason**: smoke-tested here on a small project: 13 of 13 mutants killed in 9 s (93 mutations per second), so the tool works on this machine. In mutmut 3.x the config keys `paths_to_mutate` and `tests_dir` are deprecated; the plan uses `source_paths` and `pytest_add_cli_args_test_selection`.
-- **Source layout**: mutmut copies only `src/lcgkit/core/` and `tests/` into `mutants/`, so the package files the core imports must be copied as well; `pyproject.toml` lists them under `also_copy` (`src/lcgkit/__init__.py` and `src/lcgkit/errors.py`). Without them the tests import the unmutated installed package or fail to import. Found while checking the mutation gate on a sample project.
+- **Source layout**: mutmut copies only `src/lcgkit/core/` and `tests/` into `mutants/`, so every other package file the tests import must be copied as well; `pyproject.toml` lists them under `also_copy` (`__init__.py`, `errors.py`, `fields.py`, `wire.py`, `ops.py`, `cli.py`, `service.py`, `openapi.py`). Without them the tests fail to import. The first version of this list held only the first two files; the first full harness run (run-1) showed that the integration and contract tests could not be collected, so no mutant ran. The list was extended in a recorded amendment, with the thresholds unchanged.
 - **Scope**: the timing tests are excluded from mutation runs (`-m "not perf"`), since they say nothing about correctness and are slow.
 - **Risk kept open**: the real project will have thousands of mutants and slower tests. If the run time becomes unmanageable, the constitution's governance applies (a recorded amendment, not a silent drop).
 
