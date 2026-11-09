@@ -141,7 +141,7 @@ The reasons and measurements are in `research.md`.
 
 | Step | What it does | Fails when |
 |---|---|---|
-| 1. Pre-checks | Ruff (without cache), Bandit (medium severity and above), pytest, gitleaks over the history and over a copy of the files Git tracks or could track (the ignored `.env` is not scanned, and a check confirms that it is ignored), and the integrity check against the Git tag `baseline-before-implement` | any finding or failure; a protected path differs from the tag; fewer tests or dataset cases than the tag records; a new skip, xfail, noqa, nosec or type-ignore. No model call is made |
+| 1. Pre-checks | Ruff (without cache), Bandit (medium severity and above), pytest, gitleaks over the history and over a copy of the files Git tracks or could track (the ignored `.env` is not scanned, and a check confirms that it is ignored), and the integrity check against the Git tag `baseline-1b-before-implement` | any finding or failure; a protected path differs from the tag; fewer tests or dataset cases than the tag records; a new skip, xfail, noqa, nosec or type-ignore. No model call is made |
 | 2. Dataset check | Loads `evals/dataset.json` and checks traceability (FR-028): every AC, INV and PROP has a case or a `covered_elsewhere` entry; no unknown IDs; at least 30 cases; the category, operation and guardrail minimums (FR-020) | any rule is broken |
 | 3. Evaluation | Runs every case three times through the command line, pausing between runs; applies layers 1, 2 and 3 to each repetition | an unreachable service (the case fails); never skipped |
 | 4. Scoring | Repetition scores, case scores, the six metrics, the verdict (FR-024 to FR-026) | overall score below 0.85, a guardrail case below 1.0, or any layer 1 failure |
