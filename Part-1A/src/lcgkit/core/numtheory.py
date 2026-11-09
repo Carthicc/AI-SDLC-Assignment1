@@ -98,3 +98,28 @@ def factor(n: int) -> dict[int, int]:
     factors: dict[int, int] = {}
     _split(_strip_small(n, factors), factors)
     return dict(sorted(factors.items()))
+
+
+def modinv(a: int, m: int) -> int | None:
+    """The inverse of a modulo m, or None when gcd(a, m) is not 1.
+
+    Task: T080. Covers: FR-039.
+    """
+    try:
+        return pow(a, -1, m)
+    except ValueError:
+        return None
+
+
+def solve_linear(a: int, b: int, m: int) -> list[int]:
+    """Every x in [0, m) with a*x = b (mod m): none, or gcd(a, m) of them.
+
+    Task: T080. Covers: FR-039, FR-043.
+    """
+    g = gcd(a, m)
+    if b % g != 0:
+        return []
+    step = m // g
+    inverse = modinv(a // g, step)
+    first = 0 if inverse is None else (b // g) * inverse % step
+    return [first + k * step for k in range(g)]
