@@ -72,6 +72,21 @@ def test_case_b_needs_twelve_outputs(p: ParameterSet, seed: int) -> None:
     assert info.value.code == "insufficient-data"
 
 
+@pytest.mark.parametrize("outputs", [list(range(1, 13)), [5] * 12], ids=["counting", "constant"])
+def test_case_b_without_a_modulus_larger_than_every_output(outputs: list[int]) -> None:
+    # No modulus can be recovered (FR-040), so there is nothing to predict from.
+    with pytest.raises(LcgError) as info:
+        predict_unknown_modulus(outputs, K)
+    assert info.value.code == "insufficient-data"
+
+
+def test_case_a_when_no_multiplier_fits_the_data() -> None:
+    # 2 * a = 15 (mod 16) has no solution, so no generator produced [0, 2, 1].
+    with pytest.raises(LcgError) as info:
+        predict_known_modulus(16, [0, 2, 1], K)
+    assert info.value.code == "insufficient-data"
+
+
 @pytest.mark.ac("AC-079")
 def test_case_c_recovers_the_state_from_truncated_outputs() -> None:
     values = stream(GLIBC, 1, 4 + K)

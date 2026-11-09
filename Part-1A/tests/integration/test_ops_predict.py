@@ -59,6 +59,12 @@ def test_a_or_c_without_hidden_bits_is_malformed(field: str) -> None:
     assert (error.code, error.field) == ("malformed-request", field)
 
 
+def test_predict_takes_no_preset() -> None:
+    request = {"preset": "glibc-type0", "hidden_bits": 16, "outputs": [1, 2, 3, 4]}
+    error = error_of("predict", request)
+    assert (error.code, error.field) == ("malformed-request", "preset")
+
+
 @pytest.mark.ac("AC-083")
 def test_every_success_says_the_generator_is_not_secure() -> None:
     case_a = run("predict", KNOWN_MODULUS)
