@@ -61,11 +61,11 @@ def chi_square(values: list[int], m: int, bins: int) -> float:
 
 def lag1_autocorrelation(values: list[int], m: int) -> float | None:
     """Lag-1 serial correlation of u = value / m; None when the sequence is constant."""
+    if len(set(values)) == 1:
+        return None
     u = [value / m for value in values]
     mean = sum(u) / len(u)
     denominator = sum((x - mean) ** 2 for x in u)
-    if denominator == 0:
-        return None
     numerator = sum((u[t] - mean) * (u[t + 1] - mean) for t in range(len(u) - 1))
     return numerator / denominator
 
@@ -81,3 +81,15 @@ def low_bit_period(values: list[int], bits: int) -> int:
         if all(low[i] == low[i + p] for i in range(len(low) - p)):
             return p
     return len(low)
+
+
+def closed_form_state(a: int, c: int, m: int, x: int, n: int) -> int:
+    """State after n steps from x, by the closed form (no stepping and no doubling of the map).
+
+    For a > 1, x_n = (a**n * (x*(a-1) + c) - c) / (a-1); the division is exact, so working modulo
+    m*(a-1) and dividing afterwards gives the right value modulo m. For a = 1, x_n = x + n*c.
+    """
+    if a == 1:
+        return (x + n * c) % m
+    modulus = m * (a - 1)
+    return ((pow(a, n, modulus) * (x * (a - 1) + c) - c) % modulus // (a - 1)) % m

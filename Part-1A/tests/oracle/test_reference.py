@@ -70,3 +70,9 @@ def test_lag1_autocorrelation() -> None:
 def test_low_bit_period_of_a_power_of_two_generator() -> None:
     values = ref.step_sequence(1103515245, 12345, 2**31, 1, 64)
     assert [ref.low_bit_period(values, bits) for bits in (1, 2, 3)] == [2, 4, 8]
+
+
+def test_closed_form_agrees_with_stepping() -> None:
+    for a, c, m in [(5, 3, 16), (1, 7, 100), (0, 4, 9), (16807, 0, 2**31 - 1), (3, 1, 2**64)]:
+        walked = ref.step_sequence(a, c, m, 1, 300)
+        assert [ref.closed_form_state(a, c, m, 1, n) for n in range(1, 301)] == walked
