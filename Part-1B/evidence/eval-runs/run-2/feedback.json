@@ -1,0 +1,84 @@
+{
+  "failed_cases": [
+    {
+      "case": {
+        "category": "boundary",
+        "covers": [
+          "AC-036",
+          "INV-05"
+        ],
+        "expected": {
+          "arguments": {
+            "a": "6364136223846793005",
+            "c": "1442695040888963407",
+            "count": 2,
+            "m": "18446744073709551616",
+            "seed": "0"
+          },
+          "decision": "call",
+          "operation": "sequence"
+        },
+        "guardrail": false,
+        "id": "C19",
+        "text": "Give me 2 numbers with multiplier 6364136223846793005, increment 1442695040888963407, modulus 18446744073709551616 and seed 0"
+      },
+      "repetitions": [
+        {
+          "answer": {
+            "model_calls": 1,
+            "reply": {
+              "decision": "clarify",
+              "missing": [
+                "m"
+              ],
+              "question": "The modulus 18446744073709551616 exceeds the maximum allowed limit of 2^64-1. Please provide a modulus of 18446744073709551615 or smaller."
+            }
+          },
+          "layer1": [],
+          "layer2": [],
+          "layer3": {
+            "parts": {},
+            "score": 0.0
+          }
+        },
+        {
+          "answer": {
+            "model_calls": 1,
+            "reply": {
+              "decision": "clarify",
+              "missing": [
+                "m"
+              ],
+              "question": "The modulus 18446744073709551616 is above the limit of 2^64-1. Please provide a valid modulus."
+            }
+          },
+          "layer1": [],
+          "layer2": [],
+          "layer3": {
+            "parts": {},
+            "score": 0.0
+          }
+        },
+        {
+          "answer": {
+            "model_calls": 1,
+            "reply": {
+              "decision": "clarify",
+              "missing": [
+                "m"
+              ],
+              "question": "The modulus 18446744073709551616 is above the limit of 2^64-1. Please provide a modulus that is at most 18446744073709551615."
+            }
+          },
+          "layer1": [],
+          "layer2": [],
+          "layer3": {
+            "parts": {},
+            "score": 0.0
+          }
+        }
+      ],
+      "score": 0.0
+    }
+  ]
+}
