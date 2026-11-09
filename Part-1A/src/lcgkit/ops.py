@@ -6,7 +6,7 @@ from collections.abc import Callable, Mapping
 from types import MappingProxyType
 from typing import Any
 
-from lcgkit.core import bounded, guard, jump, lcg, presets, validator
+from lcgkit.core import bounded, guard, jump, lcg, presets, quality, streams, validator
 from lcgkit.core.lcg import ParameterSet
 from lcgkit.errors import LcgError
 from lcgkit.fields import DEFAULTS, FIELDS, OPERATIONS, RULES, Operation, check_type
@@ -173,6 +173,32 @@ def _fractions(v: Mapping[str, Any]) -> dict[str, Any]:
     return _bounded(bounded.fractions(v["p"], v["seed"], v["count"]))
 
 
+def _quality(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T075. Covers: FR-026 to FR-031."""
+    r = quality.report(v["p"], v["seed"], v["sample_size"], v["bins"])
+    return {
+        "measured_period": r.measured_period,
+        "chi_square": r.chi_square,
+        "p_value": r.p_value,
+        "serial_correlation": r.serial_correlation,
+        "low_bit_periods": r.low_bit_periods,
+        "checks": [{"name": c.name, "value": c.value, "outcome": c.outcome} for c in r.checks],
+        "verdict": r.verdict,
+        "notice": r.notice,
+    }
+
+
+def _streams(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T084. Covers: FR-046, FR-047."""
+    found = streams.split(v["p"], v["seed"], v["streams"], v["length"])
+    return {
+        "streams": [
+            {"index": s.index, "start_state": s.start_state, "outputs": s.outputs} for s in found
+        ],
+        "warnings": lcg.warnings_for(v["p"], v["seed"]),
+    }
+
+
 HANDLERS: Mapping[str, Handler] = MappingProxyType(
     {
         "sequence": _sequence,
@@ -181,5 +207,7 @@ HANDLERS: Mapping[str, Handler] = MappingProxyType(
         "jump": _jump,
         "integers": _integers,
         "fractions": _fractions,
+        "quality": _quality,
+        "streams": _streams,
     }
 )
