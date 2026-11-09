@@ -1,0 +1,55 @@
+[
+  {
+    "expected": {
+      "arguments": {
+        "m": "101",
+        "outputs": [
+          "56",
+          "48",
+          "13",
+          "24",
+          "9",
+          "57",
+          "65",
+          "100",
+          "89",
+          "3",
+          "56",
+          "48",
+          "13",
+          "24"
+        ]
+      },
+      "decision": "call",
+      "operation": "predict"
+    },
+    "id": "F22",
+    "layer1": [],
+    "layer2": [],
+    "reply": {
+      "arguments": {
+        "m": "101",
+        "outputs": [
+          "56",
+          "48",
+          "13",
+          "24",
+          "9",
+          "57",
+          "65",
+          "100",
+          "89",
+          "3",
+          "56",
+          "48",
+          "13",
+          "24"
+        ]
+      },
+      "decision": "call",
+      "operation": "predict"
+    },
+    "score": 1.0,
+    "text": "These came from a generator with modulus 101: 56, 48, 13, 24, 9, 57, 65, 100, 89, 3, 56, 48, 13, 24. Predict what follows."
+  }
+]
