@@ -34,6 +34,8 @@ def test_case_a_recovers_the_parameters_and_predicts() -> None:
     assert result.case == "A"
     assert (result.a, result.c) == (GLIBC.a, GLIBC.c)
     assert list(result.predictions) == values[5:]
+    # FR-042: the recovered parameters reproduce every supplied output
+    assert step_sequence(result.a, result.c, GLIBC.m, values[0], 4) == values[1:5]
 
 
 @pytest.mark.ac("AC-076")
@@ -58,6 +60,8 @@ def test_case_b_recovers_the_modulus_and_predicts(p: ParameterSet, seed: int) ->
     assert result.case == "B"
     assert (result.modulus, result.a, result.c) == (p.m, p.a, p.c)
     assert list(result.predictions) == values[12:]
+    # FR-042: the recovered parameters reproduce every supplied output
+    assert step_sequence(result.a, result.c, result.modulus, values[0], 11) == values[1:12]
 
 
 @pytest.mark.ac("AC-078")
