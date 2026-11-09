@@ -14,7 +14,7 @@ Program name: `lcgkit-assistant` (console script) or `python -m lcgkit_assistant
 | Status | Meaning |
 |---|---|
 | 0 | an answer was produced: `call` (run or rejected by lcgkit), `clarify` or `refuse` |
-| 2 | only an application error was produced: `request-too-long`, `missing-api-key`, `model-unavailable`, `reply-not-json`, `invalid-reply` |
+| 2 | the answer's `error` is an application error: `request-too-long`, `missing-api-key`, `model-unavailable`, `reply-not-json`, `invalid-reply` (a reply may still be present, as for `invalid-reply`) |
 
 In every case the answer is printed to standard output as JSON. Diagnostic messages, if any, go to standard error and never contain the key.
 

@@ -2,12 +2,13 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Evaluation report written by the runner",
   "type": "object",
-  "required": ["run_id", "model", "settings", "prompt_sha256", "cases", "metrics", "threshold", "verdict"],
+  "required": ["run_id", "model", "settings", "prompt_sha256", "duration_seconds", "cases", "metrics", "threshold", "verdict"],
   "properties": {
     "run_id": { "type": "string" },
     "model": { "type": "string" },
     "settings": { "type": "object" },
     "prompt_sha256": { "type": "string" },
+    "duration_seconds": { "type": "number", "minimum": 0 },
     "cases": {
       "type": "array",
       "items": {
