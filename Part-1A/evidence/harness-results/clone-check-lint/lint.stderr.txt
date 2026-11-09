@@ -1,0 +1,2 @@
+$ /private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/.venv/bin/ruff check src tests --output-format json
+

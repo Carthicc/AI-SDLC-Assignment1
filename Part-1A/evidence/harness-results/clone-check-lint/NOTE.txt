@@ -1,0 +1,7 @@
+Reproduction of the lint failure that a fresh-clone check showed after run 3.
+
+The original fresh-clone output was not saved at the time. This folder was made afterwards by cloning the repository, checking out commit a740cf5 (the commit before the fix in e27c7fb) and running only the lint gate:
+
+    uv run python .harness/run_harness.py --gates lint --run-id clone-check-lint
+
+Result: the lint gate fails with 30 findings, all I001 (import block not sorted), all in tests/. In a working copy that already had a Ruff cache the same files had been reported as clean in runs 1 to 3.

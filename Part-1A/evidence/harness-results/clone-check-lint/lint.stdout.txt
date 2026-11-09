@@ -1,0 +1,1053 @@
+$ /private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/.venv/bin/ruff check src tests --output-format json
+[
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 64,
+      "row": 10
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/contract/test_openapi_contract.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from pathlib import Path\n\nimport pytest\nimport schemathesis\nimport yaml\nfrom schemathesis import checks as common_checks\nfrom schemathesis.specs.openapi import checks as openapi_checks\n\nfrom lcgkit.service import app\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 49,
+      "row": 11
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/helpers.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom collections.abc import Mapping\n\nimport pytest\n\nfrom lcgkit.errors import LcgError\nfrom lcgkit.ops import run\nfrom tests.oracle.reference import step_sequence\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 53,
+      "row": 19
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_cli.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import contextlib\nimport io\nimport json\nimport subprocess\nimport sys\n\nimport pytest\n\nfrom lcgkit import wire\nfrom lcgkit.cli import main\nfrom lcgkit.ops import run\nfrom tests.helpers import EXAMPLES, cli_args, leaves\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 21
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 8
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 35,
+      "row": 6
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_guard.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import error_of\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 35,
+      "row": 8
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_integers.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import time\n\nimport pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import error_of\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 53,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_jump.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import GLIBC, error_of\nfrom tests.oracle.reference import closed_form_state\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 58,
+      "row": 6
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_predict.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import GLIBC, GLIBC_FROM_ONE, error_of\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 35,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_presets.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.conftest import PRESET_TABLE, canonical\nfrom tests.helpers import error_of\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 35,
+      "row": 6
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_quality.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import error_of\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 42,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_sequence.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.conftest import canonical\nfrom tests.helpers import GLIBC, error_of\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 53,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_streams.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import GLIBC, GLIBC_FROM_ONE, error_of\nfrom tests.oracle.reference import closed_form_state\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 56,
+      "row": 17
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_parity.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import json\nimport subprocess\nimport sys\n\nimport pytest\nfrom fastapi.testclient import TestClient\n\nfrom lcgkit import wire\nfrom lcgkit.ops import run\nfrom lcgkit.service import app\nfrom tests.helpers import EXAMPLES, cli_args, http_body\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 19
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 7
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 7,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 46,
+      "row": 9
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_service.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\nfrom fastapi.testclient import TestClient\nfrom httpx import Response\n\nfrom lcgkit.errors import ERROR_CODES\nfrom lcgkit.service import app\nfrom tests.helpers import EXAMPLES, http_body\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 48,
+      "row": 8
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/perf/test_perf_predict.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import time\n\nimport pytest\n\nfrom lcgkit.ops import run\nfrom tests.helpers import GLIBC, GLIBC_FROM_ONE\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 27,
+      "row": 6
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/perf/test_perf_quality.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import time\n\nimport pytest\n\nfrom lcgkit.ops import run\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 32,
+      "row": 10
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/perf/test_perf_sequence.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import time\n\nimport pytest\nfrom fastapi.testclient import TestClient\n\nfrom lcgkit.ops import run\nfrom lcgkit.service import app\nfrom tests.helpers import GLIBC\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 31,
+      "row": 12
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_no_unstructured_failure.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import json\nfrom typing import Any\n\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom hypothesis import given\nfrom hypothesis import strategies as st\n\nfrom lcgkit.errors import ERROR_CODES, LcgError\nfrom lcgkit.ops import run\nfrom lcgkit.service import app\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 42,
+      "row": 9
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_quality_oracle.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\nfrom hypothesis import given\nfrom hypothesis import strategies as st\n\nfrom lcgkit.core.lcg import ParameterSet\nfrom lcgkit.core.quality import report\nfrom tests.oracle import reference as ref\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 37,
+      "row": 8
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_sequence_properties.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\nfrom hypothesis import given\nfrom hypothesis import strategies as st\n\nfrom lcgkit.ops import run\nfrom tests.conftest import canonical\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 62,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_validator_bruteforce.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core.lcg import ParameterSet\nfrom lcgkit.core.validator import validate\nfrom tests.oracle.reference import full_period_by_brute_force\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 32,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_bounded.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core import presets\nfrom lcgkit.core.bounded import fractions, integers\nfrom lcgkit.core.lcg import ParameterSet\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 35,
+      "row": 5
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_guard.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core.guard import check_purpose\nfrom lcgkit.errors import LcgError\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 42,
+      "row": 9
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_jump.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core import jump as jump_module\nfrom lcgkit.core import presets\nfrom lcgkit.core.jump import jump\nfrom tests.conftest import PRESET_TABLE\nfrom tests.oracle import reference as ref\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 57,
+      "row": 4
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_lcg.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core.lcg import ParameterSet, sequence, step\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 6
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 48,
+      "row": 8
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_numtheory.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import time\n\nimport pytest\n\nfrom lcgkit.core.numtheory import factor, is_prime\nfrom tests.oracle.reference import trial_factor\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 49,
+      "row": 9
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_predictor.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core import presets\nfrom lcgkit.core.lcg import ParameterSet\nfrom lcgkit.core.predictor import predict_known_modulus, predict_truncated, predict_unknown_modulus\nfrom lcgkit.errors import LcgError\nfrom tests.oracle.reference import step_sequence\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 11
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 42,
+      "row": 8
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_presets.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core import presets\nfrom lcgkit.core.lcg import sequence\nfrom tests.conftest import PRESET_TABLE\nfrom tests.oracle import reference as ref\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 10
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 32,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_quality.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core import presets\nfrom lcgkit.core.lcg import ParameterSet\nfrom lcgkit.core.quality import QualityReport, report\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 96,
+      "row": 6
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_stats.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core.stats import chi_square_p, serial_correlation\nfrom tests.oracle.reference import NIST_CRITICAL_1_PERCENT, lag1_autocorrelation, step_sequence\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 8
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 32,
+      "row": 7
+    },
+    "filename": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_validator.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import pytest\n\nfrom lcgkit.core import presets\nfrom lcgkit.core.lcg import ParameterSet\nfrom lcgkit.core.validator import validate\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 9
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 3
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 3,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  }
+]

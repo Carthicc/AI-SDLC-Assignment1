@@ -1,0 +1,193 @@
+[
+  {
+    "name": "lint",
+    "status": "FAIL",
+    "command": "/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/.venv/bin/ruff check src tests --output-format json",
+    "exit_status": 1,
+    "duration_seconds": 0.41,
+    "stdout_path": "lint.stdout.txt",
+    "stderr_path": "lint.stderr.txt",
+    "failures": [
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/contract/test_openapi_contract.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/helpers.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_cli.py:8)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_guard.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_integers.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_jump.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_predict.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_presets.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_quality.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_sequence.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_ops_streams.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_parity.py:7)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/integration/test_service.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/perf/test_perf_predict.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/perf/test_perf_quality.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/perf/test_perf_sequence.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_no_unstructured_failure.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_quality_oracle.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_sequence_properties.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/property/test_validator_bruteforce.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_bounded.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_guard.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_jump.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_lcg.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_numtheory.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_predictor.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_presets.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_quality.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_stats.py:3)",
+        "ids": []
+      },
+      {
+        "rule_or_test": "I001",
+        "expected": "no Ruff finding",
+        "observed": "Import block is un-sorted or un-formatted (/private/tmp/claude-501/-Users-lynnfernandes-Documents-Masters-of-Technology-in-Software-Engineering-Code-Development/62428dec-5ac6-4917-9b08-d5f91341b55a/scratchpad/lintrepro/Part-1A/tests/unit/test_validator.py:3)",
+        "ids": []
+      }
+    ]
+  }
+]
