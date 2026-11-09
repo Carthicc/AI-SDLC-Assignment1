@@ -16,7 +16,7 @@
 - [x] Requirements are testable and unambiguous (26 requirements, each covered by at least one AC — checked by script)
 - [x] Success criteria are measurable (SC-001 to SC-009 use counts, rates or exact values)
 - [ ] Success criteria are technology-agnostic — **not met by design** for SC-006 and SC-009, which name the API key and the code checks because those are what is measured
-- [x] All acceptance scenarios are defined (AC-001 to AC-060, 9 user stories; every AC cites the requirement it checks)
+- [x] All acceptance scenarios are defined (AC-001 to AC-061, 9 user stories; every AC cites the requirement it checks)
 - [x] Edge cases are identified
 - [x] Scope is clearly bounded (Out of scope listed under Assumptions)
 - [x] Dependencies and assumptions identified
