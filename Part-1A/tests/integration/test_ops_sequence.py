@@ -6,7 +6,12 @@ from lcgkit.ops import run
 from tests.conftest import canonical
 from tests.helpers import GLIBC, error_of
 
-pytestmark = [pytest.mark.fr("FR-001"), pytest.mark.fr("FR-004"), pytest.mark.fr("FR-005")]
+pytestmark = [
+    pytest.mark.fr("FR-001"),
+    pytest.mark.fr("FR-004"),
+    pytest.mark.fr("FR-005"),
+    pytest.mark.fr("FR-006"),
+]
 
 WORKED = {"a": 5, "c": 3, "m": 16, "seed": 7, "count": 5}
 
