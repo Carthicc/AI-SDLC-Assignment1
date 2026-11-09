@@ -10,10 +10,10 @@ import sys
 
 import pytest
 from fastapi.testclient import TestClient
-from lcgkit.ops import run
-from lcgkit.service import app
 
 from lcgkit import wire
+from lcgkit.ops import run
+from lcgkit.service import app
 from tests.helpers import EXAMPLES, cli_args, http_body
 
 pytestmark = [pytest.mark.ac("AC-073"), pytest.mark.fr("FR-038")]

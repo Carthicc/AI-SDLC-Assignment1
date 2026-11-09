@@ -1,11 +1,11 @@
 """Tests for lcgkit.core.predictor: predicting from observed outputs (US10)."""
 
 import pytest
+
+from lcgkit.core import presets
 from lcgkit.core.lcg import ParameterSet
 from lcgkit.core.predictor import predict_known_modulus, predict_truncated, predict_unknown_modulus
 from lcgkit.errors import LcgError
-
-from lcgkit.core import presets
 from tests.oracle.reference import step_sequence
 
 pytestmark = [

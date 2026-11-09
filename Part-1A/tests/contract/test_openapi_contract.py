@@ -5,9 +5,10 @@ from pathlib import Path
 import pytest
 import schemathesis
 import yaml
-from lcgkit.service import app
 from schemathesis import checks as common_checks
 from schemathesis.specs.openapi import checks as openapi_checks
+
+from lcgkit.service import app
 
 pytestmark = [pytest.mark.ac("AC-072"), pytest.mark.fr("FR-037")]
 

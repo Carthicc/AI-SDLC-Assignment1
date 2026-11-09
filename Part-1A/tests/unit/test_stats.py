@@ -1,8 +1,8 @@
 """Tests for lcgkit.core.stats: the chi-square p-value and the serial correlation (US7)."""
 
 import pytest
-from lcgkit.core.stats import chi_square_p, serial_correlation
 
+from lcgkit.core.stats import chi_square_p, serial_correlation
 from tests.oracle.reference import NIST_CRITICAL_1_PERCENT, lag1_autocorrelation, step_sequence
 
 pytestmark = [pytest.mark.fr("FR-030")]

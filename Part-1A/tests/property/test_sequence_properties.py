@@ -3,8 +3,8 @@
 import pytest
 from hypothesis import given
 from hypothesis import strategies as st
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.conftest import canonical
 
 pytestmark = [pytest.mark.ac("AC-002"), pytest.mark.fr("FR-003"), pytest.mark.fr("FR-005")]

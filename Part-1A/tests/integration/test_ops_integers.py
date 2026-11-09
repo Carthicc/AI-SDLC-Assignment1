@@ -3,8 +3,8 @@
 import time
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import error_of
 
 pytestmark = [pytest.mark.fr("FR-020"), pytest.mark.fr("FR-048")]

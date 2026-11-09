@@ -1,8 +1,8 @@
 """Tests for the presets operation and naming a preset in a request (US2)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.conftest import PRESET_TABLE, canonical
 from tests.helpers import error_of
 

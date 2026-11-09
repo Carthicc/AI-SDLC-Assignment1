@@ -92,6 +92,7 @@ Hypothesis runs with a registered profile that sets `derandomize=True` and a fix
 
 - **Decision**: Ruff has a statement-count rule (`PLR0915`) but no "lines per function" rule, so the harness includes a small AST check that fails any function longer than 40 lines. For "documented" in Principle II, the Ruff rule set gains the `D1` rules (missing docstring) for public items.
 - **Reason**: the constitution says "functions at most 40 lines" and "all public functions fully typed and documented". Adding `D1` makes the second sentence enforceable; it makes the bar stricter, not lower. Recorded as amendment v1.0.1.
+- **Lint cache**: Ruff keeps a result cache keyed on each file's contents. Whether an import counts as first-party depends on whether the module exists in `src/`, and the cache does not notice that. The test files had been formatted while `src/` was empty, so Ruff grouped `lcgkit` imports with third-party ones; after `src/` was built, the cache kept reporting those files as clean (run-1 to run-3), while a fresh clone reported 30 `I001` findings. The gate now runs Ruff with `--no-cache`, and the import order of the 30 test files was corrected (no assertion, name or count changed; checked by comparing the syntax trees without the import statements).
 
 ## R16. Secret scanning and dependency audit
 

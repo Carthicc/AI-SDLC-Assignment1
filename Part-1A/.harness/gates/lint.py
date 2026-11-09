@@ -9,7 +9,7 @@ from common import GateResult, GateRun, failure, gate_main, tool
 
 def run(gate: GateRun) -> GateResult:
     """Run `ruff check src tests` and turn each finding into a failure."""
-    _, out, _ = gate.run([tool("ruff"), "check", "src", "tests", "--output-format", "json"])
+    _, out, _ = gate.run([tool("ruff"), "check", "src", "tests", "--no-cache", "--output-format", "json"])
     failures = []
     try:
         findings = json.loads(out) if out.strip() else []

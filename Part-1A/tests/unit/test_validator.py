@@ -1,10 +1,10 @@
 """Tests for lcgkit.core.validator.validate: the three Hull-Dobell conditions (US3)."""
 
 import pytest
-from lcgkit.core.lcg import ParameterSet
-from lcgkit.core.validator import validate
 
 from lcgkit.core import presets
+from lcgkit.core.lcg import ParameterSet
+from lcgkit.core.validator import validate
 
 pytestmark = [pytest.mark.fr("FR-013"), pytest.mark.fr("FR-014")]
 

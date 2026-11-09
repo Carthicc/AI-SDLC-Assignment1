@@ -4,9 +4,9 @@ import time
 
 import pytest
 from fastapi.testclient import TestClient
+
 from lcgkit.ops import run
 from lcgkit.service import app
-
 from tests.helpers import GLIBC
 
 pytestmark = [pytest.mark.perf, pytest.mark.ac("AC-011"), pytest.mark.fr("FR-008")]

@@ -1,8 +1,8 @@
 """Tests for the purpose guard through lcgkit.ops.run (US6)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import error_of
 
 pytestmark = [pytest.mark.fr("FR-023"), pytest.mark.fr("FR-024")]

@@ -3,8 +3,8 @@
 import time
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import GLIBC, GLIBC_FROM_ONE
 
 pytestmark = [pytest.mark.perf, pytest.mark.ac("AC-082"), pytest.mark.fr("FR-008")]

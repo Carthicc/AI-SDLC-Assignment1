@@ -1,10 +1,10 @@
 """Tests for lcgkit.core.bounded: fair integers and fractions (US5)."""
 
 import pytest
-from lcgkit.core.bounded import fractions, integers
-from lcgkit.core.lcg import ParameterSet
 
 from lcgkit.core import presets
+from lcgkit.core.bounded import fractions, integers
+from lcgkit.core.lcg import ParameterSet
 
 pytestmark = [
     pytest.mark.fr("FR-019"),

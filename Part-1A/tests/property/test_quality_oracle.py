@@ -3,9 +3,9 @@
 import pytest
 from hypothesis import given
 from hypothesis import strategies as st
+
 from lcgkit.core.lcg import ParameterSet
 from lcgkit.core.quality import report
-
 from tests.oracle import reference as ref
 
 pytestmark = [pytest.mark.ac("AC-055"), pytest.mark.fr("FR-027")]

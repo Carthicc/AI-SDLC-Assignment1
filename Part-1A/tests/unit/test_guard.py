@@ -1,6 +1,7 @@
 """Tests for lcgkit.core.guard.check_purpose (US6)."""
 
 import pytest
+
 from lcgkit.core.guard import check_purpose
 from lcgkit.errors import LcgError
 

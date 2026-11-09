@@ -3,9 +3,9 @@
 import pytest
 from fastapi.testclient import TestClient
 from httpx import Response
+
 from lcgkit.errors import ERROR_CODES
 from lcgkit.service import app
-
 from tests.helpers import EXAMPLES, http_body
 
 pytestmark = [

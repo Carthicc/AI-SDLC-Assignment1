@@ -1,8 +1,8 @@
 """Tests for the jump operation through lcgkit.ops.run (US4)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import GLIBC, error_of
 from tests.oracle.reference import closed_form_state
 

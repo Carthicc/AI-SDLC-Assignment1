@@ -1,9 +1,9 @@
 """Tests for lcgkit.core.presets and the published values of the seven presets (US2)."""
 
 import pytest
-from lcgkit.core.lcg import sequence
 
 from lcgkit.core import presets
+from lcgkit.core.lcg import sequence
 from tests.conftest import PRESET_TABLE
 from tests.oracle import reference as ref
 

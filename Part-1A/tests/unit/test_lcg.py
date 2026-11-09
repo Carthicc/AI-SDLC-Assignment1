@@ -1,6 +1,7 @@
 """Tests for lcgkit.core.lcg: ParameterSet, step and sequence (US1)."""
 
 import pytest
+
 from lcgkit.core.lcg import ParameterSet, sequence, step
 
 pytestmark = [

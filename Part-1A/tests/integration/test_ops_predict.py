@@ -1,8 +1,8 @@
 """Tests for the predict operation through lcgkit.ops.run (US10)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import GLIBC, GLIBC_FROM_ONE, error_of
 
 pytestmark = [

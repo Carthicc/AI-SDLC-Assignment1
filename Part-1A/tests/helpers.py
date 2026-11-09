@@ -5,9 +5,9 @@ from __future__ import annotations
 from collections.abc import Mapping
 
 import pytest
+
 from lcgkit.errors import LcgError
 from lcgkit.ops import run
-
 from tests.oracle.reference import step_sequence
 
 GLIBC = {"a": 1103515245, "c": 12345, "m": 2**31}

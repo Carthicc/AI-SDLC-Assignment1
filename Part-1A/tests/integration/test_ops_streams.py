@@ -1,8 +1,8 @@
 """Tests for the streams operation through lcgkit.ops.run (US11)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import GLIBC, GLIBC_FROM_ONE, error_of
 from tests.oracle.reference import closed_form_state
 

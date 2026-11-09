@@ -1,10 +1,10 @@
 """Tests for lcgkit.core.jump: jump-ahead by doubling the map (US4)."""
 
 import pytest
-from lcgkit.core.jump import jump
 
 from lcgkit.core import jump as jump_module
 from lcgkit.core import presets
+from lcgkit.core.jump import jump
 from tests.conftest import PRESET_TABLE
 from tests.oracle import reference as ref
 

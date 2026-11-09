@@ -3,8 +3,8 @@
 import time
 
 import pytest
-from lcgkit.core.numtheory import factor, is_prime
 
+from lcgkit.core.numtheory import factor, is_prime
 from tests.oracle.reference import trial_factor
 
 pytestmark = [pytest.mark.fr("FR-014")]

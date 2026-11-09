@@ -1,10 +1,10 @@
 """Tests for lcgkit.core.quality.report (US7). Small generators are worked out by hand."""
 
 import pytest
-from lcgkit.core.lcg import ParameterSet
-from lcgkit.core.quality import QualityReport, report
 
 from lcgkit.core import presets
+from lcgkit.core.lcg import ParameterSet
+from lcgkit.core.quality import QualityReport, report
 
 pytestmark = [pytest.mark.fr("FR-026"), pytest.mark.fr("FR-029"), pytest.mark.fr("FR-031")]
 

@@ -1,9 +1,9 @@
 """The validator against brute force for every small generator (US3)."""
 
 import pytest
+
 from lcgkit.core.lcg import ParameterSet
 from lcgkit.core.validator import validate
-
 from tests.oracle.reference import full_period_by_brute_force
 
 pytestmark = [pytest.mark.ac("AC-027"), pytest.mark.fr("FR-015")]

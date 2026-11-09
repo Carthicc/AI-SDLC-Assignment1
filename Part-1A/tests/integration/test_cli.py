@@ -12,10 +12,10 @@ import subprocess
 import sys
 
 import pytest
-from lcgkit.cli import main
-from lcgkit.ops import run
 
 from lcgkit import wire
+from lcgkit.cli import main
+from lcgkit.ops import run
 from tests.helpers import EXAMPLES, cli_args, leaves
 
 pytestmark = [

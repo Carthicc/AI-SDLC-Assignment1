@@ -1,8 +1,8 @@
 """Tests for the quality operation through lcgkit.ops.run (US7)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.helpers import error_of
 
 pytestmark = [pytest.mark.ac("AC-054"), pytest.mark.fr("FR-028")]

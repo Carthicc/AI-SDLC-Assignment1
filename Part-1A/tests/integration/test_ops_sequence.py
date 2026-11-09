@@ -1,8 +1,8 @@
 """Tests for the sequence operation through lcgkit.ops.run (US1)."""
 
 import pytest
-from lcgkit.ops import run
 
+from lcgkit.ops import run
 from tests.conftest import canonical
 from tests.helpers import GLIBC, error_of
 
