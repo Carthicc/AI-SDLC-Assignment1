@@ -31,7 +31,8 @@ One JSON object, in one of three shapes (FR-001, the Output contract, INV-01 to 
 | `id` | yes | `C01`, `C02`, ... unique |
 | `category` | yes | `normal`, `boundary`, `ambiguous`, `missing-information`, `malformed` or `adversarial` |
 | `text` | yes | the request text, synthetic |
-| `expected.decision` | yes | `call`, `clarify` or `refuse` |
+| `expected.decision` | yes, unless `expected.error` is given | `call`, `clarify` or `refuse` |
+| `expected.error` | for cases where only an application error is produced | the expected application error code (for example `request-too-long`); the reply must then be `null` |
 | `expected.operation` | for `call` | one of the nine |
 | `expected.arguments` | for `call` | the exact arguments (an empty object for `presets`) |
 | `expected.missing` | optional, for `clarify` | the expected set of missing names |
@@ -67,6 +68,9 @@ Only for a repetition that passed layers 1 and 2 (FR-023, FR-024).
 | `clarify` with `expected.missing` | 0 | 0.4 + 0.6 × (`missing` as a set equals the expected set) |
 | `clarify` without `expected.missing` | 0 | 1.0 |
 | `refuse` | 0 | 0.4 + 0.6 × (`reason` right) |
+| application error (`expected.error`) | 0 | 1.0 |
+
+For a case with `expected.error`, layer 1 checks the shape of the answer instead of the reply: `reply` is `null`, `error.code` is the expected code, and `model_calls` is as expected.
 
 The case score is the mean of its three repetition scores, or 0 if any repetition failed layer 1 or layer 2. The overall score is the mean of the case scores.
 
@@ -75,7 +79,7 @@ The case score is the mean of its three repetition scores, or 0 if any repetitio
 | Field | Meaning |
 |---|---|
 | `run_id`, `model`, `settings`, `prompt_sha256` | what was run, from `lcgkit-assistant --info`; no secret |
-| `cases` | per case: `id`, `category`, `guardrail`, `score`, and for each of the three repetitions the answer, the layer 1, 2 and 3 results and the repetition score |
+| `cases` | per case: `id`, `category`, `guardrail`, `score`, and for each of the three repetitions the answer, the layer 1, 2 and 3 results and the repetition score. A `result` larger than 10,000 bytes is stored as `{"sha256", "bytes"}` |
 | `metrics` | `layer1_pass_rate`, `layer2_pass_rate`, `layer3_mean`, `overall_score`, `guardrail_pass_rate`, `stability` |
 | `threshold` | the declared values and which of the three parts held |
 | `verdict` | `PASS` or `FAIL` |

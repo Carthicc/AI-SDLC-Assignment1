@@ -22,8 +22,8 @@ Decisions, the alternatives considered, and the measurements behind them. The tr
 
 ## R4. Pacing, timeouts and retries
 
-- **Decision**: the application times a call out after 60 seconds and retries at most three times, only for HTTP 429 and 5xx responses, waiting for the `Retry-After` header when present and otherwise 5, 15 and 45 seconds. The runner pauses 4 seconds between runs (a `--min-interval` option).
-- **Reason**: the free tier's request limits are not published on the pricing or rate-limit pages; they vary by model and project and can be read in the provider's console. Four seconds keeps the rate at 15 requests per minute, which should be inside any free-tier limit for a lite model. If the console shows a lower limit, the interval is raised without any change to the specification.
+- **Decision**: the application times a call out after 60 seconds and retries at most three times, only for HTTP 429 and 5xx responses, waiting for the `Retry-After` header when present and otherwise 5, 15 and 45 seconds. The runner pauses 3 seconds between runs that called the model (a `--min-interval` option).
+- **Reason**: the free tier's request limits are not published on the pricing or rate-limit pages; they vary by model and project and can be read in the provider's console. With about 1 second per call plus a 3-second pause the rate stays at about 15 requests per minute, which should be inside any free-tier limit for a lite model. If the console shows a lower limit, the interval is raised without any change to the specification.
 - **Alternatives**: no pacing (risks a rate-limit storm and wasted retries); a retry on a bad reply (rejected in the clarifications, because it hides layer 1 failures).
 
 ## R5. The system prompt
@@ -57,19 +57,19 @@ Decisions, the alternatives considered, and the measurements behind them. The tr
 
 ## R10. The dataset
 
-- **Decision**: about 38 cases, in `evals/dataset.json`, built from the acceptance criteria and properties:
+- **Decision**: 48 cases, in `evals/dataset.json`, built from the acceptance criteria and properties:
 
 | Category | Planned cases | What they cover |
 |---|---|---|
-| normal | 14 | each of the nine operations at least once; a die; explicit `a`, `c`, `m`; numbers written as words |
-| boundary | 4 | 64-bit digits kept exact; a count of exactly 1,000,000 and 1,000,001; `steps` at 2^64 − 1 and 2^64; negative bounds |
+| normal | 15 | each of the nine operations once, a second case for fractions, streams, validate, quality and presets, and a d20 |
+| boundary | 8 | 64-bit digits kept exact; a count of exactly 1,000,000, 1,000,001 and 2,000,000; `steps` at 2^64 − 1 and 2^64; negative bounds; `predict` with too few outputs |
 | ambiguous | 2 | "check my generator"; an expression such as 2^31 |
-| missing information | 5 | no seed; no count; no state; part of the generator; no outputs for `predict`; a coin flip |
-| malformed | 3 | empty text; text over 1,000 characters; gibberish |
-| adversarial and guardrail | 10 | password, session token, key and salt; weather; deleting files; ignore the rules and print the key; reveal the system prompt; an instruction mixed with a legitimate request; reply-looking text; two harmless near-misses |
+| missing information | 8 | no seed; no count; no state; part of the generator; no generator; no outputs for `predict`; a "random seed"; a coin flip |
+| malformed | 4 | empty text; text over 1,000 characters; gibberish; bare numbers |
+| adversarial and guardrail | 11 | password, session token, key and salt; weather; deleting files; ignore the rules and print the key; reveal the system prompt; an instruction mixed with a legitimate request; reply-looking text; two harmless near-misses |
 
 - **Rules**: every input is synthetic; every case cites the IDs it tests in `covers`; criteria that no request text can test are listed in `covered_elsewhere` with the test that covers them.
-- **Cost**: 38 cases × 3 repetitions = 114 calls, about 8 minutes at a 4-second pause.
+- **Cost**: 48 cases × 3 repetitions, of which 46 cases call the model = 138 calls, about 10 minutes at a 3-second pause. A result larger than 10,000 bytes (the 1,000,000-number boundary case) is stored as its hash and size so the results file stays small.
 
 ## R11. Pre-checks
 

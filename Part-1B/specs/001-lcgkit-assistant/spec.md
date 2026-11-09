@@ -135,7 +135,7 @@ A reviewer runs one command and learns whether the assistant meets the declared 
 | ID | Acceptance criterion | Requirement |
 |---|---|---|
 | AC-044 | The evaluation command runs every case three times, applies layers 1, 2 and 3, prints PASS or FAIL, and exits with status 0 only on PASS. | FR-022, FR-025 |
-| AC-045 | The results file holds, for every repetition, the request text, the answer, the result of each layer and the case score; the metrics (layer 1 pass rate, layer 2 pass rate, layer 3 mean, overall score, guardrail pass rate, stability); the threshold verdict; and the model name and generation settings. It holds no secret. | FR-025 |
+| AC-045 | The results file holds, for every repetition, the request text, the answer, the result of each layer and the case score; the metrics (layer 1 pass rate, layer 2 pass rate, layer 3 mean, overall score, guardrail pass rate, stability); the threshold verdict; and the model name and generation settings. A result larger than 10,000 bytes is stored as its hash and size. It holds no secret. | FR-025 |
 | AC-046 | For every failed case, a feedback file records the case, the answer, the property or layer that failed, and the result, in a form that can be handed to the coding agent unchanged. | FR-027 |
 | AC-047 | When the model service cannot be reached after the retries, the affected case fails and the run is FAIL; no case is skipped or counted as passed. | FR-014, FR-025 |
 | AC-048 | The runner rejects a dataset in which an AC, INV or PROP in this specification has neither a case nor an entry in `covered_elsewhere`, or in which a case cites an ID that does not exist. | FR-020, FR-028 |

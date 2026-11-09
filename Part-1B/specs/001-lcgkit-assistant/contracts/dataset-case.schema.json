@@ -26,9 +26,10 @@
         "expected": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["decision"],
+          "anyOf": [{ "required": ["decision"] }, { "required": ["error"] }],
           "properties": {
             "decision": { "enum": ["call", "clarify", "refuse"] },
+            "error": { "type": "string" },
             "operation": { "type": "string" },
             "arguments": { "type": "object" },
             "missing": { "type": "array", "items": { "type": "string" } },

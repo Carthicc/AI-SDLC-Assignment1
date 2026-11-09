@@ -24,11 +24,11 @@ The measurements and trial calls behind these choices are in `research.md`.
 
 **Project Type**: command-line application with an evaluation harness.
 
-**Performance Goals**: SC-008, the complete evaluation finishes in under 15 minutes. About 38 cases × 3 repetitions = 114 calls at roughly 1 second each, plus a 4-second pause between calls, is about 8 minutes.
+**Performance Goals**: SC-008, the complete evaluation finishes in under 15 minutes. 48 cases, 46 of which call the model, × 3 repetitions = 138 calls at roughly 1 second each, plus a 3-second pause between calls, is about 10 minutes.
 
 **Constraints**: the constitution's principles; temperature 0; key only from `GEMINI_API_KEY`; synthetic inputs only; the free tier's request limits are unpublished, so the runner paces its calls.
 
-**Scale/Scope**: nine operations, about six small modules in the application, a dataset of about 38 cases, an estimated 600 lines of application code and 900 lines of harness code.
+**Scale/Scope**: nine operations, about six small modules in the application, a dataset of 48 cases, an estimated 600 lines of application code and 900 lines of harness code.
 
 ## Constitution Check
 
@@ -129,7 +129,7 @@ The reasons and measurements are in `research.md`.
 - **One request path.** `assistant.handle(text)` applies the emptiness and length rules, checks the key, calls the model once (with bounded retries for rate limits and server errors), parses and checks the reply, and runs lcgkit for a `call`. The command line only prints the answer.
 - **The model decides, the code checks.** The Gemini response schema nudges the model towards the contract; it does not guarantee it, so the application and the harness both check.
 - **No judge.** Layer 3 is an exact comparison with the case's ground truth.
-- **Pacing.** The application makes one request per run; the runner waits between runs (4 seconds by default) so the free tier's unpublished limit is not hit, and the application retries only when the service says to slow down.
+- **Pacing.** The application makes one request per run; the runner waits between runs (3 seconds by default) so the free tier's unpublished limit is not hit, and the application retries only when the service says to slow down.
 - **Honest failure.** A reply that breaks the contract is `invalid-reply`, with no second try (clarification 3); an unreachable service is `model-unavailable`; both fail their case.
 
 ## Harness design
