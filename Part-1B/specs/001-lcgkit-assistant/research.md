@@ -22,7 +22,7 @@ Decisions, the alternatives considered, and the measurements behind them. The tr
 
 ## R4. Pacing, timeouts and retries
 
-- **Decision**: the application times a call out after 60 seconds and retries at most three times, only for HTTP 429 and 5xx responses, waiting for the `Retry-After` header when present and otherwise 5, 15 and 45 seconds. The runner pauses 3 seconds between runs that called the model (a `--min-interval` option).
+- **Decision**: the application times a call out after 60 seconds and retries at most three times, for HTTP 429 and 5xx responses and for timeouts and connection errors, waiting for the `Retry-After` header when present and otherwise 5, 15 and 45 seconds. The runner pauses 3 seconds between runs that called the model (a `--min-interval` option).
 - **Reason**: the free tier's request limits are not published on the pricing or rate-limit pages; they vary by model and project and can be read in the provider's console. With about 1 second per call plus a 3-second pause the rate stays at about 15 requests per minute, which should be inside any free-tier limit for a lite model. If the console shows a lower limit, the interval is raised without any change to the specification.
 - **Alternatives**: no pacing (risks a rate-limit storm and wasted retries); a retry on a bad reply (rejected in the clarifications, because it hides layer 1 failures).
 
@@ -73,7 +73,8 @@ Decisions, the alternatives considered, and the measurements behind them. The tr
 
 ## R11. Pre-checks
 
-- **Decision**: Ruff with the rule sets E, F, I, B, UP, S, C90, PL, RUF and D1 on `src` and `tests`, always without the cache, with `known-first-party = ["lcgkit_assistant"]` and `known-third-party = ["lcgkit"]`; Bandit on `src`; pytest on `tests`; gitleaks over the history and the working tree; and the integrity check against the Git tag `baseline-before-implement`, whose annotation holds `test_functions=<N> dataset_cases=<M>`.
+- **Decision**: Ruff with the rule sets E, F, I, B, UP, S, C90, PL, RUF and D1 on `src` and `tests`, always without the cache, with `known-first-party = ["lcgkit_assistant"]` and `known-third-party = ["lcgkit"]`; Bandit on `src`, failing on medium severity and above; pytest on `tests`; gitleaks over the Git history and over a copy of the files that Git tracks or could track (`git ls-files --cached --others --exclude-standard`), with a separate check that `.env` is ignored by Git; and the integrity check against the Git tag `baseline-before-implement`, whose annotation holds `test_functions=<N> dataset_cases=<M>`.
+- **Why not scan the folder directly**: `gitleaks dir` does not honour `.gitignore`. Run on `Part-1B` with the real key in the ignored `.env`, it reported one `generic-api-key` finding (Git history: none). Scanning a copy of the non-ignored files keeps the scan strict, with no allowlist, and still catches a key pasted into a file that could be committed.
 - **Versions**: the versions tested in Part 1A: Ruff 0.17.3, Bandit 1.9.4, pytest 9.2.0; gitleaks 8.30.1.
 - **Reason**: the cache and the import-classification problems found in Part 1A are avoided by configuration from the start. These checks run before any model call so a broken build costs no quota.
 
