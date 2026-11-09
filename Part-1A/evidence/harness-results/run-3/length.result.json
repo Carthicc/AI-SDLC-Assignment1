@@ -1,0 +1,10 @@
+{
+  "name": "length",
+  "status": "PASS",
+  "command": "built-in check",
+  "exit_status": 0,
+  "duration_seconds": 0.03,
+  "stdout_path": "length.stdout.txt",
+  "stderr_path": "length.stderr.txt",
+  "failures": []
+}

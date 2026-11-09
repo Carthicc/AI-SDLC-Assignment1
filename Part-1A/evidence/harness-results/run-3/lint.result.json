@@ -1,0 +1,10 @@
+{
+  "name": "lint",
+  "status": "PASS",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/ruff check src tests --output-format json",
+  "exit_status": 0,
+  "duration_seconds": 0.09,
+  "stdout_path": "lint.stdout.txt",
+  "stderr_path": "lint.stderr.txt",
+  "failures": []
+}

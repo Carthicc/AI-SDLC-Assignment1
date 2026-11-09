@@ -1,0 +1,10 @@
+{
+  "name": "integrity",
+  "status": "PASS",
+  "command": "git rev-parse -q --verify refs/tags/baseline-before-implement && git tag -l --format=%(contents) baseline-before-implement && git diff --name-only --relative baseline-before-implement -- tests specs .harness .specify/memory/constitution.md pyproject.toml && git ls-files --others --exclude-standard -- tests specs .harness .specify/memory/constitution.md pyproject.toml && git diff -U0 --relative baseline-before-implement -- src tests && git ls-files --others --exclude-standard -- src tests",
+  "exit_status": 0,
+  "duration_seconds": 0.12,
+  "stdout_path": "integrity.stdout.txt",
+  "stderr_path": "integrity.stderr.txt",
+  "failures": []
+}

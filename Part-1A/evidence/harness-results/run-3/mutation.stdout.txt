@@ -1,0 +1,3386 @@
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut run
+
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠸ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠼ Generating mutants
+⠼ Generating mutants
+⠸ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠼ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+    done in 711ms (12 files mutated, 0 ignored, 0 unmodified)
+
+⠸ Running stats     
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+    done
+
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+⠇ Running clean tests
+⠏ Running clean tests
+⠋ Running clean tests
+⠙ Running clean tests
+⠹ Running clean tests
+⠸ Running clean tests
+⠼ Running clean tests
+⠴ Running clean tests
+⠦ Running clean tests
+⠧ Running clean tests
+    done
+
+⠇ Running forced fail test
+⠏ Running forced fail test
+⠋ Running forced fail test
+⠙ Running forced fail test
+⠹ Running forced fail test
+⠸ Running forced fail test
+⠼ Running forced fail test
+⠴ Running forced fail test
+⠦ Running forced fail test
+⠧ Running forced fail test
+⠇ Running forced fail test
+⠏ Running forced fail test
+⠋ Running forced fail test
+⠙ Running forced fail test
+⠹ Running forced fail test
+⠸ Running forced fail test
+⠼ Running forced fail test
+    done
+Running mutation testing
+
+⠴ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠦ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠧ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠇ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠏ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠋ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠙ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠹ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠸ 0/1130  🎉 0 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠼ 1/1130  🎉 1 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠴ 2/1130  🎉 2 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠦ 3/1130  🎉 3 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠧ 4/1130  🎉 4 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠇ 5/1130  🎉 5 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠏ 6/1130  🎉 6 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠋ 7/1130  🎉 7 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠙ 8/1130  🎉 8 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠹ 9/1130  🎉 9 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠸ 10/1130  🎉 10 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠼ 11/1130  🎉 11 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠴ 12/1130  🎉 12 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠦ 13/1130  🎉 13 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠧ 14/1130  🎉 14 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠇ 15/1130  🎉 15 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠏ 16/1130  🎉 16 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠋ 17/1130  🎉 17 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠙ 18/1130  🎉 18 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠹ 19/1130  🎉 19 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠸ 20/1130  🎉 20 🫥 0  ⏰ 0  🤔 0  🙁 0  🔇 0  🧙 0
+⠼ 21/1130  🎉 20 🫥 0  ⏰ 0  🤔 0  🙁 1  🔇 0  🧙 0
+⠴ 22/1130  🎉 20 🫥 0  ⏰ 0  🤔 0  🙁 2  🔇 0  🧙 0
+⠦ 23/1130  🎉 20 🫥 0  ⏰ 0  🤔 0  🙁 3  🔇 0  🧙 0
+⠧ 24/1130  🎉 21 🫥 0  ⏰ 0  🤔 0  🙁 3  🔇 0  🧙 0
+⠇ 25/1130  🎉 22 🫥 0  ⏰ 0  🤔 0  🙁 3  🔇 0  🧙 0
+⠏ 26/1130  🎉 22 🫥 0  ⏰ 0  🤔 0  🙁 4  🔇 0  🧙 0
+⠋ 27/1130  🎉 23 🫥 0  ⏰ 0  🤔 0  🙁 4  🔇 0  🧙 0
+⠙ 28/1130  🎉 24 🫥 0  ⏰ 0  🤔 0  🙁 4  🔇 0  🧙 0
+⠹ 29/1130  🎉 25 🫥 0  ⏰ 0  🤔 0  🙁 4  🔇 0  🧙 0
+⠸ 30/1130  🎉 25 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠼ 31/1130  🎉 26 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠴ 32/1130  🎉 27 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠦ 33/1130  🎉 28 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠧ 34/1130  🎉 29 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠇ 35/1130  🎉 30 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠏ 36/1130  🎉 31 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠋ 37/1130  🎉 32 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠙ 38/1130  🎉 33 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠹ 39/1130  🎉 34 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠸ 40/1130  🎉 35 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠼ 41/1130  🎉 36 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠴ 42/1130  🎉 37 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠦ 43/1130  🎉 38 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠧ 44/1130  🎉 39 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠇ 45/1130  🎉 40 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠏ 46/1130  🎉 41 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠋ 47/1130  🎉 42 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠙ 48/1130  🎉 43 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠹ 49/1130  🎉 44 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠸ 50/1130  🎉 45 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠼ 51/1130  🎉 46 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠴ 52/1130  🎉 47 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠦ 53/1130  🎉 48 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠧ 54/1130  🎉 49 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠇ 55/1130  🎉 50 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠏ 56/1130  🎉 51 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠋ 57/1130  🎉 52 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠙ 58/1130  🎉 53 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠹ 59/1130  🎉 54 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠸ 60/1130  🎉 55 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠼ 61/1130  🎉 56 🫥 0  ⏰ 0  🤔 0  🙁 5  🔇 0  🧙 0
+⠴ 62/1130  🎉 56 🫥 0  ⏰ 0  🤔 0  🙁 6  🔇 0  🧙 0
+⠦ 63/1130  🎉 56 🫥 0  ⏰ 0  🤔 0  🙁 7  🔇 0  🧙 0
+⠧ 64/1130  🎉 56 🫥 0  ⏰ 0  🤔 0  🙁 8  🔇 0  🧙 0
+⠇ 65/1130  🎉 56 🫥 0  ⏰ 0  🤔 0  🙁 9  🔇 0  🧙 0
+⠏ 66/1130  🎉 56 🫥 0  ⏰ 0  🤔 0  🙁 10  🔇 0  🧙 0
+⠋ 67/1130  🎉 57 🫥 0  ⏰ 0  🤔 0  🙁 10  🔇 0  🧙 0
+⠙ 68/1130  🎉 57 🫥 0  ⏰ 0  🤔 0  🙁 11  🔇 0  🧙 0
+⠹ 69/1130  🎉 58 🫥 0  ⏰ 0  🤔 0  🙁 11  🔇 0  🧙 0
+⠸ 70/1130  🎉 59 🫥 0  ⏰ 0  🤔 0  🙁 11  🔇 0  🧙 0
+⠼ 71/1130  🎉 60 🫥 0  ⏰ 0  🤔 0  🙁 11  🔇 0  🧙 0
+⠴ 72/1130  🎉 61 🫥 0  ⏰ 0  🤔 0  🙁 11  🔇 0  🧙 0
+⠦ 73/1130  🎉 61 🫥 0  ⏰ 0  🤔 0  🙁 12  🔇 0  🧙 0
+⠧ 74/1130  🎉 62 🫥 0  ⏰ 0  🤔 0  🙁 12  🔇 0  🧙 0
+⠇ 75/1130  🎉 62 🫥 0  ⏰ 0  🤔 0  🙁 13  🔇 0  🧙 0
+⠏ 76/1130  🎉 63 🫥 0  ⏰ 0  🤔 0  🙁 13  🔇 0  🧙 0
+⠋ 77/1130  🎉 64 🫥 0  ⏰ 0  🤔 0  🙁 13  🔇 0  🧙 0
+⠙ 78/1130  🎉 65 🫥 0  ⏰ 0  🤔 0  🙁 13  🔇 0  🧙 0
+⠹ 79/1130  🎉 66 🫥 0  ⏰ 0  🤔 0  🙁 13  🔇 0  🧙 0
+⠸ 80/1130  🎉 66 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠼ 81/1130  🎉 67 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠴ 82/1130  🎉 68 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠦ 83/1130  🎉 69 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠧ 84/1130  🎉 70 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠇ 85/1130  🎉 71 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠏ 86/1130  🎉 72 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠋ 87/1130  🎉 73 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠙ 88/1130  🎉 74 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠹ 89/1130  🎉 75 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠸ 90/1130  🎉 76 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠼ 91/1130  🎉 77 🫥 0  ⏰ 0  🤔 0  🙁 14  🔇 0  🧙 0
+⠴ 92/1130  🎉 77 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠦ 93/1130  🎉 78 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠧ 94/1130  🎉 79 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠇ 95/1130  🎉 80 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠏ 96/1130  🎉 81 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠋ 97/1130  🎉 82 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠙ 98/1130  🎉 83 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠹ 99/1130  🎉 84 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠸ 100/1130  🎉 85 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠼ 101/1130  🎉 86 🫥 0  ⏰ 0  🤔 0  🙁 15  🔇 0  🧙 0
+⠴ 102/1130  🎉 86 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠦ 103/1130  🎉 87 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠧ 104/1130  🎉 88 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠇ 105/1130  🎉 89 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠏ 106/1130  🎉 90 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠋ 107/1130  🎉 91 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠙ 108/1130  🎉 92 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠹ 109/1130  🎉 93 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠸ 110/1130  🎉 94 🫥 0  ⏰ 0  🤔 0  🙁 16  🔇 0  🧙 0
+⠼ 111/1130  🎉 94 🫥 0  ⏰ 0  🤔 0  🙁 17  🔇 0  🧙 0
+⠴ 112/1130  🎉 95 🫥 0  ⏰ 0  🤔 0  🙁 17  🔇 0  🧙 0
+⠦ 113/1130  🎉 96 🫥 0  ⏰ 0  🤔 0  🙁 17  🔇 0  🧙 0
+⠧ 114/1130  🎉 96 🫥 0  ⏰ 0  🤔 0  🙁 18  🔇 0  🧙 0
+⠇ 115/1130  🎉 97 🫥 0  ⏰ 0  🤔 0  🙁 18  🔇 0  🧙 0
+⠏ 116/1130  🎉 98 🫥 0  ⏰ 0  🤔 0  🙁 18  🔇 0  🧙 0
+⠋ 117/1130  🎉 99 🫥 0  ⏰ 0  🤔 0  🙁 18  🔇 0  🧙 0
+⠙ 118/1130  🎉 99 🫥 0  ⏰ 0  🤔 0  🙁 19  🔇 0  🧙 0
+⠹ 119/1130  🎉 100 🫥 0  ⏰ 0  🤔 0  🙁 19  🔇 0  🧙 0
+⠸ 120/1130  🎉 101 🫥 0  ⏰ 0  🤔 0  🙁 19  🔇 0  🧙 0
+⠼ 121/1130  🎉 102 🫥 0  ⏰ 0  🤔 0  🙁 19  🔇 0  🧙 0
+⠴ 122/1130  🎉 102 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠦ 123/1130  🎉 103 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠧ 124/1130  🎉 104 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠇ 125/1130  🎉 105 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠏ 126/1130  🎉 106 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠋ 127/1130  🎉 107 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠙ 128/1130  🎉 108 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠹ 129/1130  🎉 109 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠸ 130/1130  🎉 110 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠼ 131/1130  🎉 111 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠴ 132/1130  🎉 112 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠦ 133/1130  🎉 113 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠧ 134/1130  🎉 114 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠇ 135/1130  🎉 115 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠏ 136/1130  🎉 116 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠋ 137/1130  🎉 117 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠙ 138/1130  🎉 118 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠹ 139/1130  🎉 119 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠸ 140/1130  🎉 120 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠼ 141/1130  🎉 121 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠴ 142/1130  🎉 122 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠦ 143/1130  🎉 123 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠧ 144/1130  🎉 124 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠇ 145/1130  🎉 125 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠏ 146/1130  🎉 126 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠋ 147/1130  🎉 127 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠙ 148/1130  🎉 128 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠹ 149/1130  🎉 129 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠸ 150/1130  🎉 130 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠼ 151/1130  🎉 131 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠴ 152/1130  🎉 132 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠦ 153/1130  🎉 133 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠧ 154/1130  🎉 134 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠇ 155/1130  🎉 135 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠏ 156/1130  🎉 136 🫥 0  ⏰ 0  🤔 0  🙁 20  🔇 0  🧙 0
+⠋ 157/1130  🎉 136 🫥 0  ⏰ 0  🤔 0  🙁 21  🔇 0  🧙 0
+⠙ 158/1130  🎉 137 🫥 0  ⏰ 0  🤔 0  🙁 21  🔇 0  🧙 0
+⠹ 159/1130  🎉 138 🫥 0  ⏰ 0  🤔 0  🙁 21  🔇 0  🧙 0
+⠸ 160/1130  🎉 138 🫥 0  ⏰ 0  🤔 0  🙁 22  🔇 0  🧙 0
+⠼ 161/1130  🎉 138 🫥 0  ⏰ 0  🤔 0  🙁 23  🔇 0  🧙 0
+⠴ 162/1130  🎉 139 🫥 0  ⏰ 0  🤔 0  🙁 23  🔇 0  🧙 0
+⠦ 163/1130  🎉 140 🫥 0  ⏰ 0  🤔 0  🙁 23  🔇 0  🧙 0
+⠧ 164/1130  🎉 141 🫥 0  ⏰ 0  🤔 0  🙁 23  🔇 0  🧙 0
+⠇ 165/1130  🎉 142 🫥 0  ⏰ 0  🤔 0  🙁 23  🔇 0  🧙 0
+⠏ 166/1130  🎉 142 🫥 0  ⏰ 0  🤔 0  🙁 24  🔇 0  🧙 0
+⠋ 167/1130  🎉 143 🫥 0  ⏰ 0  🤔 0  🙁 24  🔇 0  🧙 0
+⠙ 168/1130  🎉 144 🫥 0  ⏰ 0  🤔 0  🙁 24  🔇 0  🧙 0
+⠹ 169/1130  🎉 145 🫥 0  ⏰ 0  🤔 0  🙁 24  🔇 0  🧙 0
+⠸ 170/1130  🎉 145 🫥 0  ⏰ 0  🤔 0  🙁 25  🔇 0  🧙 0
+⠼ 171/1130  🎉 146 🫥 0  ⏰ 0  🤔 0  🙁 25  🔇 0  🧙 0
+⠴ 172/1130  🎉 147 🫥 0  ⏰ 0  🤔 0  🙁 25  🔇 0  🧙 0
+⠦ 173/1130  🎉 148 🫥 0  ⏰ 0  🤔 0  🙁 25  🔇 0  🧙 0
+⠧ 174/1130  🎉 148 🫥 0  ⏰ 0  🤔 0  🙁 26  🔇 0  🧙 0
+⠇ 175/1130  🎉 149 🫥 0  ⏰ 0  🤔 0  🙁 26  🔇 0  🧙 0
+⠏ 176/1130  🎉 150 🫥 0  ⏰ 0  🤔 0  🙁 26  🔇 0  🧙 0
+⠋ 177/1130  🎉 151 🫥 0  ⏰ 0  🤔 0  🙁 26  🔇 0  🧙 0
+⠙ 178/1130  🎉 152 🫥 0  ⏰ 0  🤔 0  🙁 26  🔇 0  🧙 0
+⠹ 179/1130  🎉 153 🫥 0  ⏰ 0  🤔 0  🙁 26  🔇 0  🧙 0
+⠸ 180/1130  🎉 153 🫥 0  ⏰ 0  🤔 0  🙁 27  🔇 0  🧙 0
+⠼ 181/1130  🎉 154 🫥 0  ⏰ 0  🤔 0  🙁 27  🔇 0  🧙 0
+⠴ 182/1130  🎉 155 🫥 0  ⏰ 0  🤔 0  🙁 27  🔇 0  🧙 0
+⠦ 183/1130  🎉 156 🫥 0  ⏰ 0  🤔 0  🙁 27  🔇 0  🧙 0
+⠧ 184/1130  🎉 157 🫥 0  ⏰ 0  🤔 0  🙁 27  🔇 0  🧙 0
+⠇ 185/1130  🎉 157 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠏ 186/1130  🎉 158 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠋ 187/1130  🎉 159 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠙ 188/1130  🎉 160 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠹ 189/1130  🎉 161 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠸ 190/1130  🎉 162 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠼ 191/1130  🎉 163 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠴ 192/1130  🎉 164 🫥 0  ⏰ 0  🤔 0  🙁 28  🔇 0  🧙 0
+⠦ 193/1130  🎉 164 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠧ 194/1130  🎉 165 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠇ 195/1130  🎉 166 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠏ 196/1130  🎉 167 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠋ 197/1130  🎉 168 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠙ 198/1130  🎉 169 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠹ 199/1130  🎉 170 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠸ 200/1130  🎉 171 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠼ 201/1130  🎉 172 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠴ 202/1130  🎉 173 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠦ 203/1130  🎉 174 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠧ 204/1130  🎉 175 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠇ 205/1130  🎉 176 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠏ 206/1130  🎉 177 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠋ 207/1130  🎉 178 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠙ 208/1130  🎉 179 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠹ 209/1130  🎉 180 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠸ 210/1130  🎉 181 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠼ 211/1130  🎉 182 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠴ 212/1130  🎉 183 🫥 0  ⏰ 0  🤔 0  🙁 29  🔇 0  🧙 0
+⠦ 213/1130  🎉 183 🫥 0  ⏰ 0  🤔 0  🙁 30  🔇 0  🧙 0
+⠧ 214/1130  🎉 183 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠇ 215/1130  🎉 184 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠏ 216/1130  🎉 185 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠋ 217/1130  🎉 186 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠙ 218/1130  🎉 187 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠹ 219/1130  🎉 188 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠸ 220/1130  🎉 189 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠼ 221/1130  🎉 190 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠴ 222/1130  🎉 191 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠦ 223/1130  🎉 192 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠧ 224/1130  🎉 193 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠇ 225/1130  🎉 194 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠏ 226/1130  🎉 195 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠋ 227/1130  🎉 196 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠙ 228/1130  🎉 197 🫥 0  ⏰ 0  🤔 0  🙁 31  🔇 0  🧙 0
+⠹ 229/1130  🎉 197 🫥 0  ⏰ 0  🤔 0  🙁 32  🔇 0  🧙 0
+⠸ 230/1130  🎉 198 🫥 0  ⏰ 0  🤔 0  🙁 32  🔇 0  🧙 0
+⠼ 231/1130  🎉 199 🫥 0  ⏰ 0  🤔 0  🙁 32  🔇 0  🧙 0
+⠴ 232/1130  🎉 200 🫥 0  ⏰ 0  🤔 0  🙁 32  🔇 0  🧙 0
+⠦ 233/1130  🎉 201 🫥 0  ⏰ 0  🤔 0  🙁 32  🔇 0  🧙 0
+⠧ 234/1130  🎉 202 🫥 0  ⏰ 0  🤔 0  🙁 32  🔇 0  🧙 0
+⠇ 235/1130  🎉 202 🫥 0  ⏰ 0  🤔 0  🙁 33  🔇 0  🧙 0
+⠏ 236/1130  🎉 202 🫥 0  ⏰ 0  🤔 0  🙁 34  🔇 0  🧙 0
+⠋ 237/1130  🎉 203 🫥 0  ⏰ 0  🤔 0  🙁 34  🔇 0  🧙 0
+⠙ 238/1130  🎉 204 🫥 0  ⏰ 0  🤔 0  🙁 34  🔇 0  🧙 0
+⠹ 239/1130  🎉 204 🫥 0  ⏰ 0  🤔 0  🙁 35  🔇 0  🧙 0
+⠸ 240/1130  🎉 204 🫥 0  ⏰ 0  🤔 0  🙁 36  🔇 0  🧙 0
+⠼ 241/1130  🎉 204 🫥 0  ⏰ 0  🤔 0  🙁 37  🔇 0  🧙 0
+⠴ 242/1130  🎉 205 🫥 0  ⏰ 0  🤔 0  🙁 37  🔇 0  🧙 0
+⠦ 243/1130  🎉 205 🫥 0  ⏰ 0  🤔 0  🙁 38  🔇 0  🧙 0
+⠧ 244/1130  🎉 205 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠇ 245/1130  🎉 206 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠏ 246/1130  🎉 207 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠋ 247/1130  🎉 208 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠙ 248/1130  🎉 209 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠹ 249/1130  🎉 210 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠸ 250/1130  🎉 211 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠼ 251/1130  🎉 212 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠴ 252/1130  🎉 213 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠦ 253/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 39  🔇 0  🧙 0
+⠧ 254/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 40  🔇 0  🧙 0
+⠇ 255/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 41  🔇 0  🧙 0
+⠏ 256/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 42  🔇 0  🧙 0
+⠋ 257/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 43  🔇 0  🧙 0
+⠙ 258/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 44  🔇 0  🧙 0
+⠹ 259/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 45  🔇 0  🧙 0
+⠸ 260/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 46  🔇 0  🧙 0
+⠼ 261/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 47  🔇 0  🧙 0
+⠴ 262/1130  🎉 214 🫥 0  ⏰ 0  🤔 0  🙁 48  🔇 0  🧙 0
+⠦ 263/1130  🎉 215 🫥 0  ⏰ 0  🤔 0  🙁 48  🔇 0  🧙 0
+⠧ 264/1130  🎉 216 🫥 0  ⏰ 0  🤔 0  🙁 48  🔇 0  🧙 0
+⠇ 265/1130  🎉 217 🫥 0  ⏰ 0  🤔 0  🙁 48  🔇 0  🧙 0
+⠏ 266/1130  🎉 217 🫥 0  ⏰ 0  🤔 0  🙁 49  🔇 0  🧙 0
+⠋ 267/1130  🎉 218 🫥 0  ⏰ 0  🤔 0  🙁 49  🔇 0  🧙 0
+⠙ 268/1130  🎉 219 🫥 0  ⏰ 0  🤔 0  🙁 49  🔇 0  🧙 0
+⠹ 269/1130  🎉 220 🫥 0  ⏰ 0  🤔 0  🙁 49  🔇 0  🧙 0
+⠸ 270/1130  🎉 220 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠼ 271/1130  🎉 221 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠴ 272/1130  🎉 222 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠦ 273/1130  🎉 223 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠧ 274/1130  🎉 224 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠇ 275/1130  🎉 225 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠏ 276/1130  🎉 226 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠋ 277/1130  🎉 227 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠙ 278/1130  🎉 228 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠹ 279/1130  🎉 229 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠸ 280/1130  🎉 230 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠼ 281/1130  🎉 231 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠴ 282/1130  🎉 232 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠦ 283/1130  🎉 233 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠧ 284/1130  🎉 234 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠇ 285/1130  🎉 235 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠏ 286/1130  🎉 236 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠋ 287/1130  🎉 237 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠙ 288/1130  🎉 238 🫥 0  ⏰ 0  🤔 0  🙁 50  🔇 0  🧙 0
+⠹ 289/1130  🎉 238 🫥 0  ⏰ 0  🤔 0  🙁 51  🔇 0  🧙 0
+⠸ 290/1130  🎉 239 🫥 0  ⏰ 0  🤔 0  🙁 51  🔇 0  🧙 0
+⠼ 291/1130  🎉 240 🫥 0  ⏰ 0  🤔 0  🙁 51  🔇 0  🧙 0
+⠴ 292/1130  🎉 240 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠦ 293/1130  🎉 241 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠧ 294/1130  🎉 242 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠇ 295/1130  🎉 243 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠏ 296/1130  🎉 244 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠋ 297/1130  🎉 245 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠙ 298/1130  🎉 246 🫥 0  ⏰ 0  🤔 0  🙁 52  🔇 0  🧙 0
+⠹ 299/1130  🎉 246 🫥 0  ⏰ 0  🤔 0  🙁 53  🔇 0  🧙 0
+⠸ 300/1130  🎉 247 🫥 0  ⏰ 0  🤔 0  🙁 53  🔇 0  🧙 0
+⠼ 301/1130  🎉 247 🫥 0  ⏰ 0  🤔 0  🙁 54  🔇 0  🧙 0
+⠴ 302/1130  🎉 247 🫥 0  ⏰ 0  🤔 0  🙁 55  🔇 0  🧙 0
+⠦ 303/1130  🎉 247 🫥 0  ⏰ 0  🤔 0  🙁 56  🔇 0  🧙 0
+⠧ 304/1130  🎉 247 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠇ 305/1130  🎉 248 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠏ 306/1130  🎉 249 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠋ 307/1130  🎉 250 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠙ 308/1130  🎉 251 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠹ 309/1130  🎉 252 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠸ 310/1130  🎉 253 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠼ 311/1130  🎉 254 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠴ 312/1130  🎉 255 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠦ 313/1130  🎉 256 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠧ 314/1130  🎉 257 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠇ 315/1130  🎉 258 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠏ 316/1130  🎉 259 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠋ 317/1130  🎉 260 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠙ 318/1130  🎉 261 🫥 0  ⏰ 0  🤔 0  🙁 57  🔇 0  🧙 0
+⠹ 319/1130  🎉 261 🫥 0  ⏰ 0  🤔 0  🙁 58  🔇 0  🧙 0
+⠸ 320/1130  🎉 262 🫥 0  ⏰ 0  🤔 0  🙁 58  🔇 0  🧙 0
+⠼ 321/1130  🎉 263 🫥 0  ⏰ 0  🤔 0  🙁 58  🔇 0  🧙 0
+⠴ 322/1130  🎉 263 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠦ 323/1130  🎉 264 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠧ 324/1130  🎉 265 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠇ 325/1130  🎉 266 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠏ 326/1130  🎉 267 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠋ 327/1130  🎉 268 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠙ 328/1130  🎉 269 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠹ 329/1130  🎉 270 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠸ 330/1130  🎉 271 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠼ 331/1130  🎉 272 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠴ 332/1130  🎉 273 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠦ 333/1130  🎉 274 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠧ 334/1130  🎉 275 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠇ 335/1130  🎉 276 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠏ 336/1130  🎉 277 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠋ 337/1130  🎉 278 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠙ 338/1130  🎉 279 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠹ 339/1130  🎉 280 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠸ 340/1130  🎉 281 🫥 0  ⏰ 0  🤔 0  🙁 59  🔇 0  🧙 0
+⠼ 341/1130  🎉 281 🫥 0  ⏰ 0  🤔 0  🙁 60  🔇 0  🧙 0
+⠴ 342/1130  🎉 282 🫥 0  ⏰ 0  🤔 0  🙁 60  🔇 0  🧙 0
+⠦ 343/1130  🎉 282 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠧ 344/1130  🎉 283 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠇ 345/1130  🎉 284 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠏ 346/1130  🎉 285 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠋ 347/1130  🎉 286 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠙ 348/1130  🎉 287 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠹ 349/1130  🎉 288 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠸ 350/1130  🎉 289 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠼ 351/1130  🎉 290 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠴ 352/1130  🎉 291 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠦ 353/1130  🎉 292 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠧ 354/1130  🎉 293 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠇ 355/1130  🎉 294 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠏ 356/1130  🎉 295 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠋ 357/1130  🎉 296 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠙ 358/1130  🎉 297 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠹ 359/1130  🎉 298 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠸ 360/1130  🎉 299 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠼ 361/1130  🎉 300 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠴ 362/1130  🎉 301 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠦ 363/1130  🎉 302 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠧ 364/1130  🎉 303 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠇ 365/1130  🎉 304 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠏ 366/1130  🎉 305 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠋ 367/1130  🎉 306 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠙ 368/1130  🎉 307 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠹ 369/1130  🎉 308 🫥 0  ⏰ 0  🤔 0  🙁 61  🔇 0  🧙 0
+⠸ 370/1130  🎉 308 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠼ 371/1130  🎉 309 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠴ 372/1130  🎉 310 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠦ 373/1130  🎉 311 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠧ 374/1130  🎉 312 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠇ 375/1130  🎉 313 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠏ 376/1130  🎉 314 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠋ 377/1130  🎉 315 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠙ 378/1130  🎉 316 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠹ 379/1130  🎉 317 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠸ 380/1130  🎉 318 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠼ 381/1130  🎉 319 🫥 0  ⏰ 1  🤔 0  🙁 61  🔇 0  🧙 0
+⠴ 382/1130  🎉 319 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠦ 383/1130  🎉 320 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠧ 384/1130  🎉 321 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠇ 385/1130  🎉 322 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠏ 386/1130  🎉 323 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠋ 387/1130  🎉 324 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠙ 388/1130  🎉 325 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠹ 389/1130  🎉 326 🫥 0  ⏰ 1  🤔 0  🙁 62  🔇 0  🧙 0
+⠸ 390/1130  🎉 326 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠼ 391/1130  🎉 327 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠴ 392/1130  🎉 328 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠦ 393/1130  🎉 329 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠧ 394/1130  🎉 330 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠇ 395/1130  🎉 331 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠏ 396/1130  🎉 332 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠋ 397/1130  🎉 333 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠙ 398/1130  🎉 334 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠹ 399/1130  🎉 335 🫥 0  ⏰ 1  🤔 0  🙁 63  🔇 0  🧙 0
+⠸ 400/1130  🎉 335 🫥 0  ⏰ 2  🤔 0  🙁 63  🔇 0  🧙 0
+⠼ 401/1130  🎉 335 🫥 0  ⏰ 3  🤔 0  🙁 63  🔇 0  🧙 0
+⠴ 402/1130  🎉 335 🫥 0  ⏰ 4  🤔 0  🙁 63  🔇 0  🧙 0
+⠦ 403/1130  🎉 335 🫥 0  ⏰ 5  🤔 0  🙁 63  🔇 0  🧙 0
+⠧ 404/1130  🎉 335 🫥 0  ⏰ 6  🤔 0  🙁 63  🔇 0  🧙 0
+⠇ 405/1130  🎉 335 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠏ 406/1130  🎉 336 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠋ 407/1130  🎉 337 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠙ 408/1130  🎉 338 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠹ 409/1130  🎉 339 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠸ 410/1130  🎉 340 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠼ 411/1130  🎉 341 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠴ 412/1130  🎉 342 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠦ 413/1130  🎉 343 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠧ 414/1130  🎉 344 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠇ 415/1130  🎉 345 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠏ 416/1130  🎉 346 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠋ 417/1130  🎉 347 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠙ 418/1130  🎉 348 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠹ 419/1130  🎉 349 🫥 0  ⏰ 6  🤔 0  🙁 64  🔇 0  🧙 0
+⠸ 420/1130  🎉 349 🫥 0  ⏰ 7  🤔 0  🙁 64  🔇 0  🧙 0
+⠼ 421/1130  🎉 349 🫥 0  ⏰ 7  🤔 0  🙁 65  🔇 0  🧙 0
+⠴ 422/1130  🎉 349 🫥 0  ⏰ 7  🤔 0  🙁 66  🔇 0  🧙 0
+⠦ 423/1130  🎉 349 🫥 0  ⏰ 7  🤔 0  🙁 67  🔇 0  🧙 0
+⠧ 424/1130  🎉 350 🫥 0  ⏰ 7  🤔 0  🙁 67  🔇 0  🧙 0
+⠇ 425/1130  🎉 350 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠏ 426/1130  🎉 351 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠋ 427/1130  🎉 352 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠙ 428/1130  🎉 353 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠹ 429/1130  🎉 354 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠸ 430/1130  🎉 355 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠼ 431/1130  🎉 356 🫥 0  ⏰ 7  🤔 0  🙁 68  🔇 0  🧙 0
+⠴ 432/1130  🎉 356 🫥 0  ⏰ 7  🤔 0  🙁 69  🔇 0  🧙 0
+⠦ 433/1130  🎉 356 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠧ 434/1130  🎉 357 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠇ 435/1130  🎉 358 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠏ 436/1130  🎉 359 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠋ 437/1130  🎉 360 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠙ 438/1130  🎉 361 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠹ 439/1130  🎉 362 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠸ 440/1130  🎉 363 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠼ 441/1130  🎉 364 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠴ 442/1130  🎉 365 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠦ 443/1130  🎉 366 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠧ 444/1130  🎉 367 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠇ 445/1130  🎉 368 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠏ 446/1130  🎉 369 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠋ 447/1130  🎉 370 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠙ 448/1130  🎉 371 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠹ 449/1130  🎉 372 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠸ 450/1130  🎉 373 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠼ 451/1130  🎉 374 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠴ 452/1130  🎉 375 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠦ 453/1130  🎉 376 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠧ 454/1130  🎉 377 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠇ 455/1130  🎉 378 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠏ 456/1130  🎉 379 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠋ 457/1130  🎉 380 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠙ 458/1130  🎉 381 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠹ 459/1130  🎉 382 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠸ 460/1130  🎉 383 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠼ 461/1130  🎉 384 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠴ 462/1130  🎉 385 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠦ 463/1130  🎉 386 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠧ 464/1130  🎉 387 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠇ 465/1130  🎉 388 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠏ 466/1130  🎉 389 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠋ 467/1130  🎉 390 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠙ 468/1130  🎉 391 🫥 0  ⏰ 7  🤔 0  🙁 70  🔇 0  🧙 0
+⠹ 469/1130  🎉 391 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠸ 470/1130  🎉 392 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠼ 471/1130  🎉 393 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠴ 472/1130  🎉 394 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠦ 473/1130  🎉 395 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠧ 474/1130  🎉 396 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠇ 475/1130  🎉 397 🫥 0  ⏰ 8  🤔 0  🙁 70  🔇 0  🧙 0
+⠏ 476/1130  🎉 397 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠋ 477/1130  🎉 398 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠙ 478/1130  🎉 399 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠹ 479/1130  🎉 400 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠸ 480/1130  🎉 401 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠼ 481/1130  🎉 402 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠴ 482/1130  🎉 403 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠦ 483/1130  🎉 404 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠧ 484/1130  🎉 405 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠇ 485/1130  🎉 406 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠏ 486/1130  🎉 407 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠋ 487/1130  🎉 408 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠙ 488/1130  🎉 409 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠹ 489/1130  🎉 410 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠸ 490/1130  🎉 411 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠼ 491/1130  🎉 412 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠴ 492/1130  🎉 413 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠦ 493/1130  🎉 414 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠧ 494/1130  🎉 415 🫥 0  ⏰ 8  🤔 0  🙁 71  🔇 0  🧙 0
+⠇ 495/1130  🎉 415 🫥 0  ⏰ 8  🤔 0  🙁 72  🔇 0  🧙 0
+⠏ 496/1130  🎉 415 🫥 0  ⏰ 8  🤔 0  🙁 73  🔇 0  🧙 0
+⠋ 497/1130  🎉 416 🫥 0  ⏰ 8  🤔 0  🙁 73  🔇 0  🧙 0
+⠙ 498/1130  🎉 416 🫥 0  ⏰ 8  🤔 0  🙁 74  🔇 0  🧙 0
+⠹ 499/1130  🎉 417 🫥 0  ⏰ 8  🤔 0  🙁 74  🔇 0  🧙 0
+⠸ 500/1130  🎉 418 🫥 0  ⏰ 8  🤔 0  🙁 74  🔇 0  🧙 0
+⠼ 501/1130  🎉 418 🫥 0  ⏰ 8  🤔 0  🙁 75  🔇 0  🧙 0
+⠴ 502/1130  🎉 419 🫥 0  ⏰ 8  🤔 0  🙁 75  🔇 0  🧙 0
+⠦ 503/1130  🎉 419 🫥 0  ⏰ 8  🤔 0  🙁 76  🔇 0  🧙 0
+⠧ 504/1130  🎉 420 🫥 0  ⏰ 8  🤔 0  🙁 76  🔇 0  🧙 0
+⠇ 505/1130  🎉 420 🫥 0  ⏰ 8  🤔 0  🙁 77  🔇 0  🧙 0
+⠏ 506/1130  🎉 421 🫥 0  ⏰ 8  🤔 0  🙁 77  🔇 0  🧙 0
+⠋ 507/1130  🎉 421 🫥 0  ⏰ 8  🤔 0  🙁 78  🔇 0  🧙 0
+⠙ 508/1130  🎉 422 🫥 0  ⏰ 8  🤔 0  🙁 78  🔇 0  🧙 0
+⠹ 509/1130  🎉 423 🫥 0  ⏰ 8  🤔 0  🙁 78  🔇 0  🧙 0
+⠸ 510/1130  🎉 424 🫥 0  ⏰ 8  🤔 0  🙁 78  🔇 0  🧙 0
+⠼ 511/1130  🎉 424 🫥 0  ⏰ 8  🤔 0  🙁 79  🔇 0  🧙 0
+⠴ 512/1130  🎉 425 🫥 0  ⏰ 8  🤔 0  🙁 79  🔇 0  🧙 0
+⠦ 513/1130  🎉 426 🫥 0  ⏰ 8  🤔 0  🙁 79  🔇 0  🧙 0
+⠧ 514/1130  🎉 427 🫥 0  ⏰ 8  🤔 0  🙁 79  🔇 0  🧙 0
+⠇ 515/1130  🎉 428 🫥 0  ⏰ 8  🤔 0  🙁 79  🔇 0  🧙 0
+⠏ 516/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 79  🔇 0  🧙 0
+⠋ 517/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 80  🔇 0  🧙 0
+⠙ 518/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 81  🔇 0  🧙 0
+⠹ 519/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 82  🔇 0  🧙 0
+⠸ 520/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 83  🔇 0  🧙 0
+⠼ 521/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 84  🔇 0  🧙 0
+⠴ 522/1130  🎉 429 🫥 0  ⏰ 8  🤔 0  🙁 85  🔇 0  🧙 0
+⠦ 523/1130  🎉 430 🫥 0  ⏰ 8  🤔 0  🙁 85  🔇 0  🧙 0
+⠧ 524/1130  🎉 430 🫥 0  ⏰ 8  🤔 0  🙁 86  🔇 0  🧙 0
+⠇ 525/1130  🎉 431 🫥 0  ⏰ 8  🤔 0  🙁 86  🔇 0  🧙 0
+⠏ 526/1130  🎉 432 🫥 0  ⏰ 8  🤔 0  🙁 86  🔇 0  🧙 0
+⠋ 527/1130  🎉 432 🫥 0  ⏰ 8  🤔 0  🙁 87  🔇 0  🧙 0
+⠙ 528/1130  🎉 433 🫥 0  ⏰ 8  🤔 0  🙁 87  🔇 0  🧙 0
+⠹ 529/1130  🎉 433 🫥 0  ⏰ 8  🤔 0  🙁 88  🔇 0  🧙 0
+⠸ 530/1130  🎉 434 🫥 0  ⏰ 8  🤔 0  🙁 88  🔇 0  🧙 0
+⠼ 531/1130  🎉 435 🫥 0  ⏰ 8  🤔 0  🙁 88  🔇 0  🧙 0
+⠴ 532/1130  🎉 436 🫥 0  ⏰ 8  🤔 0  🙁 88  🔇 0  🧙 0
+⠦ 533/1130  🎉 437 🫥 0  ⏰ 8  🤔 0  🙁 88  🔇 0  🧙 0
+⠧ 534/1130  🎉 437 🫥 0  ⏰ 8  🤔 0  🙁 89  🔇 0  🧙 0
+⠇ 535/1130  🎉 438 🫥 0  ⏰ 8  🤔 0  🙁 89  🔇 0  🧙 0
+⠏ 536/1130  🎉 438 🫥 0  ⏰ 8  🤔 0  🙁 90  🔇 0  🧙 0
+⠋ 537/1130  🎉 439 🫥 0  ⏰ 8  🤔 0  🙁 90  🔇 0  🧙 0
+⠙ 538/1130  🎉 440 🫥 0  ⏰ 8  🤔 0  🙁 90  🔇 0  🧙 0
+⠹ 539/1130  🎉 441 🫥 0  ⏰ 8  🤔 0  🙁 90  🔇 0  🧙 0
+⠸ 540/1130  🎉 441 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠼ 541/1130  🎉 442 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠴ 542/1130  🎉 443 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠦ 543/1130  🎉 444 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠧ 544/1130  🎉 445 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠇ 545/1130  🎉 446 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠏ 546/1130  🎉 447 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠋ 547/1130  🎉 448 🫥 0  ⏰ 8  🤔 0  🙁 91  🔇 0  🧙 0
+⠙ 548/1130  🎉 448 🫥 0  ⏰ 8  🤔 0  🙁 92  🔇 0  🧙 0
+⠹ 549/1130  🎉 449 🫥 0  ⏰ 8  🤔 0  🙁 92  🔇 0  🧙 0
+⠸ 550/1130  🎉 450 🫥 0  ⏰ 8  🤔 0  🙁 92  🔇 0  🧙 0
+⠼ 551/1130  🎉 451 🫥 0  ⏰ 8  🤔 0  🙁 92  🔇 0  🧙 0
+⠴ 552/1130  🎉 451 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 553/1130  🎉 452 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 554/1130  🎉 453 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 555/1130  🎉 454 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 556/1130  🎉 455 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 557/1130  🎉 456 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 558/1130  🎉 457 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 559/1130  🎉 458 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 560/1130  🎉 459 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 561/1130  🎉 460 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 562/1130  🎉 461 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 563/1130  🎉 462 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 564/1130  🎉 463 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 565/1130  🎉 464 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 566/1130  🎉 465 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 567/1130  🎉 466 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 568/1130  🎉 467 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 569/1130  🎉 468 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 570/1130  🎉 469 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 571/1130  🎉 470 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 572/1130  🎉 471 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 573/1130  🎉 472 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 574/1130  🎉 473 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 575/1130  🎉 474 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 576/1130  🎉 475 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 577/1130  🎉 476 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 578/1130  🎉 477 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 579/1130  🎉 478 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 580/1130  🎉 479 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 581/1130  🎉 480 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 582/1130  🎉 481 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 583/1130  🎉 482 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 584/1130  🎉 483 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 585/1130  🎉 484 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 586/1130  🎉 485 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 587/1130  🎉 486 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 588/1130  🎉 487 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 589/1130  🎉 488 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 590/1130  🎉 489 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 591/1130  🎉 490 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 592/1130  🎉 491 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 593/1130  🎉 492 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 594/1130  🎉 493 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 595/1130  🎉 494 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 596/1130  🎉 495 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 597/1130  🎉 496 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 598/1130  🎉 497 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 599/1130  🎉 498 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 600/1130  🎉 499 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 601/1130  🎉 500 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 602/1130  🎉 501 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 603/1130  🎉 502 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 604/1130  🎉 503 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 605/1130  🎉 504 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 606/1130  🎉 505 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 607/1130  🎉 506 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 608/1130  🎉 507 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 609/1130  🎉 508 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 610/1130  🎉 509 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 611/1130  🎉 510 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 612/1130  🎉 511 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 613/1130  🎉 512 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 614/1130  🎉 513 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 615/1130  🎉 514 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 616/1130  🎉 515 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 617/1130  🎉 516 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 618/1130  🎉 517 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 619/1130  🎉 518 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 620/1130  🎉 519 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠼ 621/1130  🎉 520 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠴ 622/1130  🎉 521 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠦ 623/1130  🎉 522 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠧ 624/1130  🎉 523 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠇ 625/1130  🎉 524 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠏ 626/1130  🎉 525 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠋ 627/1130  🎉 526 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠙ 628/1130  🎉 527 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠹ 629/1130  🎉 528 🫥 0  ⏰ 8  🤔 0  🙁 93  🔇 0  🧙 0
+⠸ 630/1130  🎉 528 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠼ 631/1130  🎉 529 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠴ 632/1130  🎉 530 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠦ 633/1130  🎉 531 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠧ 634/1130  🎉 532 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠇ 635/1130  🎉 533 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠏ 636/1130  🎉 534 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠋ 637/1130  🎉 535 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠙ 638/1130  🎉 536 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠹ 639/1130  🎉 537 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠸ 640/1130  🎉 538 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠼ 641/1130  🎉 539 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠴ 642/1130  🎉 540 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠦ 643/1130  🎉 541 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠧ 644/1130  🎉 542 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠇ 645/1130  🎉 543 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠏ 646/1130  🎉 544 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠋ 647/1130  🎉 545 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠙ 648/1130  🎉 546 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠹ 649/1130  🎉 547 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠸ 650/1130  🎉 548 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠼ 651/1130  🎉 549 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠴ 652/1130  🎉 550 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠦ 653/1130  🎉 551 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠧ 654/1130  🎉 552 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠇ 655/1130  🎉 553 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠏ 656/1130  🎉 554 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠋ 657/1130  🎉 555 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠙ 658/1130  🎉 556 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠹ 659/1130  🎉 557 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠸ 660/1130  🎉 558 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠼ 661/1130  🎉 559 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠴ 662/1130  🎉 560 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠦ 663/1130  🎉 561 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠧ 664/1130  🎉 562 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠇ 665/1130  🎉 563 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠏ 666/1130  🎉 564 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠋ 667/1130  🎉 565 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠙ 668/1130  🎉 566 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠹ 669/1130  🎉 567 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠸ 670/1130  🎉 568 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠼ 671/1130  🎉 569 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠴ 672/1130  🎉 570 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠦ 673/1130  🎉 571 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠧ 674/1130  🎉 572 🫥 0  ⏰ 8  🤔 0  🙁 94  🔇 0  🧙 0
+⠇ 675/1130  🎉 572 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠏ 676/1130  🎉 573 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠋ 677/1130  🎉 574 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠙ 678/1130  🎉 575 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠹ 679/1130  🎉 576 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠸ 680/1130  🎉 577 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠼ 681/1130  🎉 578 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠴ 682/1130  🎉 579 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠦ 683/1130  🎉 580 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠧ 684/1130  🎉 581 🫥 0  ⏰ 8  🤔 0  🙁 95  🔇 0  🧙 0
+⠇ 685/1130  🎉 581 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠏ 686/1130  🎉 582 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠋ 687/1130  🎉 583 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠙ 688/1130  🎉 584 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠹ 689/1130  🎉 585 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠸ 690/1130  🎉 586 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠼ 691/1130  🎉 587 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠴ 692/1130  🎉 588 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠦ 693/1130  🎉 589 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠧ 694/1130  🎉 590 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠇ 695/1130  🎉 591 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠏ 696/1130  🎉 592 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠋ 697/1130  🎉 593 🫥 0  ⏰ 8  🤔 0  🙁 96  🔇 0  🧙 0
+⠙ 698/1130  🎉 593 🫥 0  ⏰ 8  🤔 0  🙁 97  🔇 0  🧙 0
+⠹ 699/1130  🎉 593 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠸ 700/1130  🎉 594 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠼ 701/1130  🎉 595 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠴ 702/1130  🎉 596 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠦ 703/1130  🎉 597 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠧ 704/1130  🎉 598 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠇ 705/1130  🎉 599 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠏ 706/1130  🎉 600 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠋ 707/1130  🎉 601 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠙ 708/1130  🎉 602 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠹ 709/1130  🎉 603 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠸ 710/1130  🎉 604 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠼ 711/1130  🎉 605 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠴ 712/1130  🎉 606 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠦ 713/1130  🎉 607 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠧ 714/1130  🎉 608 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠇ 715/1130  🎉 609 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠏ 716/1130  🎉 610 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠋ 717/1130  🎉 611 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠙ 718/1130  🎉 612 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠹ 719/1130  🎉 613 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠸ 720/1130  🎉 614 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠼ 721/1130  🎉 615 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠴ 722/1130  🎉 616 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠦ 723/1130  🎉 617 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠧ 724/1130  🎉 618 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠇ 725/1130  🎉 619 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠏ 726/1130  🎉 620 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠋ 727/1130  🎉 621 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠙ 728/1130  🎉 622 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠹ 729/1130  🎉 623 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠸ 730/1130  🎉 624 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠼ 731/1130  🎉 625 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠴ 732/1130  🎉 626 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠦ 733/1130  🎉 627 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠧ 734/1130  🎉 628 🫥 0  ⏰ 8  🤔 0  🙁 98  🔇 0  🧙 0
+⠇ 735/1130  🎉 628 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 736/1130  🎉 629 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 737/1130  🎉 630 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 738/1130  🎉 631 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 739/1130  🎉 632 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 740/1130  🎉 633 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 741/1130  🎉 634 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠴ 742/1130  🎉 635 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠦ 743/1130  🎉 636 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠧ 744/1130  🎉 637 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠇ 745/1130  🎉 638 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 746/1130  🎉 639 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 747/1130  🎉 640 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 748/1130  🎉 641 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 749/1130  🎉 642 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 750/1130  🎉 643 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 751/1130  🎉 644 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠴ 752/1130  🎉 645 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠦ 753/1130  🎉 646 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠧ 754/1130  🎉 647 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠇ 755/1130  🎉 648 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 756/1130  🎉 649 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 757/1130  🎉 650 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 758/1130  🎉 651 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 759/1130  🎉 652 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 760/1130  🎉 653 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 761/1130  🎉 654 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠴ 762/1130  🎉 655 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠦ 763/1130  🎉 656 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠧ 764/1130  🎉 657 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠇ 765/1130  🎉 658 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 766/1130  🎉 659 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 767/1130  🎉 660 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 768/1130  🎉 661 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 769/1130  🎉 662 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 770/1130  🎉 663 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 771/1130  🎉 664 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠴ 772/1130  🎉 665 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠦ 773/1130  🎉 666 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠧ 774/1130  🎉 667 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠇ 775/1130  🎉 668 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 776/1130  🎉 669 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 777/1130  🎉 670 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 778/1130  🎉 671 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 779/1130  🎉 672 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 780/1130  🎉 673 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 781/1130  🎉 674 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠴ 782/1130  🎉 675 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠦ 783/1130  🎉 676 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠧ 784/1130  🎉 677 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠇ 785/1130  🎉 678 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 786/1130  🎉 679 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 787/1130  🎉 680 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 788/1130  🎉 681 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 789/1130  🎉 682 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 790/1130  🎉 683 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 791/1130  🎉 684 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠴ 792/1130  🎉 685 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠦ 793/1130  🎉 686 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠧ 794/1130  🎉 687 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠇ 795/1130  🎉 688 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠏ 796/1130  🎉 689 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠋ 797/1130  🎉 690 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠙ 798/1130  🎉 691 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠹ 799/1130  🎉 692 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠸ 800/1130  🎉 693 🫥 0  ⏰ 8  🤔 0  🙁 99  🔇 0  🧙 0
+⠼ 801/1130  🎉 693 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠴ 802/1130  🎉 694 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠦ 803/1130  🎉 695 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠧ 804/1130  🎉 696 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠇ 805/1130  🎉 697 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠏ 806/1130  🎉 698 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠋ 807/1130  🎉 699 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠙ 808/1130  🎉 700 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠹ 809/1130  🎉 701 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠸ 810/1130  🎉 702 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠼ 811/1130  🎉 703 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠴ 812/1130  🎉 704 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠦ 813/1130  🎉 705 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠧ 814/1130  🎉 706 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠇ 815/1130  🎉 707 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠏ 816/1130  🎉 708 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠋ 817/1130  🎉 709 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠙ 818/1130  🎉 710 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠹ 819/1130  🎉 711 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠸ 820/1130  🎉 712 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠼ 821/1130  🎉 713 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠴ 822/1130  🎉 714 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠦ 823/1130  🎉 715 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠧ 824/1130  🎉 716 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠇ 825/1130  🎉 717 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠏ 826/1130  🎉 718 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠋ 827/1130  🎉 719 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠙ 828/1130  🎉 720 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠹ 829/1130  🎉 721 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠸ 830/1130  🎉 722 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠼ 831/1130  🎉 723 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠴ 832/1130  🎉 724 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠦ 833/1130  🎉 725 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠧ 834/1130  🎉 726 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠇ 835/1130  🎉 727 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠏ 836/1130  🎉 728 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠋ 837/1130  🎉 729 🫥 0  ⏰ 8  🤔 0  🙁 100  🔇 0  🧙 0
+⠙ 838/1130  🎉 729 🫥 0  ⏰ 9  🤔 0  🙁 100  🔇 0  🧙 0
+⠹ 839/1130  🎉 729 🫥 0  ⏰ 10  🤔 0  🙁 100  🔇 0  🧙 0
+⠸ 840/1130  🎉 730 🫥 0  ⏰ 10  🤔 0  🙁 100  🔇 0  🧙 0
+⠼ 841/1130  🎉 731 🫥 0  ⏰ 10  🤔 0  🙁 100  🔇 0  🧙 0
+⠴ 842/1130  🎉 732 🫥 0  ⏰ 10  🤔 0  🙁 100  🔇 0  🧙 0
+⠦ 843/1130  🎉 733 🫥 0  ⏰ 10  🤔 0  🙁 100  🔇 0  🧙 0
+⠧ 844/1130  🎉 734 🫥 0  ⏰ 10  🤔 0  🙁 100  🔇 0  🧙 0
+⠇ 845/1130  🎉 734 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠏ 846/1130  🎉 735 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠋ 847/1130  🎉 736 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠙ 848/1130  🎉 737 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠹ 849/1130  🎉 738 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠸ 850/1130  🎉 739 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠼ 851/1130  🎉 740 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠴ 852/1130  🎉 741 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠦ 853/1130  🎉 742 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠧ 854/1130  🎉 743 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠇ 855/1130  🎉 744 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠏ 856/1130  🎉 745 🫥 0  ⏰ 10  🤔 0  🙁 101  🔇 0  🧙 0
+⠋ 857/1130  🎉 745 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠙ 858/1130  🎉 746 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠹ 859/1130  🎉 747 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠸ 860/1130  🎉 748 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠼ 861/1130  🎉 749 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠴ 862/1130  🎉 750 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠦ 863/1130  🎉 751 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠧ 864/1130  🎉 752 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠇ 865/1130  🎉 753 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠏ 866/1130  🎉 754 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠋ 867/1130  🎉 755 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠙ 868/1130  🎉 756 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠹ 869/1130  🎉 757 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠸ 870/1130  🎉 758 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠼ 871/1130  🎉 759 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠴ 872/1130  🎉 760 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠦ 873/1130  🎉 761 🫥 0  ⏰ 10  🤔 0  🙁 102  🔇 0  🧙 0
+⠧ 874/1130  🎉 761 🫥 0  ⏰ 10  🤔 0  🙁 103  🔇 0  🧙 0
+⠇ 875/1130  🎉 761 🫥 0  ⏰ 10  🤔 0  🙁 104  🔇 0  🧙 0
+⠏ 876/1130  🎉 762 🫥 0  ⏰ 10  🤔 0  🙁 104  🔇 0  🧙 0
+⠋ 877/1130  🎉 763 🫥 0  ⏰ 10  🤔 0  🙁 104  🔇 0  🧙 0
+⠙ 878/1130  🎉 764 🫥 0  ⏰ 10  🤔 0  🙁 104  🔇 0  🧙 0
+⠹ 879/1130  🎉 765 🫥 0  ⏰ 10  🤔 0  🙁 104  🔇 0  🧙 0
+⠸ 880/1130  🎉 765 🫥 0  ⏰ 10  🤔 0  🙁 105  🔇 0  🧙 0
+⠼ 881/1130  🎉 766 🫥 0  ⏰ 10  🤔 0  🙁 105  🔇 0  🧙 0
+⠴ 882/1130  🎉 767 🫥 0  ⏰ 10  🤔 0  🙁 105  🔇 0  🧙 0
+⠦ 883/1130  🎉 768 🫥 0  ⏰ 10  🤔 0  🙁 105  🔇 0  🧙 0
+⠧ 884/1130  🎉 769 🫥 0  ⏰ 10  🤔 0  🙁 105  🔇 0  🧙 0
+⠇ 885/1130  🎉 769 🫥 0  ⏰ 10  🤔 0  🙁 106  🔇 0  🧙 0
+⠏ 886/1130  🎉 770 🫥 0  ⏰ 10  🤔 0  🙁 106  🔇 0  🧙 0
+⠋ 887/1130  🎉 770 🫥 0  ⏰ 10  🤔 0  🙁 107  🔇 0  🧙 0
+⠙ 888/1130  🎉 771 🫥 0  ⏰ 10  🤔 0  🙁 107  🔇 0  🧙 0
+⠹ 889/1130  🎉 772 🫥 0  ⏰ 10  🤔 0  🙁 107  🔇 0  🧙 0
+⠸ 890/1130  🎉 773 🫥 0  ⏰ 10  🤔 0  🙁 107  🔇 0  🧙 0
+⠼ 891/1130  🎉 774 🫥 0  ⏰ 10  🤔 0  🙁 107  🔇 0  🧙 0
+⠴ 892/1130  🎉 775 🫥 0  ⏰ 10  🤔 0  🙁 107  🔇 0  🧙 0
+⠦ 893/1130  🎉 775 🫥 0  ⏰ 10  🤔 0  🙁 108  🔇 0  🧙 0
+⠧ 894/1130  🎉 775 🫥 0  ⏰ 10  🤔 0  🙁 109  🔇 0  🧙 0
+⠇ 895/1130  🎉 775 🫥 0  ⏰ 11  🤔 0  🙁 109  🔇 0  🧙 0
+⠏ 896/1130  🎉 775 🫥 0  ⏰ 12  🤔 0  🙁 109  🔇 0  🧙 0
+⠋ 897/1130  🎉 776 🫥 0  ⏰ 12  🤔 0  🙁 109  🔇 0  🧙 0
+⠙ 898/1130  🎉 777 🫥 0  ⏰ 12  🤔 0  🙁 109  🔇 0  🧙 0
+⠹ 899/1130  🎉 777 🫥 0  ⏰ 12  🤔 0  🙁 110  🔇 0  🧙 0
+⠸ 900/1130  🎉 778 🫥 0  ⏰ 12  🤔 0  🙁 110  🔇 0  🧙 0
+⠼ 901/1130  🎉 779 🫥 0  ⏰ 12  🤔 0  🙁 110  🔇 0  🧙 0
+⠴ 902/1130  🎉 779 🫥 0  ⏰ 12  🤔 0  🙁 111  🔇 0  🧙 0
+⠦ 903/1130  🎉 780 🫥 0  ⏰ 12  🤔 0  🙁 111  🔇 0  🧙 0
+⠧ 904/1130  🎉 781 🫥 0  ⏰ 12  🤔 0  🙁 111  🔇 0  🧙 0
+⠇ 905/1130  🎉 781 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠏ 906/1130  🎉 782 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠋ 907/1130  🎉 783 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠙ 908/1130  🎉 784 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠹ 909/1130  🎉 785 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠸ 910/1130  🎉 786 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠼ 911/1130  🎉 787 🫥 0  ⏰ 12  🤔 0  🙁 112  🔇 0  🧙 0
+⠴ 912/1130  🎉 787 🫥 0  ⏰ 12  🤔 0  🙁 113  🔇 0  🧙 0
+⠦ 913/1130  🎉 787 🫥 0  ⏰ 12  🤔 0  🙁 114  🔇 0  🧙 0
+⠧ 914/1130  🎉 787 🫥 0  ⏰ 12  🤔 0  🙁 115  🔇 0  🧙 0
+⠇ 915/1130  🎉 787 🫥 0  ⏰ 12  🤔 0  🙁 116  🔇 0  🧙 0
+⠏ 916/1130  🎉 787 🫥 0  ⏰ 13  🤔 0  🙁 116  🔇 0  🧙 0
+⠋ 917/1130  🎉 787 🫥 0  ⏰ 14  🤔 0  🙁 116  🔇 0  🧙 0
+⠙ 918/1130  🎉 788 🫥 0  ⏰ 14  🤔 0  🙁 116  🔇 0  🧙 0
+⠹ 919/1130  🎉 789 🫥 0  ⏰ 14  🤔 0  🙁 116  🔇 0  🧙 0
+⠸ 920/1130  🎉 790 🫥 0  ⏰ 14  🤔 0  🙁 116  🔇 0  🧙 0
+⠼ 921/1130  🎉 791 🫥 0  ⏰ 14  🤔 0  🙁 116  🔇 0  🧙 0
+⠴ 922/1130  🎉 791 🫥 0  ⏰ 14  🤔 0  🙁 117  🔇 0  🧙 0
+⠦ 923/1130  🎉 792 🫥 0  ⏰ 14  🤔 0  🙁 117  🔇 0  🧙 0
+⠧ 924/1130  🎉 793 🫥 0  ⏰ 14  🤔 0  🙁 117  🔇 0  🧙 0
+⠇ 925/1130  🎉 793 🫥 0  ⏰ 15  🤔 0  🙁 117  🔇 0  🧙 0
+⠏ 926/1130  🎉 794 🫥 0  ⏰ 15  🤔 0  🙁 117  🔇 0  🧙 0
+⠋ 927/1130  🎉 795 🫥 0  ⏰ 15  🤔 0  🙁 117  🔇 0  🧙 0
+⠙ 928/1130  🎉 795 🫥 0  ⏰ 16  🤔 0  🙁 117  🔇 0  🧙 0
+⠹ 929/1130  🎉 796 🫥 0  ⏰ 16  🤔 0  🙁 117  🔇 0  🧙 0
+⠸ 930/1130  🎉 796 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠼ 931/1130  🎉 797 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠴ 932/1130  🎉 798 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠦ 933/1130  🎉 799 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠧ 934/1130  🎉 800 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠇ 935/1130  🎉 801 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠏ 936/1130  🎉 802 🫥 0  ⏰ 16  🤔 0  🙁 118  🔇 0  🧙 0
+⠋ 937/1130  🎉 802 🫥 0  ⏰ 17  🤔 0  🙁 118  🔇 0  🧙 0
+⠙ 938/1130  🎉 803 🫥 0  ⏰ 17  🤔 0  🙁 118  🔇 0  🧙 0
+⠹ 939/1130  🎉 804 🫥 0  ⏰ 17  🤔 0  🙁 118  🔇 0  🧙 0
+⠸ 940/1130  🎉 805 🫥 0  ⏰ 17  🤔 0  🙁 118  🔇 0  🧙 0
+⠼ 941/1130  🎉 806 🫥 0  ⏰ 17  🤔 0  🙁 118  🔇 0  🧙 0
+⠴ 942/1130  🎉 807 🫥 0  ⏰ 17  🤔 0  🙁 118  🔇 0  🧙 0
+⠦ 943/1130  🎉 807 🫥 0  ⏰ 18  🤔 0  🙁 118  🔇 0  🧙 0
+⠧ 944/1130  🎉 808 🫥 0  ⏰ 18  🤔 0  🙁 118  🔇 0  🧙 0
+⠇ 945/1130  🎉 808 🫥 0  ⏰ 18  🤔 0  🙁 119  🔇 0  🧙 0
+⠏ 946/1130  🎉 809 🫥 0  ⏰ 18  🤔 0  🙁 119  🔇 0  🧙 0
+⠋ 947/1130  🎉 810 🫥 0  ⏰ 18  🤔 0  🙁 119  🔇 0  🧙 0
+⠙ 948/1130  🎉 811 🫥 0  ⏰ 18  🤔 0  🙁 119  🔇 0  🧙 0
+⠹ 949/1130  🎉 812 🫥 0  ⏰ 18  🤔 0  🙁 119  🔇 0  🧙 0
+⠸ 950/1130  🎉 812 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠼ 951/1130  🎉 813 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠴ 952/1130  🎉 814 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠦ 953/1130  🎉 815 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠧ 954/1130  🎉 816 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠇ 955/1130  🎉 817 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠏ 956/1130  🎉 818 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠋ 957/1130  🎉 819 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠙ 958/1130  🎉 820 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠹ 959/1130  🎉 821 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠸ 960/1130  🎉 822 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠼ 961/1130  🎉 823 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠴ 962/1130  🎉 824 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠦ 963/1130  🎉 825 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠧ 964/1130  🎉 826 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠇ 965/1130  🎉 827 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠏ 966/1130  🎉 828 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠋ 967/1130  🎉 829 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠙ 968/1130  🎉 830 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠹ 969/1130  🎉 831 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠸ 970/1130  🎉 832 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠼ 971/1130  🎉 833 🫥 0  ⏰ 18  🤔 0  🙁 120  🔇 0  🧙 0
+⠴ 972/1130  🎉 833 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠦ 973/1130  🎉 834 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠧ 974/1130  🎉 835 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠇ 975/1130  🎉 836 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠏ 976/1130  🎉 837 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠋ 977/1130  🎉 838 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠙ 978/1130  🎉 839 🫥 0  ⏰ 18  🤔 0  🙁 121  🔇 0  🧙 0
+⠹ 979/1130  🎉 839 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠸ 980/1130  🎉 840 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠼ 981/1130  🎉 841 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠴ 982/1130  🎉 842 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠦ 983/1130  🎉 843 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠧ 984/1130  🎉 844 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠇ 985/1130  🎉 845 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠏ 986/1130  🎉 846 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠋ 987/1130  🎉 847 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠙ 988/1130  🎉 848 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠹ 989/1130  🎉 849 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠸ 990/1130  🎉 850 🫥 0  ⏰ 19  🤔 0  🙁 121  🔇 0  🧙 0
+⠼ 991/1130  🎉 850 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 992/1130  🎉 851 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 993/1130  🎉 852 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 994/1130  🎉 853 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 995/1130  🎉 854 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 996/1130  🎉 855 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 997/1130  🎉 856 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 998/1130  🎉 857 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 999/1130  🎉 858 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1000/1130  🎉 859 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1001/1130  🎉 860 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1002/1130  🎉 861 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1003/1130  🎉 862 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1004/1130  🎉 863 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1005/1130  🎉 864 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1006/1130  🎉 865 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1007/1130  🎉 866 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1008/1130  🎉 867 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1009/1130  🎉 868 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1010/1130  🎉 869 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1011/1130  🎉 870 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1012/1130  🎉 871 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1013/1130  🎉 872 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1014/1130  🎉 873 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1015/1130  🎉 874 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1016/1130  🎉 875 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1017/1130  🎉 876 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1018/1130  🎉 877 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1019/1130  🎉 878 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1020/1130  🎉 879 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1021/1130  🎉 880 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1022/1130  🎉 881 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1023/1130  🎉 882 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1024/1130  🎉 883 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1025/1130  🎉 884 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1026/1130  🎉 885 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1027/1130  🎉 886 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1028/1130  🎉 887 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1029/1130  🎉 888 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1030/1130  🎉 889 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1031/1130  🎉 890 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1032/1130  🎉 891 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1033/1130  🎉 892 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1034/1130  🎉 893 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1035/1130  🎉 894 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1036/1130  🎉 895 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1037/1130  🎉 896 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1038/1130  🎉 897 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1039/1130  🎉 898 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1040/1130  🎉 899 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1041/1130  🎉 900 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1042/1130  🎉 901 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1043/1130  🎉 902 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1044/1130  🎉 903 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1045/1130  🎉 904 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1046/1130  🎉 905 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1047/1130  🎉 906 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1048/1130  🎉 907 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1049/1130  🎉 908 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1050/1130  🎉 909 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1051/1130  🎉 910 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1052/1130  🎉 911 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1053/1130  🎉 912 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1054/1130  🎉 913 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1055/1130  🎉 914 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1056/1130  🎉 915 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1057/1130  🎉 916 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1058/1130  🎉 917 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1059/1130  🎉 918 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1060/1130  🎉 919 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1061/1130  🎉 920 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1062/1130  🎉 921 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1063/1130  🎉 922 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1064/1130  🎉 923 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1065/1130  🎉 924 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1066/1130  🎉 925 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1067/1130  🎉 926 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1068/1130  🎉 927 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1069/1130  🎉 928 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1070/1130  🎉 929 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1071/1130  🎉 930 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1072/1130  🎉 931 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1073/1130  🎉 932 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1074/1130  🎉 933 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1075/1130  🎉 934 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1076/1130  🎉 935 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1077/1130  🎉 936 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1078/1130  🎉 937 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1079/1130  🎉 938 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1080/1130  🎉 939 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1081/1130  🎉 940 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1082/1130  🎉 941 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1083/1130  🎉 942 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1084/1130  🎉 943 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠇ 1085/1130  🎉 944 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠏ 1086/1130  🎉 945 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠋ 1087/1130  🎉 946 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠙ 1088/1130  🎉 947 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠹ 1089/1130  🎉 948 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠸ 1090/1130  🎉 949 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠼ 1091/1130  🎉 950 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠴ 1092/1130  🎉 951 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠦ 1093/1130  🎉 952 🫥 0  ⏰ 19  🤔 0  🙁 122  🔇 0  🧙 0
+⠧ 1094/1130  🎉 952 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠇ 1095/1130  🎉 953 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠏ 1096/1130  🎉 954 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠋ 1097/1130  🎉 955 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠙ 1098/1130  🎉 956 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠹ 1099/1130  🎉 957 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠸ 1100/1130  🎉 958 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠼ 1101/1130  🎉 959 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠴ 1102/1130  🎉 960 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠦ 1103/1130  🎉 961 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠧ 1104/1130  🎉 962 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠇ 1105/1130  🎉 963 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠏ 1106/1130  🎉 964 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠋ 1107/1130  🎉 965 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠙ 1108/1130  🎉 966 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠹ 1109/1130  🎉 967 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠸ 1110/1130  🎉 968 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠼ 1111/1130  🎉 969 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠴ 1112/1130  🎉 970 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠦ 1113/1130  🎉 971 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠧ 1114/1130  🎉 972 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠇ 1115/1130  🎉 973 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠏ 1116/1130  🎉 974 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠋ 1117/1130  🎉 975 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠙ 1118/1130  🎉 976 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠹ 1119/1130  🎉 977 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠸ 1120/1130  🎉 978 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠼ 1121/1130  🎉 979 🫥 0  ⏰ 19  🤔 0  🙁 123  🔇 0  🧙 0
+⠴ 1130/1130  🎉 983 🫥 0  ⏰ 23  🤔 0  🙁 124  🔇 0  🧙 0
+5.95 mutations/second
+
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut results --all true
+    lcgkit.core.validator.x_validate__mutmut_1: killed
+    lcgkit.core.validator.x_validate__mutmut_2: killed
+    lcgkit.core.validator.x_validate__mutmut_3: killed
+    lcgkit.core.validator.x_validate__mutmut_4: killed
+    lcgkit.core.validator.x_validate__mutmut_5: killed
+    lcgkit.core.validator.x_validate__mutmut_6: killed
+    lcgkit.core.validator.x_validate__mutmut_7: killed
+    lcgkit.core.validator.x_validate__mutmut_8: killed
+    lcgkit.core.validator.x_validate__mutmut_9: killed
+    lcgkit.core.validator.x_validate__mutmut_10: killed
+    lcgkit.core.validator.x_validate__mutmut_11: killed
+    lcgkit.core.validator.x_validate__mutmut_12: killed
+    lcgkit.core.validator.x_validate__mutmut_13: killed
+    lcgkit.core.validator.x_validate__mutmut_14: killed
+    lcgkit.core.validator.x_validate__mutmut_15: killed
+    lcgkit.core.validator.x_validate__mutmut_16: killed
+    lcgkit.core.validator.x_validate__mutmut_17: killed
+    lcgkit.core.validator.x_validate__mutmut_18: killed
+    lcgkit.core.validator.x_validate__mutmut_19: killed
+    lcgkit.core.validator.x_validate__mutmut_20: killed
+    lcgkit.core.validator.x_validate__mutmut_21: killed
+    lcgkit.core.validator.x_validate__mutmut_22: killed
+    lcgkit.core.validator.x_validate__mutmut_23: killed
+    lcgkit.core.validator.x_validate__mutmut_24: killed
+    lcgkit.core.validator.x_validate__mutmut_25: killed
+    lcgkit.core.validator.x_validate__mutmut_26: killed
+    lcgkit.core.validator.x_validate__mutmut_27: killed
+    lcgkit.core.validator.x_validate__mutmut_28: killed
+    lcgkit.core.validator.x_validate__mutmut_29: killed
+    lcgkit.core.validator.x_validate__mutmut_30: killed
+    lcgkit.core.validator.x_validate__mutmut_31: killed
+    lcgkit.core.validator.x_validate__mutmut_32: killed
+    lcgkit.core.validator.x_validate__mutmut_33: killed
+    lcgkit.core.validator.x_validate__mutmut_34: killed
+    lcgkit.core.validator.x_validate__mutmut_35: killed
+    lcgkit.core.validator.x_validate__mutmut_36: killed
+    lcgkit.core.validator.x_validate__mutmut_37: killed
+    lcgkit.core.validator.x_validate__mutmut_38: killed
+    lcgkit.core.validator.x_validate__mutmut_39: killed
+    lcgkit.core.validator.x_validate__mutmut_40: killed
+    lcgkit.core.validator.x_validate__mutmut_41: killed
+    lcgkit.core.validator.x_validate__mutmut_42: killed
+    lcgkit.core.validator.x_validate__mutmut_43: killed
+    lcgkit.core.validator.x_validate__mutmut_44: killed
+    lcgkit.core.validator.x_validate__mutmut_45: killed
+    lcgkit.core.validator.x_validate__mutmut_46: killed
+    lcgkit.core.validator.x_validate__mutmut_47: killed
+    lcgkit.core.validator.x_validate__mutmut_48: killed
+    lcgkit.core.validator.x_validate__mutmut_49: killed
+    lcgkit.core.validator.x_validate__mutmut_50: killed
+    lcgkit.core.validator.x_validate__mutmut_51: killed
+    lcgkit.core.validator.x_validate__mutmut_52: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_1: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_2: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_3: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_4: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_5: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_6: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_7: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_8: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_9: killed
+    lcgkit.core.predictor.x__reproduces__mutmut_10: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_1: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_2: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_3: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_4: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_5: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_6: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_7: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_8: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_9: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_10: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_11: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_12: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_13: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_14: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_15: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_16: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_17: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_18: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_19: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_20: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_21: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_22: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_23: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_24: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_25: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_26: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_27: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_28: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_29: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_30: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_31: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_32: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_33: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_34: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_35: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_36: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_37: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_38: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_39: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_40: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_41: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_42: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_43: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_44: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_45: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_46: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_47: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_48: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_49: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_50: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_51: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_52: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_53: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_54: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_55: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_56: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_57: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_58: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_59: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_60: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_61: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_62: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_63: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_64: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_65: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_66: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_67: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_68: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_69: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_70: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_71: survived
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_72: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_73: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_74: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_75: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_76: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_77: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_78: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_79: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_80: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_81: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_82: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_83: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_84: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_85: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_86: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_87: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_88: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_89: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_90: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_91: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_92: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_93: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_94: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_95: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_96: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_97: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_98: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_99: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_100: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_101: killed
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_102: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_1: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_2: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_3: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_4: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_5: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_6: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_7: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_8: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_9: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_10: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_11: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_12: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_13: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_14: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_15: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_16: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_17: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_18: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_19: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_20: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_21: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_22: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_23: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_24: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_25: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_26: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_27: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_28: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_29: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_30: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_31: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_32: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_33: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_34: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_35: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_36: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_37: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_38: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_39: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_40: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_41: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_42: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_43: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_44: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_45: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_46: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_47: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_48: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_49: survived
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_50: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_51: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_52: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_53: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_54: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_55: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_56: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_57: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_58: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_59: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_60: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_61: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_62: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_63: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_64: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_65: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_66: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_67: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_68: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_69: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_70: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_71: killed
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_72: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_1: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_2: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_3: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_4: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_5: survived
+    lcgkit.core.predictor.x__matching_states__mutmut_6: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_7: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_8: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_9: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_10: survived
+    lcgkit.core.predictor.x__matching_states__mutmut_11: survived
+    lcgkit.core.predictor.x__matching_states__mutmut_12: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_13: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_14: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_15: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_16: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_17: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_18: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_19: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_20: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_21: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_22: killed
+    lcgkit.core.predictor.x__matching_states__mutmut_23: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_1: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_2: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_3: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_4: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_5: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_6: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_7: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_8: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_9: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_10: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_11: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_12: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_13: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_14: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_15: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_16: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_17: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_18: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_19: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_20: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_21: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_22: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_23: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_24: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_25: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_26: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_27: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_28: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_29: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_30: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_31: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_32: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_33: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_34: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_35: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_36: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_37: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_38: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_39: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_40: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_41: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_42: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_43: survived
+    lcgkit.core.predictor.x_predict_truncated__mutmut_44: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_45: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_46: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_47: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_48: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_49: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_50: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_51: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_52: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_53: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_54: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_55: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_56: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_57: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_58: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_59: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_60: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_61: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_62: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_63: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_64: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_65: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_66: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_67: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_68: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_69: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_70: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_71: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_72: killed
+    lcgkit.core.predictor.x_predict_truncated__mutmut_73: killed
+    lcgkit.core.bounded.x_integers__mutmut_1: killed
+    lcgkit.core.bounded.x_integers__mutmut_2: killed
+    lcgkit.core.bounded.x_integers__mutmut_3: killed
+    lcgkit.core.bounded.x_integers__mutmut_4: killed
+    lcgkit.core.bounded.x_integers__mutmut_5: killed
+    lcgkit.core.bounded.x_integers__mutmut_6: killed
+    lcgkit.core.bounded.x_integers__mutmut_7: killed
+    lcgkit.core.bounded.x_integers__mutmut_8: killed
+    lcgkit.core.bounded.x_integers__mutmut_9: killed
+    lcgkit.core.bounded.x_integers__mutmut_10: survived
+    lcgkit.core.bounded.x_integers__mutmut_11: killed
+    lcgkit.core.bounded.x_integers__mutmut_12: killed
+    lcgkit.core.bounded.x_integers__mutmut_13: killed
+    lcgkit.core.bounded.x_integers__mutmut_14: killed
+    lcgkit.core.bounded.x_integers__mutmut_15: killed
+    lcgkit.core.bounded.x_integers__mutmut_16: killed
+    lcgkit.core.bounded.x_integers__mutmut_17: killed
+    lcgkit.core.bounded.x_integers__mutmut_18: survived
+    lcgkit.core.bounded.x_integers__mutmut_19: killed
+    lcgkit.core.bounded.x_integers__mutmut_20: killed
+    lcgkit.core.bounded.x_integers__mutmut_21: killed
+    lcgkit.core.bounded.x_integers__mutmut_22: killed
+    lcgkit.core.bounded.x_integers__mutmut_23: killed
+    lcgkit.core.bounded.x_integers__mutmut_24: killed
+    lcgkit.core.bounded.x_integers__mutmut_25: killed
+    lcgkit.core.bounded.x_integers__mutmut_26: killed
+    lcgkit.core.bounded.x_integers__mutmut_27: killed
+    lcgkit.core.bounded.x_integers__mutmut_28: survived
+    lcgkit.core.bounded.x_integers__mutmut_29: killed
+    lcgkit.core.bounded.x_integers__mutmut_30: killed
+    lcgkit.core.bounded.x_integers__mutmut_31: killed
+    lcgkit.core.bounded.x_integers__mutmut_32: killed
+    lcgkit.core.bounded.x_integers__mutmut_33: killed
+    lcgkit.core.bounded.x_integers__mutmut_34: killed
+    lcgkit.core.bounded.x_integers__mutmut_35: killed
+    lcgkit.core.bounded.x_integers__mutmut_36: killed
+    lcgkit.core.bounded.x_integers__mutmut_37: killed
+    lcgkit.core.bounded.x_integers__mutmut_38: killed
+    lcgkit.core.bounded.x_integers__mutmut_39: killed
+    lcgkit.core.bounded.x_integers__mutmut_40: killed
+    lcgkit.core.bounded.x_integers__mutmut_41: killed
+    lcgkit.core.bounded.x_integers__mutmut_42: survived
+    lcgkit.core.bounded.x_integers__mutmut_43: killed
+    lcgkit.core.bounded.x_integers__mutmut_44: timeout
+    lcgkit.core.bounded.x_integers__mutmut_45: timeout
+    lcgkit.core.bounded.x_integers__mutmut_46: survived
+    lcgkit.core.bounded.x_integers__mutmut_47: survived
+    lcgkit.core.bounded.x_integers__mutmut_48: killed
+    lcgkit.core.bounded.x_integers__mutmut_49: survived
+    lcgkit.core.bounded.x_integers__mutmut_50: killed
+    lcgkit.core.bounded.x_integers__mutmut_51: killed
+    lcgkit.core.bounded.x_integers__mutmut_52: killed
+    lcgkit.core.bounded.x_integers__mutmut_53: killed
+    lcgkit.core.bounded.x_integers__mutmut_54: killed
+    lcgkit.core.bounded.x_integers__mutmut_55: killed
+    lcgkit.core.bounded.x_integers__mutmut_56: survived
+    lcgkit.core.bounded.x_integers__mutmut_57: survived
+    lcgkit.core.bounded.x_integers__mutmut_58: killed
+    lcgkit.core.bounded.x_integers__mutmut_59: killed
+    lcgkit.core.bounded.x_integers__mutmut_60: killed
+    lcgkit.core.bounded.x_integers__mutmut_61: killed
+    lcgkit.core.bounded.x_integers__mutmut_62: killed
+    lcgkit.core.bounded.x_integers__mutmut_63: killed
+    lcgkit.core.bounded.x_integers__mutmut_64: killed
+    lcgkit.core.bounded.x_integers__mutmut_65: killed
+    lcgkit.core.bounded.x_integers__mutmut_66: killed
+    lcgkit.core.bounded.x_integers__mutmut_67: killed
+    lcgkit.core.bounded.x_integers__mutmut_68: killed
+    lcgkit.core.bounded.x_integers__mutmut_69: survived
+    lcgkit.core.bounded.x_integers__mutmut_70: killed
+    lcgkit.core.bounded.x_integers__mutmut_71: killed
+    lcgkit.core.bounded.x_fractions__mutmut_1: killed
+    lcgkit.core.bounded.x_fractions__mutmut_2: killed
+    lcgkit.core.bounded.x_fractions__mutmut_3: killed
+    lcgkit.core.bounded.x_fractions__mutmut_4: killed
+    lcgkit.core.bounded.x_fractions__mutmut_5: killed
+    lcgkit.core.bounded.x_fractions__mutmut_6: killed
+    lcgkit.core.bounded.x_fractions__mutmut_7: killed
+    lcgkit.core.bounded.x_fractions__mutmut_8: killed
+    lcgkit.core.bounded.x_fractions__mutmut_9: killed
+    lcgkit.core.bounded.x_fractions__mutmut_10: killed
+    lcgkit.core.bounded.x_fractions__mutmut_11: killed
+    lcgkit.core.bounded.x_fractions__mutmut_12: killed
+    lcgkit.core.bounded.x_fractions__mutmut_13: killed
+    lcgkit.core.bounded.x_fractions__mutmut_14: killed
+    lcgkit.core.bounded.x_fractions__mutmut_15: killed
+    lcgkit.core.bounded.x_fractions__mutmut_16: killed
+    lcgkit.core.bounded.x_fractions__mutmut_17: killed
+    lcgkit.core.bounded.x_fractions__mutmut_18: killed
+    lcgkit.core.bounded.x_fractions__mutmut_19: killed
+    lcgkit.core.bounded.x_fractions__mutmut_20: killed
+    lcgkit.core.bounded.x_fractions__mutmut_21: killed
+    lcgkit.core.bounded.x_fractions__mutmut_22: killed
+    lcgkit.core.bounded.x_fractions__mutmut_23: killed
+    lcgkit.core.bounded.x_fractions__mutmut_24: killed
+    lcgkit.core.bounded.x_fractions__mutmut_25: killed
+    lcgkit.core.bounded.x_fractions__mutmut_26: killed
+    lcgkit.core.bounded.x_fractions__mutmut_27: killed
+    lcgkit.core.bounded.x_fractions__mutmut_28: killed
+    lcgkit.core.bounded.x_fractions__mutmut_29: killed
+    lcgkit.core.bounded.x_fractions__mutmut_30: survived
+    lcgkit.core.bounded.x_fractions__mutmut_31: killed
+    lcgkit.core.bounded.x_fractions__mutmut_32: killed
+    lcgkit.core.streams.x_split__mutmut_1: killed
+    lcgkit.core.streams.x_split__mutmut_2: killed
+    lcgkit.core.streams.x_split__mutmut_3: killed
+    lcgkit.core.streams.x_split__mutmut_4: killed
+    lcgkit.core.streams.x_split__mutmut_5: killed
+    lcgkit.core.streams.x_split__mutmut_6: killed
+    lcgkit.core.streams.x_split__mutmut_7: killed
+    lcgkit.core.streams.x_split__mutmut_8: killed
+    lcgkit.core.streams.x_split__mutmut_9: killed
+    lcgkit.core.streams.x_split__mutmut_10: killed
+    lcgkit.core.streams.x_split__mutmut_11: killed
+    lcgkit.core.streams.x_split__mutmut_12: killed
+    lcgkit.core.streams.x_split__mutmut_13: killed
+    lcgkit.core.streams.x_split__mutmut_14: killed
+    lcgkit.core.streams.x_split__mutmut_15: killed
+    lcgkit.core.streams.x_split__mutmut_16: killed
+    lcgkit.core.streams.x_split__mutmut_17: killed
+    lcgkit.core.streams.x_split__mutmut_18: killed
+    lcgkit.core.streams.x_split__mutmut_19: killed
+    lcgkit.core.streams.x_split__mutmut_20: killed
+    lcgkit.core.streams.x_split__mutmut_21: killed
+    lcgkit.core.streams.x_split__mutmut_22: killed
+    lcgkit.core.streams.x_split__mutmut_23: killed
+    lcgkit.core.presets.x_get__mutmut_1: killed
+    lcgkit.core.presets.x_get__mutmut_2: killed
+    lcgkit.core.presets.x_get__mutmut_3: killed
+    lcgkit.core.presets.x_get__mutmut_4: killed
+    lcgkit.core.presets.x_get__mutmut_5: survived
+    lcgkit.core.presets.x_get__mutmut_6: killed
+    lcgkit.core.presets.x_get__mutmut_7: killed
+    lcgkit.core.presets.x_get__mutmut_8: killed
+    lcgkit.core.presets.x_get__mutmut_9: killed
+    lcgkit.core.presets.x_get__mutmut_10: killed
+    lcgkit.core.presets.x_get__mutmut_11: killed
+    lcgkit.core.presets.x_get__mutmut_12: killed
+    lcgkit.core.presets.x_get__mutmut_13: killed
+    lcgkit.core.jump.x_mulmod__mutmut_1: killed
+    lcgkit.core.jump.x_mulmod__mutmut_2: killed
+    lcgkit.core.jump.x_jump__mutmut_1: killed
+    lcgkit.core.jump.x_jump__mutmut_2: killed
+    lcgkit.core.jump.x_jump__mutmut_3: killed
+    lcgkit.core.jump.x_jump__mutmut_4: killed
+    lcgkit.core.jump.x_jump__mutmut_5: killed
+    lcgkit.core.jump.x_jump__mutmut_6: killed
+    lcgkit.core.jump.x_jump__mutmut_7: killed
+    lcgkit.core.jump.x_jump__mutmut_8: killed
+    lcgkit.core.jump.x_jump__mutmut_9: killed
+    lcgkit.core.jump.x_jump__mutmut_10: killed
+    lcgkit.core.jump.x_jump__mutmut_11: killed
+    lcgkit.core.jump.x_jump__mutmut_12: killed
+    lcgkit.core.jump.x_jump__mutmut_13: killed
+    lcgkit.core.jump.x_jump__mutmut_14: timeout
+    lcgkit.core.jump.x_jump__mutmut_15: timeout
+    lcgkit.core.jump.x_jump__mutmut_16: killed
+    lcgkit.core.jump.x_jump__mutmut_17: killed
+    lcgkit.core.jump.x_jump__mutmut_18: killed
+    lcgkit.core.jump.x_jump__mutmut_19: killed
+    lcgkit.core.jump.x_jump__mutmut_20: killed
+    lcgkit.core.jump.x_jump__mutmut_21: killed
+    lcgkit.core.jump.x_jump__mutmut_22: killed
+    lcgkit.core.jump.x_jump__mutmut_23: killed
+    lcgkit.core.jump.x_jump__mutmut_24: killed
+    lcgkit.core.jump.x_jump__mutmut_25: killed
+    lcgkit.core.jump.x_jump__mutmut_26: killed
+    lcgkit.core.jump.x_jump__mutmut_27: killed
+    lcgkit.core.jump.x_jump__mutmut_28: killed
+    lcgkit.core.jump.x_jump__mutmut_29: killed
+    lcgkit.core.jump.x_jump__mutmut_30: killed
+    lcgkit.core.jump.x_jump__mutmut_31: killed
+    lcgkit.core.jump.x_jump__mutmut_32: killed
+    lcgkit.core.stats.x__series__mutmut_1: killed
+    lcgkit.core.stats.x__series__mutmut_2: killed
+    lcgkit.core.stats.x__series__mutmut_3: killed
+    lcgkit.core.stats.x__series__mutmut_4: killed
+    lcgkit.core.stats.x__series__mutmut_5: killed
+    lcgkit.core.stats.x__series__mutmut_6: killed
+    lcgkit.core.stats.x__series__mutmut_7: killed
+    lcgkit.core.stats.x__series__mutmut_8: killed
+    lcgkit.core.stats.x__series__mutmut_9: killed
+    lcgkit.core.stats.x__series__mutmut_10: killed
+    lcgkit.core.stats.x__series__mutmut_11: killed
+    lcgkit.core.stats.x__series__mutmut_12: killed
+    lcgkit.core.stats.x__series__mutmut_13: killed
+    lcgkit.core.stats.x__series__mutmut_14: killed
+    lcgkit.core.stats.x__series__mutmut_15: killed
+    lcgkit.core.stats.x__series__mutmut_16: survived
+    lcgkit.core.stats.x__series__mutmut_17: killed
+    lcgkit.core.stats.x__series__mutmut_18: killed
+    lcgkit.core.stats.x__series__mutmut_19: killed
+    lcgkit.core.stats.x__series__mutmut_20: killed
+    lcgkit.core.stats.x__series__mutmut_21: killed
+    lcgkit.core.stats.x__series__mutmut_22: killed
+    lcgkit.core.stats.x__series__mutmut_23: killed
+    lcgkit.core.stats.x__series__mutmut_24: killed
+    lcgkit.core.stats.x__series__mutmut_25: killed
+    lcgkit.core.stats.x__series__mutmut_26: killed
+    lcgkit.core.stats.x__series__mutmut_27: killed
+    lcgkit.core.stats.x__fraction__mutmut_1: killed
+    lcgkit.core.stats.x__fraction__mutmut_2: killed
+    lcgkit.core.stats.x__fraction__mutmut_3: killed
+    lcgkit.core.stats.x__fraction__mutmut_4: killed
+    lcgkit.core.stats.x__fraction__mutmut_5: killed
+    lcgkit.core.stats.x__fraction__mutmut_6: killed
+    lcgkit.core.stats.x__fraction__mutmut_7: survived
+    lcgkit.core.stats.x__fraction__mutmut_8: killed
+    lcgkit.core.stats.x__fraction__mutmut_9: killed
+    lcgkit.core.stats.x__fraction__mutmut_10: killed
+    lcgkit.core.stats.x__fraction__mutmut_11: killed
+    lcgkit.core.stats.x__fraction__mutmut_12: killed
+    lcgkit.core.stats.x__fraction__mutmut_13: killed
+    lcgkit.core.stats.x__fraction__mutmut_14: killed
+    lcgkit.core.stats.x__fraction__mutmut_15: killed
+    lcgkit.core.stats.x__fraction__mutmut_16: killed
+    lcgkit.core.stats.x__fraction__mutmut_17: survived
+    lcgkit.core.stats.x__fraction__mutmut_18: survived
+    lcgkit.core.stats.x__fraction__mutmut_19: killed
+    lcgkit.core.stats.x__fraction__mutmut_20: killed
+    lcgkit.core.stats.x__fraction__mutmut_21: killed
+    lcgkit.core.stats.x__fraction__mutmut_22: killed
+    lcgkit.core.stats.x__fraction__mutmut_23: killed
+    lcgkit.core.stats.x__fraction__mutmut_24: killed
+    lcgkit.core.stats.x__fraction__mutmut_25: survived
+    lcgkit.core.stats.x__fraction__mutmut_26: killed
+    lcgkit.core.stats.x__fraction__mutmut_27: killed
+    lcgkit.core.stats.x__fraction__mutmut_28: killed
+    lcgkit.core.stats.x__fraction__mutmut_29: killed
+    lcgkit.core.stats.x__fraction__mutmut_30: survived
+    lcgkit.core.stats.x__fraction__mutmut_31: killed
+    lcgkit.core.stats.x__fraction__mutmut_32: killed
+    lcgkit.core.stats.x__fraction__mutmut_33: survived
+    lcgkit.core.stats.x__fraction__mutmut_34: killed
+    lcgkit.core.stats.x__fraction__mutmut_35: killed
+    lcgkit.core.stats.x__fraction__mutmut_36: killed
+    lcgkit.core.stats.x__fraction__mutmut_37: killed
+    lcgkit.core.stats.x__fraction__mutmut_38: survived
+    lcgkit.core.stats.x__fraction__mutmut_39: killed
+    lcgkit.core.stats.x__fraction__mutmut_40: killed
+    lcgkit.core.stats.x__fraction__mutmut_41: survived
+    lcgkit.core.stats.x__fraction__mutmut_42: killed
+    lcgkit.core.stats.x__fraction__mutmut_43: killed
+    lcgkit.core.stats.x__fraction__mutmut_44: killed
+    lcgkit.core.stats.x__fraction__mutmut_45: killed
+    lcgkit.core.stats.x__fraction__mutmut_46: killed
+    lcgkit.core.stats.x__fraction__mutmut_47: killed
+    lcgkit.core.stats.x__fraction__mutmut_48: killed
+    lcgkit.core.stats.x__fraction__mutmut_49: killed
+    lcgkit.core.stats.x__fraction__mutmut_50: survived
+    lcgkit.core.stats.x__fraction__mutmut_51: survived
+    lcgkit.core.stats.x__fraction__mutmut_52: survived
+    lcgkit.core.stats.x__fraction__mutmut_53: killed
+    lcgkit.core.stats.x__fraction__mutmut_54: killed
+    lcgkit.core.stats.x__fraction__mutmut_55: killed
+    lcgkit.core.stats.x__fraction__mutmut_56: killed
+    lcgkit.core.stats.x__fraction__mutmut_57: killed
+    lcgkit.core.stats.x__fraction__mutmut_58: killed
+    lcgkit.core.stats.x__fraction__mutmut_59: killed
+    lcgkit.core.stats.x__fraction__mutmut_60: killed
+    lcgkit.core.stats.x__fraction__mutmut_61: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_1: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_2: survived
+    lcgkit.core.stats.x_chi_square_p__mutmut_3: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_4: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_5: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_6: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_7: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_8: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_9: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_10: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_11: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_12: survived
+    lcgkit.core.stats.x_chi_square_p__mutmut_13: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_14: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_15: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_16: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_17: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_18: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_19: survived
+    lcgkit.core.stats.x_chi_square_p__mutmut_20: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_21: survived
+    lcgkit.core.stats.x_chi_square_p__mutmut_22: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_23: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_24: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_25: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_26: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_27: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_28: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_29: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_30: survived
+    lcgkit.core.stats.x_chi_square_p__mutmut_31: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_32: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_33: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_34: killed
+    lcgkit.core.stats.x_chi_square_p__mutmut_35: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_1: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_2: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_3: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_4: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_5: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_6: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_7: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_8: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_9: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_10: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_11: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_12: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_13: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_14: killed
+    lcgkit.core.stats.x_serial_correlation__mutmut_15: killed
+    lcgkit.core.guard.x__is_insecure__mutmut_1: killed
+    lcgkit.core.guard.x__is_insecure__mutmut_2: killed
+    lcgkit.core.guard.x__is_insecure__mutmut_3: killed
+    lcgkit.core.guard.x__is_insecure__mutmut_4: killed
+    lcgkit.core.guard.x__is_insecure__mutmut_5: killed
+    lcgkit.core.guard.x__is_insecure__mutmut_6: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_1: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_2: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_3: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_4: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_5: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_6: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_7: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_8: survived
+    lcgkit.core.guard.x_check_purpose__mutmut_9: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_10: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_11: survived
+    lcgkit.core.guard.x_check_purpose__mutmut_12: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_13: killed
+    lcgkit.core.guard.x_check_purpose__mutmut_14: survived
+    lcgkit.core.guard.x_check_purpose__mutmut_15: survived
+    lcgkit.core.guard.x_check_purpose__mutmut_16: survived
+    lcgkit.core.lcg.x_step__mutmut_1: killed
+    lcgkit.core.lcg.x_step__mutmut_2: killed
+    lcgkit.core.lcg.x_step__mutmut_3: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_1: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_2: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_3: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_4: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_5: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_6: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_7: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_8: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_9: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_10: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_11: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_12: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_13: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_14: killed
+    lcgkit.core.lcg.x_warnings_for__mutmut_15: killed
+    lcgkit.core.lcg.x_sequence__mutmut_1: killed
+    lcgkit.core.lcg.x_sequence__mutmut_2: killed
+    lcgkit.core.lcg.x_sequence__mutmut_3: killed
+    lcgkit.core.lcg.x_sequence__mutmut_4: killed
+    lcgkit.core.lcg.x_sequence__mutmut_5: killed
+    lcgkit.core.lcg.x_sequence__mutmut_6: killed
+    lcgkit.core.lcg.x_sequence__mutmut_7: killed
+    lcgkit.core.lcg.x_sequence__mutmut_8: killed
+    lcgkit.core.lcg.x_sequence__mutmut_9: killed
+    lcgkit.core.lcg.x_sequence__mutmut_10: killed
+    lcgkit.core.lcg.x_sequence__mutmut_11: killed
+    lcgkit.core.lcg.x_sequence__mutmut_12: killed
+    lcgkit.core.lcg.x_sequence__mutmut_13: killed
+    lcgkit.core.lcg.x_sequence__mutmut_14: killed
+    lcgkit.core.lcg.x_sequence__mutmut_15: killed
+    lcgkit.core.lcg.x_sequence__mutmut_16: killed
+    lcgkit.core.lcg.x_sequence__mutmut_17: killed
+    lcgkit.core.lcg.x_sequence__mutmut_18: killed
+    lcgkit.core.lcg.x_sequence__mutmut_19: killed
+    lcgkit.core.lcg.x_sequence__mutmut_20: killed
+    lcgkit.core.lcg.x_sequence__mutmut_21: killed
+    lcgkit.core.lcg.x_sequence__mutmut_22: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_1: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_2: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_3: survived
+    lcgkit.core.quality.x_cycle_length__mutmut_4: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_5: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_6: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_7: timeout
+    lcgkit.core.quality.x_cycle_length__mutmut_8: timeout
+    lcgkit.core.quality.x_cycle_length__mutmut_9: timeout
+    lcgkit.core.quality.x_cycle_length__mutmut_10: timeout
+    lcgkit.core.quality.x_cycle_length__mutmut_11: timeout
+    lcgkit.core.quality.x_cycle_length__mutmut_12: timeout
+    lcgkit.core.quality.x_cycle_length__mutmut_13: survived
+    lcgkit.core.quality.x_cycle_length__mutmut_14: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_15: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_16: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_17: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_18: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_19: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_20: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_21: killed
+    lcgkit.core.quality.x_cycle_length__mutmut_22: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_1: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_2: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_3: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_4: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_5: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_6: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_7: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_8: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_9: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_10: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_11: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_12: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_13: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_14: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_15: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_16: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_17: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_18: timeout
+    lcgkit.core.quality.x__low_bit_periods__mutmut_19: killed
+    lcgkit.core.quality.x__low_bit_periods__mutmut_20: killed
+    lcgkit.core.quality.x__chi_square__mutmut_1: killed
+    lcgkit.core.quality.x__chi_square__mutmut_2: killed
+    lcgkit.core.quality.x__chi_square__mutmut_3: killed
+    lcgkit.core.quality.x__chi_square__mutmut_4: killed
+    lcgkit.core.quality.x__chi_square__mutmut_5: killed
+    lcgkit.core.quality.x__chi_square__mutmut_6: killed
+    lcgkit.core.quality.x__chi_square__mutmut_7: killed
+    lcgkit.core.quality.x__chi_square__mutmut_8: killed
+    lcgkit.core.quality.x__chi_square__mutmut_9: killed
+    lcgkit.core.quality.x__chi_square__mutmut_10: killed
+    lcgkit.core.quality.x__chi_square__mutmut_11: killed
+    lcgkit.core.quality.x__chi_square__mutmut_12: killed
+    lcgkit.core.quality.x__chi_square__mutmut_13: killed
+    lcgkit.core.quality.x__chi_square__mutmut_14: killed
+    lcgkit.core.quality.x__chi_square__mutmut_15: killed
+    lcgkit.core.quality.x__is_power_of_two__mutmut_1: killed
+    lcgkit.core.quality.x__is_power_of_two__mutmut_2: killed
+    lcgkit.core.quality.x__is_power_of_two__mutmut_3: survived
+    lcgkit.core.quality.x__is_power_of_two__mutmut_4: killed
+    lcgkit.core.quality.x__is_power_of_two__mutmut_5: killed
+    lcgkit.core.quality.x__period_check__mutmut_1: killed
+    lcgkit.core.quality.x__period_check__mutmut_2: killed
+    lcgkit.core.quality.x__period_check__mutmut_3: killed
+    lcgkit.core.quality.x__period_check__mutmut_4: killed
+    lcgkit.core.quality.x__period_check__mutmut_5: killed
+    lcgkit.core.quality.x__period_check__mutmut_6: killed
+    lcgkit.core.quality.x__period_check__mutmut_7: killed
+    lcgkit.core.quality.x__period_check__mutmut_8: killed
+    lcgkit.core.quality.x__period_check__mutmut_9: killed
+    lcgkit.core.quality.x__period_check__mutmut_10: killed
+    lcgkit.core.quality.x__period_check__mutmut_11: killed
+    lcgkit.core.quality.x__period_check__mutmut_12: killed
+    lcgkit.core.quality.x__period_check__mutmut_13: killed
+    lcgkit.core.quality.x__period_check__mutmut_14: killed
+    lcgkit.core.quality.x__period_check__mutmut_15: killed
+    lcgkit.core.quality.x__period_check__mutmut_16: killed
+    lcgkit.core.quality.x__period_check__mutmut_17: killed
+    lcgkit.core.quality.x__period_check__mutmut_18: killed
+    lcgkit.core.quality.x__period_check__mutmut_19: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_1: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_2: survived
+    lcgkit.core.quality.x__uniformity_check__mutmut_3: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_4: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_5: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_6: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_7: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_8: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_9: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_10: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_11: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_12: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_13: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_14: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_15: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_16: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_17: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_18: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_19: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_20: killed
+    lcgkit.core.quality.x__uniformity_check__mutmut_21: survived
+    lcgkit.core.quality.x__independence_check__mutmut_1: killed
+    lcgkit.core.quality.x__independence_check__mutmut_2: survived
+    lcgkit.core.quality.x__independence_check__mutmut_3: killed
+    lcgkit.core.quality.x__independence_check__mutmut_4: killed
+    lcgkit.core.quality.x__independence_check__mutmut_5: killed
+    lcgkit.core.quality.x__independence_check__mutmut_6: killed
+    lcgkit.core.quality.x__independence_check__mutmut_7: killed
+    lcgkit.core.quality.x__independence_check__mutmut_8: killed
+    lcgkit.core.quality.x__independence_check__mutmut_9: killed
+    lcgkit.core.quality.x__independence_check__mutmut_10: killed
+    lcgkit.core.quality.x__independence_check__mutmut_11: killed
+    lcgkit.core.quality.x__independence_check__mutmut_12: killed
+    lcgkit.core.quality.x__independence_check__mutmut_13: killed
+    lcgkit.core.quality.x__independence_check__mutmut_14: killed
+    lcgkit.core.quality.x__independence_check__mutmut_15: killed
+    lcgkit.core.quality.x__independence_check__mutmut_16: killed
+    lcgkit.core.quality.x__independence_check__mutmut_17: killed
+    lcgkit.core.quality.x__independence_check__mutmut_18: killed
+    lcgkit.core.quality.x__independence_check__mutmut_19: killed
+    lcgkit.core.quality.x__independence_check__mutmut_20: killed
+    lcgkit.core.quality.x__independence_check__mutmut_21: killed
+    lcgkit.core.quality.x__independence_check__mutmut_22: killed
+    lcgkit.core.quality.x__independence_check__mutmut_23: killed
+    lcgkit.core.quality.x__independence_check__mutmut_24: killed
+    lcgkit.core.quality.x__independence_check__mutmut_25: survived
+    lcgkit.core.quality.x__low_bits_check__mutmut_1: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_2: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_3: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_4: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_5: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_6: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_7: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_8: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_9: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_10: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_11: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_12: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_13: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_14: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_15: killed
+    lcgkit.core.quality.x__low_bits_check__mutmut_16: killed
+    lcgkit.core.quality.x__verdict__mutmut_1: killed
+    lcgkit.core.quality.x__verdict__mutmut_2: killed
+    lcgkit.core.quality.x__verdict__mutmut_3: killed
+    lcgkit.core.quality.x__verdict__mutmut_4: killed
+    lcgkit.core.quality.x__verdict__mutmut_5: killed
+    lcgkit.core.quality.x__verdict__mutmut_6: killed
+    lcgkit.core.quality.x__verdict__mutmut_7: killed
+    lcgkit.core.quality.x__verdict__mutmut_8: killed
+    lcgkit.core.quality.x__verdict__mutmut_9: killed
+    lcgkit.core.quality.x__verdict__mutmut_10: killed
+    lcgkit.core.quality.x__verdict__mutmut_11: killed
+    lcgkit.core.quality.x__verdict__mutmut_12: killed
+    lcgkit.core.quality.x__verdict__mutmut_13: killed
+    lcgkit.core.quality.x__verdict__mutmut_14: killed
+    lcgkit.core.quality.x_report__mutmut_1: killed
+    lcgkit.core.quality.x_report__mutmut_2: killed
+    lcgkit.core.quality.x_report__mutmut_3: killed
+    lcgkit.core.quality.x_report__mutmut_4: killed
+    lcgkit.core.quality.x_report__mutmut_5: killed
+    lcgkit.core.quality.x_report__mutmut_6: killed
+    lcgkit.core.quality.x_report__mutmut_7: killed
+    lcgkit.core.quality.x_report__mutmut_8: killed
+    lcgkit.core.quality.x_report__mutmut_9: survived
+    lcgkit.core.quality.x_report__mutmut_10: killed
+    lcgkit.core.quality.x_report__mutmut_11: killed
+    lcgkit.core.quality.x_report__mutmut_12: killed
+    lcgkit.core.quality.x_report__mutmut_13: killed
+    lcgkit.core.quality.x_report__mutmut_14: killed
+    lcgkit.core.quality.x_report__mutmut_15: killed
+    lcgkit.core.quality.x_report__mutmut_16: killed
+    lcgkit.core.quality.x_report__mutmut_17: killed
+    lcgkit.core.quality.x_report__mutmut_18: killed
+    lcgkit.core.quality.x_report__mutmut_19: killed
+    lcgkit.core.quality.x_report__mutmut_20: killed
+    lcgkit.core.quality.x_report__mutmut_21: killed
+    lcgkit.core.quality.x_report__mutmut_22: killed
+    lcgkit.core.quality.x_report__mutmut_23: killed
+    lcgkit.core.quality.x_report__mutmut_24: killed
+    lcgkit.core.quality.x_report__mutmut_25: killed
+    lcgkit.core.quality.x_report__mutmut_26: killed
+    lcgkit.core.quality.x_report__mutmut_27: killed
+    lcgkit.core.quality.x_report__mutmut_28: killed
+    lcgkit.core.quality.x_report__mutmut_29: killed
+    lcgkit.core.quality.x_report__mutmut_30: killed
+    lcgkit.core.quality.x_report__mutmut_31: killed
+    lcgkit.core.quality.x_report__mutmut_32: killed
+    lcgkit.core.quality.x_report__mutmut_33: killed
+    lcgkit.core.quality.x_report__mutmut_34: killed
+    lcgkit.core.quality.x_report__mutmut_35: killed
+    lcgkit.core.quality.x_report__mutmut_36: killed
+    lcgkit.core.quality.x_report__mutmut_37: killed
+    lcgkit.core.quality.x_report__mutmut_38: killed
+    lcgkit.core.quality.x_report__mutmut_39: killed
+    lcgkit.core.quality.x_report__mutmut_40: killed
+    lcgkit.core.quality.x_report__mutmut_41: killed
+    lcgkit.core.quality.x_report__mutmut_42: killed
+    lcgkit.core.quality.x_report__mutmut_43: killed
+    lcgkit.core.quality.x_report__mutmut_44: killed
+    lcgkit.core.quality.x_report__mutmut_45: killed
+    lcgkit.core.quality.x_report__mutmut_46: killed
+    lcgkit.core.quality.x_report__mutmut_47: killed
+    lcgkit.core.quality.x_report__mutmut_48: killed
+    lcgkit.core.quality.x_report__mutmut_49: killed
+    lcgkit.core.quality.x_report__mutmut_50: killed
+    lcgkit.core.quality.x_report__mutmut_51: killed
+    lcgkit.core.quality.x_report__mutmut_52: killed
+    lcgkit.core.quality.x_report__mutmut_53: killed
+    lcgkit.core.quality.x_report__mutmut_54: killed
+    lcgkit.core.quality.x_report__mutmut_55: killed
+    lcgkit.core.quality.x_report__mutmut_56: killed
+    lcgkit.core.quality.x_report__mutmut_57: killed
+    lcgkit.core.quality.x_report__mutmut_58: killed
+    lcgkit.core.quality.x_report__mutmut_59: killed
+    lcgkit.core.quality.x_report__mutmut_60: killed
+    lcgkit.core.quality.x_report__mutmut_61: killed
+    lcgkit.core.quality.x_report__mutmut_62: killed
+    lcgkit.core.quality.x_report__mutmut_63: killed
+    lcgkit.core.quality.x_report__mutmut_64: killed
+    lcgkit.core.quality.x_report__mutmut_65: killed
+    lcgkit.core.quality.x_report__mutmut_66: killed
+    lcgkit.core.quality.x_report__mutmut_67: killed
+    lcgkit.core.quality.x_report__mutmut_68: killed
+    lcgkit.core.quality.x_report__mutmut_69: killed
+    lcgkit.core.quality.x_report__mutmut_70: killed
+    lcgkit.core.quality.x_report__mutmut_71: killed
+    lcgkit.core.quality.x_report__mutmut_72: killed
+    lcgkit.core.quality.x_report__mutmut_73: killed
+    lcgkit.core.quality.x_report__mutmut_74: killed
+    lcgkit.core.quality.x_report__mutmut_75: killed
+    lcgkit.core.quality.x_report__mutmut_76: killed
+    lcgkit.core.quality.x_report__mutmut_77: killed
+    lcgkit.core.quality.x_report__mutmut_78: killed
+    lcgkit.core.quality.x_report__mutmut_79: killed
+    lcgkit.core.quality.x_report__mutmut_80: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_1: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_2: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_3: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_4: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_5: timeout
+    lcgkit.core.numtheory.x__is_witness__mutmut_6: timeout
+    lcgkit.core.numtheory.x__is_witness__mutmut_7: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_8: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_9: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_10: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_11: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_12: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_13: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_14: survived
+    lcgkit.core.numtheory.x__is_witness__mutmut_15: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_16: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_17: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_18: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_19: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_20: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_21: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_22: killed
+    lcgkit.core.numtheory.x__is_witness__mutmut_23: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_1: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_2: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_3: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_4: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_5: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_6: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_7: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_8: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_9: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_10: survived
+    lcgkit.core.numtheory.x_is_prime__mutmut_11: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_12: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_13: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_14: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_15: timeout
+    lcgkit.core.numtheory.x_is_prime__mutmut_16: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_17: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_18: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_19: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_20: survived
+    lcgkit.core.numtheory.x_is_prime__mutmut_21: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_22: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_23: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_24: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_25: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_26: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_27: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_28: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_29: killed
+    lcgkit.core.numtheory.x_is_prime__mutmut_30: killed
+    lcgkit.core.numtheory.x__rho__mutmut_1: killed
+    lcgkit.core.numtheory.x__rho__mutmut_2: survived
+    lcgkit.core.numtheory.x__rho__mutmut_3: killed
+    lcgkit.core.numtheory.x__rho__mutmut_4: survived
+    lcgkit.core.numtheory.x__rho__mutmut_5: killed
+    lcgkit.core.numtheory.x__rho__mutmut_6: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_7: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_8: killed
+    lcgkit.core.numtheory.x__rho__mutmut_9: killed
+    lcgkit.core.numtheory.x__rho__mutmut_10: killed
+    lcgkit.core.numtheory.x__rho__mutmut_11: killed
+    lcgkit.core.numtheory.x__rho__mutmut_12: survived
+    lcgkit.core.numtheory.x__rho__mutmut_13: killed
+    lcgkit.core.numtheory.x__rho__mutmut_14: killed
+    lcgkit.core.numtheory.x__rho__mutmut_15: killed
+    lcgkit.core.numtheory.x__rho__mutmut_16: killed
+    lcgkit.core.numtheory.x__rho__mutmut_17: survived
+    lcgkit.core.numtheory.x__rho__mutmut_18: killed
+    lcgkit.core.numtheory.x__rho__mutmut_19: killed
+    lcgkit.core.numtheory.x__rho__mutmut_20: killed
+    lcgkit.core.numtheory.x__rho__mutmut_21: killed
+    lcgkit.core.numtheory.x__rho__mutmut_22: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_23: killed
+    lcgkit.core.numtheory.x__rho__mutmut_24: killed
+    lcgkit.core.numtheory.x__rho__mutmut_25: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_26: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_27: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_28: killed
+    lcgkit.core.numtheory.x__rho__mutmut_29: timeout
+    lcgkit.core.numtheory.x__rho__mutmut_30: killed
+    lcgkit.core.numtheory.x__rho__mutmut_31: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_1: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_2: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_3: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_4: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_5: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_6: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_7: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_8: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_9: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_10: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_11: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_12: killed
+    lcgkit.core.numtheory.x__find_divisor__mutmut_13: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_14: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_15: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_16: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_17: survived
+    lcgkit.core.numtheory.x__find_divisor__mutmut_18: survived
+    lcgkit.core.numtheory.x__strip_small__mutmut_1: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_2: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_3: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_4: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_5: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_6: survived
+    lcgkit.core.numtheory.x__strip_small__mutmut_7: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_8: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_9: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_10: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_11: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_12: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_13: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_14: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_15: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_16: killed
+    lcgkit.core.numtheory.x__strip_small__mutmut_17: timeout
+    lcgkit.core.numtheory.x__strip_small__mutmut_18: killed
+    lcgkit.core.numtheory.x__split__mutmut_1: killed
+    lcgkit.core.numtheory.x__split__mutmut_2: killed
+    lcgkit.core.numtheory.x__split__mutmut_3: killed
+    lcgkit.core.numtheory.x__split__mutmut_4: killed
+    lcgkit.core.numtheory.x__split__mutmut_5: killed
+    lcgkit.core.numtheory.x__split__mutmut_6: survived
+    lcgkit.core.numtheory.x__split__mutmut_7: killed
+    lcgkit.core.numtheory.x__split__mutmut_8: killed
+    lcgkit.core.numtheory.x__split__mutmut_9: killed
+    lcgkit.core.numtheory.x__split__mutmut_10: killed
+    lcgkit.core.numtheory.x__split__mutmut_11: killed
+    lcgkit.core.numtheory.x__split__mutmut_12: killed
+    lcgkit.core.numtheory.x__split__mutmut_13: killed
+    lcgkit.core.numtheory.x__split__mutmut_14: killed
+    lcgkit.core.numtheory.x__split__mutmut_15: killed
+    lcgkit.core.numtheory.x__split__mutmut_16: killed
+    lcgkit.core.numtheory.x__split__mutmut_17: killed
+    lcgkit.core.numtheory.x__split__mutmut_18: killed
+    lcgkit.core.numtheory.x__split__mutmut_19: killed
+    lcgkit.core.numtheory.x__split__mutmut_20: killed
+    lcgkit.core.numtheory.x__split__mutmut_21: killed
+    lcgkit.core.numtheory.x__split__mutmut_22: killed
+    lcgkit.core.numtheory.x_factor__mutmut_1: killed
+    lcgkit.core.numtheory.x_factor__mutmut_2: killed
+    lcgkit.core.numtheory.x_factor__mutmut_3: killed
+    lcgkit.core.numtheory.x_factor__mutmut_4: killed
+    lcgkit.core.numtheory.x_factor__mutmut_5: killed
+    lcgkit.core.numtheory.x_factor__mutmut_6: killed
+    lcgkit.core.numtheory.x_factor__mutmut_7: killed
+    lcgkit.core.numtheory.x_factor__mutmut_8: killed
+    lcgkit.core.numtheory.x_factor__mutmut_9: killed
+    lcgkit.core.numtheory.x_factor__mutmut_10: killed
+    lcgkit.core.numtheory.x_factor__mutmut_11: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_1: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_2: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_3: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_4: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_5: timeout
+    lcgkit.core.numtheory.x_modinv__mutmut_6: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_7: killed
+    lcgkit.core.numtheory.x_modinv__mutmut_8: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_1: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_2: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_3: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_4: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_5: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_6: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_7: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_8: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_9: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_10: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_11: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_12: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_13: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_14: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_15: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_16: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_17: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_18: survived
+    lcgkit.core.numtheory.x_solve_linear__mutmut_19: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_20: survived
+    lcgkit.core.numtheory.x_solve_linear__mutmut_21: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_22: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_23: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_24: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_25: survived
+    lcgkit.core.numtheory.x_solve_linear__mutmut_26: killed
+    lcgkit.core.numtheory.x_solve_linear__mutmut_27: killed
+
+mutants tested: 1130; killed: 983

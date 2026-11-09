@@ -1,0 +1,10 @@
+{
+  "name": "tests",
+  "status": "PASS",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests --ignore=tests/contract --cov=src/lcgkit --cov-branch --cov-report=term-missing --cov-fail-under=95 --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-3/junit.xml -q",
+  "exit_status": 0,
+  "duration_seconds": 39.55,
+  "stdout_path": "tests.stdout.txt",
+  "stderr_path": "tests.stderr.txt",
+  "failures": []
+}
