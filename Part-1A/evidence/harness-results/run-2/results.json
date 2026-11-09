@@ -1,0 +1,119 @@
+[
+  {
+    "name": "lint",
+    "status": "PASS",
+    "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/ruff check src tests --output-format json",
+    "exit_status": 0,
+    "duration_seconds": 0.05,
+    "stdout_path": "lint.stdout.txt",
+    "stderr_path": "lint.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "length",
+    "status": "PASS",
+    "command": "built-in check",
+    "exit_status": 0,
+    "duration_seconds": 0.02,
+    "stdout_path": "length.stdout.txt",
+    "stderr_path": "length.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "types",
+    "status": "PASS",
+    "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mypy --strict src",
+    "exit_status": 0,
+    "duration_seconds": 0.35,
+    "stdout_path": "types.stdout.txt",
+    "stderr_path": "types.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "security",
+    "status": "PASS",
+    "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/bandit -r src -f json -q",
+    "exit_status": 0,
+    "duration_seconds": 0.25,
+    "stdout_path": "security.stdout.txt",
+    "stderr_path": "security.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "secrets",
+    "status": "PASS",
+    "command": "gitleaks git --config /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.harness/config/gitleaks.toml --no-banner --redact --report-format json --report-path /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/gitleaks-git.json /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1 && gitleaks dir --config /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.harness/config/gitleaks.toml --no-banner --redact --report-format json --report-path /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/gitleaks-dir.json /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1",
+    "exit_status": 0,
+    "duration_seconds": 0.88,
+    "stdout_path": "secrets.stdout.txt",
+    "stderr_path": "secrets.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "audit",
+    "status": "PASS",
+    "command": "uv export --frozen --all-groups --no-hashes --no-emit-project --output-file /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/audit-requirements.txt && /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pip-audit -r /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/audit-requirements.txt --no-deps --disable-pip --format json",
+    "exit_status": 0,
+    "duration_seconds": 12.66,
+    "stdout_path": "audit.stdout.txt",
+    "stderr_path": "audit.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "tests",
+    "status": "PASS",
+    "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests --ignore=tests/contract --cov=src/lcgkit --cov-branch --cov-report=term-missing --cov-fail-under=95 --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/junit.xml -q",
+    "exit_status": 0,
+    "duration_seconds": 39.1,
+    "stdout_path": "tests.stdout.txt",
+    "stderr_path": "tests.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "mutation",
+    "status": "FAIL",
+    "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut run && /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut results --all true",
+    "exit_status": 1,
+    "duration_seconds": 7.89,
+    "stdout_path": "mutation.stdout.txt",
+    "stderr_path": "mutation.stderr.txt",
+    "failures": [
+      {
+        "rule_or_test": "mutation",
+        "expected": "mutants generated and tested",
+        "observed": "none were tested",
+        "ids": []
+      }
+    ]
+  },
+  {
+    "name": "contract",
+    "status": "PASS",
+    "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests/contract -q --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/contract-junit.xml",
+    "exit_status": 0,
+    "duration_seconds": 5.55,
+    "stdout_path": "contract.stdout.txt",
+    "stderr_path": "contract.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "integrity",
+    "status": "PASS",
+    "command": "git rev-parse -q --verify refs/tags/baseline-before-implement && git tag -l --format=%(contents) baseline-before-implement && git diff --name-only --relative baseline-before-implement -- tests specs .harness .specify/memory/constitution.md pyproject.toml && git ls-files --others --exclude-standard -- tests specs .harness .specify/memory/constitution.md pyproject.toml && git diff -U0 --relative baseline-before-implement -- src tests && git ls-files --others --exclude-standard -- src tests",
+    "exit_status": 0,
+    "duration_seconds": 0.12,
+    "stdout_path": "integrity.stdout.txt",
+    "stderr_path": "integrity.stderr.txt",
+    "failures": []
+  },
+  {
+    "name": "traceability",
+    "status": "PASS",
+    "command": "built-in check",
+    "exit_status": 0,
+    "duration_seconds": 0.02,
+    "stdout_path": "traceability.stdout.txt",
+    "stderr_path": "traceability.stderr.txt",
+    "failures": []
+  }
+]

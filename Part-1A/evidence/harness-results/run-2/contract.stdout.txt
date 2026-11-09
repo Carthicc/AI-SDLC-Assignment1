@@ -1,0 +1,4 @@
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests/contract -q --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/contract-junit.xml
+..........                                                               [100%]
+10 passed in 4.94s
+

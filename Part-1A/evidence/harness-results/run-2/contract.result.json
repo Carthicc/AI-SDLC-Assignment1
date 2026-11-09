@@ -1,0 +1,10 @@
+{
+  "name": "contract",
+  "status": "PASS",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests/contract -q --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/contract-junit.xml",
+  "exit_status": 0,
+  "duration_seconds": 5.55,
+  "stdout_path": "contract.stdout.txt",
+  "stderr_path": "contract.stderr.txt",
+  "failures": []
+}

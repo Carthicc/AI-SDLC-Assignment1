@@ -1,0 +1,2 @@
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/pytest tests --ignore=tests/contract --cov=src/lcgkit --cov-branch --cov-report=term-missing --cov-fail-under=95 --junitxml=/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/evidence/harness-results/run-2/junit.xml -q
+

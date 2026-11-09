@@ -1,0 +1,17 @@
+{
+  "name": "mutation",
+  "status": "FAIL",
+  "command": "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut run && /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut results --all true",
+  "exit_status": 1,
+  "duration_seconds": 7.89,
+  "stdout_path": "mutation.stdout.txt",
+  "stderr_path": "mutation.stderr.txt",
+  "failures": [
+    {
+      "rule_or_test": "mutation",
+      "expected": "mutants generated and tested",
+      "observed": "none were tested",
+      "ids": []
+    }
+  ]
+}

@@ -1,0 +1,1350 @@
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut run
+
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠏ Generating mutants
+⠋ Generating mutants
+⠙ Generating mutants
+⠹ Generating mutants
+⠸ Generating mutants
+⠼ Generating mutants
+⠴ Generating mutants
+⠴ Generating mutants
+⠴ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠦ Generating mutants
+⠦ Generating mutants
+⠴ Generating mutants
+⠴ Generating mutants
+⠴ Generating mutants
+⠴ Generating mutants
+⠦ Generating mutants
+⠦ Generating mutants
+⠦ Generating mutants
+⠦ Generating mutants
+⠦ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠧ Generating mutants
+⠧ Generating mutants
+⠧ Generating mutants
+⠇ Generating mutants
+⠇ Generating mutants
+⠇ Generating mutants
+    done in 55ms (0 files mutated, 0 ignored, 12 unmodified)
+
+⠴ Running stats     
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+⠏ Running stats
+⠋ Running stats
+⠙ Running stats
+⠹ Running stats
+⠸ Running stats
+⠼ Running stats
+⠴ Running stats
+⠦ Running stats
+⠧ Running stats
+⠇ Running stats
+.........F
+=================================== FAILURES ===================================
+____________ test_the_generated_description_has_the_published_shape ____________
+Traceback (most recent call last):
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+                             ^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 250, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_caller.py", line 197, in __call__
+    return self._hookexec(
+           ^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 183, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 195, in _multicall
+    raise exception
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 167, in _multicall
+    teardown.throw(exception)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/logging.py", line 878, in pytest_runtest_call
+    yield
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 167, in _multicall
+    teardown.throw(exception)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/capture.py", line 906, in pytest_runtest_call
+    return (yield)
+            ^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 167, in _multicall
+    teardown.throw(exception)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 64, in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_result.py", line 103, in get_result
+    raise exc.with_traceback(tb)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 49, in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 167, in _multicall
+    teardown.throw(exception)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/skipping.py", line 268, in pytest_runtest_call
+    return (yield)
+            ^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 147, in _multicall
+    res = hook_impl.function(*args)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 184, in pytest_runtest_call
+    item.runtest()
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/python.py", line 1798, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_caller.py", line 197, in __call__
+    return self._hookexec(
+           ^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 183, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 195, in _multicall
+    raise exception
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 167, in _multicall
+    teardown.throw(exception)
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/schemathesis/pytest/plugin.py", line 505, in pytest_pyfunc_call
+    yield
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/pluggy/_execution.py", line 147, in _multicall
+    res = hook_impl.function(*args)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/_pytest/python.py", line 187, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/mutants/tests/contract/test_openapi_contract.py", line 66, in test_the_generated_description_has_the_published_shape
+    published = yaml.safe_load(CONTRACT.read_text())
+                               ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.15/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/mutants/specs/001-lcgkit-toolkit/contracts/openapi.yaml'
+=============================== warnings summary ===============================
+../.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/contract/test_openapi_contract.py::test_the_generated_description_has_the_published_shape
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 9 passed, 4 deselected, 1 warning in 6.30s
+failed to collect stats. runner returned 1
+
+
+$ /Users/lynnfernandes/Documents/Masters of Technology in Software Engineering/Code/Development/Assignments/AI SDLC/Assignment-1/Part-1A/.venv/bin/mutmut results --all true
+    lcgkit.core.validator.x_validate__mutmut_1: not checked
+    lcgkit.core.validator.x_validate__mutmut_2: not checked
+    lcgkit.core.validator.x_validate__mutmut_3: not checked
+    lcgkit.core.validator.x_validate__mutmut_4: not checked
+    lcgkit.core.validator.x_validate__mutmut_5: not checked
+    lcgkit.core.validator.x_validate__mutmut_6: not checked
+    lcgkit.core.validator.x_validate__mutmut_7: not checked
+    lcgkit.core.validator.x_validate__mutmut_8: not checked
+    lcgkit.core.validator.x_validate__mutmut_9: not checked
+    lcgkit.core.validator.x_validate__mutmut_10: not checked
+    lcgkit.core.validator.x_validate__mutmut_11: not checked
+    lcgkit.core.validator.x_validate__mutmut_12: not checked
+    lcgkit.core.validator.x_validate__mutmut_13: not checked
+    lcgkit.core.validator.x_validate__mutmut_14: not checked
+    lcgkit.core.validator.x_validate__mutmut_15: not checked
+    lcgkit.core.validator.x_validate__mutmut_16: not checked
+    lcgkit.core.validator.x_validate__mutmut_17: not checked
+    lcgkit.core.validator.x_validate__mutmut_18: not checked
+    lcgkit.core.validator.x_validate__mutmut_19: not checked
+    lcgkit.core.validator.x_validate__mutmut_20: not checked
+    lcgkit.core.validator.x_validate__mutmut_21: not checked
+    lcgkit.core.validator.x_validate__mutmut_22: not checked
+    lcgkit.core.validator.x_validate__mutmut_23: not checked
+    lcgkit.core.validator.x_validate__mutmut_24: not checked
+    lcgkit.core.validator.x_validate__mutmut_25: not checked
+    lcgkit.core.validator.x_validate__mutmut_26: not checked
+    lcgkit.core.validator.x_validate__mutmut_27: not checked
+    lcgkit.core.validator.x_validate__mutmut_28: not checked
+    lcgkit.core.validator.x_validate__mutmut_29: not checked
+    lcgkit.core.validator.x_validate__mutmut_30: not checked
+    lcgkit.core.validator.x_validate__mutmut_31: not checked
+    lcgkit.core.validator.x_validate__mutmut_32: not checked
+    lcgkit.core.validator.x_validate__mutmut_33: not checked
+    lcgkit.core.validator.x_validate__mutmut_34: not checked
+    lcgkit.core.validator.x_validate__mutmut_35: not checked
+    lcgkit.core.validator.x_validate__mutmut_36: not checked
+    lcgkit.core.validator.x_validate__mutmut_37: not checked
+    lcgkit.core.validator.x_validate__mutmut_38: not checked
+    lcgkit.core.validator.x_validate__mutmut_39: not checked
+    lcgkit.core.validator.x_validate__mutmut_40: not checked
+    lcgkit.core.validator.x_validate__mutmut_41: not checked
+    lcgkit.core.validator.x_validate__mutmut_42: not checked
+    lcgkit.core.validator.x_validate__mutmut_43: not checked
+    lcgkit.core.validator.x_validate__mutmut_44: not checked
+    lcgkit.core.validator.x_validate__mutmut_45: not checked
+    lcgkit.core.validator.x_validate__mutmut_46: not checked
+    lcgkit.core.validator.x_validate__mutmut_47: not checked
+    lcgkit.core.validator.x_validate__mutmut_48: not checked
+    lcgkit.core.validator.x_validate__mutmut_49: not checked
+    lcgkit.core.validator.x_validate__mutmut_50: not checked
+    lcgkit.core.validator.x_validate__mutmut_51: not checked
+    lcgkit.core.validator.x_validate__mutmut_52: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_1: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_2: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_3: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_4: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_5: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_6: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_7: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_8: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_9: not checked
+    lcgkit.core.predictor.x__reproduces__mutmut_10: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_1: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_2: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_3: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_4: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_5: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_6: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_7: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_8: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_9: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_10: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_11: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_12: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_13: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_14: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_15: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_16: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_17: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_18: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_19: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_20: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_21: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_22: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_23: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_24: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_25: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_26: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_27: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_28: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_29: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_30: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_31: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_32: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_33: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_34: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_35: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_36: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_37: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_38: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_39: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_40: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_41: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_42: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_43: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_44: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_45: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_46: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_47: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_48: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_49: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_50: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_51: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_52: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_53: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_54: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_55: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_56: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_57: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_58: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_59: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_60: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_61: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_62: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_63: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_64: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_65: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_66: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_67: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_68: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_69: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_70: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_71: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_72: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_73: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_74: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_75: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_76: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_77: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_78: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_79: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_80: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_81: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_82: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_83: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_84: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_85: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_86: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_87: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_88: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_89: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_90: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_91: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_92: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_93: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_94: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_95: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_96: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_97: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_98: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_99: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_100: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_101: not checked
+    lcgkit.core.predictor.x_predict_known_modulus__mutmut_102: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_1: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_2: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_3: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_4: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_5: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_6: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_7: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_8: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_9: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_10: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_11: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_12: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_13: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_14: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_15: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_16: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_17: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_18: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_19: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_20: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_21: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_22: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_23: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_24: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_25: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_26: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_27: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_28: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_29: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_30: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_31: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_32: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_33: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_34: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_35: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_36: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_37: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_38: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_39: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_40: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_41: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_42: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_43: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_44: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_45: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_46: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_47: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_48: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_49: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_50: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_51: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_52: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_53: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_54: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_55: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_56: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_57: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_58: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_59: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_60: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_61: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_62: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_63: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_64: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_65: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_66: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_67: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_68: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_69: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_70: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_71: not checked
+    lcgkit.core.predictor.x_predict_unknown_modulus__mutmut_72: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_1: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_2: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_3: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_4: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_5: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_6: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_7: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_8: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_9: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_10: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_11: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_12: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_13: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_14: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_15: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_16: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_17: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_18: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_19: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_20: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_21: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_22: not checked
+    lcgkit.core.predictor.x__matching_states__mutmut_23: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_1: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_2: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_3: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_4: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_5: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_6: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_7: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_8: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_9: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_10: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_11: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_12: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_13: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_14: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_15: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_16: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_17: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_18: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_19: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_20: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_21: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_22: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_23: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_24: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_25: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_26: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_27: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_28: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_29: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_30: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_31: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_32: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_33: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_34: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_35: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_36: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_37: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_38: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_39: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_40: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_41: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_42: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_43: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_44: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_45: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_46: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_47: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_48: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_49: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_50: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_51: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_52: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_53: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_54: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_55: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_56: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_57: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_58: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_59: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_60: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_61: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_62: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_63: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_64: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_65: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_66: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_67: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_68: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_69: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_70: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_71: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_72: not checked
+    lcgkit.core.predictor.x_predict_truncated__mutmut_73: not checked
+    lcgkit.core.bounded.x_integers__mutmut_1: not checked
+    lcgkit.core.bounded.x_integers__mutmut_2: not checked
+    lcgkit.core.bounded.x_integers__mutmut_3: not checked
+    lcgkit.core.bounded.x_integers__mutmut_4: not checked
+    lcgkit.core.bounded.x_integers__mutmut_5: not checked
+    lcgkit.core.bounded.x_integers__mutmut_6: not checked
+    lcgkit.core.bounded.x_integers__mutmut_7: not checked
+    lcgkit.core.bounded.x_integers__mutmut_8: not checked
+    lcgkit.core.bounded.x_integers__mutmut_9: not checked
+    lcgkit.core.bounded.x_integers__mutmut_10: not checked
+    lcgkit.core.bounded.x_integers__mutmut_11: not checked
+    lcgkit.core.bounded.x_integers__mutmut_12: not checked
+    lcgkit.core.bounded.x_integers__mutmut_13: not checked
+    lcgkit.core.bounded.x_integers__mutmut_14: not checked
+    lcgkit.core.bounded.x_integers__mutmut_15: not checked
+    lcgkit.core.bounded.x_integers__mutmut_16: not checked
+    lcgkit.core.bounded.x_integers__mutmut_17: not checked
+    lcgkit.core.bounded.x_integers__mutmut_18: not checked
+    lcgkit.core.bounded.x_integers__mutmut_19: not checked
+    lcgkit.core.bounded.x_integers__mutmut_20: not checked
+    lcgkit.core.bounded.x_integers__mutmut_21: not checked
+    lcgkit.core.bounded.x_integers__mutmut_22: not checked
+    lcgkit.core.bounded.x_integers__mutmut_23: not checked
+    lcgkit.core.bounded.x_integers__mutmut_24: not checked
+    lcgkit.core.bounded.x_integers__mutmut_25: not checked
+    lcgkit.core.bounded.x_integers__mutmut_26: not checked
+    lcgkit.core.bounded.x_integers__mutmut_27: not checked
+    lcgkit.core.bounded.x_integers__mutmut_28: not checked
+    lcgkit.core.bounded.x_integers__mutmut_29: not checked
+    lcgkit.core.bounded.x_integers__mutmut_30: not checked
+    lcgkit.core.bounded.x_integers__mutmut_31: not checked
+    lcgkit.core.bounded.x_integers__mutmut_32: not checked
+    lcgkit.core.bounded.x_integers__mutmut_33: not checked
+    lcgkit.core.bounded.x_integers__mutmut_34: not checked
+    lcgkit.core.bounded.x_integers__mutmut_35: not checked
+    lcgkit.core.bounded.x_integers__mutmut_36: not checked
+    lcgkit.core.bounded.x_integers__mutmut_37: not checked
+    lcgkit.core.bounded.x_integers__mutmut_38: not checked
+    lcgkit.core.bounded.x_integers__mutmut_39: not checked
+    lcgkit.core.bounded.x_integers__mutmut_40: not checked
+    lcgkit.core.bounded.x_integers__mutmut_41: not checked
+    lcgkit.core.bounded.x_integers__mutmut_42: not checked
+    lcgkit.core.bounded.x_integers__mutmut_43: not checked
+    lcgkit.core.bounded.x_integers__mutmut_44: not checked
+    lcgkit.core.bounded.x_integers__mutmut_45: not checked
+    lcgkit.core.bounded.x_integers__mutmut_46: not checked
+    lcgkit.core.bounded.x_integers__mutmut_47: not checked
+    lcgkit.core.bounded.x_integers__mutmut_48: not checked
+    lcgkit.core.bounded.x_integers__mutmut_49: not checked
+    lcgkit.core.bounded.x_integers__mutmut_50: not checked
+    lcgkit.core.bounded.x_integers__mutmut_51: not checked
+    lcgkit.core.bounded.x_integers__mutmut_52: not checked
+    lcgkit.core.bounded.x_integers__mutmut_53: not checked
+    lcgkit.core.bounded.x_integers__mutmut_54: not checked
+    lcgkit.core.bounded.x_integers__mutmut_55: not checked
+    lcgkit.core.bounded.x_integers__mutmut_56: not checked
+    lcgkit.core.bounded.x_integers__mutmut_57: not checked
+    lcgkit.core.bounded.x_integers__mutmut_58: not checked
+    lcgkit.core.bounded.x_integers__mutmut_59: not checked
+    lcgkit.core.bounded.x_integers__mutmut_60: not checked
+    lcgkit.core.bounded.x_integers__mutmut_61: not checked
+    lcgkit.core.bounded.x_integers__mutmut_62: not checked
+    lcgkit.core.bounded.x_integers__mutmut_63: not checked
+    lcgkit.core.bounded.x_integers__mutmut_64: not checked
+    lcgkit.core.bounded.x_integers__mutmut_65: not checked
+    lcgkit.core.bounded.x_integers__mutmut_66: not checked
+    lcgkit.core.bounded.x_integers__mutmut_67: not checked
+    lcgkit.core.bounded.x_integers__mutmut_68: not checked
+    lcgkit.core.bounded.x_integers__mutmut_69: not checked
+    lcgkit.core.bounded.x_integers__mutmut_70: not checked
+    lcgkit.core.bounded.x_integers__mutmut_71: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_1: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_2: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_3: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_4: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_5: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_6: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_7: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_8: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_9: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_10: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_11: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_12: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_13: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_14: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_15: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_16: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_17: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_18: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_19: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_20: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_21: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_22: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_23: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_24: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_25: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_26: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_27: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_28: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_29: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_30: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_31: not checked
+    lcgkit.core.bounded.x_fractions__mutmut_32: not checked
+    lcgkit.core.streams.x_split__mutmut_1: not checked
+    lcgkit.core.streams.x_split__mutmut_2: not checked
+    lcgkit.core.streams.x_split__mutmut_3: not checked
+    lcgkit.core.streams.x_split__mutmut_4: not checked
+    lcgkit.core.streams.x_split__mutmut_5: not checked
+    lcgkit.core.streams.x_split__mutmut_6: not checked
+    lcgkit.core.streams.x_split__mutmut_7: not checked
+    lcgkit.core.streams.x_split__mutmut_8: not checked
+    lcgkit.core.streams.x_split__mutmut_9: not checked
+    lcgkit.core.streams.x_split__mutmut_10: not checked
+    lcgkit.core.streams.x_split__mutmut_11: not checked
+    lcgkit.core.streams.x_split__mutmut_12: not checked
+    lcgkit.core.streams.x_split__mutmut_13: not checked
+    lcgkit.core.streams.x_split__mutmut_14: not checked
+    lcgkit.core.streams.x_split__mutmut_15: not checked
+    lcgkit.core.streams.x_split__mutmut_16: not checked
+    lcgkit.core.streams.x_split__mutmut_17: not checked
+    lcgkit.core.streams.x_split__mutmut_18: not checked
+    lcgkit.core.streams.x_split__mutmut_19: not checked
+    lcgkit.core.streams.x_split__mutmut_20: not checked
+    lcgkit.core.streams.x_split__mutmut_21: not checked
+    lcgkit.core.streams.x_split__mutmut_22: not checked
+    lcgkit.core.streams.x_split__mutmut_23: not checked
+    lcgkit.core.presets.x_get__mutmut_1: not checked
+    lcgkit.core.presets.x_get__mutmut_2: not checked
+    lcgkit.core.presets.x_get__mutmut_3: not checked
+    lcgkit.core.presets.x_get__mutmut_4: not checked
+    lcgkit.core.presets.x_get__mutmut_5: not checked
+    lcgkit.core.presets.x_get__mutmut_6: not checked
+    lcgkit.core.presets.x_get__mutmut_7: not checked
+    lcgkit.core.presets.x_get__mutmut_8: not checked
+    lcgkit.core.presets.x_get__mutmut_9: not checked
+    lcgkit.core.presets.x_get__mutmut_10: not checked
+    lcgkit.core.presets.x_get__mutmut_11: not checked
+    lcgkit.core.presets.x_get__mutmut_12: not checked
+    lcgkit.core.presets.x_get__mutmut_13: not checked
+    lcgkit.core.jump.x_mulmod__mutmut_1: not checked
+    lcgkit.core.jump.x_mulmod__mutmut_2: not checked
+    lcgkit.core.jump.x_jump__mutmut_1: not checked
+    lcgkit.core.jump.x_jump__mutmut_2: not checked
+    lcgkit.core.jump.x_jump__mutmut_3: not checked
+    lcgkit.core.jump.x_jump__mutmut_4: not checked
+    lcgkit.core.jump.x_jump__mutmut_5: not checked
+    lcgkit.core.jump.x_jump__mutmut_6: not checked
+    lcgkit.core.jump.x_jump__mutmut_7: not checked
+    lcgkit.core.jump.x_jump__mutmut_8: not checked
+    lcgkit.core.jump.x_jump__mutmut_9: not checked
+    lcgkit.core.jump.x_jump__mutmut_10: not checked
+    lcgkit.core.jump.x_jump__mutmut_11: not checked
+    lcgkit.core.jump.x_jump__mutmut_12: not checked
+    lcgkit.core.jump.x_jump__mutmut_13: not checked
+    lcgkit.core.jump.x_jump__mutmut_14: not checked
+    lcgkit.core.jump.x_jump__mutmut_15: not checked
+    lcgkit.core.jump.x_jump__mutmut_16: not checked
+    lcgkit.core.jump.x_jump__mutmut_17: not checked
+    lcgkit.core.jump.x_jump__mutmut_18: not checked
+    lcgkit.core.jump.x_jump__mutmut_19: not checked
+    lcgkit.core.jump.x_jump__mutmut_20: not checked
+    lcgkit.core.jump.x_jump__mutmut_21: not checked
+    lcgkit.core.jump.x_jump__mutmut_22: not checked
+    lcgkit.core.jump.x_jump__mutmut_23: not checked
+    lcgkit.core.jump.x_jump__mutmut_24: not checked
+    lcgkit.core.jump.x_jump__mutmut_25: not checked
+    lcgkit.core.jump.x_jump__mutmut_26: not checked
+    lcgkit.core.jump.x_jump__mutmut_27: not checked
+    lcgkit.core.jump.x_jump__mutmut_28: not checked
+    lcgkit.core.jump.x_jump__mutmut_29: not checked
+    lcgkit.core.jump.x_jump__mutmut_30: not checked
+    lcgkit.core.jump.x_jump__mutmut_31: not checked
+    lcgkit.core.jump.x_jump__mutmut_32: not checked
+    lcgkit.core.stats.x__series__mutmut_1: not checked
+    lcgkit.core.stats.x__series__mutmut_2: not checked
+    lcgkit.core.stats.x__series__mutmut_3: not checked
+    lcgkit.core.stats.x__series__mutmut_4: not checked
+    lcgkit.core.stats.x__series__mutmut_5: not checked
+    lcgkit.core.stats.x__series__mutmut_6: not checked
+    lcgkit.core.stats.x__series__mutmut_7: not checked
+    lcgkit.core.stats.x__series__mutmut_8: not checked
+    lcgkit.core.stats.x__series__mutmut_9: not checked
+    lcgkit.core.stats.x__series__mutmut_10: not checked
+    lcgkit.core.stats.x__series__mutmut_11: not checked
+    lcgkit.core.stats.x__series__mutmut_12: not checked
+    lcgkit.core.stats.x__series__mutmut_13: not checked
+    lcgkit.core.stats.x__series__mutmut_14: not checked
+    lcgkit.core.stats.x__series__mutmut_15: not checked
+    lcgkit.core.stats.x__series__mutmut_16: not checked
+    lcgkit.core.stats.x__series__mutmut_17: not checked
+    lcgkit.core.stats.x__series__mutmut_18: not checked
+    lcgkit.core.stats.x__series__mutmut_19: not checked
+    lcgkit.core.stats.x__series__mutmut_20: not checked
+    lcgkit.core.stats.x__series__mutmut_21: not checked
+    lcgkit.core.stats.x__series__mutmut_22: not checked
+    lcgkit.core.stats.x__series__mutmut_23: not checked
+    lcgkit.core.stats.x__series__mutmut_24: not checked
+    lcgkit.core.stats.x__series__mutmut_25: not checked
+    lcgkit.core.stats.x__series__mutmut_26: not checked
+    lcgkit.core.stats.x__series__mutmut_27: not checked
+    lcgkit.core.stats.x__fraction__mutmut_1: not checked
+    lcgkit.core.stats.x__fraction__mutmut_2: not checked
+    lcgkit.core.stats.x__fraction__mutmut_3: not checked
+    lcgkit.core.stats.x__fraction__mutmut_4: not checked
+    lcgkit.core.stats.x__fraction__mutmut_5: not checked
+    lcgkit.core.stats.x__fraction__mutmut_6: not checked
+    lcgkit.core.stats.x__fraction__mutmut_7: not checked
+    lcgkit.core.stats.x__fraction__mutmut_8: not checked
+    lcgkit.core.stats.x__fraction__mutmut_9: not checked
+    lcgkit.core.stats.x__fraction__mutmut_10: not checked
+    lcgkit.core.stats.x__fraction__mutmut_11: not checked
+    lcgkit.core.stats.x__fraction__mutmut_12: not checked
+    lcgkit.core.stats.x__fraction__mutmut_13: not checked
+    lcgkit.core.stats.x__fraction__mutmut_14: not checked
+    lcgkit.core.stats.x__fraction__mutmut_15: not checked
+    lcgkit.core.stats.x__fraction__mutmut_16: not checked
+    lcgkit.core.stats.x__fraction__mutmut_17: not checked
+    lcgkit.core.stats.x__fraction__mutmut_18: not checked
+    lcgkit.core.stats.x__fraction__mutmut_19: not checked
+    lcgkit.core.stats.x__fraction__mutmut_20: not checked
+    lcgkit.core.stats.x__fraction__mutmut_21: not checked
+    lcgkit.core.stats.x__fraction__mutmut_22: not checked
+    lcgkit.core.stats.x__fraction__mutmut_23: not checked
+    lcgkit.core.stats.x__fraction__mutmut_24: not checked
+    lcgkit.core.stats.x__fraction__mutmut_25: not checked
+    lcgkit.core.stats.x__fraction__mutmut_26: not checked
+    lcgkit.core.stats.x__fraction__mutmut_27: not checked
+    lcgkit.core.stats.x__fraction__mutmut_28: not checked
+    lcgkit.core.stats.x__fraction__mutmut_29: not checked
+    lcgkit.core.stats.x__fraction__mutmut_30: not checked
+    lcgkit.core.stats.x__fraction__mutmut_31: not checked
+    lcgkit.core.stats.x__fraction__mutmut_32: not checked
+    lcgkit.core.stats.x__fraction__mutmut_33: not checked
+    lcgkit.core.stats.x__fraction__mutmut_34: not checked
+    lcgkit.core.stats.x__fraction__mutmut_35: not checked
+    lcgkit.core.stats.x__fraction__mutmut_36: not checked
+    lcgkit.core.stats.x__fraction__mutmut_37: not checked
+    lcgkit.core.stats.x__fraction__mutmut_38: not checked
+    lcgkit.core.stats.x__fraction__mutmut_39: not checked
+    lcgkit.core.stats.x__fraction__mutmut_40: not checked
+    lcgkit.core.stats.x__fraction__mutmut_41: not checked
+    lcgkit.core.stats.x__fraction__mutmut_42: not checked
+    lcgkit.core.stats.x__fraction__mutmut_43: not checked
+    lcgkit.core.stats.x__fraction__mutmut_44: not checked
+    lcgkit.core.stats.x__fraction__mutmut_45: not checked
+    lcgkit.core.stats.x__fraction__mutmut_46: not checked
+    lcgkit.core.stats.x__fraction__mutmut_47: not checked
+    lcgkit.core.stats.x__fraction__mutmut_48: not checked
+    lcgkit.core.stats.x__fraction__mutmut_49: not checked
+    lcgkit.core.stats.x__fraction__mutmut_50: not checked
+    lcgkit.core.stats.x__fraction__mutmut_51: not checked
+    lcgkit.core.stats.x__fraction__mutmut_52: not checked
+    lcgkit.core.stats.x__fraction__mutmut_53: not checked
+    lcgkit.core.stats.x__fraction__mutmut_54: not checked
+    lcgkit.core.stats.x__fraction__mutmut_55: not checked
+    lcgkit.core.stats.x__fraction__mutmut_56: not checked
+    lcgkit.core.stats.x__fraction__mutmut_57: not checked
+    lcgkit.core.stats.x__fraction__mutmut_58: not checked
+    lcgkit.core.stats.x__fraction__mutmut_59: not checked
+    lcgkit.core.stats.x__fraction__mutmut_60: not checked
+    lcgkit.core.stats.x__fraction__mutmut_61: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_1: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_2: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_3: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_4: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_5: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_6: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_7: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_8: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_9: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_10: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_11: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_12: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_13: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_14: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_15: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_16: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_17: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_18: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_19: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_20: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_21: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_22: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_23: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_24: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_25: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_26: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_27: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_28: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_29: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_30: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_31: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_32: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_33: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_34: not checked
+    lcgkit.core.stats.x_chi_square_p__mutmut_35: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_1: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_2: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_3: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_4: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_5: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_6: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_7: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_8: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_9: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_10: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_11: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_12: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_13: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_14: not checked
+    lcgkit.core.stats.x_serial_correlation__mutmut_15: not checked
+    lcgkit.core.guard.x__is_insecure__mutmut_1: not checked
+    lcgkit.core.guard.x__is_insecure__mutmut_2: not checked
+    lcgkit.core.guard.x__is_insecure__mutmut_3: not checked
+    lcgkit.core.guard.x__is_insecure__mutmut_4: not checked
+    lcgkit.core.guard.x__is_insecure__mutmut_5: not checked
+    lcgkit.core.guard.x__is_insecure__mutmut_6: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_1: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_2: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_3: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_4: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_5: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_6: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_7: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_8: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_9: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_10: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_11: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_12: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_13: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_14: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_15: not checked
+    lcgkit.core.guard.x_check_purpose__mutmut_16: not checked
+    lcgkit.core.lcg.x_step__mutmut_1: not checked
+    lcgkit.core.lcg.x_step__mutmut_2: not checked
+    lcgkit.core.lcg.x_step__mutmut_3: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_1: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_2: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_3: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_4: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_5: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_6: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_7: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_8: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_9: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_10: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_11: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_12: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_13: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_14: not checked
+    lcgkit.core.lcg.x_warnings_for__mutmut_15: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_1: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_2: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_3: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_4: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_5: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_6: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_7: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_8: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_9: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_10: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_11: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_12: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_13: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_14: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_15: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_16: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_17: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_18: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_19: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_20: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_21: not checked
+    lcgkit.core.lcg.x_sequence__mutmut_22: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_1: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_2: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_3: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_4: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_5: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_6: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_7: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_8: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_9: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_10: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_11: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_12: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_13: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_14: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_15: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_16: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_17: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_18: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_19: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_20: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_21: not checked
+    lcgkit.core.quality.x_cycle_length__mutmut_22: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_1: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_2: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_3: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_4: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_5: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_6: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_7: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_8: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_9: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_10: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_11: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_12: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_13: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_14: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_15: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_16: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_17: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_18: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_19: not checked
+    lcgkit.core.quality.x__low_bit_periods__mutmut_20: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_1: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_2: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_3: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_4: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_5: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_6: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_7: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_8: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_9: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_10: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_11: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_12: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_13: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_14: not checked
+    lcgkit.core.quality.x__chi_square__mutmut_15: not checked
+    lcgkit.core.quality.x__is_power_of_two__mutmut_1: not checked
+    lcgkit.core.quality.x__is_power_of_two__mutmut_2: not checked
+    lcgkit.core.quality.x__is_power_of_two__mutmut_3: not checked
+    lcgkit.core.quality.x__is_power_of_two__mutmut_4: not checked
+    lcgkit.core.quality.x__is_power_of_two__mutmut_5: not checked
+    lcgkit.core.quality.x__period_check__mutmut_1: not checked
+    lcgkit.core.quality.x__period_check__mutmut_2: not checked
+    lcgkit.core.quality.x__period_check__mutmut_3: not checked
+    lcgkit.core.quality.x__period_check__mutmut_4: not checked
+    lcgkit.core.quality.x__period_check__mutmut_5: not checked
+    lcgkit.core.quality.x__period_check__mutmut_6: not checked
+    lcgkit.core.quality.x__period_check__mutmut_7: not checked
+    lcgkit.core.quality.x__period_check__mutmut_8: not checked
+    lcgkit.core.quality.x__period_check__mutmut_9: not checked
+    lcgkit.core.quality.x__period_check__mutmut_10: not checked
+    lcgkit.core.quality.x__period_check__mutmut_11: not checked
+    lcgkit.core.quality.x__period_check__mutmut_12: not checked
+    lcgkit.core.quality.x__period_check__mutmut_13: not checked
+    lcgkit.core.quality.x__period_check__mutmut_14: not checked
+    lcgkit.core.quality.x__period_check__mutmut_15: not checked
+    lcgkit.core.quality.x__period_check__mutmut_16: not checked
+    lcgkit.core.quality.x__period_check__mutmut_17: not checked
+    lcgkit.core.quality.x__period_check__mutmut_18: not checked
+    lcgkit.core.quality.x__period_check__mutmut_19: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_1: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_2: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_3: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_4: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_5: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_6: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_7: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_8: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_9: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_10: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_11: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_12: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_13: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_14: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_15: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_16: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_17: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_18: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_19: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_20: not checked
+    lcgkit.core.quality.x__uniformity_check__mutmut_21: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_1: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_2: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_3: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_4: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_5: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_6: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_7: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_8: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_9: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_10: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_11: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_12: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_13: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_14: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_15: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_16: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_17: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_18: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_19: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_20: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_21: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_22: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_23: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_24: not checked
+    lcgkit.core.quality.x__independence_check__mutmut_25: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_1: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_2: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_3: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_4: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_5: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_6: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_7: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_8: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_9: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_10: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_11: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_12: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_13: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_14: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_15: not checked
+    lcgkit.core.quality.x__low_bits_check__mutmut_16: not checked
+    lcgkit.core.quality.x__verdict__mutmut_1: not checked
+    lcgkit.core.quality.x__verdict__mutmut_2: not checked
+    lcgkit.core.quality.x__verdict__mutmut_3: not checked
+    lcgkit.core.quality.x__verdict__mutmut_4: not checked
+    lcgkit.core.quality.x__verdict__mutmut_5: not checked
+    lcgkit.core.quality.x__verdict__mutmut_6: not checked
+    lcgkit.core.quality.x__verdict__mutmut_7: not checked
+    lcgkit.core.quality.x__verdict__mutmut_8: not checked
+    lcgkit.core.quality.x__verdict__mutmut_9: not checked
+    lcgkit.core.quality.x__verdict__mutmut_10: not checked
+    lcgkit.core.quality.x__verdict__mutmut_11: not checked
+    lcgkit.core.quality.x__verdict__mutmut_12: not checked
+    lcgkit.core.quality.x__verdict__mutmut_13: not checked
+    lcgkit.core.quality.x__verdict__mutmut_14: not checked
+    lcgkit.core.quality.x_report__mutmut_1: not checked
+    lcgkit.core.quality.x_report__mutmut_2: not checked
+    lcgkit.core.quality.x_report__mutmut_3: not checked
+    lcgkit.core.quality.x_report__mutmut_4: not checked
+    lcgkit.core.quality.x_report__mutmut_5: not checked
+    lcgkit.core.quality.x_report__mutmut_6: not checked
+    lcgkit.core.quality.x_report__mutmut_7: not checked
+    lcgkit.core.quality.x_report__mutmut_8: not checked
+    lcgkit.core.quality.x_report__mutmut_9: not checked
+    lcgkit.core.quality.x_report__mutmut_10: not checked
+    lcgkit.core.quality.x_report__mutmut_11: not checked
+    lcgkit.core.quality.x_report__mutmut_12: not checked
+    lcgkit.core.quality.x_report__mutmut_13: not checked
+    lcgkit.core.quality.x_report__mutmut_14: not checked
+    lcgkit.core.quality.x_report__mutmut_15: not checked
+    lcgkit.core.quality.x_report__mutmut_16: not checked
+    lcgkit.core.quality.x_report__mutmut_17: not checked
+    lcgkit.core.quality.x_report__mutmut_18: not checked
+    lcgkit.core.quality.x_report__mutmut_19: not checked
+    lcgkit.core.quality.x_report__mutmut_20: not checked
+    lcgkit.core.quality.x_report__mutmut_21: not checked
+    lcgkit.core.quality.x_report__mutmut_22: not checked
+    lcgkit.core.quality.x_report__mutmut_23: not checked
+    lcgkit.core.quality.x_report__mutmut_24: not checked
+    lcgkit.core.quality.x_report__mutmut_25: not checked
+    lcgkit.core.quality.x_report__mutmut_26: not checked
+    lcgkit.core.quality.x_report__mutmut_27: not checked
+    lcgkit.core.quality.x_report__mutmut_28: not checked
+    lcgkit.core.quality.x_report__mutmut_29: not checked
+    lcgkit.core.quality.x_report__mutmut_30: not checked
+    lcgkit.core.quality.x_report__mutmut_31: not checked
+    lcgkit.core.quality.x_report__mutmut_32: not checked
+    lcgkit.core.quality.x_report__mutmut_33: not checked
+    lcgkit.core.quality.x_report__mutmut_34: not checked
+    lcgkit.core.quality.x_report__mutmut_35: not checked
+    lcgkit.core.quality.x_report__mutmut_36: not checked
+    lcgkit.core.quality.x_report__mutmut_37: not checked
+    lcgkit.core.quality.x_report__mutmut_38: not checked
+    lcgkit.core.quality.x_report__mutmut_39: not checked
+    lcgkit.core.quality.x_report__mutmut_40: not checked
+    lcgkit.core.quality.x_report__mutmut_41: not checked
+    lcgkit.core.quality.x_report__mutmut_42: not checked
+    lcgkit.core.quality.x_report__mutmut_43: not checked
+    lcgkit.core.quality.x_report__mutmut_44: not checked
+    lcgkit.core.quality.x_report__mutmut_45: not checked
+    lcgkit.core.quality.x_report__mutmut_46: not checked
+    lcgkit.core.quality.x_report__mutmut_47: not checked
+    lcgkit.core.quality.x_report__mutmut_48: not checked
+    lcgkit.core.quality.x_report__mutmut_49: not checked
+    lcgkit.core.quality.x_report__mutmut_50: not checked
+    lcgkit.core.quality.x_report__mutmut_51: not checked
+    lcgkit.core.quality.x_report__mutmut_52: not checked
+    lcgkit.core.quality.x_report__mutmut_53: not checked
+    lcgkit.core.quality.x_report__mutmut_54: not checked
+    lcgkit.core.quality.x_report__mutmut_55: not checked
+    lcgkit.core.quality.x_report__mutmut_56: not checked
+    lcgkit.core.quality.x_report__mutmut_57: not checked
+    lcgkit.core.quality.x_report__mutmut_58: not checked
+    lcgkit.core.quality.x_report__mutmut_59: not checked
+    lcgkit.core.quality.x_report__mutmut_60: not checked
+    lcgkit.core.quality.x_report__mutmut_61: not checked
+    lcgkit.core.quality.x_report__mutmut_62: not checked
+    lcgkit.core.quality.x_report__mutmut_63: not checked
+    lcgkit.core.quality.x_report__mutmut_64: not checked
+    lcgkit.core.quality.x_report__mutmut_65: not checked
+    lcgkit.core.quality.x_report__mutmut_66: not checked
+    lcgkit.core.quality.x_report__mutmut_67: not checked
+    lcgkit.core.quality.x_report__mutmut_68: not checked
+    lcgkit.core.quality.x_report__mutmut_69: not checked
+    lcgkit.core.quality.x_report__mutmut_70: not checked
+    lcgkit.core.quality.x_report__mutmut_71: not checked
+    lcgkit.core.quality.x_report__mutmut_72: not checked
+    lcgkit.core.quality.x_report__mutmut_73: not checked
+    lcgkit.core.quality.x_report__mutmut_74: not checked
+    lcgkit.core.quality.x_report__mutmut_75: not checked
+    lcgkit.core.quality.x_report__mutmut_76: not checked
+    lcgkit.core.quality.x_report__mutmut_77: not checked
+    lcgkit.core.quality.x_report__mutmut_78: not checked
+    lcgkit.core.quality.x_report__mutmut_79: not checked
+    lcgkit.core.quality.x_report__mutmut_80: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_1: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_2: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_3: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_4: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_5: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_6: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_7: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_8: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_9: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_10: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_11: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_12: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_13: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_14: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_15: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_16: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_17: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_18: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_19: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_20: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_21: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_22: not checked
+    lcgkit.core.numtheory.x__is_witness__mutmut_23: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_1: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_2: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_3: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_4: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_5: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_6: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_7: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_8: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_9: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_10: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_11: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_12: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_13: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_14: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_15: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_16: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_17: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_18: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_19: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_20: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_21: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_22: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_23: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_24: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_25: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_26: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_27: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_28: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_29: not checked
+    lcgkit.core.numtheory.x_is_prime__mutmut_30: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_1: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_2: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_3: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_4: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_5: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_6: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_7: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_8: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_9: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_10: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_11: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_12: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_13: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_14: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_15: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_16: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_17: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_18: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_19: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_20: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_21: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_22: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_23: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_24: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_25: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_26: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_27: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_28: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_29: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_30: not checked
+    lcgkit.core.numtheory.x__rho__mutmut_31: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_1: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_2: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_3: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_4: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_5: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_6: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_7: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_8: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_9: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_10: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_11: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_12: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_13: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_14: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_15: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_16: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_17: not checked
+    lcgkit.core.numtheory.x__find_divisor__mutmut_18: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_1: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_2: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_3: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_4: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_5: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_6: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_7: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_8: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_9: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_10: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_11: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_12: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_13: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_14: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_15: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_16: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_17: not checked
+    lcgkit.core.numtheory.x__strip_small__mutmut_18: not checked
+    lcgkit.core.numtheory.x__split__mutmut_1: not checked
+    lcgkit.core.numtheory.x__split__mutmut_2: not checked
+    lcgkit.core.numtheory.x__split__mutmut_3: not checked
+    lcgkit.core.numtheory.x__split__mutmut_4: not checked
+    lcgkit.core.numtheory.x__split__mutmut_5: not checked
+    lcgkit.core.numtheory.x__split__mutmut_6: not checked
+    lcgkit.core.numtheory.x__split__mutmut_7: not checked
+    lcgkit.core.numtheory.x__split__mutmut_8: not checked
+    lcgkit.core.numtheory.x__split__mutmut_9: not checked
+    lcgkit.core.numtheory.x__split__mutmut_10: not checked
+    lcgkit.core.numtheory.x__split__mutmut_11: not checked
+    lcgkit.core.numtheory.x__split__mutmut_12: not checked
+    lcgkit.core.numtheory.x__split__mutmut_13: not checked
+    lcgkit.core.numtheory.x__split__mutmut_14: not checked
+    lcgkit.core.numtheory.x__split__mutmut_15: not checked
+    lcgkit.core.numtheory.x__split__mutmut_16: not checked
+    lcgkit.core.numtheory.x__split__mutmut_17: not checked
+    lcgkit.core.numtheory.x__split__mutmut_18: not checked
+    lcgkit.core.numtheory.x__split__mutmut_19: not checked
+    lcgkit.core.numtheory.x__split__mutmut_20: not checked
+    lcgkit.core.numtheory.x__split__mutmut_21: not checked
+    lcgkit.core.numtheory.x__split__mutmut_22: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_1: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_2: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_3: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_4: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_5: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_6: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_7: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_8: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_9: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_10: not checked
+    lcgkit.core.numtheory.x_factor__mutmut_11: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_1: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_2: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_3: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_4: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_5: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_6: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_7: not checked
+    lcgkit.core.numtheory.x_modinv__mutmut_8: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_1: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_2: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_3: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_4: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_5: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_6: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_7: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_8: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_9: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_10: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_11: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_12: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_13: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_14: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_15: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_16: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_17: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_18: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_19: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_20: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_21: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_22: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_23: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_24: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_25: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_26: not checked
+    lcgkit.core.numtheory.x_solve_linear__mutmut_27: not checked
+
+mutants tested: 0; killed: 0
