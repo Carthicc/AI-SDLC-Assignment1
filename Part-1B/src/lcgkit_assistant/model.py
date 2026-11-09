@@ -8,14 +8,10 @@ import time
 import urllib.parse
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any
-
-from lcgkit.fields import COUNT, FIELDS, LARGE_LIST
 
 from lcgkit_assistant import config
 
 Transport = Callable[[str, dict[str, str], bytes, int], tuple[int, dict[str, str], bytes]]
-FORBIDDEN_ARGUMENT = "purpose"
 
 
 @dataclass(frozen=True)
@@ -36,33 +32,6 @@ class ModelUnavailable(Exception):
         """
         super().__init__(message)
         self.calls = calls
-
-
-def _argument_type(name: str) -> dict[str, Any]:
-    kind = FIELDS[name].kind
-    if kind == COUNT:
-        return {"type": "INTEGER"}
-    if kind == LARGE_LIST:
-        return {"type": "ARRAY", "items": {"type": "STRING"}}
-    return {"type": "STRING"}
-
-
-def reply_schema() -> dict[str, Any]:
-    """The flat response schema that guides the model; the code still checks every reply."""
-    arguments = {name: _argument_type(name) for name in FIELDS if name != FORBIDDEN_ARGUMENT}
-    return {
-        "type": "OBJECT",
-        "properties": {
-            "decision": {"type": "STRING", "enum": ["call", "clarify", "refuse"]},
-            "operation": {"type": "STRING", "enum": list(config.OPERATIONS)},
-            "arguments": {"type": "OBJECT", "properties": arguments},
-            "question": {"type": "STRING"},
-            "missing": {"type": "ARRAY", "items": {"type": "STRING"}},
-            "reason": {"type": "STRING", "enum": list(config.REFUSAL_REASONS)},
-            "message": {"type": "STRING"},
-        },
-        "required": ["decision"],
-    }
 
 
 def _https_transport(
@@ -114,7 +83,6 @@ class GeminiClient:
             "generationConfig": {
                 "temperature": config.TEMPERATURE,
                 "responseMimeType": config.RESPONSE_FORMAT,
-                "responseSchema": reply_schema(),
             },
         }
         return json.dumps(body).encode()

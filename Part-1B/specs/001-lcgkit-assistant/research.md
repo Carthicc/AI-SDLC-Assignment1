@@ -4,15 +4,15 @@ Decisions, the alternatives considered, and the measurements behind them. The tr
 
 ## R1. How to call the model
 
-- **Decision**: call the Gemini REST endpoint `https://generativelanguage.googleapis.com/v1beta/models/<model>:generateContent` with the standard library (`urllib.request`), sending the key in the `x-goog-api-key` header, never in the URL.
+- **Decision**: call the Gemini REST endpoint `https://generativelanguage.googleapis.com/v1beta/models/<model>:generateContent` with the standard library (`http.client`), sending the key in the `x-goog-api-key` header, never in the URL.
 - **Reason**: one request and one JSON response is all the application needs. Using the standard library keeps the dependency list to lcgkit alone (constitution, Principle VIII) and keeps the fake model service for tests trivial: it replaces one function.
-- **Alternatives**: the official Google client library (a large extra dependency for one call); a generic HTTP library such as `httpx` (also an extra dependency).
+- **Alternatives**: `urllib.request` (its `urlopen` accepts any URL scheme, which the security lint rejects); the official Google client library (a large extra dependency for one call); a generic HTTP library such as `httpx` (also an extra dependency).
 
 ## R2. Structured output
 
-- **Decision**: ask for JSON with `responseMimeType: application/json` and a flat `responseSchema` (an object whose only required field is `decision`, an enum of the three decisions; the other fields optional). The strict contract is enforced by code, not by the schema.
-- **Reason**: Gemini's response schema is a subset of JSON Schema and does not express "exactly these fields for each decision". A flat schema worked in trial calls (six of six replies were valid JSON that followed it). Because the schema only guides the model, layer 1 and the application's own check (FR-012) remain necessary.
-- **Alternatives**: no schema (more free-form replies, more `reply-not-json`); a schema with `anyOf` per decision (not relied on, since support varies by model).
+- **Decision**: ask for JSON with `responseMimeType: application/json` and no `responseSchema`. The system prompt describes the three shapes, and the contract is enforced by code (FR-012) and again by layer 1.
+- **Reason**: the first design sent a flat `responseSchema` (an object whose only required field is `decision`, the other fields optional). Its trial calls looked fine, but the first run against the finished application showed it does not work: for the four quickstart requests the model returned a `call` with no `arguments` and a stray `reason`, and `clarify` and `refuse` replies with missing or extra fields, so all four gave `invalid-reply`. The alternatives were then tried on the same four requests: a schema with `anyOf` per decision gave three valid replies and one `call` with an argument from the wrong operation; the contract schema itself (`responseJsonSchema`) gave valid shapes but an empty `arguments` object for a plain sequence request, and the same when `arguments` was required to be non-empty, which the service does not enforce. With no schema, the four replies were valid and right, and so were ten further requests made up for the check (not in the dataset): 10 of 10.
+- **Alternatives**: the flat schema (above: invalid replies); a schema with `anyOf` per decision (one wrong reply of four); the contract schema through `responseJsonSchema` (empty `arguments`). Without a schema a structural slip is still possible; it is caught by the contract check, reported as `invalid-reply` and counted by the evaluation.
 
 ## R3. Which model
 

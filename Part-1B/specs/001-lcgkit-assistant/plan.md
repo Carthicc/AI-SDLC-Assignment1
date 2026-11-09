@@ -14,7 +14,7 @@ The measurements and trial calls behind these choices are in `research.md`.
 
 **Language/Version**: Python 3.12, managed with uv (`requires-python = ">=3.12,<3.13"`, `uv.lock` committed)
 
-**Primary Dependencies**: standard library for the model call (`urllib`), the command line (`argparse`), JSON and hashing; runtime: `lcgkit` from Part 1A, as a local editable path dependency. Development: pytest, ruff, bandit (versions in `research.md`). gitleaks as a separate binary.
+**Primary Dependencies**: standard library for the model call (`http.client`), the command line (`argparse`), JSON and hashing; runtime: `lcgkit` from Part 1A, as a local editable path dependency. Development: pytest, ruff, bandit (versions in `research.md`). gitleaks as a separate binary.
 
 **Storage**: none; every request stands alone (spec assumption). Evaluation output is written to files under `evidence/`.
 
@@ -132,7 +132,7 @@ evidence/
 The reasons and measurements are in `research.md`.
 
 - **One request path.** `assistant.handle(text)` applies the emptiness and length rules, checks the key, calls the model once (with bounded retries for rate limits and server errors), parses and checks the reply, and runs lcgkit for a `call`. The command line only prints the answer.
-- **The model decides, the code checks.** The Gemini response schema nudges the model towards the contract; it does not guarantee it, so the application and the harness both check.
+- **The model decides, the code checks.** The system prompt describes the contract and the model answers in JSON mode (no response schema, see research R2); nothing guarantees the shape, so the application and the harness both check.
 - **No judge.** Layer 3 is an exact comparison with the case's ground truth.
 - **Pacing.** The application makes one request per run; the runner waits between runs (3 seconds by default) so the free tier's unpublished limit is not hit, and the application retries only when the service says to slow down.
 - **Honest failure.** A reply that breaks the contract is `invalid-reply`, with no second try (clarification 3); an unreachable service is `model-unavailable`; both fail their case.
