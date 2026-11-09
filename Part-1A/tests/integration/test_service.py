@@ -19,7 +19,8 @@ client = TestClient(app)
 WORKED = {"a": "5", "c": "3", "m": "16", "seed": "7", "count": 5}
 JSON_HEADER = {"content-type": "application/json"}
 IDS = [f"{operation}-{index}" for index, (operation, _) in enumerate(EXAMPLES)]
-BAD_LARGE = [5, "0x10", "1e3", "007", " 5"]  # a JSON number, then strings that are not decimal
+# JSON numbers (including one just above 2**53 and a fraction) and strings that are not decimal.
+BAD_LARGE = [5, 9007199254740993, 1000.5, "0x10", "1e3", "007", " 5"]
 LARGE_FIELD_CASES = [
     ("sequence", WORKED, "m"),
     ("sequence", WORKED, "a"),
@@ -106,8 +107,11 @@ def test_a_large_field_that_is_not_a_decimal_string_is_refused(
 def test_invalid_input_is_a_400_with_the_error_body() -> None:
     response = client.post("/v1/sequence", json={**WORKED, "seed": "16"})
     assert response.status_code == 400
-    assert error_of(response)["code"] == "invalid-seed"
-    assert set(error_of(response)) >= {"code", "message"}
+    error = error_of(response)
+    assert error["code"] == "invalid-seed"
+    assert error["field"] == "seed"
+    assert isinstance(error["message"], str)
+    assert error["message"]
 
 
 @pytest.mark.ac("AC-070")
