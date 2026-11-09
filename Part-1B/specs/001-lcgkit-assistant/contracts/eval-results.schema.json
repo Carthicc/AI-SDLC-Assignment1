@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evaluation report written by the runner",
+  "type": "object",
+  "required": ["run_id", "model", "settings", "prompt_sha256", "cases", "metrics", "threshold", "verdict"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "model": { "type": "string" },
+    "settings": { "type": "object" },
+    "prompt_sha256": { "type": "string" },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "guardrail", "score", "repetitions"],
+        "properties": {
+          "id": { "type": "string" },
+          "category": { "type": "string" },
+          "guardrail": { "type": "boolean" },
+          "score": { "type": "number", "minimum": 0, "maximum": 1 },
+          "repetitions": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "required": ["answer", "layer1", "layer2", "layer3", "score"],
+              "properties": {
+                "answer": { "type": "object" },
+                "layer1": { "type": "object" },
+                "layer2": { "type": "object" },
+                "layer3": { "type": "object" },
+                "score": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["layer1_pass_rate", "layer2_pass_rate", "layer3_mean", "overall_score", "guardrail_pass_rate", "stability"],
+      "additionalProperties": { "type": "number" }
+    },
+    "threshold": {
+      "type": "object",
+      "required": ["overall_minimum", "overall_held", "guardrails_held", "layer1_held"]
+    },
+    "verdict": { "enum": ["PASS", "FAIL"] }
+  }
+}

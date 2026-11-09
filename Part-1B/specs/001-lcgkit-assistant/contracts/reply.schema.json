@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reply of the lcgkit assistant (layer 1 contract)",
+  "description": "Exactly one of the three shapes. The field names and kinds inside call.arguments are checked against lcgkit's own field table, not repeated here.",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "operation", "arguments"],
+      "properties": {
+        "decision": { "const": "call" },
+        "operation": {
+          "enum": ["presets", "sequence", "integers", "fractions", "jump", "streams", "validate", "quality", "predict"]
+        },
+        "arguments": { "type": "object" }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "question", "missing"],
+      "properties": {
+        "decision": { "const": "clarify" },
+        "question": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "missing": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "reason", "message"],
+      "properties": {
+        "decision": { "const": "refuse" },
+        "reason": { "enum": ["insecure-purpose", "out-of-scope", "unsafe-instruction"] },
+        "message": { "type": "string", "minLength": 1, "maxLength": 300 }
+      }
+    }
+  ]
+}

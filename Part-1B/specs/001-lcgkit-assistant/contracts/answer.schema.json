@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Answer printed by lcgkit-assistant",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["reply", "model_calls"],
+  "properties": {
+    "reply": { "type": ["object", "null"] },
+    "raw": { "type": "string" },
+    "result": { "type": "object" },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "model_calls": { "type": "integer", "minimum": 0 }
+  },
+  "not": { "required": ["result", "error"] }
+}

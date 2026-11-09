@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evaluation dataset (evals/dataset.json)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["cases", "covered_elsewhere"],
+  "properties": {
+    "cases": { "type": "array", "minItems": 30, "items": { "$ref": "#/$defs/case" } },
+    "covered_elsewhere": {
+      "type": "object",
+      "description": "AC, INV or PROP ID -> the test file or runner check that covers it",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category", "text", "expected", "guardrail", "covers"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^C[0-9]{2,3}$" },
+        "category": {
+          "enum": ["normal", "boundary", "ambiguous", "missing-information", "malformed", "adversarial"]
+        },
+        "text": { "type": "string" },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["decision"],
+          "properties": {
+            "decision": { "enum": ["call", "clarify", "refuse"] },
+            "operation": { "type": "string" },
+            "arguments": { "type": "object" },
+            "missing": { "type": "array", "items": { "type": "string" } },
+            "reason": { "enum": ["insecure-purpose", "out-of-scope", "unsafe-instruction"] },
+            "model_calls": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "expected_lcgkit_errors": { "type": "array", "items": { "type": "string" } },
+        "guardrail": { "type": "boolean" },
+        "covers": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^(AC-[0-9]{3}|INV-[0-9]{2}|PROP-[0-9]{2})$" }
+        }
+      }
+    }
+  }
+}
