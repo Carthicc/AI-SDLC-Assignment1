@@ -33,6 +33,7 @@ def test_a_perfectly_even_full_cycle() -> None:
     assert found["period-covers-sample"] == "pass"
     assert found["uniformity"] == "not-applicable"
     assert found["independence"] == "not-applicable"
+    assert flagged(result)
     assert result.verdict == "caution"
 
 
@@ -42,6 +43,18 @@ def test_a_stuck_generator_is_a_defect() -> None:
     assert result.measured_period == 1
     assert result.chi_square == 240
     assert outcomes(result)["period-covers-sample"] == "fail"
+    assert result.verdict == "defect-detected"
+
+
+@pytest.mark.ac("AC-050")
+def test_a_counter_fails_the_uniformity_and_independence_checks() -> None:
+    # 1, 2, 3, ... 1000 all land in the first of 10 bins: (1000 - 100)**2 / 100 + 9 * 100 = 9000
+    result = report(ParameterSet(a=1, c=1, m=2**20), 0, 1000, 10)
+    assert result.chi_square == 9000
+    found = outcomes(result)
+    assert found["period-covers-sample"] == "pass"
+    assert found["uniformity"] == "fail"
+    assert found["independence"] == "fail"
     assert result.verdict == "defect-detected"
 
 
