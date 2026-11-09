@@ -1,0 +1,55 @@
+[project]
+name = "lcgkit-assistant"
+version = "1.0.0"
+description = "A natural-language front end for lcgkit, checked by an evaluation harness"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "lcgkit",
+]
+
+[project.scripts]
+lcgkit-assistant = "lcgkit_assistant.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+    "ruff==0.17.3",
+    "bandit==1.9.4",
+]
+
+[tool.uv.sources]
+lcgkit = { path = "../Part-1A", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lcgkit_assistant"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "C90", "PL", "RUF", "D1"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8
+
+[tool.ruff.lint.isort]
+known-first-party = ["lcgkit_assistant"]
+known-third-party = ["lcgkit"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S603", "D1", "PLR2004"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", ".harness"]
+testpaths = ["tests"]
+markers = [
+    "ac(id): acceptance criterion the test checks, AC-nnn",
+    "fr(id): functional requirement the test checks, FR-nnn",
+    "inv(id): structural invariant the test checks, INV-nn",
+    "prop(id): behavioural property the test checks, PROP-nn",
+]
