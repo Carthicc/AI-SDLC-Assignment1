@@ -18,7 +18,7 @@ Decisions, the alternatives considered, and the measurements behind them. The tr
 
 - **Decision**: `gemini-3.5-flash-lite`, recorded by `lcgkit-assistant --info`.
 - **Measured**: with a one-line prompt, `gemini-3.5-flash-lite` answered in 1.3 seconds and `gemini-3.8-flash` took 340 seconds for the same request. Six sequential calls to the lite model took between 0.8 and 1.2 seconds each, with no rate-limit error and the same reply for three identical requests at temperature 0.
-- **Reason**: an evaluation of about 114 calls is only practical with a fast model. Both models are on the free tier. `gemini-2.5-flash` is avoided because the provider has announced it will be rerouted to a different model on 1 December 2026, which would change results.
+- **Reason**: an evaluation of about 138 calls is only practical with a fast model. Both models are on the free tier. `gemini-2.5-flash` is avoided because the provider has announced it will be rerouted to a different model on 1 December 2026, which would change results.
 
 ## R4. Pacing, timeouts and retries
 
