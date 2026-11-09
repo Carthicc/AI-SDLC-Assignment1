@@ -6,7 +6,7 @@ from collections.abc import Callable, Mapping
 from types import MappingProxyType
 from typing import Any
 
-from lcgkit.core import guard, lcg, presets
+from lcgkit.core import bounded, guard, jump, lcg, presets, validator
 from lcgkit.core.lcg import ParameterSet
 from lcgkit.errors import LcgError
 from lcgkit.fields import DEFAULTS, FIELDS, OPERATIONS, RULES, Operation, check_type
@@ -135,9 +135,51 @@ def _presets(v: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _validate_handler(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T066. Covers: FR-013, FR-014, FR-015."""
+    verdict = validator.validate(v["p"])
+    result: dict[str, Any] = {
+        "verdict": verdict.verdict,
+        "conditions": [{"name": c.name, "passed": c.passed} for c in verdict.conditions],
+        "reasons": verdict.reasons,
+    }
+    if verdict.expected_period is not None:
+        result["expected_period"] = verdict.expected_period
+    return result
+
+
+def _jump(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T068. Covers: FR-016, FR-017."""
+    state = jump.jump(v["p"], v["state"], v["steps"])
+    return {"state": state, "warnings": lcg.warnings_for(v["p"], v["state"])}
+
+
+def _bounded(result: bounded.BoundedResult) -> dict[str, Any]:
+    return {
+        "values": result.values,
+        "outputs_consumed": result.outputs_consumed,
+        "next_state": result.next_state,
+        "warnings": result.warnings,
+    }
+
+
+def _integers(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T070. Covers: FR-019 to FR-021, FR-048."""
+    return _bounded(bounded.integers(v["p"], v["seed"], v["lo"], v["hi"], v["count"]))
+
+
+def _fractions(v: Mapping[str, Any]) -> dict[str, Any]:
+    """Task: T070. Covers: FR-022."""
+    return _bounded(bounded.fractions(v["p"], v["seed"], v["count"]))
+
+
 HANDLERS: Mapping[str, Handler] = MappingProxyType(
     {
         "sequence": _sequence,
         "presets": _presets,
+        "validate": _validate_handler,
+        "jump": _jump,
+        "integers": _integers,
+        "fractions": _fractions,
     }
 )
