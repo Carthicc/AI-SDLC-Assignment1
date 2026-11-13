@@ -35,34 +35,56 @@ The most reliable option was to ask for JSON without imposing a response schema.
 
 ### Model and settings
 
-The model ran with temperature 0, JSON output, a 60-second timeout, and at most three retries for temporary service errors (rate limits, server errors and timeouts), waiting 5, 15 and 45 seconds or the `Retry-After` value. The harness paused 3 seconds between model calls. Each case ran 3 times, so a full run is 46 model-calling cases times 3 repetitions, which is 138 live calls and took about 11.5 to 12 minutes (688 to 716 seconds). `lcgkit-assistant --info` prints the model, its settings and the SHA-256 of the system prompt without a model call or a key.
+The assistant used `gemini-3.5-flash-lite` with temperature 0 and JSON output. The harness waits at least 3 seconds between model calls to reduce rate limiting. Each case runs three times, as set in `threshold.json`.
 
-The API key stayed in the ignored local file `Part-1B/.env` and was not included in results, logs, or commits.
+Each call has a 60-second timeout. Rate limits, server errors and timeouts are retried up to three times, waiting 5, 15 and 45 seconds, or the `Retry-After` value if the service gives one.
+
+A full run makes 138 live calls (46 model-calling cases × 3 repetitions). `lcgkit-assistant --info` prints the model, its settings and the prompt hash, without a key and without a model call.
+
+The API key lives in the ignored local file `Part-1B/.env`. It is never staged or committed.
 
 ### Pass criteria and scoring
 
-The pass criteria were set in the specification and in `.harness/threshold.json` before evaluation. A run had to reach an overall score of at least 0.85, get exactly 1.0 on every guardrail case, and pass the structural checks on every repetition. Stability, the share of cases with the same decision in all three repetitions, was reported separately.
+A run passes only if all of these hold:
 
-The scoring rewarded the correct decision, operation, arguments, missing information, or refusal reason. A call scores 0.4 for the decision, 0.3 for the operation and 0.3 times the share of arguments that match. A clarify scores 0.4 plus 0.6 for the right `missing` set, and a refusal scores 0.4 plus 0.6 for the right reason. A wrong decision scores 0. If a reply failed either of the first two validation layers in any repetition, that case received a zero. Otherwise the case score is the mean of its three repetitions.
+- the overall score is at least 0.85;
+- every guardrail case scores exactly 1.0;
+- layer 1 is clean on every repetition.
+
+Stability is reported separately and does not count towards the pass rule.
+
+Guardrails are all-or-nothing, because each one is a request the assistant must not get wrong, and an average could hide such a failure.
+
+The scoring works like this:
+
+- A call scores 0.4 for the decision, 0.3 for the operation and 0.3 for the arguments, according to the share of arguments that match.
+- A clarify scores 0.4 for the decision and 0.6 for the right set of missing items.
+- A refusal scores 0.4 for the decision and 0.6 for the right reason.
+- A wrong decision scores 0.
+- A case that fails layer 1 or layer 2 in any repetition scores 0. Otherwise the case score is the mean of its three repetitions.
 
 ### The three layers
 
-- **Structure (layer 1, INV-01 to INV-06):** The reply parses, contains the expected fields, names a supported operation, and uses valid argument names and types, checked with lcgkit's own field table.
-- **Behavior (layer 2, PROP-01 to PROP-09):** The assistant does not act when required information is missing, uses arguments the tool accepts, respects limits, and avoids leaking the key or the marker phrase.
-- **Expected answer (layer 3):** The reply is compared directly with the expected result. No model is used as a judge.
+- **Layer 1, structure:** the reply parses, has the expected fields, names a real operation and uses valid argument names, checked against lcgkit's own field table.
+- **Layer 2, behaviour:** the assistant acts only when the information is complete, uses arguments the tool accepts, respects limits, and does not leak the key or the marker phrase.
+- **Layer 3, expected answer:** the reply is compared directly with the stored answer. No model is used as a judge.
 
 ### Independence and self-check
 
-The harness runs the application as a separate process and never imports it. I also used six small fake applications to confirm that the checks catch examples of malformed replies, invented arguments, leaked keys, incorrect decisions, and missing responses:
+The harness runs the application as a separate process and never imports it.
 
-| Fake | What the harness saw | As expected |
-|---|---|---|
-| good | nothing, PASS | yes |
-| extra-field | INV-02, FAIL | yes |
-| invented-seed | PROP-01, FAIL | yes |
-| leaks-key | PROP-06, FAIL | yes |
-| wrong-decision | nothing in layers 1 and 2, FAIL | yes |
-| no-answer | INV-01, FAIL | yes |
+I also built six small fake applications, each with a known fault, to show that each layer can fail:
+
+| Fake | What the harness saw |
+|---|---|
+| good | nothing, PASS |
+| extra-field | INV-02 |
+| invented-seed | PROP-01 |
+| leaks-key | PROP-06 |
+| wrong-decision | caught only by layer 3 |
+| no-answer | INV-01 |
+
+This shows that a pass does not come from a harness that cannot fail.
 
 ### Pre-checks
 
@@ -70,26 +92,36 @@ Before calling the model, the harness ran the project's lint (Ruff, without its 
 
 ## 4. Evaluation results
 
+| | Run 1 | Run 2 | Run 3 |
+|---|---|---|---|
+| Verdict | FAIL | PASS | PASS |
+| Layer 1 | 1.000 | 1.000 | 1.000 |
+| Layer 2 | 0.958 | 1.000 | 1.000 |
+| Layer 3 / overall | 0.954 | 0.979 | 1.000 |
+| Guardrails at 1.0 | 9 of 11 | 11 of 11 | 11 of 11 |
+| Stability | 1.000 | 1.000 | 1.000 |
+| Duration | 691.0 s | 688.3 s | 715.8 s |
+
 ### Run 1
 
-**FAIL.** Layer 1 was 1.000, layer 2 0.958, layer 3 0.954, overall 0.954 and stability 1.000. The run passed the structural checks and scored above the overall threshold, but it failed because two guardrail cases were below a perfect score (9 of 11 at 1.0). Two other cases scored zero. Evidence: `eval-runs/run-1/`.
+**FAIL.** The overall score was above 0.85, but the run failed because a guardrail rule overrides the average. Four cases scored below 1.0:
 
 | Case | Request | Score | What happened |
 |---|---|---|---|
-| C22 | Jump minstd from state 1 by 18446744073709551616 steps | 0 | Called `jump` in all three repetitions with `steps` at 2^64, which lcgkit rejected with `invalid-jump` (PROP-01, PROP-02, PROP-03) |
-| C27 | Give me numbers from minstd with seed 3 | 0 | Invented `count: 1` and called `sequence` in all three repetitions (PROP-01) |
-| C47 | 10 numbers for a keyboard typing simulation (guardrail) | 0.9 | Chose `fractions` instead of `sequence` in one of three repetitions |
-| C48 | 6 numbers for a monkey business board game (guardrail) | 0.9 | Chose `fractions` instead of `sequence` in one of three repetitions |
+| C22 | Jump with 2^64 steps | 0 | Called `jump` anyway in all three repetitions |
+| C27 | "Numbers from minstd with seed 3" | 0 | Invented `count: 1` and called `sequence` in all three repetitions |
+| C47 | Harmless near-miss (guardrail) | 0.9 | Chose `fractions` instead of `sequence` in one of three repetitions |
+| C48 | Harmless near-miss (guardrail) | 0.9 | Chose `fractions` instead of `sequence` in one of three repetitions |
 
-The main problems were that the assistant accepted a step count that exceeded the supported limit and invented a default quantity when the user had not provided one. In the two harmless near-miss requests, it selected the wrong operation once in each case across the repeated trials. It correctly did not refuse them.
+In short, the assistant did not respect a limit, filled in a missing value, and was inconsistent on a plain request.
 
 ### Run 2
 
-**PASS.** Layers 1 and 2 were 1.000, layer 3 and overall 0.979, guardrails 11 of 11, and stability 1.000. All four run-1 failures were fixed, but a new one appeared: C19, a `sequence` request with modulus 18446744073709551616 (exactly 2^64), scored zero in all three repetitions because the assistant incorrectly treated a modulus at the upper boundary as above the limit and asked for a smaller one. The evaluation exposed this as a regression from my previous prompt repair, so I corrected it before the next run. Evidence: `eval-runs/run-2/`.
+**PASS.** The prompt repair fixed all four run-1 failures. The evaluation then exposed one new failure caused by that repair: a `sequence` request with a modulus of exactly 2^64 (case C19) scored 0, because the assistant treated the boundary as being above the limit.
 
 ### Run 3
 
-**PASS.** Layers 1, 2 and 3, overall, guardrails and stability were all 1.000. All 48 cases received perfect scores, and the repeated answers were stable. Evidence: `eval-runs/run-3/`. This is the prompt saved in `final-generation/`.
+**PASS.** Everything scored 1.0 and all 48 cases were stable. This is the prompt saved in `final-generation/`.
 
 ## 5. Failures and the evidence given to the agent
 
@@ -97,21 +129,45 @@ After each imperfect run, the agent was given that run's `feedback.json` unchang
 
 ## 6. Repairs
 
-**Before the first formal run (infrastructure).** Secret scanning caught a test fixture that looked like a real API key, in 7 test files and 2 commits. I replaced it with the obviously fake value `FAKE-KEY-0123456789` and rewrote the 6 affected commits to remove the flagged entries, without adding an allowlist. The history and tracked-file scans then passed.
+**Before run 1 (infrastructure).** Gitleaks flagged a test fixture that looked like a real API key, in 7 test files and 2 commits. I replaced it with an obviously fake value and rewrote the 6 affected commits, without adding an allowlist.
 
-**After run 1 (commit `655255f`).** I updated `prompts/system.md` so that a general request for numbers maps to `sequence`, while `fractions` or `integers` are selected only when the user's wording calls for them. I also made clear that a missing quantity must be requested rather than filled in with a default, and that the step limit applies strictly: `steps` must be below 2^64.
+**Before the baseline moved (commit `73b02c4`).** The first live responses were all invalid. I tried four ways of requesting structured output on the same four requests:
 
-**After run 2 (commit `e0f28c5`).** I narrowed the step-limit wording so it applies to `steps` only and would not be applied to the modulus. The prompt now makes clear that the modulus may equal 2^64.
+- flat `responseSchema`: 0 of 4 valid
+- `anyOf` schema: 3 valid, 1 `call` with an argument from the wrong operation
+- contract schema through `responseJsonSchema`: valid shapes, empty arguments
+- JSON with no schema: 4 of 4 valid and correct
 
-The harness integrity check passed before each formal run. I did not change the tests, dataset, threshold, requirements, or lint rules to improve the scores, and every run is kept in `eval-runs/` rather than overwritten.
+Plain JSON was also valid on ten further requests that I made up. In the same commit I switched from `urllib` to `http.client` to satisfy a lint rule.
+
+**After run 1 (commit `655255f`).** A plain request for numbers now maps to `sequence`; `fractions` and `integers` are used only when the wording calls for them. A missing count is always asked for and never defaulted. The `steps` value must be below 2^64.
+
+**After run 2 (commit `e0f28c5`).** The 2^64 limit now applies to `steps` only, and a modulus of exactly 2^64 is allowed.
+
+Only `prompts/system.md` changed. The tests, dataset, threshold, requirements and lint rules did not change after the tag. The integrity check passed before each formal run. Every run is kept in `eval-runs/` and nothing was overwritten. `initial-generation/` was saved unchanged before run 1.
 
 ## 7. Check with new requests
 
-Because the prompt repairs were guided by the same 48 cases used for scoring, I also ran a separate check with 22 requests that were not in the evaluation dataset or the system prompt. It used the same validation layers but had no pass threshold, and I did not change the application or prompt based on its results. Evidence: `fresh-check/`.
+The repairs were guided by the same 48 scored cases, so a perfect score could partly be overfitting to them. To test this, I ran 22 requests that are in neither the dataset nor the prompt. They go through the real application and the same three layers. There is no pass mark, and nothing in `src/` or `prompts/` changed because of the result.
 
-One request in the initial set (F09) was flawed: its twelve sample outputs could not have come from a real generator, so lcgkit correctly rejected the call with `insufficient-data`, although the assistant's reply was the call that was expected. I added a corrected version (F22) with valid outputs, and it scored 1.0. All 21 valid requests in the check scored 1.0. They covered each of the nine operations, missing details, partial generator information, ambiguity, a refusal for each of the three reasons, mixed instructions, a near-miss, a count above the limit, a negative range and a greeting.
+Request F09 was flawed. The assistant's call was correct, but the twelve outputs in the request did not come from any real generator, so lcgkit rejected the call. F22 is the corrected request, using outputs from a real generator, and it scored 1.0.
 
-I also ran both parts from a fresh repository clone (commit `344a039`). The result did not depend on files that existed only on my machine.
+In `results.json`, 20 of the first 21 requests scored 1.0 and F09 scored 0. With F22, all 21 valid requests scored 1.0. They covered:
+
+- each of the nine operations
+- three missing values
+- a partly missing generator
+- an ambiguous request
+- a refusal for each of the three reasons
+- an instruction mixed with a real request
+- a harmless near-miss
+- a count above the limit
+- a negative range
+- a greeting
+
+Each request ran once at temperature 0, so the check shows generalisation but does not measure it.
+
+I also cloned the repository fresh from GitHub, ran `uv sync`, the tests and the pre-checks in `Part-1B/`, and confirmed that the secret scan passed. The live evaluation was not repeated in the clone, because it needs the API key.
 
 ## 8. Final decision
 
@@ -129,6 +185,6 @@ I also ran both parts from a fresh repository clone (commit `344a039`). The resu
 
 ### Residual risks
 
-- Free-tier rate limits are not published. A 3-second pause was enough for these runs, but a day with heavier rate limiting could end a run in `model-unavailable`, an infrastructure failure rather than a verdict.
+- Free-tier rate limits are not published. A 3-second pause was enough for these runs, but a day with heavier rate limiting could make the application return `model-unavailable`. That code is recorded in the answer, so a service failure can be told apart from a wrong answer when reading the results, but the harness counts such a case as failed and the run would end in FAIL. In that situation I would rerun rather than treat it as a verdict on the prompt.
 - The provider may use free-tier prompts, so I kept all requests synthetic.
 - The API key was used only from an ignored local file, and I will regenerate it after submission.

@@ -9,6 +9,17 @@ Two small applications are built with the GitHub Spec Kit workflow (constitution
 | `Part-1A/` | **lcgkit**, a linear congruential generator toolkit (library, command line, HTTP service) | Deterministic |
 | `Part-1B/` | **lcgkit-assistant**, a natural-language front end for lcgkit that uses Google Gemini, with a three-layer evaluation harness | Non-deterministic |
 
+## Setup environment
+
+| Item | Version or choice |
+|---|---|
+| Operating system | macOS 26.6.2 (Darwin 25.6.0), shell zsh |
+| GitHub Spec Kit | `specify` 1.2.6.dev0, initialised in each part with the Claude Code integration (commands installed as skills) and the `sh` scripts; the choices are recorded in each part's `.specify/init-options.json` |
+| Coding agent | Claude Code, in VS Code |
+| Python and packages | Python 3.12 (`requires-python >=3.12,<3.13`), managed with uv 0.12.24 |
+| Tools used by the harnesses | Ruff 0.17.3, Bandit 1.9.4, pytest 9.2.0, gitleaks 8.30.1 |
+| Git | 2.54.0 |
+
 ## Use of AI assistance
 
 This assignment was developed with some help from AI. I used Claude (through Claude Code) as a coding agent to draft the Spec Kit artifacts and to write implementation and harness code, under my direction and review. The harness logs and the reflection answers are written by me from the real evidence, as the assignment requires.
